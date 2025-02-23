@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dark-mode</title>
+    <title>waiwai space - Knowledge</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <!-- 引入 highlight.js 的 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
-    <!-- 引入 Lightbox2 的 CSS 文件 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
-    <title>waiwai space - Knowledge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
     <style>
         :root {
             --bg: #f8f9fa;
@@ -61,17 +57,17 @@
         }
 
         .article-content {
-            margin-top: 2rem;
+            margin-top: 1rem;
             border-top: 1px solid #eee;
-            padding-top: 2rem;
+            padding-top: 0.1rem;
         }
 
         /* 树形结构样式 */
         .tree-node {
             list-style: none;
-            padding-left: 1.5rem;
+            padding-left: 0.5rem;
             position: relative;
-            margin: 0.5rem 0; /* 增加节点之间的间距 */
+            margin: 0.2rem 0;
         }
 
         .tree-toggle {
@@ -81,7 +77,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin: 0.5rem 0; /* 增加文件夹之间的间距 */
+            margin: 0.4rem 0;
         }
 
         .tree-node.expanded > .tree-toggle {
@@ -90,10 +86,33 @@
 
         .children-container {
             display: none;
+            padding-left: 1rem;
         }
 
         .expanded > .children-container {
             display: block;
+        }
+
+        #article-tree ul {
+            padding-left: 0.5rem 1;
+            margin: 0.1rem 1;
+        }
+
+        #article-tree li {
+            margin: 0.1rem 1;
+            padding: 0.5rem 1;
+        }
+
+        .article-item {
+            margin: 0.05rem 0; /* 极大地减小文件项之间的间距 */
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0.3rem;
+            border-radius: 4px;
+        }
+
+        .article-item:hover {
+            background: rgba(66, 99, 235, 0.1);
         }
 
         .lightbox-overlay {
@@ -157,34 +176,79 @@
             width: 100%;
             height: 100%;
         }
+
+        /* 目录样式 */
+        #toc {
+            position: fixed;
+            top: 0;
+            left: 0;
+            max-width: 200px;
+            background: transparent;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            box-shadow: none;
+            overflow-y: auto;
+            height: 100vh; /* 使目录占满整个视口高度 */
+        }
+
+        #toc ul {
+            padding-left: 10px;
+            margin: 0;
+        }
+
+        #toc li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #toc a {
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        #toc a:hover {
+            text-decoration: underline;
+        }
+
+        body.dark-mode #toc a {
+            color: var(--text-dark);
+        }
     </style>
 </head>
 <body>
     <div class="themeMode">
         <input type="checkbox" class="darkMode" id="darkMode" />
         <label for="darkMode" class="label_darkMode">
-         <i class="fas fa-sun"></i>
-         <i class="fas fa-moon"></i>
-          <div class="ball"></div>
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            <div class="ball"></div>
         </label>
     </div>
-    <!-- 引入 highlight.js 的 JavaScript 文件 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/javascript.min.js"></script>
-    <!-- 引入 Lightbox2 的 JavaScript 文件 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    
+
     <!-- 简介区域 -->
     <header>
         <h1>waiwai space - Knowledge</h1>
-        <p>The world is deep.And deeper than the day could read. • <a href="https://github.com/yourusername" target="_blank">GitHub 主页</a></p>
     </header>
+
+    <!-- 目录容器 -->
+    <div id="toc"></div>
 
     <!-- 文章目录树 -->
     <div id="article-tree"></div>
 
     <!-- 文章内容容器 -->
-    <div id="article-content" class="article-content"></div>
+    <div id="article-content" class="article-content markdown-body"></div>
+    <!-- 回到顶部按钮 -->
+    <button id="back-to-top" title="回到顶部"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script src="scripts/config.js"></script>
     <script src="scripts/treeBuilder.js"></script>
@@ -194,6 +258,7 @@
     <script src="scripts/replaceImageSources.js"></script>
     <script src="scripts/utils.js"></script>
     <script src="scripts/themeManger.js"></script>
+    <script src="scripts/backToTop.js"></script>
     <script>
         // 初始化加载
         async function init() {
@@ -202,18 +267,25 @@
                     `https://api.github.com/repos/${config.githubUser}/${config.repo}/git/trees/main?recursive=1`
                 );
                 const { tree } = await response.json();
-                
+
                 const filteredFiles = tree.filter(item => 
                     item.type === 'blob' && 
                     item.path.endsWith('.md') &&
                     !item.path.includes('README')
                 );
-    
-                const builder = new TreeBuilder(filteredFiles);
+
+                // 对文件路径进行排序
+                const sortedFiles = filteredFiles.sort((a, b) => {
+                    const aPath = a.path.toLowerCase();
+                    const bPath = b.path.toLowerCase();
+                    return aPath.localeCompare(bPath, 'en', { sensitivity: 'base' });
+                });
+
+                const builder = new TreeBuilder(sortedFiles);
                 const fileTree = builder.getTree();
-    
+
                 renderTreeNode(document.getElementById('article-tree'), fileTree);
-                
+
                 // 添加全局点击监听
                 document.getElementById('article-tree').addEventListener('click', handleTreeClick);
             } catch (error) {
@@ -222,14 +294,14 @@
             }
         }
         window.addEventListener('DOMContentLoaded', init);
-    
+
         document.addEventListener('DOMContentLoaded', function () {
             lightbox.option({
-                resizeDuration: 200, // 调整图片时的动画时间
-                wrapAround: true,   // 允许灯箱环绕图片
-                alwaysShowNavOnTouchDevices: true, // 移动设备上始终显示导航按钮
-                imageFadeDuration: 500, // 图片淡入淡出时间
-                positionFromTop: 80   // 图片从顶部的偏移量
+                resizeDuration: 200,
+                wrapAround: true,
+                alwaysShowNavOnTouchDevices: true,
+                imageFadeDuration: 500,
+                positionFromTop: 80
             });
         });
 
@@ -239,11 +311,67 @@
                 hljs.highlightElement(block);
             });
         }
+
+        // 生成目录
+        function generateTOCTree(headers) {
+            if (headers.length === 0) return;
+
+            const toc = document.getElementById('toc');
+            const tocTree = document.createElement('ul');
+
+            let currentLevel = 1;
+            let currentList = tocTree;
+
+            headers.forEach((header, index) => {
+                const level = parseInt(header.tagName.substring(1));
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `#${header.id}`;
+                link.textContent = header.textContent;
+                link.id = `toc-link-${index}`; // 为每个目录项添加唯一的 ID
+                listItem.appendChild(link);
+
+                if (level > currentLevel) {
+                    const newList = document.createElement('ul');
+                    currentList.lastElementChild.appendChild(newList);
+                    currentList = newList;
+                } else if (level < currentLevel) {
+                    currentList = currentList.parentElement;
+                }
+
+                currentList.appendChild(listItem);
+                currentLevel = level;
+            });
+
+            toc.appendChild(tocTree);
+        }
+
+        document.addEventListener('DOMContentLoaded', generateTOCTree);
+
+        // 更新目录高亮
+        function updateTOCHighlight() {
+            const headers = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3');
+            const tocLinks = document.querySelectorAll('#toc a');
+
+            let currentHeaderIndex = -1;
+
+            headers.forEach((header, index) => {
+                const rect = header.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    currentHeaderIndex = index;
+                }
+            });
+
+            tocLinks.forEach((link, index) => {
+                if (index === currentHeaderIndex) {
+                    link.style.fontWeight = 'bold';
+                } else {
+                    link.style.fontWeight = 'normal';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateTOCHighlight);
     </script>
-    
-    <!-- 引入 Lightbox2 的 JavaScript 文件 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    <!-- Markdown 解析库 -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>

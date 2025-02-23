@@ -75,3 +75,29 @@ body.dark p,
 body.dark a {
   color: white;
 }
+
+#back-to-top {
+  display: none; /* 默认隐藏 */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #4263eb;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* 设置成圆形 */
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px; /* 使文字垂直居中 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+  background-color: #365fcf;
+  transform: scale(1.1);
+}
+
