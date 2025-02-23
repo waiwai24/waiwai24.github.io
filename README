@@ -1,0 +1,9 @@
+├── index.html
+├── scripts/
+│   ├── config.js
+│   ├── treeBuilder.js
+│   ├── renderTree.js
+│   ├── handleTreeClick.js
+│   ├── loadArticle.js
+│   ├── replaceImageSources.js
+│   └── utils.js
