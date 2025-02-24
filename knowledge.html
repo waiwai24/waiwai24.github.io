@@ -29,8 +29,8 @@
         }
 
         body.dark-mode {
-            background: var(--bg-dark);
-            color: var(--text-dark);
+            background-color: #292C35;
+            color: white;
         }
 
         .button-container {
@@ -227,6 +227,13 @@
             padding: 0 rem 0;
             box-shadow: transparent;
         }
+
+        .themeMode {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -269,6 +276,7 @@
     <script src="scripts/utils.js"></script>
     <script src="scripts/themeManger.js"></script>
     <script src="scripts/backToTop.js"></script>
+    <script src="scripts/themeManger.js"></script>
     <script>
         // 初始化加载
         async function init() {

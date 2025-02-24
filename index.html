@@ -17,14 +17,13 @@
             --bg-dark: #292C35;
             --text-dark: #f8f9fa;
             --transition-time: 0.4s; /* 定义过渡时间变量 */
-
         }
         body {
             margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between; /* 确保页脚在页面底部 */
             align-items: center;
             background: #f0f2f5;
             line-height: 1.6;
@@ -89,19 +88,23 @@
             }
 
             .button {
-                width: 50%; /* 按钮宽度占满容器 */
-                margin: 0.5rem 0.5; /* 按钮之间的垂直间距 */
-                font-size: 0.1rem; /* 减小字体大小 */
-                height: 60px; /* 减小按钮高度 */
+                width: 100%; /* 按钮宽度占满容器 */
+                margin: 0.5rem 0; /* 按钮之间的垂直间距 */
+                font-size: 1rem; /* 减小字体大小 */
+                height: 50px; /* 减小按钮高度 */
             }
 
             header img {
-                max-width: 60%; /* 减小图片宽度 */
+                max-width: 50%; /* 减小图片宽度 */
             }
         }
 
         body.dark-mode {
             background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        body.dark-mode footer .text-copyright {
             color: var(--text-dark);
         }
 
@@ -159,14 +162,18 @@
         }
 
         footer {
-            position: relative;
-            bottom: 0;
             width: 100%;
             background: #f0f2f5;
             text-align: center;
-            padding: 0rem 1;
-            box-shadow: transparent;
+            padding: 1rem 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
         }
+
+        body.dark-mode footer {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+        
 
     </style>
 </head>
@@ -192,8 +199,8 @@
         <p>👀 Hi, my name is 🦘 waiwai</p>
         <p>👨‍💻 I'm a undergraduate and I am interested in binary and CTF</p>
         <p>👾 Welcome to communicate with me</p>
-        <p>📚 Motto: The world is deep.And deeper than the day could read.</p>
-        <p>❤️ Interest: iot, kernel, boxing and others to be developed</p>
+        <p>📚 my motto: The world is deep.And deeper than the day could read.</p>
+        <p>❤️ interest: iot, kernel, boxing and others to be developed</p>
         <p>📧 Email: <a href="mailto:waiwai.website.mail@gmail.com">waiwai.website.mail@gmail.com</a></p>
         <p>🔗 GitHub: <a href="https://github.com/waiwai24"target="_blank">https://github.com/waiwai24</a></p>
     
@@ -205,9 +212,9 @@
             <a href="tool.html" class="button">Tool</a>
             <p></p>
         </div>
-            <!-- 新增内容 -->
     </header>
 
+    <!-- 新增内容 -->
     <footer>
         <div class="copyright">
             <p class="text-copyright">Copyright © 2025 waiwai. All Rights Reserved.</p>

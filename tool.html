@@ -3,55 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dark-mode</title>
+    <title>Custom Google Search</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <title>waiwai space</title>
     <style>
-        :root {
-            --bg: #f8f9fa;
-            --text: #212529;
-            --primary: #4263eb;
-            --bg-dark: #292C35;
-            --text-dark: #f8f9fa;
-        }
-
         body {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* 将内容靠上对齐 */
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding-top: 40px; /* 添加顶部内边距 */
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
             transition: background 0.3s, color 0.3s;
         }
 
         body.dark-mode {
-            background: var(--bg-dark);
-            color: var(--text-dark);
-        }
-
-        .button-container {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
+            background-color: #292C35;
             color: white;
-            background-color: var(--primary);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
         }
 
-        .button:hover {
-            background-color: #365fcf;
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-container p {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: inherit; /* 继承父元素的颜色 */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            box-shadow: none;
+            outline: none;
+            transition: box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus {
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 14px;
+            margin: 0 5px;
+            border: 1px solid #dfe1e5;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            color: #3c4043;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #f1f3f4;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"]:active {
+            background-color: #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 创建三列布局 */
+            gap: 20px; /* 列之间的间距 */
+            margin-top: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 让 h3 居中 */
+            margin: 10px;
+        }
+
+        .column h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: inherit; /* 继承父元素的颜色 */
+            text-align: center; /* 确保 h3 居中 */
+        }
+        
+        .column a {
+            display: block;
+            margin: 5px 0;
+            color: inherit; /* 继承父元素的颜色 */
+            text-decoration: none;
+            font-size: 16px;
+            text-align: left; /* 让 a 左对齐 */
+        }
+
+        .links a {
+            display: block;
+            margin: 5px 0;
+            color: inherit; /* 继承父元素的颜色 */
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -59,18 +132,74 @@
     <div class="themeMode">
         <input type="checkbox" class="darkMode" id="darkMode" />
         <label for="darkMode" class="label_darkMode">
-         <i class="fas fa-sun"></i>
-         <i class="fas fa-moon"></i>
-          <div class="ball"></div>
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            <div class="ball"></div>
         </label>
     </div>
-  
+
+    <div class="search-container">
+        <h1><a href="index.html" style="text-decoration: none; color: inherit;">waiwai space - Tool</a></h1>
+        <form action="https://www.google.com/search" method="get">
+            <input type="text" name="q" placeholder="Google Search...">
+        </form>
+    </div>
+
+    <div class="links">
+        <div class="column">
+            <h3>Binary :</h3>
+            <a href="https://gchq.github.io/CyberChef/" target="_blank">CyberChef</a>
+            <a href="https://shell-storm.org/shellcode/index.html" target="_blank">Shellcode</a>
+            <a href="https://libc.rip/" target="_blank">Libc Search </a>
+            <a href="https://libc.blukat.me/" target="_blank">Libc Search</a>   
+            <a href="https://shell-storm.org/x86doc/index.html" target="_blank">x86 Opcode</a>
+            <a href="https://shell-storm.org/online/Online-Assembler-and-Disassembler/" target="_blank">Asm and Disasm</a>
+            <a href="https://elixir.bootlin.com" target="_blank">Source Code</a>
+            <a href="https://makelinux.github.io/kernel/map/" target="_blank">Kernel Map</a>
+            <a href="https://www.virustotal.com/gui/home/upload" target="_blank">VirusTotal</a>
+            <a href="https://s.threatbook.com/" target="_blank">X ThreatBook</a>
+            <a href="https://www.hybrid-analysis.com/" target="_blank">Hybrid Analysis</a>
+            <a href="https://www.joesandbox.com/" target="_blank">Joe Sandbox</a>
+            <a href="https://www.cve.org/" target="_blank">CVE</a>
+            <a href="https://0day.today/" target="_blank">0Day</a>
+            <a href="https://www.exploit-db.com/shellcodes" target="_blank">Exploit Database</a>
+        </div>
+        <div class="column">
+            <h3>Server :</h3>
+            <a href="https://buuoj.cn/challenges" target="_blank">Buu</a>
+            <a href="https://home.console.aliyun.com/home/dashboard/ProductAndService" target="_blank">Aliyun</a>
+            <a href="https://console.cloud.tencent.com/" target="_blank">Tencent Cloud</a>
+            <a href="https://console.huaweicloud.com/console" target="_blank">Huawei Cloud</a>
+            <a href="https://app.vmiss.com/clientarea.php" target="_blank">VMISS</a>
+            <a href="https://dash.cloudflare.com/" target="_blank">Cloudflare</a>
+            <a href="https://platform.closeai-asia.com/dashboard/" target="_blank">CloseAI</a>
+            <a href="https://yeka.ai/pay-service" target="_blank">WildCard</a>
+        </div>
+        <div class="column">
+            <h3>Other</h3>
+            <a href="https://www.revshells.com/" target="_blank">RRevshell</a>
+            <a href="https://test.ustc.edu.cn/" target="_blank">USTC Test Speed </a>
+            <a href="https://www.speedtest.net/" target="_blank">Speed Test</a>
+            <a href="https://www.dnsgrep.cn/" target="_blank">Dnsgrep</a>
+            <a href="https://tool.chinaz.com/" target="_blank">CChinaz</a>
+            <a href="https://ping.pe/" target="_blank">Ping Test</a>
+            <a href="https://fofa.info/" target="_blank">FOFA</a>
+            <a href="https://www.zoomeye.org/discover" target="_blank">Zoomeye</a>
+            <a href="https://www.shodan.io/" target="_blank">Shodan</a>
+            <a href="https://www.censys.io/" target="_blank">Censys</a>
+            <a href="https://www.binaryedge.io/" target="_blank">BinaryEdge</a>
+            <a href="https://hunter.qianxin.com/" target="_blank">QiAnXin</a>
+        </div>
+    </div>
+
     <script src="scripts/config.js"></script>
     <script src="scripts/themeManger.js"></script>
 
-    <!-- 简介区域 -->
-    <header>
-        <h1>waiting ... ...</h1>
-    </header>
+    <!-- 新增内容 -->
+    <footer>
+        <div class="copyright">
+            <p class="text-copyright">Copyright © 2025 waiwai. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
