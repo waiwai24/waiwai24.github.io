@@ -217,6 +217,16 @@
         body.dark-mode #toc a {
             color: var(--text-dark);
         }
+
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            background: transparent;
+            text-align: center;
+            padding: 0 rem 0;
+            box-shadow: transparent;
+        }
     </style>
 </head>
 <body>
@@ -231,7 +241,7 @@
 
     <!-- 简介区域 -->
     <header>
-        <h1>waiwai space - Knowledge</h1>
+        <h1><a href="index.html" style="text-decoration: none; color: inherit;">waiwai space - Knowledge</a></h1>
     </header>
 
     <!-- 目录容器 -->
@@ -373,5 +383,11 @@
 
         window.addEventListener('scroll', updateTOCHighlight);
     </script>
+    <!-- 新增内容 -->
+    <footer>
+        <div class="copyright">
+            <p class="text-copyright">Copyright © 2025 waiwai. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

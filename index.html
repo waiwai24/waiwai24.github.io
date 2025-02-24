@@ -82,6 +82,22 @@
             p {
                 font-size: 1rem;
             }
+
+            .button-container {
+                flex-direction: column; /* 垂直排列按钮 */
+                padding: 0.5rem; /* 减小内边距 */
+            }
+
+            .button {
+                width: 50%; /* 按钮宽度占满容器 */
+                margin: 0.5rem 0.5; /* 按钮之间的垂直间距 */
+                font-size: 0.1rem; /* 减小字体大小 */
+                height: 60px; /* 减小按钮高度 */
+            }
+
+            header img {
+                max-width: 60%; /* 减小图片宽度 */
+            }
         }
 
         body.dark-mode {
@@ -142,6 +158,16 @@
             margin-bottom: 1rem; /* 图片与文字之间的间距 */
         }
 
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            background: #f0f2f5;
+            text-align: center;
+            padding: 0rem 1;
+            box-shadow: transparent;
+        }
+
     </style>
 </head>
 <body>
@@ -166,26 +192,27 @@
         <p>👀 Hi, my name is 🦘 waiwai</p>
         <p>👨‍💻 I'm a undergraduate and I am interested in binary and CTF</p>
         <p>👾 Welcome to communicate with me</p>
-        <p>📚 my motto: The world is deep.And deeper than the day could read.</p>
-        <p>❤️ interest: iot, kernel, boxing and others to be developed</p>
+        <p>📚 Motto: The world is deep.And deeper than the day could read.</p>
+        <p>❤️ Interest: iot, kernel, boxing and others to be developed</p>
         <p>📧 Email: <a href="mailto:waiwai.website.mail@gmail.com">waiwai.website.mail@gmail.com</a></p>
         <p>🔗 GitHub: <a href="https://github.com/waiwai24"target="_blank">https://github.com/waiwai24</a></p>
     
         <div class="button-container">
-            <a href="knowledge.html" class="button">Go to Knowledge</a>
-            <a href="project.html" class="button">Go to Project</a>
-            <a href="tool.html" class="button">Go to Tool</a>
+            <a href="knowledge.html" class="button">Knowledge</a>
+            <p></p>
+            <a href="project.html" class="button">Project</a>
+            <p></p>
+            <a href="tool.html" class="button">Tool</a>
+            <p></p>
         </div>
+            <!-- 新增内容 -->
     </header>
 
-    <!-- 新增内容 -->
     <footer>
         <div class="copyright">
             <p class="text-copyright">Copyright © 2025 waiwai. All Rights Reserved.</p>
-
         </div>
     </footer>
-
 
 </body>
 </html>
