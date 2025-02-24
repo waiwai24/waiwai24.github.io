@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.add('dark-mode');
         document.getElementById('darkMode').checked = true;
     }
+
+    // 设置主题切换按钮的位置
+    const themeMode = document.querySelector('.themeMode');
+    themeMode.style.position = 'fixed';
+    themeMode.style.top = '1rem';
+    themeMode.style.right = '1rem';
+    themeMode.style.zIndex = '1000';
 });
 
 // 切换明暗模式
