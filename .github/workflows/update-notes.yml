@@ -1,20 +1,12 @@
-# 工作流名称
-name: Update Knowledge Notes
+name: Sync 0101 and Generate Knowledge Tree
 
 on:
-  # 手动触发
-  workflow_dispatch:
-  # 每天 UTC 0 点执行（北京时间早 8 点）
+  workflow_dispatch: # 手动触发
   schedule:
-    - cron: '0 0 * * *'
-  # 当指定文件更新时触发
-  push:
-    paths:
-      - '0101/**'
-      - 'generate-tree.js'
+    - cron: '0 0 * * *' # 每天 UTC 0 点执行（北京时间早 8 点）
 
 jobs:
-  update-notes-job:
+  sync-and-generate:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -24,76 +16,33 @@ jobs:
       - name: Checkout main repository
         uses: actions/checkout@v4
 
-      # 2. 如果子仓库不存在则克隆（匿名方式，不使用 token）
-      - name: Clone notes repository if it does not exist
+      # 2. 克隆 0101 仓库到当前仓库的 0101 目录
+      - name: Clone 0101 repository
         run: |
-          if [ ! -d "0101/.git" ]; then
-            echo "Cloning notes repository for the first time..."
-            git clone https://github.com/waiwai24/0101.git
-          else
-            echo "Notes repository already exists."
-          fi
+          rm -rf 0101
+          git clone https://github.com/waiwai24/0101.git 0101
 
-      # 3. 检查子仓库是否有新提交（第一次克隆也会触发更新）
-      - name: Check for new commits in notes repository
-        id: check_updates
-        working-directory: ./0101
-        run: |
-          git fetch origin main
-          LOCAL_SHA=$(git rev-parse HEAD 2>/dev/null || echo "none")
-          REMOTE_SHA=$(git rev-parse origin/main 2>/dev/null || echo "none")
-
-          if [ "$LOCAL_SHA" = "none" ] || [ "$LOCAL_SHA" != "$REMOTE_SHA" ]; then
-            echo "第一次运行或检测到笔记仓库有新 commit。"
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "笔记仓库无更新。"
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          fi
-
-      # 4. 安装 Node.js（始终安装，避免第一次运行出错）
-      - name: Setup Node.js
+      # 3. 安装 Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 18
 
-      # 5. 同步子仓库 + 生成知识树 + 提交到主仓库
-      - name: Pull, Generate, and Commit
-        if: steps.check_updates.outputs.has_changes == 'true'
+      # 4. 生成知识树 JSON
+      - name: Generate knowledge tree
         run: |
-          echo "正在同步最新笔记..."
-          cd 0101
-          git reset --hard origin/main
-          cd ..
+          node generate-tree.js
 
-          echo "正在重新生成知识树..."
-          if ! node generate-tree.js; then
-            echo "生成知识树失败"
-            exit 1
-          fi
+      # 5. 提交并推送所有改动
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          echo "正在检查 knowledge-tree.json 是否变化..."
-          git add knowledge-tree.json
+          git add 0101 knowledge-tree.json
           if git diff --cached --quiet; then
-            echo "知识树无变化，跳过提交。"
+            echo "No changes to commit"
           else
-            echo "检测到文件变化，准备提交..."
-            git config user.name 'github-actions[bot]'
-            git config user.email 'github-actions[bot]@users.noreply.github.com'
-            git commit -m "docs(bot): 自动更新知识库树"
-            git fetch origin main
-            git rebase origin/main
+            git commit -m "chore(bot): sync 0101 and update knowledge tree"
             git push
           fi
-
-      # 6. 如果无更新则提示
-      - name: Report no changes
-        if: steps.check_updates.outputs.has_changes == 'false'
-        run: echo "无需操作，工作流结束。"
-
-      # 7. 最终状态报告
-      - name: Report workflow completion
-        if: always()
-        run: |
-          echo "工作流执行完成"
-          echo "状态: ${{ job.status }}"
