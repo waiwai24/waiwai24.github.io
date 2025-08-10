@@ -1,0 +1,99 @@
+# 工作流名称
+name: Update Knowledge Notes
+
+on:
+  # 手动触发
+  workflow_dispatch:
+  # 每天 UTC 0 点执行（北京时间早 8 点）
+  schedule:
+    - cron: '0 0 * * *'
+  # 当指定文件更新时触发
+  push:
+    paths:
+      - '0101/**'
+      - 'generate-tree.js'
+
+jobs:
+  update-notes-job:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # 1. 检出主仓库
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+
+      # 2. 如果子仓库不存在则克隆（匿名方式，不使用 token）
+      - name: Clone notes repository if it does not exist
+        run: |
+          if [ ! -d "0101/.git" ]; then
+            echo "Cloning notes repository for the first time..."
+            git clone https://github.com/waiwai24/0101.git
+          else
+            echo "Notes repository already exists."
+          fi
+
+      # 3. 检查子仓库是否有新提交
+      - name: Check for new commits in notes repository
+        id: check_updates
+        working-directory: ./0101
+        run: |
+          git fetch origin main
+          LOCAL_SHA=$(git rev-parse HEAD || echo "none")
+          REMOTE_SHA=$(git rev-parse origin/main || echo "none")
+
+          if [ "$LOCAL_SHA" = "$REMOTE_SHA" ]; then
+            echo "笔记仓库无更新。"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "检测到笔记仓库有新 commit。"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      # 4. 安装 Node.js（始终安装，避免第一次运行出错）
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 5. 同步子仓库 + 生成知识树 + 提交到主仓库
+      - name: Pull, Generate, and Commit
+        if: steps.check_updates.outputs.has_changes == 'true'
+        run: |
+          echo "正在同步最新笔记..."
+          cd 0101
+          git reset --hard origin/main
+          cd ..
+
+          echo "正在重新生成知识树..."
+          if ! node generate-tree.js; then
+            echo "生成知识树失败"
+            exit 1
+          fi
+
+          echo "正在检查 knowledge-tree.json 是否变化..."
+          git add knowledge-tree.json
+          if git diff --cached --quiet; then
+            echo "知识树无变化，跳过提交。"
+          else
+            echo "检测到文件变化，准备提交..."
+            git config user.name 'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
+            git commit -m "docs(bot): 自动更新知识库树"
+            git fetch origin main
+            git rebase origin/main
+            git push
+          fi
+
+      # 6. 如果无更新则提示
+      - name: Report no changes
+        if: steps.check_updates.outputs.has_changes == 'false'
+        run: echo "无需操作，工作流结束。"
+
+      # 7. 最终状态报告
+      - name: Report workflow completion
+        if: always()
+        run: |
+          echo "工作流执行完成"
+          echo "状态: ${{ job.status }}"

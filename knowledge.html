@@ -3,286 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>waiwai space - Knowledge</title>
-    <link rel="icon" href="favicon.png" type="image/png" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
-    <link rel="stylesheet" href="./lightbox2/dist/css/lightbox.min.css" />
-    <style>
-        :root {
-            --bg: #f8f9fa;
-            --text: #212529;
-            --primary: #4263eb;
-            --bg-dark: #292C35;
-            --text-dark: #f8f9fa;
-        }
-
-        body {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        body.dark-mode {
-            background-color: #292C35;
-            color: white;
-        }
-
-        .button-container {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        #article-tree {
-            margin-top: 2rem;
-            border-left: 2px solid #dee2e6;
-            padding-left: 1.5rem;
-        }
-
-        .article-item {
-            margin: 0.1rem 0;
-            cursor: pointer;
-            transition: all 0.2s;
-            padding: 0.5rem;
-            border-radius: 4px;
-        }
-
-        .article-item:hover {
-            background: rgba(66, 99, 235, 0.1);
-        }
-
-        .article-content {
-            margin-top: 1rem;
-            border-top: 1px solid #eee;
-            padding-top: 0.1rem;
-        }
-
-        /* 树形结构样式 */
-        .tree-node {
-            list-style: none;
-            padding-left: 0.5rem;
-            position: relative;
-            margin: 0.2rem 0;
-        }
-
-        .tree-toggle {
-            cursor: pointer;
-            user-select: none;
-            transition: transform 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0.4rem 0;
-        }
-
-        .tree-node.expanded > .tree-toggle {
-            font-weight: bold;
-        }
-
-        .children-container {
-            display: none;
-            padding-left: 1rem;
-        }
-
-        .expanded > .children-container {
-            display: block;
-        }
-
-        #article-tree ul {
-            padding-left: 0.5rem 1;
-            margin: 0.1rem 1;
-        }
-
-        #article-tree li {
-            margin: 0.1rem 1;
-            padding: 0.5rem 1;
-        }
-
-        .article-item {
-            margin: 0.05rem 0; /* 极大地减小文件项之间的间距 */
-            cursor: pointer;
-            transition: all 0.2s;
-            padding: 0.3rem;
-            border-radius: 4px;
-        }
-
-        .article-item:hover {
-            background: rgba(66, 99, 235, 0.1);
-        }
-
-        .lightbox-overlay {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .lightbox-outer {
-            max-width: 90vw;
-            max-height: 90vh;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-wrap {
-            margin: 1rem;
-        }
-
-        .zoomed-img {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .zoom-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 999;
-        }
-
-        /* Markdown 内容样式 */
-        .markdown-body {
-            line-height: 1.6;
-        }
-        .markdown-body h1 { font-size: 1.8rem; }
-        .markdown-body img { max-width: 100%; }
-        .markdown-body pre { padding: 1rem; background: #f8f9fa; }
-
-        .toggle-icon {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            width: 2rem;
-            height: 2rem;
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-        .toggle-icon img {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* 目录样式 */
-        #toc {
-            position: fixed;
-            top: 0;
-            left: 0;
-            max-width: 200px;
-            background: transparent;
-            border: none;
-            padding: 1rem;
-            border-radius: 4px;
-            box-shadow: none;
-            overflow-y: auto;
-            height: 100vh; /* 使目录占满整个视口高度 */
-        }
-
-        #toc ul {
-            padding-left: 10px;
-            margin: 0;
-        }
-
-        #toc li {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #toc a {
-            color: var(--text);
-            text-decoration: none;
-            display: block;
-            margin: 0.5rem 0;
-        }
-
-        #toc a:hover {
-            text-decoration: underline;
-        }
-
-        body.dark-mode #toc a {
-            color: var(--text-dark);
-        }
-
-        footer {
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            background: transparent;
-            text-align: center;
-            padding: 0 rem 0;
-            box-shadow: transparent;
-        }
-
-        .themeMode {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-        }
-    </style>
+    <title>Knowledge</title>
+    <link rel="stylesheet" href="knowledge.css">
+    <link rel="stylesheet" href="header-style.css">
 </head>
 <body>
-    <div class="themeMode">
-        <input type="checkbox" class="darkMode" id="darkMode" />
-        <label for="darkMode" class="label_darkMode">
-            <i class="fas fa-sun"></i>
-            <i class="fas fa-moon"></i>
-            <div class="ball"></div>
-        </label>
-    </div>
-
-    <!-- 简介区域 -->
-    <header>
-        <h1><a href="index.html" style="text-decoration: none; color: inherit;">waiwai space - Knowledge</a></h1>
-    </header>
-
-    <!-- 目录容器 -->
-    <div id="toc"></div>
-
-    <!-- 文章目录树 -->
-    <div id="article-tree"></div>
-
-    <!-- 文章内容容器 -->
-    <div id="article-content" class="article-content markdown-body"></div>
-    <!-- 回到顶部按钮 -->
-    <button id="back-to-top" title="回到顶部"><i class="fas fa-arrow-up"></i></button>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/javascript.min.js"></script>
-    <script src="./lightbox2/dist/js/lightbox.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="scripts/config.js"></script>
-    <script src="scripts/treeBuilder.js"></script>
-    <script src="scripts/renderTree.js"></script>
-    <script src="scripts/handleTreeClick.js"></script>
-    <script src="scripts/loadArticle.js"></script>
-    <script src="scripts/replaceImageSources.js"></script>
-    <script src="scripts/utils.js"></script>
-    <script src="scripts/themeManger.js"></script>
-    <script src="scripts/backToTop.js"></script>
-    <script src="scripts/themeManger.js"></script>
-    <script src="scripts/knowinit.js"></script>
-    <!-- 新增内容 -->
-    <footer>
-        <div class="copyright">
-            <p class="text-copyright">Copyright © 2025 waiwai. All Rights Reserved.</p>
+    <div class="container">
+        <div class="main-content-wrapper">
+            <aside class="sidebar">
+                <header class="sidebar-header" style="text-align: center;">
+                    <h1 class="page-title"><a href="index.html">Knowledge</a></h1>
+                </header>
+                <nav id="file-tree"></nav>
+            </aside>
+            <main id="content-display" class="content">
+                <div class="placeholder">
+                    <svg class="placeholder-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.1,18.9l-5.2-5.2l5.2-5.2"/><path d="M8.9,18.9l-5.2-5.2l5.2-5.2"/></svg>
+                    <span>请从左侧选择一篇文章开始阅读</span>
+                </div>
+            </main>
         </div>
+    </div>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+    <script src="knowledge.js"></script>
 </body>
 </html>
