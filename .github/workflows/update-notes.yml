@@ -1,9 +1,9 @@
 name: Sync 0101 and Generate Knowledge Tree
 
 on:
-  workflow_dispatch: # 手动触发
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # 每天 UTC 0 点执行（北京时间早 8 点）
+    - cron: '0 0 * * *'
 
 jobs:
   sync-and-generate:
@@ -12,33 +12,26 @@ jobs:
       contents: write
 
     steps:
-      # 1. 检出主仓库
       - name: Checkout main repository
         uses: actions/checkout@v4
 
-      # 2. 克隆 0101 仓库到当前仓库的 0101 目录
       - name: Clone 0101 repository
         run: |
           rm -rf 0101
-          git clone https://github.com/waiwai24/0101.git 0101
+          git clone --depth 1 https://github.com/waiwai24/0101.git 0101
 
-      # 3. 安装 Node.js
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # 4. 生成知识树 JSON
       - name: Generate knowledge tree
-        run: |
-          node generate-tree.js
+        run: node generate-tree.js
 
-      # 5. 提交并推送所有改动
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add 0101 knowledge-tree.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
