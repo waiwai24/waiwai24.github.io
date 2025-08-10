@@ -1,33 +1,38 @@
 name: Sync 0101 and Generate Knowledge Tree
-
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
-
 jobs:
   sync-and-generate:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Checkout main repository
         uses: actions/checkout@v4
-
+        
       - name: Clone 0101 repository
         run: |
           rm -rf 0101
-          git clone --depth 1 https://github.com/waiwai24/0101.git 0101
-
+          git clone https://github.com/waiwai24/0101.git 0101
+          rm -rf 0101/.git  # 关键：移除.git目录，使其成为普通目录
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
+          
       - name: Generate knowledge tree
         run: node generate-tree.js
-
+        
+      - name: Debug before commit
+        run: |
+          echo "=== Files changed ==="
+          git status
+          echo "=== Staged changes ==="
+          git diff --cached --name-only
+          
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
