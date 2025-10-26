@@ -72,6 +72,18 @@
               "name": "14.深度学习：卷积神经网络",
               "type": "directory",
               "children": []
+            },
+            {
+              "path": "0101/AI/assets/20.MCP",
+              "name": "20.MCP",
+              "type": "directory",
+              "children": []
+            },
+            {
+              "path": "0101/AI/assets/22.模型隐私攻击",
+              "name": "22.模型隐私攻击",
+              "type": "directory",
+              "children": []
             }
           ]
         },
@@ -169,6 +181,21 @@
           "path": "0101/AI/19.ClaudeCode指南.md",
           "name": "19.ClaudeCode指南.md",
           "type": "file"
+        },
+        {
+          "path": "0101/AI/20.MCP.md",
+          "name": "20.MCP.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/AI/21.提示词工程.md",
+          "name": "21.提示词工程.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/AI/22.模型隐私攻击.md",
+          "name": "22.模型隐私攻击.md",
+          "type": "file"
         }
       ]
     },
@@ -188,6 +215,94 @@
               "type": "file"
             }
           ]
+        }
+      ]
+    },
+    {
+      "path": "0101/C2",
+      "name": "C2",
+      "type": "directory",
+      "children": [
+        {
+          "path": "0101/C2/assets",
+          "name": "assets",
+          "type": "directory",
+          "children": [
+            {
+              "path": "0101/C2/assets/1.Windows基础",
+              "name": "1.Windows基础",
+              "type": "directory",
+              "children": []
+            },
+            {
+              "path": "0101/C2/assets/2.检测机制",
+              "name": "2.检测机制",
+              "type": "directory",
+              "children": []
+            },
+            {
+              "path": "0101/C2/assets/3.Windows进程",
+              "name": "3.Windows进程",
+              "type": "directory",
+              "children": []
+            },
+            {
+              "path": "0101/C2/assets/5.payload加解密",
+              "name": "5.payload加解密",
+              "type": "directory",
+              "children": []
+            }
+          ]
+        },
+        {
+          "path": "0101/C2/1.Windows基础.md",
+          "name": "1.Windows基础.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/2.检测机制.md",
+          "name": "2.检测机制.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/3.Windows进程.md",
+          "name": "3.Windows进程.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/4.payload存放.md",
+          "name": "4.payload存放.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/5.payload加解密.md",
+          "name": "5.payload加解密.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/6.payload混淆.md",
+          "name": "6.payload混淆.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/7.本地有效载荷执行.md",
+          "name": "7.本地有效载荷执行.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/8.进程注入.md",
+          "name": "8.进程注入.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/9.载荷暂存.md",
+          "name": "9.载荷暂存.md",
+          "type": "file"
+        },
+        {
+          "path": "0101/C2/常用API.md",
+          "name": "常用API.md",
+          "type": "file"
         }
       ]
     },
@@ -1048,6 +1163,11 @@
             {
               "path": "0101/CSNote/Rust/2.基础.md",
               "name": "2.基础.md",
+              "type": "file"
+            },
+            {
+              "path": "0101/CSNote/Rust/3.错误处理.md",
+              "name": "3.错误处理.md",
               "type": "file"
             }
           ]
@@ -2150,6 +2270,18 @@
           ]
         },
         {
+          "path": "0101/CVEs/SIEMENS",
+          "name": "SIEMENS",
+          "type": "directory",
+          "children": [
+            {
+              "path": "0101/CVEs/SIEMENS/1.md",
+              "name": "1.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "path": "0101/CVEs/Vaelsys",
           "name": "Vaelsys",
           "type": "directory",
@@ -2193,152 +2325,6 @@
               "path": "0101/CVEs/Vaelsys/Unauthorized_User_Creation_Vulnerability_Exists_in_Vaelsys_V4_Platform.md",
               "name": "Unauthorized_User_Creation_Vulnerability_Exists_in_Vaelsys_V4_Platform.md",
               "type": "file"
-            }
-          ]
-        },
-        {
-          "path": "0101/CVEs/Vul",
-          "name": "Vul",
-          "type": "directory",
-          "children": [
-            {
-              "path": "0101/CVEs/Vul/NAS",
-              "name": "NAS",
-              "type": "directory",
-              "children": [
-                {
-                  "path": "0101/CVEs/Vul/NAS/assets",
-                  "name": "assets",
-                  "type": "directory",
-                  "children": [
-                    {
-                      "path": "0101/CVEs/Vul/NAS/assets/QNAP-CVE-2024-27130",
-                      "name": "QNAP-CVE-2024-27130",
-                      "type": "directory",
-                      "children": []
-                    },
-                    {
-                      "path": "0101/CVEs/Vul/NAS/assets/QNAP-CVE-2024-53691",
-                      "name": "QNAP-CVE-2024-53691",
-                      "type": "directory",
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "path": "0101/CVEs/Vul/NAS/QNAP-CVE-2024-27130.md",
-                  "name": "QNAP-CVE-2024-27130.md",
-                  "type": "file"
-                },
-                {
-                  "path": "0101/CVEs/Vul/NAS/QNAP-CVE-2024-53691.md",
-                  "name": "QNAP-CVE-2024-53691.md",
-                  "type": "file"
-                },
-                {
-                  "path": "0101/CVEs/Vul/NAS/Zyxel-CVE-2024-29973.md",
-                  "name": "Zyxel-CVE-2024-29973.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "path": "0101/CVEs/Vul/PaloAltoNetworks",
-              "name": "PaloAltoNetworks",
-              "type": "directory",
-              "children": [
-                {
-                  "path": "0101/CVEs/Vul/PaloAltoNetworks/assets",
-                  "name": "assets",
-                  "type": "directory",
-                  "children": [
-                    {
-                      "path": "0101/CVEs/Vul/PaloAltoNetworks/assets/CVE-2024-9474权限提升",
-                      "name": "CVE-2024-9474权限提升",
-                      "type": "directory",
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "path": "0101/CVEs/Vul/PaloAltoNetworks/CVE-2024-0012认证绕过.md",
-                  "name": "CVE-2024-0012认证绕过.md",
-                  "type": "file"
-                },
-                {
-                  "path": "0101/CVEs/Vul/PaloAltoNetworks/CVE-2024-3400任意代码执行.md",
-                  "name": "CVE-2024-3400任意代码执行.md",
-                  "type": "file"
-                },
-                {
-                  "path": "0101/CVEs/Vul/PaloAltoNetworks/CVE-2024-9463.md",
-                  "name": "CVE-2024-9463.md",
-                  "type": "file"
-                },
-                {
-                  "path": "0101/CVEs/Vul/PaloAltoNetworks/CVE-2024-9474权限提升.md",
-                  "name": "CVE-2024-9474权限提升.md",
-                  "type": "file"
-                },
-                {
-                  "path": "0101/CVEs/Vul/PaloAltoNetworks/CVE-2025-0108认证绕过.md",
-                  "name": "CVE-2025-0108认证绕过.md",
-                  "type": "file"
-                },
-                {
-                  "path": "0101/CVEs/Vul/PaloAltoNetworks/CVE-2025-0111.md",
-                  "name": "CVE-2025-0111.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "path": "0101/CVEs/Vul/SSH",
-              "name": "SSH",
-              "type": "directory",
-              "children": [
-                {
-                  "path": "0101/CVEs/Vul/SSH/cve-2025-32433-github-run-command",
-                  "name": "cve-2025-32433-github-run-command",
-                  "type": "directory",
-                  "children": [
-                    {
-                      "path": "0101/CVEs/Vul/SSH/cve-2025-32433-github-run-command/README.md",
-                      "name": "README.md",
-                      "type": "file"
-                    }
-                  ]
-                },
-                {
-                  "path": "0101/CVEs/Vul/SSH/README.md",
-                  "name": "README.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "path": "0101/CVEs/Vul/WinRAR",
-              "name": "WinRAR",
-              "type": "directory",
-              "children": [
-                {
-                  "path": "0101/CVEs/Vul/WinRAR/CVE-2025-31334.md",
-                  "name": "CVE-2025-31334.md",
-                  "type": "file"
-                }
-              ]
-            },
-            {
-              "path": "0101/CVEs/Vul/Zimbra",
-              "name": "Zimbra",
-              "type": "directory",
-              "children": [
-                {
-                  "path": "0101/CVEs/Vul/Zimbra/CVE-2024-45519.md",
-                  "name": "CVE-2024-45519.md",
-                  "type": "file"
-                }
-              ]
             }
           ]
         },
@@ -2523,6 +2509,12 @@
                   "name": "1.Linux概述",
                   "type": "directory",
                   "children": []
+                },
+                {
+                  "path": "0101/Cyberspace/Linux/assets/3.网络编程",
+                  "name": "3.网络编程",
+                  "type": "directory",
+                  "children": []
                 }
               ]
             },
@@ -2534,6 +2526,11 @@
             {
               "path": "0101/Cyberspace/Linux/2.基本安全配置.md",
               "name": "2.基本安全配置.md",
+              "type": "file"
+            },
+            {
+              "path": "0101/Cyberspace/Linux/3.网络编程.md",
+              "name": "3.网络编程.md",
               "type": "file"
             }
           ]
@@ -2616,6 +2613,31 @@
               "type": "directory",
               "children": [
                 {
+                  "path": "0101/Cyberspace/RootKit/Linux/LD_PRELOAD",
+                  "name": "LD_PRELOAD",
+                  "type": "directory",
+                  "children": [
+                    {
+                      "path": "0101/Cyberspace/RootKit/Linux/LD_PRELOAD/assets",
+                      "name": "assets",
+                      "type": "directory",
+                      "children": [
+                        {
+                          "path": "0101/Cyberspace/RootKit/Linux/LD_PRELOAD/assets/1.LD_PRELOAD基础",
+                          "name": "1.LD_PRELOAD基础",
+                          "type": "directory",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "path": "0101/Cyberspace/RootKit/Linux/LD_PRELOAD/1.LD_PRELOAD基础.md",
+                      "name": "1.LD_PRELOAD基础.md",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
                   "path": "0101/Cyberspace/RootKit/Linux/LKM",
                   "name": "LKM",
                   "type": "directory",
@@ -2623,6 +2645,11 @@
                     {
                       "path": "0101/Cyberspace/RootKit/Linux/LKM/1.LKM基础.md",
                       "name": "1.LKM基础.md",
+                      "type": "file"
+                    },
+                    {
+                      "path": "0101/Cyberspace/RootKit/Linux/LKM/2.Syscall.md",
+                      "name": "2.Syscall.md",
                       "type": "file"
                     }
                   ]
@@ -3212,38 +3239,6 @@
       "type": "directory",
       "children": [
         {
-          "path": "0101/IOT/Citrix",
-          "name": "Citrix",
-          "type": "directory",
-          "children": [
-            {
-              "path": "0101/IOT/Citrix/Basic",
-              "name": "Basic",
-              "type": "directory",
-              "children": [
-                {
-                  "path": "0101/IOT/Citrix/Basic/assets",
-                  "name": "assets",
-                  "type": "directory",
-                  "children": [
-                    {
-                      "path": "0101/IOT/Citrix/Basic/assets/1.Citrix基础",
-                      "name": "1.Citrix基础",
-                      "type": "directory",
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "path": "0101/IOT/Citrix/Basic/1.Citrix基础.md",
-                  "name": "1.Citrix基础.md",
-                  "type": "file"
-                }
-              ]
-            }
-          ]
-        },
-        {
           "path": "0101/IOT/Hardware",
           "name": "Hardware",
           "type": "directory",
@@ -3612,6 +3607,18 @@
           ]
         },
         {
+          "path": "0101/IOT/无线蓝牙",
+          "name": "无线蓝牙",
+          "type": "directory",
+          "children": [
+            {
+              "path": "0101/IOT/无线蓝牙/1.BLE基础.md",
+              "name": "1.BLE基础.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "path": "0101/IOT/路由器类设备",
           "name": "路由器类设备",
           "type": "directory",
@@ -3653,6 +3660,31 @@
             {
               "path": "0101/IOT/路由器类设备/4.物理网卡与虚拟网卡.md",
               "name": "4.物理网卡与虚拟网卡.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "path": "0101/IOT/车联网",
+          "name": "车联网",
+          "type": "directory",
+          "children": [
+            {
+              "path": "0101/IOT/车联网/assets",
+              "name": "assets",
+              "type": "directory",
+              "children": [
+                {
+                  "path": "0101/IOT/车联网/assets/1.车联网基础",
+                  "name": "1.车联网基础",
+                  "type": "directory",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "0101/IOT/车联网/1.车联网基础.md",
+              "name": "1.车联网基础.md",
               "type": "file"
             }
           ]
@@ -3736,6 +3768,24 @@
           "name": "Kernel",
           "type": "directory",
           "children": [
+            {
+              "path": "0101/PWN/Kernel/assets",
+              "name": "assets",
+              "type": "directory",
+              "children": [
+                {
+                  "path": "0101/PWN/Kernel/assets/1.内核基础",
+                  "name": "1.内核基础",
+                  "type": "directory",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "0101/PWN/Kernel/1.内核基础.md",
+              "name": "1.内核基础.md",
+              "type": "file"
+            },
             {
               "path": "0101/PWN/Kernel/Untitled.md",
               "name": "Untitled.md",
@@ -4737,6 +4787,12 @@
                   "name": "gcc与g++",
                   "type": "directory",
                   "children": []
+                },
+                {
+                  "path": "0101/Tools/其他/assets/socks5",
+                  "name": "socks5",
+                  "type": "directory",
+                  "children": []
                 }
               ]
             },
@@ -4753,6 +4809,11 @@
             {
               "path": "0101/Tools/其他/gcc与g++.md",
               "name": "gcc与g++.md",
+              "type": "file"
+            },
+            {
+              "path": "0101/Tools/其他/github_action.md",
+              "name": "github_action.md",
               "type": "file"
             },
             {
@@ -4776,8 +4837,18 @@
               "type": "file"
             },
             {
+              "path": "0101/Tools/其他/socks5.md",
+              "name": "socks5.md",
+              "type": "file"
+            },
+            {
               "path": "0101/Tools/其他/tmux.md",
               "name": "tmux.md",
+              "type": "file"
+            },
+            {
+              "path": "0101/Tools/其他/uv.md",
+              "name": "uv.md",
               "type": "file"
             },
             {
@@ -4825,6 +4896,11 @@
               "type": "file"
             },
             {
+              "path": "0101/ZOther/Q&A/terminal.md",
+              "name": "terminal.md",
+              "type": "file"
+            },
+            {
               "path": "0101/ZOther/Q&A/vmtool&add_root.md",
               "name": "vmtool&add_root.md",
               "type": "file"
@@ -4832,6 +4908,11 @@
             {
               "path": "0101/ZOther/Q&A/VM网络.md",
               "name": "VM网络.md",
+              "type": "file"
+            },
+            {
+              "path": "0101/ZOther/Q&A/VM虚拟机端口.md",
+              "name": "VM虚拟机端口.md",
               "type": "file"
             },
             {
