@@ -187,19 +187,6 @@ a:focus {
   margin-right: auto;
 }
 
-.home .card {
-  background: transparent;
-  border: none;
-  padding: var(--spacing-sm);
-  min-height: 110px;
-  box-shadow: none;
-  border-radius: var(--radius-md);
-}
-
-.home .card:hover {
-  box-shadow: 0 6px 18px rgba(0, 102, 255, 0.06);
-  transform: translateY(-3px);
-}
 
 .home .intro-section {
   padding: var(--spacing-sm) 0;
@@ -217,6 +204,18 @@ a:focus {
 .home .contact-section {
   padding: var(--spacing-sm) 0;
   margin-bottom: var(--spacing-md);
+}
+
+.connect-section {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.connect-section h2 {
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: 0;
 }
 
 /* ============================================
@@ -540,8 +539,7 @@ a:focus {
 }
 
 .card-title-link:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* ============================================
@@ -604,6 +602,21 @@ a:focus {
 /* ============================================
    9. FOOTER
    ============================================ */
+
+.footer {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+  border-top: 1px solid var(--color-divider);
+  color: var(--color-text-secondary);
+  margin-top: auto;
+  width: 100%;
+  font-size: 14px;
+}
+
+.footer p {
+  max-width: none;
+  margin: 0;
+}
 
 .avatar {
   width: 80px;
