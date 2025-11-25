@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>waiwai's Personal Space</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-swiss.css">
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta name="description" content="waiwai's Personal Space - Technology sharing and project showcase">
     <meta name="keywords" content="waiwai, personal homepage, tech blog, projects showcase">
 </head>
-<body>
+<body class="home">
+
+    <!-- Skip to main content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- 主容器 -->
     <div class="container">
         <!-- 主要内容区域 -->
-        <main class="main-content">
+        <main class="main-content" id="main-content">
             <!-- 个人介绍 -->
             <section class="intro-section">
             <div class="avatar-section">
@@ -23,65 +26,52 @@
                 <h1>Welcome to waiwai's Space</h1>
                 <p class="subtitle">Explore · Share · Create</p>
             </div>
-                <h2>About Me</h2>
                 <div class="intro-text">
                     <p>👀 Hi, my name is 🦘 waiwai</p>
                     <p>👨‍💻 I'm an ordinary person</p>
                     <p>👾 Welcome to communicate with me</p>
                     <p>📚 Motto: The world is deep.And deeper than the day could read</p>
                     <p>❤️ Interest: All the interesting things</p>
-                    <p>🐙 Github : <a href="https://github.com/waiwai24" target="_blank">https://github.com/waiwai24</a></p>
-                    <p>📧 Mail: <a href="mailto:mail@waiwai.website">mail@waiwai.website</a></p>
                 </div>
             </section>
 
             <!-- 导航卡片 -->
-            <section class="nav-cards">
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
+            <nav class="nav-cards" aria-label="Main navigation">
+                <article class="card">
                     <a href="knowledge.html" class="card-title-link">
-                        <h3>Knowledge</h3>
+                        <i class="fas fa-book tile-icon" aria-hidden="true"></i>
+                        <h2>Knowledge</h2>
                     </a>
-                </div>
+                </article>
 
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
+                <article class="card">
                     <a href="project.html" class="card-title-link">
-                        <h3>Projects</h3>
+                        <i class="fas fa-code tile-icon" aria-hidden="true"></i>
+                        <h2>Projects</h2>
                     </a>
-                </div>
+                </article>
 
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
+                <article class="card">
                     <a href="tool.html" class="card-title-link">
-                        <h3>Tools</h3>
+                        <i class="fas fa-tools tile-icon" aria-hidden="true"></i>
+                        <h2>Tools</h2>
                     </a>
-                </div>
-            </section>
+                </article>
+            </nav>
 
             <!-- 联系方式 -->
             <section class="contact-section">
-                <h2>
-                    <i class="fas fa-envelope"></i>
-                    Contact Me
-                </h2>
                 <div class="contact-links">
-                    <a href="https://github.com/waiwai24" target="_blank" class="contact-link github">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/waiwai24" target="_blank" rel="noopener noreferrer" class="contact-link github" aria-label="GitHub profile (opens in new window)">
+                        <i class="fab fa-github" aria-hidden="true"></i>
                         <span>GitHub</span>
                     </a>
-                    <a href="mailto:your-email@example.com" class="contact-link email">
-                        <i class="fas fa-envelope"></i>
+                    <a href="mailto:mail@waiwai.website" class="contact-link email" aria-label="Send email">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <span>Email</span>
                     </a>
-                    <a href="#" class="contact-link blog">
-                        <i class="fas fa-blog"></i>
+                    <a href="#" class="contact-link blog" aria-label="Blog">
+                        <i class="fas fa-blog" aria-hidden="true"></i>
                         <span>Blog</span>
                     </a>
                 </div>
@@ -94,13 +84,7 @@
         </footer>
     </div>
 
-    <!-- 返回顶部按钮 -->
-    <button id="back-to-top" title="返回顶部">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script src="scripts/config.js"></script>
-    <script src="scripts/backToTop.js"></script>
     <script src="scripts/animations.js"></script>
 </body>
 </html>

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    fetch('knowledge-tree.json')
+    fetch('./knowledge-tree.json')
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok.');
             return response.json();
@@ -86,8 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 fileDiv.className = 'file';
                 fileDiv.textContent = node.name.replace('.md', '');
                 fileDiv.dataset.path = node.path;
+                fileDiv.setAttribute('role', 'button');
+                fileDiv.setAttribute('tabindex', '0');
+                fileDiv.setAttribute('aria-label', `Open article: ${node.name.replace('.md', '')}`);
                 
-                fileDiv.addEventListener('click', (e) => {
+                // Handle click and Enter/Space key to load file
+                const loadFile = (e) => {
                     document.querySelectorAll('.file.active').forEach(activeEl => {
                         activeEl.classList.remove('active');
                     });
@@ -146,7 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.error('Error fetching file content:', err);
                             showError(`无法加载文件: ${node.name}`);
                         });
+                };
+
+                // Add click listener
+                fileDiv.addEventListener('click', loadFile);
+
+                // Add keyboard support (Enter and Space to open file)
+                fileDiv.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        loadFile(e);
+                    }
                 });
+
                 li.appendChild(fileDiv);
             }
             ul.appendChild(li);

@@ -74,6 +74,11 @@ body {
     background-color: #ededed;
 }
 
+.folder-details:focus-within > .folder-summary {
+    outline: 2px solid #007bff;
+    outline-offset: -2px;
+}
+
 .folder-summary .icon {
     margin-right: 8px;
     transition: transform 0.15s ease-in-out;
@@ -267,4 +272,150 @@ body {
 .content th {
     background-color: #f8f9fa;
     font-weight: 600;
+}
+
+/* Responsive: collapse sidebar into vertical flow on narrow viewports */
+@media (max-width: 900px) {
+    .main-content-wrapper {
+        flex-direction: column;
+        overflow: visible;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: auto;
+        flex-shrink: 0;
+        border-right: none;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 16px;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+
+    .content {
+        padding: 20px;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .content {
+        padding: 16px;
+    }
+
+    .sidebar {
+        padding: 12px;
+        max-height: none;
+    }
+}
+
+/* Sidebar toggle (hamburger) for small screens */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    z-index: 1200;
+    top: 12px;
+    left: 12px;
+    background: #ffffffcc;
+    border: 1px solid #e6e6e6;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sidebar-toggle:hover {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.sidebar-toggle:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* overlay when sidebar is open on mobile */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+/* Mobile sidebar behavior */
+@media (max-width: 900px) {
+    .sidebar-toggle { display: block; }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 84%;
+        max-width: 360px;
+        background: #fff;
+        z-index: 1150;
+        overflow-y: auto;
+        transition: left 220ms ease;
+        box-shadow: none;
+    }
+
+    /* when the body has .sidebar-open, slide sidebar in */
+    body.sidebar-open .sidebar {
+        left: 0;
+        box-shadow: 8px 0 30px rgba(0,0,0,0.18);
+    }
+
+    body.sidebar-open .sidebar-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* prevent underlying content scroll when sidebar open */
+    body.sidebar-open {
+        overflow: hidden;
+    }
+}
+
+/* ensure file tree items remain readable */
+.sidebar .folder-summary, .sidebar .file { 
+    padding: 10px 14px;
+}
+
+/* Keyboard focus styles for accessibility */
+.folder-summary:focus, 
+.file:focus {
+    outline: 2px solid #007bff;
+    outline-offset: -1px;
+    background-color: #e8f4ff;
+}
+
+.folder-summary:focus-visible,
+.file:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: -1px;
+    background-color: #e8f4ff;
+}
+
+/* Ensure toggle button is visible and focusable */
+.sidebar-toggle:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Screen reader only class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
 }

@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge</title>
-    <link rel="stylesheet" href="knowledge.css">
+    <link rel="stylesheet" href="knowledge-swiss.css">
     <link rel="stylesheet" href="header-style.css">
 </head>
 <body>
     <div class="container">
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar menu" aria-expanded="false">☰</button>
         <div class="main-content-wrapper">
-            <aside class="sidebar">
+            <aside class="sidebar" tabindex="-1" role="navigation" aria-label="Knowledge categories">
                 <header class="sidebar-header" style="text-align: center;">
                     <h1 class="page-title"><a href="index.html">Knowledge</a></h1>
                 </header>
                 <nav id="file-tree"></nav>
             </aside>
-            <main id="content-display" class="content">
+            <main id="content-display" class="content" role="main" aria-label="Article content">
                 <div class="placeholder">
                     <svg class="placeholder-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.1,18.9l-5.2-5.2l5.2-5.2"/><path d="M8.9,18.9l-5.2-5.2l5.2-5.2"/></svg>
                     <span>请从左侧选择一篇文章开始阅读</span>
@@ -30,5 +31,6 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
     <script src="knowledge.js"></script>
+    <script src="scripts/sidebar.js"></script>
 </body>
 </html>

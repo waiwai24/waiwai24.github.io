@@ -5,6 +5,36 @@
   box-sizing: border-box;
 }
 
+/* Ensure media (images, iframes, video, picture) scale within their containers */
+img, picture, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* make container width fluid while keeping a max width */
+.container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
@@ -250,6 +280,10 @@ header h1 a,
     gap: 1rem;
     padding: 1rem 0;
   }
+  /* hide the large decorative icons on narrow screens to save space */
+  .card-icon {
+    display: none;
+  }
 }
 
 .card {
@@ -272,7 +306,7 @@ header h1 a,
 }
 
 .card-icon {
-  display: none;
+  display: block; /* show icon on larger screens; hidden on small screens via media query */
 }
 
 .card h3 {
@@ -303,6 +337,19 @@ header h1 a,
 
 .card-title-link h3 {
   color: inherit;
+}
+
+/* Keyboard focus styles */
+.card-title-link:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.card-title-link:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 
@@ -362,96 +409,59 @@ header h1 a,
 /* 响应式设计 */
 @media (max-width: 768px) {
   .container {
-    margin: 20px 10px;
+    margin: 0;
     padding: 15px;
-    border-radius: 15px;
+    border-radius: 0;
+    box-shadow: none;
   }
-  
-  .header {
-    padding: 2rem 0 1.5rem 0;
-    margin-bottom: 2rem;
+
+  h1, .header h1, header h1, .header h1 a, header h1 a {
+    font-size: 1.6rem !important; /* 调整标题大小 */
   }
-  
-  h1 {
-    font-size: 2.2rem;
-  }
-  
+
   .subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-  
+
   .intro-section {
-    margin-bottom: 3rem;
-    padding: 2.5rem 1.5rem;
+    padding: 1.5rem 1rem;
   }
-  
+
   .intro-section h2 {
-    font-size: 2rem;
+    font-size: 1.3rem; /* 调整章节标题大小 */
   }
-  
+
   .intro-text {
-    max-width: 100%;
+    text-align: center; /* 文本居中 */
   }
   
   .intro-text p {
-    font-size: 1.05rem;
-    padding: 0.8rem 1.2rem;
-    margin: 0 0.5rem;
+    font-size: 0.9rem;
+    text-align: left; /* 段落内文本保持左对齐 */
+    padding: 0.5rem;
+    margin: 0;
   }
-  
+
   .nav-cards {
-    /* 根据用户要求，在小屏幕上保持水平排列，故移除单列布局的强制设定 */
-    /* grid-template-columns: 1fr; */
-    gap: 2rem;
-    margin-bottom: 3rem;
+    flex-direction: column; /* 卡片垂直排列 */
+    align-items: center; /* 居中对齐 */
+    gap: 1rem;
   }
-  
+
   .card {
-    padding: 2.5rem 1.5rem;
+    padding: 1rem;
+    width: 80%;
   }
-  
-  .card-icon {
-    padding: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .card-icon i {
-    font-size: 2.2rem;
-  }
-  
+
   .card h3 {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
-  
-  .card p {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+
+  .avatar {
+    width: 70px;
+    height: 70px;
   }
-  
-  .card-link {
-    padding: 0.9rem 1.8rem;
-    font-size: 0.95rem;
-  }
-  
-  .contact-links {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  
-  .contact-link {
-    width: 200px;
-  }
-  
-  .contact-section {
-    padding: 2rem 1.5rem;
-    margin-bottom: 3rem;
-  }
-  
-  .contact-section h2 {
-    font-size: 1.8rem;
-  }
-  
+
   #back-to-top {
     bottom: 20px;
     right: 20px;
@@ -459,11 +469,6 @@ header h1 a,
     height: 45px;
     line-height: 45px;
     font-size: 18px;
-  }
-  
-  .avatar {
-    width: 80px;
-    height: 80px;
   }
 }
 
@@ -529,7 +534,7 @@ header h1 a,
   }
   
   .contact-section h2 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   
   .contact-link {
