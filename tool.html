@@ -4,72 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Google Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"></noscript>
     <link rel="icon" href="favicon.png" type="image/png" />
     <link rel="stylesheet" href="style-project-tool.css" />
     <link rel="stylesheet" href="header-style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 <body>
+    <header class="main-header">
+        <a href="index.html" class="nav-brand">waiwai</a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="knowledge.html" class="nav-link">Knowledge</a>
+            <a href="project.html" class="nav-link">Projects</a>
+            <a href="tool.html" class="nav-link">Tools</a>
+        </nav>
+    </header>
     <div class="main-content" id="main-content" style="flex-grow: 1; width: 100%;">
         <div class="search-container">
-            <h1 class="page-title"><a href="index.html">Tool</a></h1>
-            <form action="https://www.google.com/search" method="get">
-                <input type="text" name="q" placeholder="Google Search..." size="40"size="40">
+            <form action="https://www.google.com/search" method="get" class="search-form">
+                <i class="fas fa-search search-icon"></i>
+                <input class="search-input" type="text" name="q" placeholder="Google Search...">
             </form>
         </div>
 
-        <div class="links">
-            <div class="column">
-                <h3>Binary :</h3>
-                <a href="https://shell-storm.org/shellcode/index.html" target="_blank">Shellcode</a>
-                <a href="https://libc.rip/" target="_blank">Libc Search </a>
-                <a href="https://libc.blukat.me/" target="_blank">Libc Search</a>
-                <a href="https://shell-storm.org/x86doc/index.html" target="_blank">x86 Opcode</a>
-                <a href="https://shell-storm.org/online/Online-Assembler-and-Disassembler/" target="_blank">Asm and Disasm</a>
-                <a href="https://elixir.bootlin.com" target="_blank">Source Code</a>
-                <a href="https://makelinux.github.io/kernel/map/" target="_blank">Kernel Map</a>
-                <a href="https://www.virustotal.com/gui/home/upload" target="_blank">VirusTotal</a>
-                <a href="https://s.threatbook.com/" target="_blank">X ThreatBook</a>
-                <a href="https://www.hybrid-analysis.com/" target="_blank">Hybrid Analysis</a>
-                <a href="https://www.joesandbox.com/" target="_blank">Joe Sandbox</a>
-                <a href="https://www.cve.org/" target="_blank">CVE</a>
-                <a href="https://0day.today/" target="_blank">0Day</a>
-                <a href="https://vuldb.com/?my.submits" target="_blank">Vuldb</a>
-                <a href="https://www.exploit-db.com/shellcodes" target="_blank">Exploit Database</a>
+        <div class="tool-grid">
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-globe" aria-hidden="true"></i>
+                    <span>OSINT</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://fofa.info/" target="_blank" rel="noopener noreferrer"><i class="fas fa-fingerprint"></i> FOFA</a>
+                    <a href="https://www.zoomeye.org/discover" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Zoomeye</a>
+                    <a href="https://www.shodan.io/" target="_blank" rel="noopener noreferrer"><i class="fas fa-satellite-dish"></i> Shodan</a>
+                    <a href="https://www.censys.io/" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marked-alt"></i> Censys</a>
+                    <a href="https://hunter.qianxin.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-bullseye"></i> QiAnXin Hunter</a>
+                    <a href="https://hunter.how/" target="_blank" rel="noopener noreferrer"><i class="fas fa-crosshairs"></i> Hunter.how</a>
+                    <a href="https://web-check.xyz/" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle"></i> Web-check</a>
+                    <a href="https://www.daydaymap.com/home" target="_blank" rel="noopener noreferrer"><i class="fas fa-map"></i> Daydaymap</a>
+                </div>
             </div>
-            <div class="column">
-                <h3>Server :</h3>
-                <a href="https://app.rainyun.com/dashboard" target="_blank">Rain</a>
-                <a href="https://sachk.189.cam/dashboard" target="_blank">VPN</a>
-                <a href="https://home.console.aliyun.com/home/dashboard/ProductAndService" target="_blank">Aliyun</a>
-                <a href="https://console.cloud.tencent.com/" target="_blank">Tencent Cloud</a>
-                <a href="https://console.huaweicloud.com/console" target="_blank">Huawei Cloud</a>
-                <a href="https://app.vmiss.com/clientarea.php" target="_blank">VMISS</a>
-                <a href="https://dash.cloudflare.com/" target="_blank">Cloudflare</a>
-                <a href="https://platform.closeai-asia.com/dashboard/" target="_blank">CloseAI</a>
-                <a href="https://yeka.ai/pay-service" target="_blank">WildCard</a>
-                <a href="https://platform.deepseek.com" target="_blank">Deepseek</a>
-                <a href="https://anyrouter.top/console" target="_blank">Anyrouter</a>
-                <a href="https://openrouter.ai/" target="_blank">Openrouter</a>
-                <a href="https://api.v3.cm/panel" target="_blank">Api</a>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-network-wired" aria-hidden="true"></i>
+                    <span>Network</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://www.revshells.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-terminal"></i> Revshell</a>
+                    <a href="https://test.ustc.edu.cn/" target="_blank" rel="noopener noreferrer"><i class="fas fa-tachometer-alt"></i> USTC Speed Test</a>
+                    <a href="https://www.speedtest.net/" target="_blank" rel="noopener noreferrer"><i class="fas fa-rocket"></i> Speed Test</a>
+                    <a href="https://www.dnsgrep.cn/" target="_blank" rel="noopener noreferrer"><i class="fas fa-search"></i> Dnsgrep</a>
+                    <a href="https://tool.chinaz.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-tools"></i> Chinaz</a>
+                    <a href="https://ping.pe/" target="_blank" rel="noopener noreferrer"><i class="fas fa-network-wired"></i> Ping Test</a>
+                </div>
             </div>
-            <div class="column">
-                <h3>Other</h3>
-                <a href="https://gchq.github.io/CyberChef/" target="_blank">CyberChef</a>
-                <a href="https://www.revshells.com/" target="_blank">RRevshell</a>
-                <a href="https://test.ustc.edu.cn/" target="_blank">USTC Test Speed </a>
-                <a href="https://www.speedtest.net/" target="_blank">Speed Test</a>
-                <a href="https://www.dnsgrep.cn/" target="_blank">Dnsgrep</a>
-                <a href="https://tool.chinaz.com/" target="_blank">CChinaz</a>
-                <a href="https://ping.pe/" target="_blank">Ping Test</a>
-                <a href="https://fofa.info/" target="_blank">FOFA</a>
-                <a href="https://www.zoomeye.org/discover" target="_blank">Zoomeye</a>
-                <a href="https://www.shodan.io/" target="_blank">Shodan</a>
-                <a href="https://www.censys.io/" target="_blank">Censys</a>
-                <a href="https://www.binaryedge.io/" target="_blank">BinaryEdge</a>
-                <a href="https://hunter.qianxin.com/" target="_blank">QiAnXin</a>
-                <a href="https://dl.partian.co/" target="_blank">Fortinet</a>
-                <a href="https://www.wenshushu.cn/" target="_blank">Wenshushu</a>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-robot" aria-hidden="true"></i>
+                    <span>AI & APIs</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://platform.closeai-asia.com/dashboard/" target="_blank" rel="noopener noreferrer"><i class="fas fa-robot"></i> CloseAI</a>
+                    <a href="https://yeka.ai/pay-service" target="_blank" rel="noopener noreferrer"><i class="fas fa-credit-card"></i> WildCard</a>
+                    <a href="https://platform.deepseek.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-brain"></i> Deepseek</a>
+                    <a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-route"></i> Openrouter</a>
+                    <a href="https://api.v3.cm/panel" target="_blank" rel="noopener noreferrer"><i class="fas fa-plug"></i> Api</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-server" aria-hidden="true"></i>
+                    <span>Cloud & Servers</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://app.rainyun.com/dashboard" target="_blank" rel="noopener noreferrer"><i class="fas fa-cloud"></i> Rain</a>
+                    <a href="https://sachk.189.cam/dashboard" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-secret"></i> VPN</a>
+                    <a href="https://home.console.aliyun.com/home/dashboard/ProductAndService" target="_blank" rel="noopener noreferrer"><i class="fab fa-alipay"></i> Aliyun</a>
+                    <a href="https://console.cloud.tencent.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-tencent-weibo"></i> Tencent Cloud</a>
+                    <a href="https://console.huaweicloud.com/console" target="_blank" rel="noopener noreferrer"><i class="fas fa-server"></i> Huawei Cloud</a>
+                    <a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-cloud-sun"></i> Cloudflare</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-users" aria-hidden="true"></i>
+                    <span>Community</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://stackoverflow.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-stack-overflow"></i> Stack Overflow</a>
+                    <a href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-reddit"></i> Reddit</a>
+                    <a href="https://discord.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-cube" aria-hidden="true"></i>
+                    <span>Binary Exploitation</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://shell-storm.org/shellcode/index.html" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i> Shellcode</a>
+                    <a href="https://libc.rip/" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i> Libc Search</a>
+                    <a href="https://libc.blukat.me/" target="_blank" rel="noopener noreferrer"><i class="fas fa-book-open"></i> Libc DB</a>
+                    <a href="https://shell-storm.org/x86doc/index.html" target="_blank" rel="noopener noreferrer"><i class="fas fa-microchip"></i> x86 Opcode</a>
+                    <a href="https://shell-storm.org/online/Online-Assembler-and-Disassembler/" target="_blank" rel="noopener noreferrer"><i class="fas fa-exchange-alt"></i> Online Asm/Disasm</a>
+                    <a href="https://elixir.bootlin.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-code"></i> Source Code</a>
+                    <a href="https://www.exploit-db.com/shellcodes" target="_blank" rel="noopener noreferrer"><i class="fas fa-shield-alt"></i> Exploit DB</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-shield-virus" aria-hidden="true"></i>
+                    <span>Malware Analysis</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://www.virustotal.com/gui/home/upload" target="_blank" rel="noopener noreferrer"><i class="fas fa-shield-virus"></i> VirusTotal</a>
+                    <a href="https://s.threatbook.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-microscope"></i> X ThreatBook</a>
+                    <a href="https://www.hybrid-analysis.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-flask"></i> Hybrid Analysis</a>
+                    <a href="https://www.joesandbox.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-box"></i> Joe Sandbox</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-bug" aria-hidden="true"></i>
+                    <span>Vulnerability</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://www.cve.org/" target="_blank" rel="noopener noreferrer"><i class="fas fa-bug"></i> CVE</a>
+                    <a href="https://0day.today/" target="_blank" rel="noopener noreferrer"><i class="fas fa-bomb"></i> 0Day</a>
+                    <a href="https://vuldb.com/?my.submits" target="_blank" rel="noopener noreferrer"><i class="fas fa-database"></i> Vuldb</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-tools" aria-hidden="true"></i>
+                    <span>Tools</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener noreferrer"><i class="fas fa-hat-wizard"></i> CyberChef</a>
+                    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i> VS Code</a>
+                    <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-git-alt"></i> Git</a>
+                    <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-docker"></i> Docker</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <h3 class="tool-category-title">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    <span>Learn</span>
+                </h3>
+                <div class="tool-links">
+                    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-bilibili"></i> Bilibili</a>
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                </div>
             </div>
         </div>
     </div>
@@ -79,5 +172,6 @@
     </footer>
 
     <script src="scripts/config.js"></script>
+    <script src="scripts/header.js"></script>
 </body>
 </html>

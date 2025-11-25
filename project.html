@@ -4,13 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"></noscript>
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="style-project-tool.css" />
   <link rel="stylesheet" href="header-style.css" />
 </head>
 <body class="project-page">
-  <header style="text-align: center;">
-    <h1 class="page-title"><a href="index.html">Project</a></h1>
+  <header class="main-header">
+      <a href="index.html" class="nav-brand">waiwai</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="hamburger"></span>
+      </button>
+      <nav class="main-nav">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="knowledge.html" class="nav-link">Knowledge</a>
+          <a href="project.html" class="nav-link">Projects</a>
+          <a href="tool.html" class="nav-link">Tools</a>
+      </nav>
   </header>
 
   <main id="main-content" role="main">
@@ -97,5 +110,6 @@
   <footer class="footer">
     <p>&copy; 2024 waiwai24. All rights reserved.</p>
   </footer>
+  <script src="scripts/header.js"></script>
 </body>
 </html>

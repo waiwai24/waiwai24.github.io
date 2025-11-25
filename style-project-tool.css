@@ -19,6 +19,7 @@
   --spacing-md: 24px;
   --spacing-lg: 32px;
   --spacing-xl: 48px;
+  --spacing-2xl: 64px;
 
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -34,7 +35,7 @@ body {
   font-family: var(--font-family);
   background: var(--color-bg);
   color: var(--color-text-primary);
-  max-width: 1200px;
+  max-width: 1600px; /* Further increased max-width */
   margin: 0 auto;
   padding: var(--spacing-xl);
   -webkit-font-smoothing: antialiased;
@@ -74,6 +75,11 @@ header {
   letter-spacing: -0.03em;
   margin: 0 0 var(--spacing-lg) 0;
   line-height: 1.1;
+}
+
+.search-container .page-title {
+    font-size: 48px;
+    margin-bottom: var(--spacing-md);
 }
 
 .page-title a {
@@ -207,9 +213,90 @@ main {
    TOOL SECTION
    ============================================ */
 
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.tool-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-divider);
+  border-radius: 4px;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-base);
+  height: 320px; /* Set a fixed height as requested */
+}
+
+.tool-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.08);
+  transform: translateY(-4px);
+}
+
+.tool-category-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md); /* Use a consistent margin */
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-primary);
+  flex-shrink: 0; /* Prevent title from shrinking */
+}
+
+.tool-category-title i {
+  color: var(--color-accent);
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.tool-category-description {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  flex-grow: 1;
+}
+
+.tool-links {
+  display: flex; /* Change to flex for consistent item spacing */
+  flex-direction: column; /* Stack links vertically */
+  gap: 0; /* Remove gap to use padding for spacing */
+  overflow-y: auto;
+  flex-grow: 1;
+  padding-right: 12px;
+}
+
+.tool-links a {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  padding: 8px 0; /* Add fixed vertical padding for consistent spacing */
+}
+
+.tool-links a:hover {
+  color: var(--color-accent);
+  transform: translateX(4px);
+}
+
+.tool-links a i {
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+  color: var(--color-text-tertiary);
+}
+
 .search-container {
   text-align: center;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
 }
 
 .search-container h1 {
@@ -219,25 +306,47 @@ main {
   letter-spacing: -0.03em;
 }
 
-.search-container form {
-  margin-bottom: var(--spacing-xl);
-}
-
-.search-container input {
-  width: 100%;
+.search-form {
+  position: relative;
   max-width: 500px;
-  padding: var(--spacing-md);
-  font-size: 16px;
-  border: 2px solid var(--color-divider);
-  border-radius: 4px;
-  font-family: var(--font-family);
-  transition: border-color var(--transition-fast);
+  margin: 0 auto;
 }
 
-.search-container input:focus {
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  font-size: 16px;
+  border: 1px solid var(--color-divider);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  transition: all var(--transition-base);
+  appearance: none;
+  background: var(--color-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.search-input:hover {
+  border-color: #c0c0c0;
+}
+
+.search-input:focus {
   outline: none;
   border-color: var(--color-accent);
   box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+
+.search-input:focus + .search-icon,
+.search-form:focus-within .search-icon {
+  color: var(--color-accent);
 }
 
 .links {
@@ -320,6 +429,12 @@ main {
    RESPONSIVE
    ============================================ */
 
+@media (max-width: 992px) {
+  .tool-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   body {
     padding: var(--spacing-lg);
@@ -355,6 +470,20 @@ main {
   .links {
     grid-template-columns: 1fr;
   }
+  .tool-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .tool-card {
+    height: auto;
+    min-height: 0;
+    padding: var(--spacing-md);
+  }
+  .tool-links {
+    overflow-y: visible;
+  }
 }
 
 @media (max-width: 480px) {
@@ -366,26 +495,13 @@ main {
     font-size: 36px;
   }
 
-  .search-container h1 {
-    font-size: 32px;
-  }
-
-  .search-container input {
-    padding: var(--spacing-sm);
-  }
-
-  .column {
-    padding: var(--spacing-md);
-  }
-
-  .column h3 {
-    font-size: 16px;
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .column a {
+  .search-input {
+    padding: 12px 16px 12px 40px; /* Adjust padding for smaller screens */
     font-size: 14px;
-    margin: var(--spacing-xs) 0;
+  }
+
+  .search-icon {
+    left: 14px; /* Adjust icon position */
   }
 }
 
