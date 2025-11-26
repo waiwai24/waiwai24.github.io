@@ -6,7 +6,16 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(function() {
             document.documentElement.classList.add('fonts-loaded');
+        }).catch(function() {
+            // Fallback in case of font loading error
+            document.documentElement.classList.add('fonts-loaded');
         });
+        // Additional fallback timer in case 'ready' promise never resolves
+        setTimeout(function() {
+            if (!document.documentElement.classList.contains('fonts-loaded')) {
+                document.documentElement.classList.add('fonts-loaded');
+            }
+        }, 3000); // 3-second timeout
     } else {
         // Fallback for browsers without Font Loading API
         setTimeout(function() {

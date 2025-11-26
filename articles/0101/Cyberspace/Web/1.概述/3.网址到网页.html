@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title># 网址到网页,网址到网页</title>
-    <link rel="stylesheet" href="/assets/css/notes.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/notes.min.css">
 </head>
 <body>
+    <div id="header-placeholder"></div>
     <div class="main-content-wrapper">
         <main class="content">
             <h1>网址到网页</h1>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/2.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/2.webp" alt="2.webp"></p>
 <h2>1.孤独小弟——HTTP</h2>
 <blockquote>
 <p>游览器做的第一步工作是解析URL，从而生成放松给<code>web</code>服务器的请求信息</p>
 </blockquote>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/3.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/3.webp" alt="3.webp"></p>
 <h2>2.真实地址查询——DNS</h2>
 <ul>
 <li>浏览器解析 URL 并生成 HTTP 消息后，需要委托操作系统将消息发送给 <code>Web</code> 服务器。但在发送之前，还有一项工作需要完成，那就是查询服务器域名对应的 IP 地址，因为委托操作系统发送消息时，必须提供通信对象的 IP 地址。所以，有一种服务器就专门保存了 <code>Web</code> 服务器域名与 <code>IP</code> 的对应关系，它就是 <code>DNS</code> 服务器,这类似于电话通信录</li>
@@ -41,7 +42,7 @@
 <p>权威 DNS 服务器（<a href="http://server.com">server.com</a>）</p>
 </li>
 <li>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/5.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/5.webp" alt="5.webp"></p>
 </li>
 <li>
 <p>因此，客户端只要能够找到任意一台 DNS 服务器，就可以通过它找到根域 DNS 服务器，然后再一路顺藤摸瓜找到位于下层的某台目标 DNS 服务器。</p>
@@ -76,7 +77,7 @@
 <p>本地 DNS 再将 IP 地址返回客户端，客户端和目标建立连接</p>
 </li>
 <li>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/6.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/6.webp" alt="6.webp"></p>
 </li>
 <li>
 <p>但并非每次域名解析都要经过这么多步骤，游览器会先看自己有没有对这个域名的缓存，如果有，就直接返回，没有，就去问操作系统，操作系统也会先去看自己的缓存，若果有，就直接返回，没有，就再去hosts文件看，也没有，才回去问<code>本地DNS服务器</code></p>
@@ -87,7 +88,7 @@
 <p>通过DNS获取到IP后，就可以把HTTP的传输工作交给操作系统中的协议栈</p>
 <p>协议栈的内部分为几个部分，分别承担不同的工作。上下关系是有一定的规则的，上面的部分会向下面的部分委托工作，下面的部分收到委托的工作并执行。</p>
 </blockquote>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/7.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/7.webp" alt="7.webp"></p>
 <ul>
 <li>
 <p>应用程序（游览器）通过调用socket库，来委托协议栈工作。协议栈上半部分有两块，分别是收发数据的TCP和UDP协议，下面一半是用IP协议控制网络包收发操作</p>
@@ -106,7 +107,7 @@
 <h2>4.可靠传输——TCP</h2>
 <p>HTTP是基于TCP协议传输的，所以先了解一下TCP协议</p>
 <h3>TCP报文头部的格式</h3>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/8.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/8.webp" alt="8.webp"></p>
 <ul>
 <li>首先，<strong>源端口号</strong>和<strong>目标端口号</strong>是必不可少的，如果没有，数据就不知道发给哪个应用</li>
 <li>包的<strong>序号</strong>是为了解决包乱序的问题</li>
@@ -118,7 +119,7 @@
 <h3>三次握手</h3>
 <p>在HTTP传输数据前，首先要TCP建立连接，TCP连接的建立，通常称为<strong>三次握手</strong></p>
 <p>所谓的连接，是双方激素那几里维护的一个状态机，在连接建立的过程中，双方变化时序图如下：</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.drawio.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.drawio.webp" alt="TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.drawio.webp"></p>
 <p>① SYN(synchronous建立联机)</p>
 <p>② ACK(acknowledgement 确认)</p>
 <p>③ PSH(push传送)</p>
@@ -134,17 +135,17 @@
 <li>所以三次握手目的是<strong>保证双方都有发送和接收的能力</strong>。</li>
 </ul>
 <p>查看TCP的连接状态，在 Linux 可以通过 <code>netstat -napt</code> 命令查看</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/10.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/10.webp" alt="10.webp"></p>
 <h3>TCP分割数据</h3>
 <p>如果http请求消息比较长，超过了MSS的长度，这就需要分割数据了</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/11.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/11.webp" alt="11.webp"></p>
 <h3>TCP报文生成</h3>
 <p>TCP协议里面有两个端口，一个是游览器监听的端口（通常是随机生成的），一个是web服务器监听的端口（HTTP默认80，HTTPS默认443）</p>
 <p>双方建立了连接后，TCP 报文中的数据部分就是存放 HTTP 头部 + 数据，组装好 TCP 报文之后，就需交给下面的网络层处理</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/13.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/13.webp" alt="13.webp"></p>
 <h2>5.远程定位——IP</h2>
 <h3>IP包头格式</h3>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/14.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/14.webp" alt="14.webp"></p>
 <ul>
 <li>源地址IP，即是客户端输出的 IP 地址；</li>
 <li>目标地址，即通过 DNS 域名解析得到的 Web 服务器 IP</li>
@@ -153,16 +154,16 @@
 <h3>源IP的选择</h3>
 <p>当存在多个网卡时，在填写源地址 IP 时，就需要判断到底应该填写哪个地址，这个时候就需要根据<strong>路由表</strong>规则，来判断哪一个网卡作为源地址 IP</p>
 <p>在 Linux 操作系统，我们可以使用 <code>route -n</code> 命令查看当前系统的路由表</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/15.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/15.webp" alt="15.webp"></p>
 <p>根据上面的路由表，我们假设 Web 服务器的目标地址是 <code>192.168.10.200</code></p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/16.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/16.webp" alt="16.webp"></p>
 <p>第三条目比较特殊，它目标地址和子网掩码都是 <code>0.0.0.0</code>，这表示<strong>默认网关</strong>，如果其他所有条目都无法匹配，就会自动匹配这一行。并且后续就把包发给路由器，<code>Gateway</code> 即是路由器的 IP 地址</p>
 <h3>IP报文生成</h3>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/17.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/17.webp" alt="17.webp"></p>
 <h2>6.两点传输——MAC</h2>
 <h3>MAC包头格式</h3>
 <p>MAC头部是以以太网使用的头部，它包含了接受双方的MAC地址等信息</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/18.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/18.webp" alt="18.webp"></p>
 <p>一般在 TCP/IP 通信里，MAC 包头的<strong>协议类型</strong>只使用：</p>
 <ul>
 <li><code>0800</code> ： IP 协议</li>
@@ -171,7 +172,7 @@
 <h3>获取对方的MAC地址</h3>
 <p><strong>发送方</strong>的 MAC 地址获取就比较简单了，MAC 地址是在网卡生产时写入到 ROM 里的，只要将这个值读取出来写入到 MAC 头部就可以了</p>
 <p><strong>接收方</strong>的 MAC 地址需要 <code>ARP</code> 协议帮我们找到路由器的 MAC 地址</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/19.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/19.webp" alt="19.webp"></p>
 <p>如果对方和自己处于同一个子网中，那么通过上面的操作就可以得到对方的 MAC 地址。然后，我们将这个 MAC 地址写入 MAC 头部，MAC 头部就完成了</p>
 <h3>ARP缓存</h3>
 <p>在后续操作系统会把本次查询结果放到一块叫做 <strong>ARP 缓存</strong>的内存空间留着以后用，不过缓存的时间就几分钟。</p>
@@ -182,14 +183,14 @@
 </ul>
 <h3>查看ARP缓存</h3>
 <p>在 Linux 系统中，我们可以使用 <code>arp -a</code> 命令来查看 ARP 缓存的内容</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/20.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/20.webp" alt="20.webp"></p>
 <h3>MAC报文生成</h3>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/21.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/21.webp" alt="21.webp"></p>
 <h2>7.出口——网卡</h2>
 <p>网络包只是存放在内存中的一串二进制数字信息，没办法直接发送给对方。因此，我们需要将<strong>数字信息转换为电信号</strong>，才能在网线上传输，也就是说，这才是真正的数据发送过程。</p>
 <p>负责执行这一操作的是<strong>网卡</strong>，要控制网卡还需要靠<strong>网卡驱动程序</strong>。</p>
 <p>网卡驱动获取网络包之后，会将其<strong>复制</strong>到网卡内的缓存区中，接着会在其<strong>开头加上报头和起始帧分界符，在末尾加上用于检测错误的帧校验序列</strong>。</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/%E6%95%B0%E6%8D%AE%E5%8C%85.drawio.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/%E6%95%B0%E6%8D%AE%E5%8C%85.drawio.webp" alt="%E6%95%B0%E6%8D%AE%E5%8C%85.drawio.webp"></p>
 <ul>
 <li>起始帧分界符是一个用来表示包起始位置的标记</li>
 <li>末尾的 <code>FCS</code>（帧校验序列）用来检查包传输过程是否有损坏</li>
@@ -210,7 +211,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/23.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/23.webp" alt="23.webp"></p>
 <h3>MAC 地址表找不到指定的 MAC 地址</h3>
 <ul>
 <li>可能是因为具有该地址的设备还没有向交换机发送过包，或者这个设备一段时间没有工作导致地址被从地址表中删除了</li>
@@ -268,7 +269,7 @@
 </li>
 <li>
 <p>转发操作的几个步骤：</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/24.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/24.webp" alt="24.webp"></p>
 <ul>
 <li>
 <p>首先查询<strong>路由表</strong>判断转发目标</p>
@@ -302,7 +303,7 @@
 </blockquote>
 <h2>10.互相扒皮——服务器与客户端</h2>
 <p>数据包抵达了服务器，服务器高兴的不得了，于是开始扒数据包的皮</p>
-<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/25.webp" alt=""></p>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/3.%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5/25.webp" alt="25.webp"></p>
 <ul>
 <li>数据包抵达服务器后，服务器会先扒开数据包的 MAC 头部，查看是否和服务器自己的 MAC 地址符合，符合就将包收起来。</li>
 <li>接着继续扒开数据包的 IP 头，发现 IP 地址符合，根据 IP 头中协议项，知道自己上层是 TCP 协议。</li>
@@ -319,5 +320,10 @@
 
         </main>
     </div>
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
+    </footer>
+    <script src="../../../../assets/js/header.js"></script>
+    <script src="../../../../assets/js/include-header.js"></script>
 </body>
 </html>

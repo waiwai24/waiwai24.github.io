@@ -135,37 +135,35 @@ function createParticles() {
 }
 
 // 添加鼠标跟随光标效果
+const cursorElement = document.createElement('div');
+cursorElement.className = 'custom-cursor';
+cursorElement.style.cssText = `
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    left: -100px; /* Initially hide off-screen */
+    top: -100px;
+`;
+document.body.appendChild(cursorElement);
+
 document.addEventListener('mousemove', function(e) {
-    const cursor = document.querySelector('.custom-cursor');
-    if (!cursor) {
-        const newCursor = document.createElement('div');
-        newCursor.className = 'custom-cursor';
-        newCursor.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-        `;
-        document.body.appendChild(newCursor);
-    }
-    
-    const cursorElement = document.querySelector('.custom-cursor');
     cursorElement.style.left = (e.clientX - 10) + 'px';
     cursorElement.style.top = (e.clientY - 10) + 'px';
 });
 
 // 添加页面可见性API来优化性能
-document.addEventListener('visibilitychange', function() {
-    const particles = document.querySelector('.particles');
-    if (particles) {
+const particlesContainer = document.querySelector('.particles');
+if (particlesContainer) {
+    document.addEventListener('visibilitychange', function() {
         if (document.hidden) {
-            particles.style.animationPlayState = 'paused';
+            particlesContainer.style.animationPlayState = 'paused';
         } else {
-            particles.style.animationPlayState = 'running';
+            particlesContainer.style.animationPlayState = 'running';
         }
-    }
-});
+    });
+}

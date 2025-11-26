@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title># 时间复杂度,时间复杂度</title>
-    <link rel="stylesheet" href="/assets/css/notes.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/notes.min.css">
 </head>
 <body>
+    <div id="header-placeholder"></div>
     <div class="main-content-wrapper">
         <main class="content">
             <h1>时间复杂度</h1>
@@ -68,7 +69,7 @@
 <p><strong>时间复杂度由多项式 T(n)中最高阶的项来决定</strong>。这是因为在 n 趋于无穷大时，最高阶的项将发挥主导作用，其他项的影响都可以被忽略</p>
 <h2>4.常见类型</h2>
 <p><code>O(1)常数阶 &lt; O(logn)对数阶 &lt; O(n)线性阶 &lt; O(nlogn)线性对数阶 &lt; O(n^2)平方阶 &lt; O(n^3)立方阶 &lt; O(2^n)指数阶 &lt; O(n!)阶乘阶</code></p>
-<p><img src="/0101/CSNote/Algorithm/2.Complexity/assets/3.%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/time_complexity_common_types.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/2.Complexity/assets/3.%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/time_complexity_common_types.png" alt="time_complexity_common_types.png"></p>
 <h3>（1）常数阶</h3>
 <p>操作数量与输入数据大小无关，即不随着n的变化而变化</p>
 <pre><code class="language-cpp">/* 常数阶 */
@@ -167,5 +168,10 @@ T(n)=T(n/3 + 2n/3)+n
 
         </main>
     </div>
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
+    </footer>
+    <script src="../../../../assets/js/header.js"></script>
+    <script src="../../../../assets/js/include-header.js"></script>
 </body>
 </html>

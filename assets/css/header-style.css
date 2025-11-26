@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Pacifico&display=swap');
-
 .main-header {
     position: fixed;
     top: 0;
@@ -156,5 +154,5 @@
 }
 
 body {
-    padding-top: 60px; /* Match fixed header height */
+    padding-top: 48px; /* Match fixed header height */
 }

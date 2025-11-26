@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title># 哈希冲突,哈希冲突</title>
-    <link rel="stylesheet" href="/assets/css/notes.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/notes.min.css">
 </head>
 <body>
+    <div id="header-placeholder"></div>
     <div class="main-content-wrapper">
         <main class="content">
             <h1>哈希冲突</h1>
@@ -14,7 +15,7 @@
 <p>尽管我们可以每遇到哈希冲突时就进行哈希表扩容，直到冲突消失为止，虽然该方法简单粗暴有效，但是效率太低，我们可以改良哈希表数据结构，使得哈希表可以在存在哈希冲突时正常工作</p>
 </blockquote>
 <h2>1.链式地址</h2>
-<p><img src="/0101/CSNote/Algorithm/7.Hashing/assets/2.%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81/hash_table_chaining.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/7.Hashing/assets/2.%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81/hash_table_chaining.png" alt="hash_table_chaining.png"></p>
 <p>在原始哈希表中，每个桶仅能存储一个键值对。「链式地址 separate chaining」将单个元素转换为链表，将键值对作为链表节点，将所有发生冲突的键值对都存储在同一链表中</p>
 <p>故操作方法也发生了以下变化（都是先访问链表头节点）：</p>
 <ul>
@@ -43,5 +44,10 @@
 
         </main>
     </div>
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
+    </footer>
+    <script src="../../../../assets/js/header.js"></script>
+    <script src="../../../../assets/js/include-header.js"></script>
 </body>
 </html>

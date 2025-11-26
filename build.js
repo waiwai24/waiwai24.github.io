@@ -51,6 +51,9 @@ async function generateHtmlFromMarkdown(node, template) {
         const mdPath = path.join(__dirname, node.path);
         const mdContent = await fs.readFile(mdPath, 'utf-8');
 
+        const depth = node.path.split('/').length - 1;
+        const relativePath = '../'.repeat(depth);
+
         // Override the image rule for this specific file
         md.renderer.rules.image = (tokens, idx, options, env, self) => {
             const token = tokens[idx];
@@ -60,9 +63,9 @@ async function generateHtmlFromMarkdown(node, template) {
             if (src && !/^(https?:\/\/|data:|\/)/.test(src)) {
                 const markdownDir = path.dirname(node.path);
                 const newSrc = path.join('/', markdownDir, src).replace(/\\/g, '/');
-                return `<img src="${newSrc}" alt="${alt}">`;
+                return `<img src="${newSrc}" alt="${alt || path.basename(src)}">`;
             }
-            return self.renderToken(tokens, idx, options); // Default rendering
+            return `<img src="${src}" alt="${alt || path.basename(src)}">`;
         };
         
         const contentHtml = md.render(mdContent);
@@ -72,7 +75,8 @@ async function generateHtmlFromMarkdown(node, template) {
 
         const finalHtml = template
             .replace(/\{\{TITLE\}\}/g, title)
-            .replace('{{CONTENT}}', contentHtml);
+            .replace('{{CONTENT}}', contentHtml)
+            .replace(/"\/assets\//g, `"${relativePath}assets/`);
 
         const outputFilePath = path.join(outputDir, node.path.replace(/\.md$/, '.html'));
         

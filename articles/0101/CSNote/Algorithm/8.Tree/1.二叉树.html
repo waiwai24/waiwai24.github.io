@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title># 二叉树,二叉树</title>
-    <link rel="stylesheet" href="/assets/css/notes.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/notes.min.css">
 </head>
 <body>
+    <div id="header-placeholder"></div>
     <div class="main-content-wrapper">
         <main class="content">
             <h1>二叉树</h1>
@@ -55,23 +56,23 @@ n2-&gt;right = n5;
 <h2>3.常见二叉树类型</h2>
 <h3>（1）完美二叉树</h3>
 <p>「完美二叉树 perfect binary tree」或者称为「满二叉树」所有层的节点都被完全填满。在完美二叉树中，叶节点的度为 0 ，其余所有节点的度都为 2 ；若树高度为 ℎ ，则节点总数为 2^ℎ+1^−1 （等比数列求和），呈现标准的指数级关系，反映了自然界中常见的细胞分裂现象</p>
-<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/perfect_binary_tree.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/perfect_binary_tree.png" alt="perfect_binary_tree.png"></p>
 <h3>（2）完全二叉树</h3>
 <p>「完全二叉树 complete binary tree」只有最底层的节点未被填满，且最底层节点尽量靠左填充</p>
-<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/complete_binary_tree.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/complete_binary_tree.png" alt="complete_binary_tree.png"></p>
 <h3>（3）完满二叉树</h3>
 <p>「完满二叉树 full binary tree」除了叶节点之外，其余所有节点都有两个子节点</p>
-<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/full_binary_tree.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/full_binary_tree.png" alt="full_binary_tree.png"></p>
 <h3>（4）平衡二叉树</h3>
 <p>「平衡二叉树 balanced binary tree」中任意节点的左子树和右子树的高度之差的绝对值不超过 1</p>
-<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/balanced_binary_tree.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/balanced_binary_tree.png" alt="balanced_binary_tree.png"></p>
 <h2>4.二叉树的退化</h2>
 <p>当二叉树的每层节点都被填满时，达到“完美二叉树”；而当所有节点都偏向一侧时，二叉树退化为“链表”</p>
 <ul>
 <li>完美二叉树是理想情况，可以充分发挥二叉树“分治”的优势。</li>
 <li>链表则是另一个极端，各项操作都变为线性操作，时间复杂度退化至 $O(n)$ 。</li>
 </ul>
-<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/binary_tree_best_worst_cases.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/binary_tree_best_worst_cases.png" alt="binary_tree_best_worst_cases.png"></p>
 <p>二叉树的最佳与最差情况</p>
 <table>
 <thead>
@@ -107,5 +108,10 @@ n2-&gt;right = n5;
 
         </main>
     </div>
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
+    </footer>
+    <script src="../../../../assets/js/header.js"></script>
+    <script src="../../../../assets/js/include-header.js"></script>
 </body>
 </html>

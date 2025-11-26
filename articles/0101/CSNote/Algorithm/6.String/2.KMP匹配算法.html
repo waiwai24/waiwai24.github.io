@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title># KMP匹配算法,KMP匹配算法</title>
-    <link rel="stylesheet" href="/assets/css/notes.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/notes.min.css">
 </head>
 <body>
+    <div id="header-placeholder"></div>
     <div class="main-content-wrapper">
         <main class="content">
             <h1>KMP匹配算法</h1>
-<p><img src="/0101/CSNote/Algorithm/6.String/assets/2.KMP%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/KMP%E7%B2%BE%E8%AE%B21.gif" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/6.String/assets/2.KMP%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/KMP%E7%B2%BE%E8%AE%B21.gif" alt="KMP%E7%B2%BE%E8%AE%B21.gif"></p>
 <h2>1. KMP由来</h2>
 <p>说到KMP，先说一下KMP这个名字是怎么来的，这是因为KMP算法是由这三位学者发明的：Knuth，Morris和Pratt，所以取了三位学者名字的首字母，所以叫做KMP</p>
 <p>KMP算法主要解决两个问题，一是当比较出现不等时，确定P应该右移多少字符，其二是右移后，P中的哪个字符与刚刚T中比较时不相等的那个字符处继续开始比较，解决了这两个问题，也就消除了<strong>回溯</strong></p>
@@ -32,7 +33,7 @@ aabaaf 0
   0 1 0 1 2 0
 </code></pre>
 <p><strong>当与T匹配冲突时，找到冲突前一位对应的前缀表中的数，再去对应的模式串中下标为该数的字符</strong></p>
-<p><img src="/0101/CSNote/Algorithm/6.String/assets/2.KMP%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/kmp.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/6.String/assets/2.KMP%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/kmp.png" alt="kmp.png"></p>
 <h3>（2）前缀表与next数组</h3>
 <p>很多KMP算法的实现都是使用next数组来做回退操作，那么next数组与前缀表有什么关系呢？</p>
 <p>next数组就可以是前缀表，但是很多实现都是把前缀表统一减一（右移一位，初始位置为-1）之后作为next数组</p>
@@ -40,10 +41,15 @@ aabaaf 0
 <p><strong>以下以前缀表统一减一之后的next数组来做演示</strong></p>
 <p><img src="/0101/CSNote/Algorithm/6.String/assets/2.KMP%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/KMP%E7%B2%BE%E8%AE%B24.gif" alt="KMP精讲4"></p>
 <h2>3. 构造next数组</h2>
-<p><img src="/0101/CSNote/Algorithm/6.String/assets/2.KMP%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/KMP%E7%B2%BE%E8%AE%B23.gif" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/6.String/assets/2.KMP%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/KMP%E7%B2%BE%E8%AE%B23.gif" alt="KMP%E7%B2%BE%E8%AE%B23.gif"></p>
 <p>定义两个指针i和j，j指向前缀末尾位置，i指向后缀末尾位置，next[i]为j值，指针i永不走回头路</p>
 
         </main>
     </div>
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
+    </footer>
+    <script src="../../../../assets/js/header.js"></script>
+    <script src="../../../../assets/js/include-header.js"></script>
 </body>
 </html>

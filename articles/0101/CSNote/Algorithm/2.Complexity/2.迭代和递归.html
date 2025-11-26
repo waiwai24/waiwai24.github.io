@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title># 迭代和递归,迭代和递归</title>
-    <link rel="stylesheet" href="/assets/css/notes.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/notes.min.css">
 </head>
 <body>
+    <div id="header-placeholder"></div>
     <div class="main-content-wrapper">
         <main class="content">
             <h1>迭代和递归</h1>
@@ -45,7 +46,7 @@
 <li>函数返回后才会被释放，故递归函数通常比迭代更加耗费内存空间</li>
 <li>递归调用函数会产生额外的开销，因此递归通常比循环的时间效率更低</li>
 </ul>
-<p><img src="/0101/CSNote/Algorithm/2.Complexity/assets/2.%E8%BF%AD%E4%BB%A3%E5%92%8C%E9%80%92%E5%BD%92/recursion_sum_depth.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/2.Complexity/assets/2.%E8%BF%AD%E4%BB%A3%E5%92%8C%E9%80%92%E5%BD%92/recursion_sum_depth.png" alt="recursion_sum_depth.png"></p>
 <p>因此在实际中，编程语言允许的的递归深度通常是有限的，过深的递归可能会导致栈溢出报错</p>
 <h3>（2）尾递归</h3>
 <p>如果函数在返回前的最后一步才进行递归调用，则该函数可以被编译器优化或解释器优化，使其在空间效率上与迭代相当</p>
@@ -60,7 +61,7 @@ int tailRecur(int n, int res) {
 tip：
 许多编译器或解释器并不支持尾递归优化。例如，Python 默认不支持尾递归优化，因此即使函数是尾递归形式，但仍然可能会遇到栈溢出问题
 </code></pre>
-<p><img src="/0101/CSNote/Algorithm/2.Complexity/assets/2.%E8%BF%AD%E4%BB%A3%E5%92%8C%E9%80%92%E5%BD%92/tail_recursion_sum.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/2.Complexity/assets/2.%E8%BF%AD%E4%BB%A3%E5%92%8C%E9%80%92%E5%BD%92/tail_recursion_sum.png" alt="tail_recursion_sum.png"></p>
 <h3>（3）递归树</h3>
 <p>当处理与“分治”相关的算法问题时，递归往往比迭代的思路更加直观、代码更加易读，例如处理斐波那契额数列</p>
 <pre><code class="language-cpp">/* 斐波那契数列：递归 */
@@ -74,7 +75,7 @@ int fib(int n) {
     return res;
 }
 </code></pre>
-<p><img src="/0101/CSNote/Algorithm/2.Complexity/assets/2.%E8%BF%AD%E4%BB%A3%E5%92%8C%E9%80%92%E5%BD%92/recursion_tree.png" alt=""></p>
+<p><img src="/0101/CSNote/Algorithm/2.Complexity/assets/2.%E8%BF%AD%E4%BB%A3%E5%92%8C%E9%80%92%E5%BD%92/recursion_tree.png" alt="recursion_tree.png"></p>
 <p>本质上看，递归体现“将问题分解为更小子问题”的思维范式，这种分治策略是至关重要的。</p>
 <ul>
 <li>从算法角度看，搜索、排序、回溯、分治、动态规划等许多重要算法策略都直接或间接地应用这种思维方式。</li>
@@ -89,5 +90,10 @@ int fib(int n) {
 
         </main>
     </div>
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
+    </footer>
+    <script src="../../../../assets/js/header.js"></script>
+    <script src="../../../../assets/js/include-header.js"></script>
 </body>
 </html>
