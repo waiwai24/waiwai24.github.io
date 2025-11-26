@@ -247,6 +247,7 @@ header {
 
 .search-container {
   text-align: center;
+  margin-top: var(--spacing-xl);
   margin-bottom: var(--spacing-xl);
 }
 
