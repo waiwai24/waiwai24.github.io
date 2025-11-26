@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Numpy入门,Numpy入门</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Numpy入门</h1>
+<h2>1.数据维度</h2>
+<ul>
+<li>
+<p>一维数据：</p>
+<blockquote>
+<p>由对等关系的有序或无序数据构成，采用线性方式组织</p>
+<p>对应数组，列表，集合等概念</p>
+</blockquote>
+<blockquote>
+<p>列表和数组的区别：</p>
+<blockquote>
+<p>==列表：数据类型可不同==</p>
+</blockquote>
+<blockquote>
+<p>==数组：数据类型相同==</p>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<p>二维数据：</p>
+<blockquote>
+<p>由多个一维数据组成，是一维数据的组合形式，例如表格</p>
+<p>使用多维列表</p>
+</blockquote>
+</li>
+<li>
+<p>多维数据：</p>
+<blockquote>
+<p>新维度上的扩展</p>
+<p>使用多维列表</p>
+</blockquote>
+</li>
+<li>
+<p>高维数据：</p>
+<blockquote>
+<p>使用最基本的二元关系标识数据间的复杂结构，键值对</p>
+<p>使用字典类型或数据表示格式</p>
+</blockquote>
+</li>
+</ul>
+<p>​</p>
+<h2>2.NumPy库</h2>
+<blockquote>
+<p>NumPy是一个开源的python科学计算基础库</p>
+<blockquote>
+<p>一个强大的N维数组对象 ndarray</p>
+<p>广播函数功能</p>
+<p>整合C/C++代码的工具</p>
+<p>线性代数，傅里叶变换，随机数生成等功能</p>
+<p>是其他数据处理科学计算库的基础</p>
+</blockquote>
+<p>引用方式：</p>
+<pre><code class="language-py">import numpy as np
+</code></pre>
+</blockquote>
+<h2>3.N维数组对象ndarray</h2>
+<h3>a）列表与数组的对比</h3>
+<ul>
+<li>
+<p>列表：</p>
+<pre><code class="language-python">def pySum():
+    A=[1, 2, 3, 4, 5]
+    B=[5, 4, 3, 2, 1]
+    C=[]
+    for i in range(len(A)):
+        C.append(A[i]**2 + B[i]**3)
+    return C
+print(pySum())
+[126, 68, 36, 24, 26]
+</code></pre>
+</li>
+<li>
+<p>数组：</p>
+<pre><code class="language-python">import numpy as np
+
+def npSum():
+    A=np.array([1, 2, 3, 4, 5])
+    B=np.array([5, 4, 3, 2, 1])
+    C=A**2 + B**3
+    return C
+print(npSum())
+[126  68  36  24  26]
+</code></pre>
+<blockquote>
+<p>可以省去元素间运算所需的循环，使一维向量更像单个数据</p>
+<p>经过优化，可提升运算速度（底层是C），节省运算和存储空间</p>
+</blockquote>
+</li>
+</ul>
+<h3>b）ndarray</h3>
+<ul>
+<li>生成一个ndarray(别名array)数组：<code>np.array()</code></li>
+<li>np.array()输出成[]形式，元素由空格分割</li>
+<li>轴（axis）：数据的维度</li>
+<li>秩（rank）：轴的数量，数组类型的维度</li>
+<li>ndarray对象属性：
+<ul>
+<li>.ndim 秩</li>
+<li>.shape 对象的尺度，对于矩阵，n行m列</li>
+<li>.size 对象的个数 ，相当于.shape中n*m的值</li>
+<li>.dtype 对象的元素类型</li>
+<li>.itemsize 每个元素的大小，以字节为单位</li>
+<li>11.39</li>
+</ul>
+</li>
+</ul>
+<h3>c）创建数组的方法</h3>
+<ul>
+<li>
+<p>从列表，元组等类型创建数组</p>
+<pre><code class="language-python">x=np.array(list/tuple)
+x=np.array(list/tuple,dtype=np.float32)
+当np.array()不指定dtype时，会自动根据数据情况关联一个dtype类型
+</code></pre>
+</li>
+<li>
+<p>使用函数：</p>
+<ul>
+<li>np.arange(n)：类似range函数，返回ndarray类型，元素从0到n-1（除了这个是整数其他的都是浮点数）</li>
+<li>np.ones(shape)：根据shape生成一个全1的数组，shape是元组类型（（几个）几行几列）</li>
+<li>np.ones_like(a)：根据数组a的形状生成一个全1数组</li>
+<li>np.zeros(shape)：根据shape生成一个全0的数组，shape是元组类型</li>
+<li>np.zeros_like(a)：根据数组a的形状生成一个全0数组</li>
+<li>np.full(shape,val)：根据shape生成一个数组，每个元素值都是val</li>
+<li>np.full_like(a,val)：根据数组a的形状生成一个每个元素都说val的数组</li>
+<li>np.eye(n) ：创建一个n*n单位矩阵，对角线为1，其余为0</li>
+<li>np.concatenate()：将两个或多个数组合并成一个新数组</li>
+<li>np.linspace()：根据起止数据等间距的填充数据，形成数组</li>
+</ul>
+</li>
+</ul>
+<h3>d）数组的变换</h3>
+<ul>
+<li>维度变换：（==注意原数组是否改变==）
+<ul>
+<li>.reshape(shape)：不改变数组元素，返回一个shape形状的数组，==原数组不变==</li>
+<li>.resize(shape)：与.reshape()功能一致，但==修改原数组==</li>
+<li>.swapaxes(ax1,ax2)：将n个维度中的两个维度进行调换</li>
+<li>.flatten：降维，返回折叠后的一维数组，原数组不变</li>
+</ul>
+</li>
+<li>类型的变换：
+<ul>
+<li>new_a=a.astype(new_type)</li>
+</ul>
+</li>
+<li>向列表转换：
+<ul>
+<li>ls=a.tolist()</li>
+</ul>
+</li>
+</ul>
+<h2>4.ndarray数组的操作</h2>
+<h3>a）索引</h3>
+<blockquote>
+<p>获取数组中特定位置元素的过程</p>
+</blockquote>
+<p>一维数组：与python列表类似</p>
+<p>多维数组：每个维度索引值之间用逗号分隔</p>
+<h3>b）切片</h3>
+<blockquote>
+<p>获取数组子集的过程</p>
+</blockquote>
+<p>一维数组：于python列表类似<code>起始编号：终止编号（不含）：步长</code></p>
+<p>多维数组：选择一个维度用：，每个维度切片方法同一维数组</p>
+<h2>5.ndarray数组的运算</h2>
+<h3>a）计算平均值</h3>
+<ul>
+<li>a.mean(0)：计算每一列的平均值</li>
+<li>a.mean(1)：计算每一行的平均值</li>
+<li>np.mean(a)：计算整体平均值</li>
+</ul>
+<h3>b）运算函数</h3>
+<ul>
+<li>np.abs()：绝对值</li>
+<li>np.sqrt()：平方根</li>
+<li>np.square()：平方</li>
+<li>np.log(x) np.log10(x) np.log2(x)：自然对数，10底对数，2底对数</li>
+<li>np.ceil(x) np.floor(x)：ceiling值或floor值</li>
+<li>np.rint(x)：四舍五入</li>
+<li>np.modf(x)：每个元素小数和整数不放呢以两个独立数组形式返回</li>
+<li>np.exp(x)：指数值</li>
+<li>np.三角函数(x)</li>
+</ul>
+<h3>c）二元函数运算</h3>
+<ul>
+<li>加减乘除</li>
+<li>算术比较</li>
+<li>最大值最小值np.maximum(x,y),np.minimum(x,y),np.fmax(),np.fmin()</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 固件解密,固件解密</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>固件解密</h1>
+<h2>1.加密场景</h2>
+<h2>2.判断方法</h2>
+<ul>
+<li>
+<p>采取信息熵分析，使用 <code>binwalk ---entropy</code>生成熵图</p>
+<ul>
+<li>对于没有加密的二进制文件来说，一些指令出现的频率通常很高，并且数据结构几乎没有随机性，所以熵值一般比较低</li>
+<li>对于经过加密的二进制文件来说，都会想尽办法隐藏自己的信息，而导致很少有重复的内容，所以熵值一般都会比较高</li>
+</ul>
+</li>
+<li>
+<p>对于一般未加密的固件来说，用010editor等二进制工具打开是可以发现开头包含固件型号和版本的，一般加密后的会出现 <code>0xFF</code> 或 <code>0x00</code> 字节断层</p>
+</li>
+<li>
+<p>binwalk直接分析</p>
+</li>
+</ul>
+<h2>3.解密</h2>
+
+        </main>
+    </div>
+</body>
+</html>

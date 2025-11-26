@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># PHP函数,PHP函数</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>PHP函数</h1>
+<p>[TOC]</p>
+<blockquote>
+<p>PHP真正的威力来源于他的函数，在PHP中，提供了超过1000个内建的函数</p>
+</blockquote>
+<h2>一. 创建函数</h2>
+<p>PHP 函数准则：</p>
+<ul>
+<li>函数的名称应该提示出它的功能</li>
+<li>函数名称以字母或下划线开头（不能以数字开头）</li>
+</ul>
+<pre><code class="language-php">&lt;?php
+function functionName($参数)
+{
+    // 要执行的代码
+}
+?&gt;
+</code></pre>
+<p>返回值：使用return语句</p>
+<h2>二. 变量函数</h2>
+<p>将一个变量作为函数名来调用函数‘</p>
+<pre><code class="language-php">&lt;?php
+class Foo
+{
+    function Variable()
+    {
+        $name = 'Bar';
+        $this-&gt;$name(); // 调用 Bar() 方法
+    }
+
+    function Bar()
+    {
+        echo &quot;This is Bar&quot;;
+    }
+}
+
+$foo = new Foo();
+$funcname = &quot;Variable&quot;;
+$foo-&gt;$funcname();  // 调用 $foo-&gt;Variable()
+
+?&gt;
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

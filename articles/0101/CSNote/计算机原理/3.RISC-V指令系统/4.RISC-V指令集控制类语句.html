@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># RISC-V指令集控制类语句,RISC-V指令集控制类语句</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>RISC-V指令集控制类语句</h1>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>示例</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jal 跳转-链接</td>
+<td>jal x1,100</td>
+<td>x1=PC+4 ; go to PC+100</td>
+</tr>
+<tr>
+<td>jalr 跳转-链接寄存器地址</td>
+<td>jalr x1,100(x5)</td>
+<td>x1=PC+4 ; go to x5+100</td>
+</tr>
+<tr>
+<td>beq 相等则跳转</td>
+<td>beq x5,x6,100</td>
+<td>if(x5==x6) go to PC+100</td>
+</tr>
+<tr>
+<td>bne 不等则跳转</td>
+<td>bne x5,x6,100</td>
+<td>if(x5!=x6) go to PC+100</td>
+</tr>
+<tr>
+<td>blt 小于则跳转</td>
+<td>blt x5,x6,100</td>
+<td>if(x5&lt;x6) go to PC+100</td>
+</tr>
+<tr>
+<td>bge 大于等于则跳转</td>
+<td>bge x5,x6,100</td>
+<td>if(x5&gt;=x6) go to PC+100</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

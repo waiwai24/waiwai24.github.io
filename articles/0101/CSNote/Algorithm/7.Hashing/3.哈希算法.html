@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 哈希算法,哈希算法</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>哈希算法</h1>
+<h2>1.哈希算法的目标</h2>
+<p>为了既快又稳的哈希表数据结构，哈希算法应该包含以下特点：</p>
+<ul>
+<li>确定性：相同输入，输出始终相同</li>
+<li>效率高：计算过程足够快</li>
+<li>均匀分布：哈希算法应使得键值对平均分布在哈希表中，分布越均匀，冲突概率越低</li>
+</ul>
+<p>除此之外，哈希算法还有其他的应用：</p>
+<ul>
+<li>密码存储：系统通常不会存储用户明文密码，而是存储密码的哈希值，当用户输入密码时，系统就会队输入的密码计算哈希值进行比较</li>
+<li>数据完整性检查</li>
+</ul>
+<p>密码学中对哈希算法更高级的安全特性：</p>
+<ul>
+<li>单向性：无法通过哈希值反推输入数据的任何信息</li>
+<li>抗碰撞性：极难找到两个不同的输入使得他们哈希值相同</li>
+<li>雪崩效应：输入微小的变化将导致输出的显著且不可预测的变化</li>
+</ul>
+<h2>2.哈希算法的设计</h2>
+<p>简单的哈希算法：</p>
+<ul>
+<li>加法哈希：对输入的每个字符ASCII码进行相加，得到的总和作为哈希值</li>
+<li>异或哈希：将输入数据的每个元素通过异或操作累积到一个哈希值</li>
+</ul>
+<h2>3.常见哈希算法</h2>
+<ul>
+<li>MD5 和 SHA-1 已多次被成功攻击，因此它们被各类安全应用弃用。</li>
+<li>SHA-2 系列中的 SHA-256 是最安全的哈希算法之一，仍未出现成功的攻击案例，因此常被用在各类安全应用与协议中。</li>
+<li>SHA-3 相较 SHA-2 的实现开销更低、计算效率更高，但目前使用覆盖度不如 SHA-2 系列。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">MD5</th>
+<th style="text-align:center">SHA-1</th>
+<th style="text-align:center">SHA-2</th>
+<th style="text-align:center">SHA-3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">推出时间</td>
+<td style="text-align:center">1992</td>
+<td style="text-align:center">1995</td>
+<td style="text-align:center">2002</td>
+<td style="text-align:center">2008</td>
+</tr>
+<tr>
+<td style="text-align:center">输出长度</td>
+<td style="text-align:center">128 bits</td>
+<td style="text-align:center">160 bits</td>
+<td style="text-align:center">256 / 512 bits</td>
+<td style="text-align:center">224/256/384/512 bits</td>
+</tr>
+<tr>
+<td style="text-align:center">哈希冲突</td>
+<td style="text-align:center">较多</td>
+<td style="text-align:center">较多</td>
+<td style="text-align:center">很少</td>
+<td style="text-align:center">很少</td>
+</tr>
+<tr>
+<td style="text-align:center">安全等级</td>
+<td style="text-align:center">低，已被成功攻击</td>
+<td style="text-align:center">低，已被成功攻击</td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">高</td>
+</tr>
+<tr>
+<td style="text-align:center">应用</td>
+<td style="text-align:center">已被弃用，仍用于数据完整性检查</td>
+<td style="text-align:center">已被弃用</td>
+<td style="text-align:center">加密货币交易验证、数字签名等</td>
+<td style="text-align:center">可用于替代 SHA-2</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

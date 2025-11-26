@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VM网络</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <ul>
+<li>仅主机：宿主机与虚拟机组成了小的独立局域网，其他电脑不能访问该网络，同时该网络的虚拟机也不能访问外部网络，互联网，无法与宿主机的本地局域网（或互联网）通信</li>
+<li>桥接：将虚拟机接入宿主机所在的网络，占用局域网中一个ip，主机和虚拟机通过单位局域网互联互通</li>
+<li>NAT：虚拟机和宿主机组成小局域网，其他电脑不能访问该网络，虚拟机通过宿主机（相当于路由器）访问外部网络，但外部网络不能访问虚拟机</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

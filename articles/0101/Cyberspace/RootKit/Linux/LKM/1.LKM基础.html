@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># LKM 基础,LKM 基础</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>LKM 基础</h1>
+<h2>1.基本介绍</h2>
+<p>LKM 是 Linux 内核用来扩展其功能的可加载内核模块</p>
+<p>LKM 的优点：可以动态加载；必须不重新编译整个内核。由于这些特性，它们通常用于特定的设备驱动程序（或文件系统），如声卡等。</p>
+<p>每个 LKM 都包含两个基本的宏：<code>module_init</code> 和 <code>module_exit</code>，传统的 LKM 的编写则使用的是 <code>init_module()</code> 和 <code>cleanup_module()</code> 这两个函数</p>
+<p>如果没有定义清除函数，则内核不允许卸载该模块, <code>module_init</code> 和 <code>module_exit</code> 是内核的两个宏，利用这两个宏来指定我们的初始化和清除函数</p>
+<p>Linux 提供了多种管理内核模块的命令, 这些命令是 kmod 工具的一部分。这些命令包括:</p>
+<ul>
+<li><code>insmod</code>：手动将内核模块插入正在运行的内核</li>
+<li><code>rmmod</code>：卸载(移除)内核模块</li>
+<li><code>modprobe</code>：高级模块管理工具, 不仅加载模块, 还处理模块依赖关系, 在需要时自动加载相关模块</li>
+<li><code>lsmod</code>：列出所有已加载的内核模块。它通过读取 <code>/proc/modules</code> 文件并查询 <code>/sys/module/</code> 目录获取每个模块的详细信息</li>
+</ul>
+<p>重要的目录：</p>
+<ul>
+<li>/lib/modules/：包含系统上安装的不同内核版本特定的内核模块和相关文件。<code>/lib/modules/</code> 中的每个子目录对应一个特定的内核版本, 并包含以下组件。这使操作系统能够将不同的内核版本及其相关模块分开, 在需要时更容易在内核版本之间切换</li>
+<li>/proc/modules：这个虚拟文件提供当前已加载内核模块的列表。该文件中的每一行代表一个已加载的模块, 包含有关该模块的信息, 包括其名称、大小和使用计数</li>
+<li>/sys/module/：这个虚拟目录提供有关当前已加载内核模块的信息。每个已加载的模块在 <code>/sys/modules/</code> 下都有自己的目录, 在每个模块的目录中, 有包含模块信息的不同文件。该目录允许用户空间进程、工具和管理员在运行时访问有关已加载内核模块及其属性的信息。</li>
+</ul>
+<p>最简单的打印：</p>
+<pre><code class="language-c">#include &lt;linux/init.h&gt;
+#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+
+MODULE_LICENSE(&quot;GPL&quot;);
+MODULE_AUTHOR(&quot;Example&quot;);
+MODULE_DESCRIPTION(&quot;Basic&quot;);
+MODULE_VERSION(&quot;0.01&quot;);
+
+static int __init example_init(void)
+{
+	printk(KERN_INFO &quot;Hello, World!\n&quot;);
+	return 0;
+}
+
+static void __exit example_exit(void)
+{
+	printk(KERN_INFO &quot;Goodbye, World!\n&quot;);
+}
+
+module_init(example_init);
+module_exit(example_exit);
+</code></pre>
+<pre><code class="language-makefile">obj-m += example.o
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+</code></pre>
+<ul>
+<li><code>obj-m</code> 是一个 kbuild 系统能看懂的特殊变量</li>
+<li><code>+=</code> 意思是“追加到这个列表”</li>
+<li><code>example.o</code> 是我们的目标对象文件</li>
+<li></li>
+</ul>
+<h2>2.LKM 的局限性</h2>
+<ul>
+<li>权限要求：具有 root 权限或能够执行具有 <code>SYS_MODULE</code> 能力的进程</li>
+<li>可移植性：内核模块必须使用与目标系统内核版本兼容的特定内核头文件进行编译</li>
+<li>系统内核可能会在在编译时完全不包含模块加载功能</li>
+</ul>
+<h2>3.内核函数 hook 方法</h2>
+<p>Syscall 调用表修改、Kprobes(内核探针)、Ftrace 和 VFS(虚拟文件系统)</p>
+
+        </main>
+    </div>
+</body>
+</html>

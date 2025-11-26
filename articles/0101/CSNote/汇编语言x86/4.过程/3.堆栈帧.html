@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 堆栈帧,堆栈帧</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>堆栈帧</h1>
+<h2>1.栈帧</h2>
+<ul>
+<li>
+<p>定义：栈帧是堆栈中的一个单元，每个函数调用在堆栈上分配一个栈帧，用于存储该函数的局部变量、参数、返回地址和一些额外的状态信息</p>
+</li>
+<li>
+<p>栈帧结构：</p>
+<pre><code class="language-assembly">push args
+call function : push next_eip
+				jmp func
+
+push ebp
+mov ebp esp
+sub esp num
+.
+.
+.
+leave :	mov esp ebp
+		pop ebp
+ret (pop eip)
+</code></pre>
+</li>
+<li>
+<p>创建步骤：</p>
+<ul>
+<li>被传递的实际参数，如果有则压入堆栈</li>
+<li>当子程序被调用时，使该子程序的返回地值压入堆栈</li>
+<li>子程序开始执行，EBP被压入堆栈</li>
+<li>设置EBP等于ESP</li>
+<li>如果有局部变量，修改ESP为这些变量预留空间</li>
+<li>如果需要保存寄存器，将他们压入堆栈</li>
+</ul>
+</li>
+</ul>
+<p><img src="/0101/CSNote/汇编语言x86/4.过程/assets/3.%E5%A0%86%E6%A0%88%E5%B8%A7/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE.drawio.png" alt="未命名绘图.drawio"></p>
+<h2>2.参数入栈的类型及方式</h2>
+<p>注意：<strong>参数入栈的顺序与定义的顺序是相反的</strong></p>
+<pre><code>AddTwo(A,b) //先将B入栈，再将A入栈
+</code></pre>
+<ul>
+<li>值参数（变量和常量的值）：
+<ul>
+<li>该值的副本会被压入堆栈</li>
+</ul>
+</li>
+<li>引用参数（变量的地址）：
+<ul>
+<li>对象的地址入栈</li>
+</ul>
+</li>
+<li>传递数组：
+<ul>
+<li>把数组的首地址压入栈</li>
+</ul>
+</li>
+</ul>
+<h2>3.局部变量</h2>
+<ul>
+<li>定义：单一子程序内新建，使用和撤销的变量被称为局部变量</li>
+<li>每个堆栈项默认为32位，因此变量的存储大小都要向上取整保存为4的倍数</li>
+<li>通常通过局部变量相较EBP的偏移量来赋值</li>
+</ul>
+<h2>4.引用参数</h2>
+<ul>
+<li>引用参数通常是由基址-偏移量寻址方式进行访问（EBP）</li>
+</ul>
+<h2>5.相关指令</h2>
+<h3>5.1 LEA指令</h3>
+<p>LEA指令返回间接操作数的地址（“load effective address”的缩写），简单的说，lea指令可以用来将一个内存地址直接赋给目的操作数，例如：</p>
+<pre><code class="language-assembly">lea eax,[ebx+8];就是将ebx+8这个值直接赋给eax，而不是把ebx+8处的内存地址里的数据赋给eax
+mov eax,[ebx+8];则是把内存地址为ebx+8处的数据赋给eax
+</code></pre>
+<p>注意：不能使用OFFSET获得堆栈参数的地址，因为OFFSSET只适用于编译时已知的地址</p>
+<h3>5.2 ENTER，LEAVE指令</h3>
+<ul>
+<li>
+<p>ENTER：为被调用过程自动创建堆栈</p>
+<pre><code class="language-assembly">ENTER numbyters，nestinglevel;第一个常数定义为局部变量保存的堆栈空间字节数（向上舍为4的倍数），第二个定义了过程的词法嵌套级
+</code></pre>
+<ul>
+<li>把EBP入栈push ebp</li>
+<li>EBP设置为栈帧的基址mov ebp，esp</li>
+<li>为局部变量保存空间sub sep，numbytes</li>
+</ul>
+</li>
+<li>
+<p>LEAVE：结束一个过程的栈帧</p>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

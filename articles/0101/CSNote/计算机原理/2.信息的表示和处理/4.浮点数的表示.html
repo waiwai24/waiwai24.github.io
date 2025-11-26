@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 浮点数的表示,浮点数的表示</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>浮点数的表示</h1>
+<h2>1.IEEE浮点数表示（IEEE754标准）</h2>
+<blockquote>
+<p>标准规定，浮点数以二进制科学计数法存储，分为符号sign，指数exponent，分数fraction（采用原码表示）三部分</p>
+<p><img src="/0101/CSNote/计算机原理/2.信息的表示和处理/assets/4.%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/image-20240326152509959.png" alt="image-20240326152509959"></p>
+</blockquote>
+<h3>1.1 浮点数类型</h3>
+<p><img src="/0101/CSNote/计算机原理/2.信息的表示和处理/assets/4.%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/image-20240327232900400.png" alt="image-20240327232900400"></p>
+<p>float和double分别对应IEEE754的单精度浮点数和双精度浮点数</p>
+<h3>1.2 表示</h3>
+<blockquote>
+<p>分类由阶码决定</p>
+</blockquote>
+<ul>
+<li>实数的二进制<strong>规格化</strong>表示：
+<ul>
+<li>Exp位模式既不全为0，也不全为1</li>
+<li>移码$Bias=2^{k-1}-1$​​​ , k为Exp的位数</li>
+<li>小数字段没有必要表示出1，采用了隐藏位策略</li>
+<li>单精度规格化数中，尾数23位，还有1位隐藏，故最多可表示24位有效数字，故不能表示的最小正整数值为$2^{24}+1$</li>
+<li>float的范围为$-2^{127}\sim +2^{127}$， double的范围为$-2^{1023}\sim +2^{1023}$</li>
+<li>计算公式：</li>
+</ul>
+</li>
+</ul>
+<p>$
+(-1)^S \times (1+frac) \times 2^{Exp-Bias}
+$</p>
+<ul>
+<li><strong>非规格化数</strong>：
+<ul>
+<li>Exp位模式全为0</li>
+<li>表示0（阶码和小数字段全为0）以及非常接近于0.0的数：</li>
+<li>计算公式：</li>
+</ul>
+</li>
+</ul>
+<p>$
+(-1)^S \times (frac) \times 2^{1-Bias}
+$</p>
+<ul>
+<li><strong>特殊值</strong>：
+<ul>
+<li>
+<p>Exp位模式全为1的时候</p>
+</li>
+<li>
+<p>frac全为0，表示无穷大</p>
+</li>
+<li>
+<p>frac非0，表示NaN（非数）</p>
+<ul>
+<li>eg：${\sqrt{-1}}\quad,{\infty-\infty}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>2.浮点数的舍入</h2>
+<blockquote>
+<p>由于浮点数 <code>位数有限</code>，不可能精确表示所有实数，浮点运算必然存在精度损失</p>
+</blockquote>
+<ul>
+<li>就近舍入：舍入为最近可表示的数（01舍，11入，10强迫结果为整数（最低位为0则舍掉多余位，最低位为1则进位1、使得最低位仍为0（偶数）））（大于超出规定最低位的一半进1）</li>
+<li>朝正无穷方向舍入：ceil</li>
+<li>朝负无穷方向舍入：floor</li>
+<li>朝0方向舍入：截断</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

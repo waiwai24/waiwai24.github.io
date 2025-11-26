@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 数学函数,数学函数</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>数学函数</h1>
+<p>[TOC]</p>
+<blockquote>
+<p>使用前必须先加头文件</p>
+<pre><code class="language-cpp">#include&lt;cmath&gt;
+</code></pre>
+</blockquote>
+<h2>1.绝对值函数</h2>
+<p>不同类型的数据使用不同类型的绝对值函数：</p>
+<ul>
+<li>整型：</li>
+</ul>
+<pre><code class="language-cpp">int abs(int i)  //返回整型参数i的绝对值 
+</code></pre>
+<ul>
+<li>复数：</li>
+</ul>
+<pre><code class="language-cpp">double cabs(struct complex znum)  //返回复数znum的绝对值  
+</code></pre>
+<ul>
+<li>双精度浮点型：</li>
+</ul>
+<pre><code class="language-cpp">double fabs(double x)  //返回双精度参数x的绝对值    
+</code></pre>
+<ul>
+<li>长整型：</li>
+</ul>
+<pre><code class="language-cpp">long labs(long n)  //返回长整型参数n的绝对值 
+</code></pre>
+<h2>2.取整函数</h2>
+<pre><code class="language-cpp">ceil(x) // 比x大的最小整数
+floor(x) // 比x小的最大整数
+</code></pre>
+<h2>3.取最大/小值函数</h2>
+<pre><code class="language-cpp">fmax(x,y)	//返回传递的两个参数中最大的
+fmin(x,y)	//返回两个给定参数中的最小值
+// 返回类型会变成double
+</code></pre>
+<h2>4.三角函数</h2>
+<pre><code class="language-cpp">sin(x)
+cos(x)
+tan(x)
+asin(x) //反正弦
+acos(x) //反余弦
+atan(x) //反正切
+#define PI acos(-1) //定义π
+</code></pre>
+<h2>5.其他常用函数</h2>
+<pre><code class="language-cpp">exp(x) //计算以自然常数e为底的指数。即表示e的x次方。
+pow(x,y) //返回 x 的 y 次幂
+log(x) //返回数字的自然对数
+log10(x) //返回数字的以10为底的对数
+round(x) //四舍五入
+sqrt(x) //计算数字的平方根 √x = sqrt(x)
+cbrt(x) //计算数字的立方根 ∛x = cbrt(x)
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

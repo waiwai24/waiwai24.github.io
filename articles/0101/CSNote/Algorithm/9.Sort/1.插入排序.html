@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 插入排序,插入排序</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>插入排序</h1>
+<h2>1.算法稳定性</h2>
+<p>具有相同排序码的记录的相对次序在排序之后相对次序仍然保持不变，我们称该排序算法是<strong>稳定的</strong>，否则该排序算法是不稳定的</p>
+<h2>2.基本思想</h2>
+<p>每次选择待排序的记录序列中的第一个记录，按照排序码的大小将其插入已经排好序的记录序列中的合适位置</p>
+<h2>3.直接插入排序</h2>
+<h3>（1）过程</h3>
+<p>先将第一个记录视为一个有序的记录排序，然后从第二个记录开始，依次将未排序的记录插入到这个有序的记录序列中，直到整个文件中全部记录排序完成</p>
+<p><img src="/0101/CSNote/Algorithm/9.Sort/assets/1.%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/insertion_sort_overview.png" alt=""></p>
+<h3>（2）实现</h3>
+<pre><code class="language-cpp">void InsertionSort(vector&lt;int&gt; &amp;nums) 
+{
+    // 外循环
+    for (int i = 1; i &lt; nums.size(); i++) {
+        int temp = nums[i], j = i - 1;
+        // 内循环：将 temp 插入到已排序部分的正确位置
+        while (j &gt;= 0 &amp;&amp; nums[j] &gt; temp) {
+            nums[j + 1] = nums[j]; // 将 nums[j] 向右移动一位
+            j--;
+        }
+        nums[j + 1] = temp; // 将 temp 赋值到正确位置
+    }
+}
+</code></pre>
+<h3>（3）特性</h3>
+<ul>
+<li>
+<p>时间复杂度为$O(n^2)$</p>
+</li>
+<li>
+<p>空间复杂度$O(1)$</p>
+</li>
+<li>
+<p>稳定的</p>
+</li>
+</ul>
+<h2>4.折半插入排序</h2>
+<h3>（1）过程</h3>
+<p>将直接插入排序中寻找插入位置的方法改为折半比较</p>
+<h3>（2）实现</h3>
+<pre><code class="language-cpp">void BinaryInsertionSort(vector&lt;int&gt; &amp;nums, int n) {
+    // 外循环
+    for (int i = 1; i &lt; n; i++) {
+        int left = 0;
+        int right = i - 1;
+        int temp = nums[i]; 
+
+        // 折半查找合适的位置
+        while (left &lt;= right) {
+            int middle = (left + right) / 2;
+            if (nums[middle] &gt;= temp) {
+                right = middle - 1; 
+            } else {
+                left = middle + 1;
+            }
+        }
+        // 插入位置为left
+        for (int right = i; right &gt; left; right--){
+            nums[right] = nums[right - 1];
+        }
+        nums[left] = temp; 
+    }
+}
+</code></pre>
+<h3>（3）特性</h3>
+<ul>
+<li>时间复杂度为$O(n\log_{2}{n}) $</li>
+<li>折半插入与直接插入所需移动次数相同</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

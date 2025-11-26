@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 二叉树,二叉树</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>二叉树</h1>
+<blockquote>
+<p>「二叉树 binary tree」是一种非线性数据结构，代表着祖先与后代之间的派生关系，体现着“一分为二”的分治逻辑。与链表类似，二叉树的基本单元是节点，每个节点包含：值、左子节点引用、右子节点引用</p>
+<pre><code class="language-cpp">/* 二叉树节点结构体 */
+struct TreeNode {
+    int val;          // 节点值
+    TreeNode *left;   // 左子节点指针
+    TreeNode *right;  // 右子节点指针
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+</code></pre>
+<p>每个节点都有两个引用（指针），分别指向「左子节点 left-child node」和「右子节点 right-child node」，该节点被称为这两个子节点的「父节点 parent node」。当给定一个二叉树的节点时，我们将该节点的左子节点及其以下节点形成的树称为该节点的「左子树 left subtree」，同理可得「右子树 right subtree」</p>
+</blockquote>
+<h2>1.二叉树常见术语</h2>
+<blockquote>
+<p>类比楼的高度，和水的深度，从下往上看和从上往下看,从根节点到看叶节点（从顶看底）是深度，从叶节点看根节点（从底看顶）是高度</p>
+</blockquote>
+<ul>
+<li>「根节点 root node」：位于二叉树顶层的节点，没有父节点。</li>
+<li>「叶节点 leaf node」：没有子节点的节点，其两个指针均指向 None 。</li>
+<li>「边 edge」：连接两个节点的线段，即节点引用（指针）。</li>
+<li>节点所在的「层 level」：从顶至底递增，根节点所在层为 1 。</li>
+<li>节点的「度 degree」：节点的子节点的数量。在二叉树中，度的取值范围是 0、1、2 。</li>
+<li>二叉树的「高度 height」：从根节点到最远叶节点所经过的边的数量。</li>
+<li>节点的「深度 depth」：从根节点到该节点所经过的边的数量。</li>
+<li>节点的「高度 height」：从最远叶节点到该节点所经过的边的数量。</li>
+</ul>
+<h2>2.二叉树基本操作</h2>
+<h3>（1）初始化</h3>
+<pre><code class="language-cpp">// 初始化节点
+TreeNode* n1 = new TreeNode(1);
+TreeNode* n2 = new TreeNode(2);
+TreeNode* n3 = new TreeNode(3);
+TreeNode* n4 = new TreeNode(4);
+TreeNode* n5 = new TreeNode(5);
+// 构建引用指向（即指针）
+n1-&gt;left = n2;
+n1-&gt;right = n3;
+n2-&gt;left = n4;
+n2-&gt;right = n5;
+</code></pre>
+<h3>（2）插入与删除</h3>
+<p>注意：插入节点可能会改变二叉树的原有逻辑结构，而删除节点通常意味着删除该节点及其所有子树。因此，在二叉树中，插入与删除操作通常是由一套操作配合完成的，以实现有实际意义的操作</p>
+<h2>3.常见二叉树类型</h2>
+<h3>（1）完美二叉树</h3>
+<p>「完美二叉树 perfect binary tree」或者称为「满二叉树」所有层的节点都被完全填满。在完美二叉树中，叶节点的度为 0 ，其余所有节点的度都为 2 ；若树高度为 ℎ ，则节点总数为 2^ℎ+1^−1 （等比数列求和），呈现标准的指数级关系，反映了自然界中常见的细胞分裂现象</p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/perfect_binary_tree.png" alt=""></p>
+<h3>（2）完全二叉树</h3>
+<p>「完全二叉树 complete binary tree」只有最底层的节点未被填满，且最底层节点尽量靠左填充</p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/complete_binary_tree.png" alt=""></p>
+<h3>（3）完满二叉树</h3>
+<p>「完满二叉树 full binary tree」除了叶节点之外，其余所有节点都有两个子节点</p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/full_binary_tree.png" alt=""></p>
+<h3>（4）平衡二叉树</h3>
+<p>「平衡二叉树 balanced binary tree」中任意节点的左子树和右子树的高度之差的绝对值不超过 1</p>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/balanced_binary_tree.png" alt=""></p>
+<h2>4.二叉树的退化</h2>
+<p>当二叉树的每层节点都被填满时，达到“完美二叉树”；而当所有节点都偏向一侧时，二叉树退化为“链表”</p>
+<ul>
+<li>完美二叉树是理想情况，可以充分发挥二叉树“分治”的优势。</li>
+<li>链表则是另一个极端，各项操作都变为线性操作，时间复杂度退化至 $O(n)$ 。</li>
+</ul>
+<p><img src="/0101/CSNote/Algorithm/8.Tree/assets/1.%E4%BA%8C%E5%8F%89%E6%A0%91/binary_tree_best_worst_cases.png" alt=""></p>
+<p>二叉树的最佳与最差情况</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">完美二叉树</th>
+<th style="text-align:center">链表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">第 $i$ 层的节点数量</td>
+<td style="text-align:center">$2^{i-1}$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">高度 $h$ 树的叶节点数量</td>
+<td style="text-align:center">$2^h$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">高度 $h$ 树的节点总数</td>
+<td style="text-align:center">$2^{h+1} - 1$</td>
+<td style="text-align:center">$h + 1$</td>
+</tr>
+<tr>
+<td style="text-align:center">节点总数 $n$ 树的高度</td>
+<td style="text-align:center">$\log_2 (n+1) - 1$</td>
+<td style="text-align:center">$n - 1$</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

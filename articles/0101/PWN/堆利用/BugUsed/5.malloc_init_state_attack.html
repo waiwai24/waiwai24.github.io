@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># malloc_init_state_attack,malloc_init_state_attack</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>malloc_init_state_attack</h1>
+<h2>1.基本原理</h2>
+<p>glibc-2.27 开始 malloc_consolidate 不再调用 malloc_init_state ，该方法失效</p>
+<p>malloc_consolidate 会根据 global_max_fast 是否为 0 来判断 ptmalloc 是否已经初始化，因此如果能通过任意地址写将 global_max_fast 置 0 然后触发 malloc_consolidate 就可以调用 malloc_init_state</p>
+
+        </main>
+    </div>
+</body>
+</html>

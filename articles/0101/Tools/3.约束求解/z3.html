@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># z3,z3</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>z3</h1>
+<blockquote>
+<p>微软出品的开源约束求解器，能够解决很多种情况下的给定部分约束条件寻求一组满足条件的解的问题</p>
+</blockquote>
+<h2>1.三种基本变量类型</h2>
+<h3>1.1 Int-整数型</h3>
+<pre><code class="language-python">from z3 import *
+a = Int('a')#声明单个整型变量
+a,b = Ints('a b')#声明多个整型变量
+</code></pre>
+<h3>1.2 Real-实数型</h3>
+<pre><code class="language-python">from z3 import *
+a = Real('a')#声明单个实型变量
+a,b = Reals('a b')#声明多个实型变量
+</code></pre>
+<h3>1.3 BitVec-向量</h3>
+<pre><code class="language-python">from z3 import *
+a = BitVec('a',8) #声明单个8位的变量
+a, b = BitVec('a b',8)#声明多个8位的变量
+</code></pre>
+<h2>2.常规使用</h2>
+<pre><code class="language-python">from z3 import *
+a,b = Ints('a b')
+solve(a&gt;3,b&lt;8,2*a+b==16)
+#结果 [a = 5, b = 6]
+</code></pre>
+<ul>
+<li>当有多个约束条件时，先创建一个求解器对象<code>Solver()</code>，再添加更多的约束条件</li>
+</ul>
+<pre><code class="language-python">solver = Solver()
+solver.add(x**2+y**2==74)
+solver.add(x**5-y==z)
+</code></pre>
+<ul>
+<li>判断是否有解</li>
+</ul>
+<pre><code class="language-python">if solver.check() == sat:
+    print(&quot;solver&quot;)
+else:
+    print(&quot;no solver&quot;)
+</code></pre>
+<ul>
+<li>求解并输出</li>
+</ul>
+<pre><code class="language-python">ans = solver.model()
+print(ans)
+</code></pre>
+<ul>
+<li>限制结果为可见字符串</li>
+</ul>
+<pre><code class="language-python">solver.add(x &lt; 127)
+solver.add(x &gt;= 32)
+</code></pre>
+<h2>3.快速添加变量</h2>
+<p>添加 50 个 Int 变量 s ：</p>
+<pre><code class="language-python">s=[Int('s%d' % i) for i in range(50)]
+</code></pre>
+<p>在约束条件中用下标索引使用：</p>
+<pre><code class="language-python">solver.add(s[18] * s[8] == 5)
+solver.add(s[4] * s[11] == 0)
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

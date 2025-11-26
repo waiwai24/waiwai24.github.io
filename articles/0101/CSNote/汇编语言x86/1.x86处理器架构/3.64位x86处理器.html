@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 64位x86处理器,64位x86处理器</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>64位x86处理器</h1>
+<h2>1.基本特征</h2>
+<ul>
+<li>向后兼容x86指令集</li>
+<li>地址长度64位，按照目前芯片的实现情况，只能使用地址的低48位</li>
+<li>比x86多了8个通用寄存器</li>
+</ul>
+<h2>2.操作模式</h2>
+<p>引入了一个新模式，并包含两个子模式：</p>
+<ul>
+<li>兼容模式：16位与32位应用程序不用进行重新编译就可以运行</li>
+<li>64位模式：处理器执行64位线性地址空间的应用程序（原生模式）</li>
+</ul>
+<h2>3.寄存器区别</h2>
+<p>64位模式下理论上地址最大位64位，当现在处理器只能支持48位地址，从寄存器来看64位于32位有如下主要区别：</p>
+<ul>
+<li><strong>16个64位通用寄存器（都以R开头），新增了8个从R8到R15的寄存器</strong></li>
+<li>1个64位状态标志寄存器RFLAGS（只使用低32位，高32位不使用）</li>
+<li>1个64位指针寄存器RIP</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

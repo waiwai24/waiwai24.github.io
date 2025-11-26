@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 共享库,共享库</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>共享库</h1>
+<h2>1.共享库版本命名规则</h2>
+<p>命名规则</p>
+<pre><code>libname.so.x.y.z
+</code></pre>
+<ul>
+<li>最前面使用前缀 lib 、中间是库的名字和后缀 .so ，最后面跟着的是三个数字组成的版本号。</li>
+<li>主版本号表示库的重大升级，不同主版本号的库之间是不兼容的，依赖于旧的主版本号的程序需要改动相应的部分，并且重新编译，才可以在新版的共享库中运行；或者，系统必须保留旧版的共享库，使得那些依赖于旧版共享库的程序能够正常运行。</li>
+<li>次版本号表示库的增量升级，即增加一些新的接口符号，且保持原来的符号不变。在主版本号相同的情况下，高的次版本号的库向后兼容低的次版本号的库。</li>
+<li>发布版本号表示库的一些错误的修正、性能的改进等，并不添加任何新的接口，也不对接口进行更改。相同主版本号、次版本号的共享库，不同的发布版本号之间完全兼容，依赖于某个发布版本号的程序可以在任何一个其他发布版本号中正常运行，而无须做任何修改</li>
+</ul>
+<h2>2.SO-NAME</h2>
+<p>系统采用SO-NAME的命名基址来记录共享库的依赖关系。</p>
+<p>在 Linux 系统中，系统会为每个共享库在它所在的目录创建一个跟 SO-NAME 相同的并且指向它的软链接（SymbolLink）。比如系统中有存在一个共享库 /lib/libfoo.so.2.6.1 ，那么 Linux 中的共享库管理程序就会为它产生一个软链接 /lib/libfoo.so.2 指向它</p>
+<pre><code>$ ls -l /lib/x86_64-linux-gnu/libc-2.31.so
+-rwxr-xr-x 1 root root 2029592 Apr 7 2022 /lib/x86_64-linux-gnu/libc-2.31.so
+</code></pre>
+<p>建立以 SO-NAME 为名字的软链接目的是，使得所有依赖某个共享库的模块，在编译、链接和运行时，都使用共享库的 SO-NAME ，而不使用详细的版本号。</p>
+<h2>3.共享库系统路径</h2>
+<ul>
+<li>/lib：操作系统核心组件所需要的共享库文件</li>
+<li>/usr/lib：额外的共享库文件</li>
+<li>/usr/local/lib：安装本地软件的库文件默认位置</li>
+</ul>
+<h2>4.更改共享库</h2>
+<p>首先ldd查看当前程序信息：</p>
+<ul>
+<li>可以得到libc.so.6的当前绑定地址</li>
+<li>ld当前绑定地址</li>
+</ul>
+<p>直接运行libc.so既可以看到版本信息</p>
+<pre><code>ldd -v file_name
+./libc.so
+</code></pre>
+<pre><code>更换ld路径：
+patchelf --set-interpreter ld_addr file_path
+更换glibc搜索路径：
+patchelf --set-rpath new_rpath  file_path
+或直接更换动态库：
+patchelf --replace-needed libc.so.6 new_libc file_path
+
+gdb再调可能堆方面会出错，再在(gdb)中设置：
+set debug-file-directory /home/ubuntu/tools/glibc-all-in-one/libs/2.31-0ubuntu9_amd64/.debug/
+</code></pre>
+<p>查看题目给的libc版本：</p>
+<pre><code class="language-shell">strings ./libc.so| grep 'Ubuntu GLIBC' 
+</code></pre>
+<ul>
+<li>如果在漏洞利用时用到了动态链接相关结构最好不要 patchelf，因为patchelf 会改变动态链接相关结构的位置。</li>
+<li>一个程序在一个版本的虚拟机里面 patchelf 后换到另一个版本虚拟机中可能会运行失败。</li>
+<li>在 patch 完 libc 后最好把 ld 也 patch 成大版本相同的 ld ，否则会运行失败。</li>
+<li>libc 和 ld 都需要有可执行权限。</li>
+<li>查看系统glibc版本和支持：</li>
+</ul>
+<pre><code class="language-bash">ldd --version
+strings  /lib/x86_64-linux-gnu/libc.so.6 | grep GLIBC_
+</code></pre>
+<p>更换libstdc++可以用patchelf实现，使用<code>--replace-needed</code>选项</p>
+<p>下表是主流Linux发行版Ubuntu/CentOS/Debian系统默认的glic版本：</p>
+<table>
+<thead>
+<tr>
+<th>Ubuntu</th>
+<th>Debian</th>
+<th>CentOS</th>
+<th>Glibc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22.04</td>
+<td>-</td>
+<td>-</td>
+<td>2.34</td>
+</tr>
+<tr>
+<td>20.04</td>
+<td>11</td>
+<td>-</td>
+<td>2.31</td>
+</tr>
+<tr>
+<td>-</td>
+<td>10</td>
+<td>8</td>
+<td>2.28</td>
+</tr>
+<tr>
+<td>18.04</td>
+<td>-</td>
+<td>-</td>
+<td>2.27</td>
+</tr>
+<tr>
+<td>-</td>
+<td>9</td>
+<td>-</td>
+<td>2.24</td>
+</tr>
+<tr>
+<td>16.04</td>
+<td>-</td>
+<td>-</td>
+<td>2.23</td>
+</tr>
+<tr>
+<td>14.04</td>
+<td>8</td>
+<td>-</td>
+<td>2.19</td>
+</tr>
+<tr>
+<td>13.04</td>
+<td>-</td>
+<td>7</td>
+<td>2.17</td>
+</tr>
+<tr>
+<td>12.04</td>
+<td>-</td>
+<td>-</td>
+<td>2.15</td>
+</tr>
+<tr>
+<td>-</td>
+<td>7</td>
+<td>-</td>
+<td>2.13</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>6</td>
+<td>2.12</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

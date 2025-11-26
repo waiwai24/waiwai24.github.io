@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 冒险,冒险</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>冒险</h1>
+<blockquote>
+<p>在下一个时钟周期中下一条指令不能执行，这种情况被叫做流水线冒险</p>
+</blockquote>
+<h2>1.数据冒险</h2>
+<p>后面指令用到前面指令结果时，前面指令的结果还没产生</p>
+<p>解决：</p>
+<ul>
+<li>
+<p>插入nop（一组气泡）避免数据冒险，但会导致流水线执行空指令，影响吞吐量</p>
+</li>
+<li>
+<p>用硬件实现暂停/阻塞，但会导致流水线暂停，影响吞吐量</p>
+</li>
+<li>
+<p><strong>转发/旁路</strong>避免数据冒险，当运算完成后在 Exec/Mem 流水段寄存器中已经存在后面指令可能需要用到的数据，我们可以不等WB阶段写回寄存器而是在硬件上稍加改动直接将流水段寄存器中的数据送往下一指令的ALU输入端</p>
+<ul>
+<li>
+<p>虽然效果很好，但无法避免所有的流水线停顿</p>
+<pre><code>lw x7, 100(x5) : IF ID EX MEM WB
+add x8, x7, x2 :    IF ID EX  MEM WB
+</code></pre>
+</li>
+<li>
+<p>load在MEM后，add指令所需要的数据才可以用，因此，还需要在中间加入一组nop</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>2.控制冒险</h2>
+<p>也叫分支冒险，决策依赖于一条指令的结果，而其他指令正在执行中。比如说分支跳转指令，必须等ALU给出结果后才知道该跳转到哪一条语句，即控制相关导致流水线产生计算错误</p>
+<p>解决：</p>
+<ul>
+<li>插入nop</li>
+<li>通过暂停、阻塞</li>
+<li>通过分支预测</li>
+</ul>
+<h2>3.结构冒险</h2>
+<p>当一条指令需要的硬件部件还在为之前的指令工作，而无法为这条指令提供服务，那就导致了结构冒险即硬件不支持多条指令在同一时钟周期执行</p>
+<p>例如：只有一个存储器，同时存放数据和指令</p>
+
+        </main>
+    </div>
+</body>
+</html>

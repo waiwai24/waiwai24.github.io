@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># UAF,UAF</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>UAF</h1>
+<h2>1.基本原理</h2>
+<p><code>uaf</code> 漏洞全称是<code>use after free</code>，free是指函数是在堆上动态分配空间后不再使用该改数据从而被回收</p>
+<p>内存块被释放后，其对应的指针没有被设置为 NULL，然后再次申请我们精心的构造的内存块，就能够达到攻击的效果</p>
+<p>当一个内存块被释放之后再次被使用。但是其实这里有以下几种情况</p>
+<ul>
+<li>内存块被释放后，其对应的指针被设置为 NULL ， 然后再次使用，自然程序会崩溃。</li>
+<li>内存块被释放后，其对应的指针没有被设置为 NULL ，然后在它下一次被使用之前，没有代码对这块内存块进行修改，那么程序很有可能可以正常运转。</li>
+<li>内存块被释放后，其对应的指针没有被设置为 NULL，但是在它下一次使用之前，有代码对这块内存进行了修改，那么当程序再次使用这块内存时，就很有可能会出现奇怪的问题。</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

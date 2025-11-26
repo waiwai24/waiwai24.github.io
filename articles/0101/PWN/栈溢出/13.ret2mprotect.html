@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># ret2mprotect,ret2mprotect</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>ret2mprotect</h1>
+<h2>1.函数原型</h2>
+<pre><code class="language-c">int mprotect(const void* start, size_t len, int prot);
+</code></pre>
+<ul>
+<li>void* start: 区段开始位置</li>
+<li>size_t len: 区段的大小</li>
+<li>int prot: 区段的权限，可组合使用，7代表111，代表rwx：
+<ul>
+<li>PROT_READ：内存段可读</li>
+<li>PROT_WRITE：内存段可写</li>
+<li>PROT_EXEC：内存段可执行</li>
+<li>PROT_NONE：内存段不可访问</li>
+</ul>
+</li>
+</ul>
+<p>利用手法：通过mprotect()函数来修改区段的权限(例如bss),使其权限变为(rwx),然后将shellcode写进去并跳转过去</p>
+<h2>2.利用场景</h2>
+<p>当需要利用某一区段的权限以达到目的操作</p>
+
+        </main>
+    </div>
+</body>
+</html>

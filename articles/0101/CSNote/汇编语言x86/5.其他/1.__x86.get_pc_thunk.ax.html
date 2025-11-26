@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># __x86.get_pc_thunk.ax,__x86.get_pc_thunk.ax</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>__x86.get_pc_thunk.ax</h1>
+<pre><code class="language-asm">&lt;__x86.get_pc_thunk.ax&gt;      mov    eax, dword ptr [esp]
+&lt;__x86.get_pc_thunk.ax+3&gt;    ret  
+
+也就是
+mov eax,[esp]
+ret
+
+注意：get_pc_thunk.xx是一个子程序，是被调用的，程序调用时，会把调用者的下一条指令的地址压栈保存（用于返回），所以进入get_pc_thunk.xx时，栈顶esp就是调用者的下一条指令地址
+</code></pre>
+<p>事实上类似的函数还有：<code>__x86.get_pc_thunk.bx</code>，<code>__x86.get_pc_thunk.cx</code>， <code>__x86.get_pc_thunk.dx</code>。功能是类似的，只不过传入的寄存器分别为<code>%ebx</code>， <code>%ecx</code>， <code>%edx</code>。早期版本的编译器中，这个函数叫<code>__i686.get_pc_thunk.ax</code></p>
+<p>在64位程序中不需要这个函数，因为<code>x86-64</code>指令集中可以通过<code>lea</code>指令直接获取<code>%rip</code></p>
+
+        </main>
+    </div>
+</body>
+</html>

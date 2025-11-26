@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 栈溢出常见漏洞,栈溢出常见漏洞</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>栈溢出常见漏洞</h1>
+<h2>1.栈上的逻辑漏洞</h2>
+<blockquote>
+<p>栈溢出往往覆盖栈上的内容</p>
+</blockquote>
+<ul>
+<li>注意输入长度变量是否存在溢出</li>
+<li>注意循环条件</li>
+</ul>
+<h2>2.栈帧</h2>
+<ul>
+<li>C 语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。</li>
+<li>栈帧是一块因函数运行而临时开辟的空间。</li>
+<li>每调用一次函数便会创建一个独立栈帧。</li>
+<li>栈帧中存放的是函数中的必要信息，如局部变量、函数传参、返回值等。</li>
+<li>当函数运行完毕栈帧将会销毁</li>
+</ul>
+<p>栈帧示意图：</p>
+<p><img src="/0101/PWN/栈溢出/assets/1.%E6%A0%88%E6%BA%A2%E5%87%BA%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/1134295-ce2aa08820b11888.webp" alt="1134295-ce2aa08820b11888"></p>
+<p>函数调用</p>
+<p>函数调用分为以下几步:</p>
+<ul>
+<li>参数入栈: 将参数按照调用约定(C 是从右向左)依次压入系统栈中;</li>
+<li>返回地址入栈: 将当前代码区调用指令的下一条指令地址压入栈中，供函数返回时继续执行;</li>
+<li>代码跳转: 处理器将代码区跳转到被调用函数的入口处;</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

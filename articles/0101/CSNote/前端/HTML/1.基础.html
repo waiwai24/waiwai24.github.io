@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># html基础,html基础</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>html基础</h1>
+<h2>1.基本骨架</h2>
+<p>文档声明头：</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+</code></pre>
+<p>语言:</p>
+<pre><code class="language-html">&lt;html lang=&quot;en&quot;&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+</code></pre>
+<p>注释：</p>
+<pre><code class="language-html">&lt;!-- 我是 html 注释  --&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>标签名</th>
+<th style="text-align:center">定义</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;html&gt;&lt;/html&gt;</code></td>
+<td style="text-align:center">HTML标签</td>
+<td style="text-align:left">页面中最大的标签，我们成为根标签</td>
+</tr>
+<tr>
+<td><code>&lt;head&gt;&lt;/head&gt;</code></td>
+<td style="text-align:center">文档的头部</td>
+<td style="text-align:left">注意在head标签中我们必须要设置的标签是title</td>
+</tr>
+<tr>
+<td><code>&lt;title&gt;&lt;/title&gt;</code></td>
+<td style="text-align:center">文档的标题</td>
+<td style="text-align:left">让页面拥有一个属于自己的网页标题</td>
+</tr>
+<tr>
+<td><code>&lt;body&gt;&lt;/body&gt;</code></td>
+<td style="text-align:center">文档的主体</td>
+<td style="text-align:left">元素包含文档的所有内容，页面内容 基本都是放到body里面的</td>
+</tr>
+</tbody>
+</table>
+<p>head内常见标签：</p>
+<ul>
+<li><code>&lt;title&gt;</code>：指定整个网页的标题，在浏览器最上方显示。</li>
+<li><code>&lt;base&gt;</code>：为页面上的所有链接规定默认地址或默认目标。</li>
+<li><code>&lt;meta&gt;</code>：提供有关页面的基本信息
+<ul>
+<li>charset</li>
+<li>viewport</li>
+</ul>
+</li>
+<li><code>&lt;body&gt;</code>：用于定义HTML文档所要显示的内容，也称为主体标签。我们所写的代码必须放在此标签內。</li>
+<li><code>&lt;link&gt;</code>：定义文档与外部资源的关系。</li>
+</ul>
+<h2>2.排版</h2>
+<p>排版标签：</p>
+<ul>
+<li><code>&lt;h1&gt;</code>：1-6标题定义</li>
+<li><code>&lt;p&gt;</code>：段落，p标签是一个文本级标签，p里面只能放文字、图片、表单元素。其他的一律不能放。<code>align=&quot;属性值&quot;</code>：对齐方式。属性值包括left center right。</li>
+<li><code>&lt;hr /&gt;</code>：水平分隔线</li>
+<li><code>&lt;br /&gt;</code>：换行标签</li>
+<li><code>&lt;div&gt;</code>：分割，容器级标签，里面什么都能放，甚至可以放div自己</li>
+<li><code>&lt;span&gt;</code>：范围，和div的作用一致，但不换行</li>
+<li><code>&lt;center&gt;</code>：内容居中标签</li>
+<li><code>&lt;pre&gt;</code></li>
+</ul>
+<h2>3.字体、链接、图片</h2>
+<p>字体标签：</p>
+<p><code>&lt;font&gt;</code>、 <code>&lt;b&gt;</code>、 <code>&lt;u&gt;</code> 、<code>&lt;sup&gt;</code> 、<code>&lt;sub&gt;</code></p>
+<h3>特殊字符（转义字符）</h3>
+<ul>
+<li><code>&amp;nbsp;</code>：空格 （non-breaking spacing，不断打空格）</li>
+<li><code>&amp;lt;</code>：小于号<code>&lt;</code>（less than）</li>
+<li><code>&amp;gt;</code>：大于号<code>&gt;</code>（greater than）</li>
+<li><code>&amp;amp;</code>：符号<code>&amp;</code></li>
+<li><code>&amp;quot;</code>：双引号</li>
+<li><code>&amp;apos;</code>：单引号</li>
+<li><code>&amp;copy;</code>：版权<code>©</code></li>
+<li><code>&amp;trade;</code>：商标<code>™</code></li>
+</ul>
+<p>链接：</p>
+<pre><code class="language-html">&lt;a href=&quot;02页面.html&quot;&gt;点击进入另外一个文件&lt;/a&gt;
+</code></pre>
+<p>图片：</p>
+<pre><code class="language-html">&lt;img src=&quot;图片的URL&quot; /&gt;
+</code></pre>
+<ul>
+<li>width：图像的宽度。</li>
+<li>height：图像的高度。</li>
+<li>align：图片和周围文字的相对位置。属性取值可以是：bottom（默认）、center、top、left、right</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 信息的二进制表示与存储,信息的二进制表示与存储</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>信息的二进制表示与存储</h1>
+<h2>1.进制的表示和转换</h2>
+<p>基本表示：</p>
+<ul>
+<li>
+<p>十进制</p>
+</li>
+<li>
+<p>二进制</p>
+</li>
+<li>
+<p>十六进制</p>
+</li>
+</ul>
+<h2>2.数据的存储顺序(内存中按字节存储)</h2>
+<p>按一个字节（8位）为一个存储单元</p>
+<p><strong>按字节存储，按字节编址</strong></p>
+<p>C语言中数据类型的典型大小（字节）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">有符号数</th>
+<th style="text-align:center">无符号数</th>
+<th style="text-align:center">32位机器</th>
+<th style="text-align:center">64位机器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">char</td>
+<td style="text-align:center">unsigned char</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">unsigned short</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">unsigned int</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">unsigned long</td>
+<td style="text-align:center">==4==</td>
+<td style="text-align:center">==8==</td>
+</tr>
+<tr>
+<td style="text-align:center">long long</td>
+<td style="text-align:center">unsigned long long</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">float</td>
+<td style="text-align:center">\</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">double</td>
+<td style="text-align:center">\</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">\</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">指针</td>
+<td style="text-align:center">\</td>
+<td style="text-align:center">==4==</td>
+<td style="text-align:center">==8==</td>
+</tr>
+</tbody>
+</table>
+<p>注意：</p>
+<ul>
+<li>Linux下long是8字节，Windows下是4字节</li>
+<li>大小是大多数情况下的通用规则，但它们不是固定不变的。不同的编译器和不同的系统架构可能会有所不同。因此，最准确的方法是使用 <code>sizeof</code> 运算符在特定的编译器和系统上直接检查每种类型的大小</li>
+</ul>
+<h3>2.2 最低/高有效位（LSB/MSB）</h3>
+<ul>
+<li>LSB：二进制数字的最低位</li>
+<li>MSB：二进制数字的最高位</li>
+</ul>
+<h3>2.3 大小端</h3>
+<ul>
+<li>大端：内存从高有效字节到低有效字节的顺序存储对象</li>
+<li>小端：内存从低有效字节到高有效字节的顺序存储对象</li>
+<li>大小端可能产生的影响：
+<ul>
+<li>程序移植造成影响，导致不同系统之间的不兼容</li>
+<li>对部分数据访问造成影响，小端（gif），大端（JPEG）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>常见处理器的大小端模式：</p>
+<ul>
+<li>
+<p>小端：intel x86</p>
+</li>
+<li>
+<p>大端：Motorola 6800</p>
+</li>
+<li>
+<p>双端可供选择：ARM （只可自行选择一端）</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/0101/CSNote/计算机原理/2.信息的表示和处理/assets/1.%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E4%B8%8E%E5%AD%98%E5%82%A8/image-20240312204115096.png" alt="image-20240312204115096"></p>
+
+        </main>
+    </div>
+</body>
+</html>

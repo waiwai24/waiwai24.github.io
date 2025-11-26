@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 时序图,时序图</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>时序图</h1>
+<h2>基本时序图</h2>
+<p>时序图以矩形代表参与者，参与者下方代表生存期间的长实线，连接线之间代表消息的箭头和控制焦点组成</p>
+<pre><code>```mermaid
+sequenceDiagram
+	李雷-&gt;&gt;韩梅梅:Hi，how do you do？
+	韩梅梅--&gt;&gt;李雷:how do you do！
+```
+</code></pre>
+<pre><code class="language-mermaid">sequenceDiagram
+	李雷-&gt;&gt;韩梅梅:Hi，how do you do？
+	韩梅梅--&gt;&gt;李雷:how do you do！
+</code></pre>
+<p>以别名形式定义对象：</p>
+<pre><code>[发起者][连线类型][接收者]:消息内容。
+</code></pre>
+<pre><code>```mermaid
+sequenceDiagram
+    participant l as 李雷
+    participant h as 韩梅梅
+    l-&gt;&gt;h: Hello Hanmeimei, how are you?
+    h-&gt;&gt;l: Hello Lilei, I am fine, thank you, and you?
+    l--&gt;h: I am fine, thank you.
+```
+
+</code></pre>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant l as 李雷
+    participant h as 韩梅梅
+    l-&gt;&gt;h: Hello Hanmeimei, how are you?
+    h-&gt;&gt;l: Hello Lilei, I am fine, thank you, and you?
+    l--&gt;h: I am fine, thank you.
+</code></pre>
+<p>连线类型：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-&gt;</td>
+<td style="text-align:left">没有箭头的实线</td>
+</tr>
+<tr>
+<td style="text-align:left">–&gt;</td>
+<td style="text-align:left">没有箭头的虚线</td>
+</tr>
+<tr>
+<td style="text-align:left">-&gt;&gt;</td>
+<td style="text-align:left">有箭头的实线</td>
+</tr>
+<tr>
+<td style="text-align:left">–&gt;&gt;</td>
+<td style="text-align:left">有箭头的虚线</td>
+</tr>
+<tr>
+<td style="text-align:left">-x</td>
+<td style="text-align:left">有交叉箭头的实线</td>
+</tr>
+<tr>
+<td style="text-align:left">–x</td>
+<td style="text-align:left">有交叉箭头的虚线</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

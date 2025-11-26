@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.表达式</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>表达式</h1>
+<p>[TOC]</p>
+<h2>1.表达式基础</h2>
+<pre><code class="language-markdown">expression=operand（操作数) + operator（运算符）
+</code></pre>
+<p>注意优先级和结合律</p>
+<p>括号无视优先级和结合律</p>
+<hr>
+<h2>2.算数符和表达式</h2>
+<h3>(1)算术运算</h3>
+<p>​	+，-，*，/，% (注意求余只能用于整型数据)</p>
+<p>​	自增，自减：++a,–a,a++,a–</p>
+<p>​	注意：</p>
+<ul>
+<li>
+<p>当 “–” 放在变量前面时，称为前缀自减运算符（prefix decrement operator）。它首先将变量的值减1，然后再返回减1后的值。这意味着表达式的结果是原始值减去1</p>
+<p>而当 “–” 放在变量后面时，称为后缀自减运算符（postfix decrement operator）。它首先返回变量的原始值，然后再将变量的值减1。这意味着表达式的结果是原始值，而不是减去1后的值</p>
+</li>
+</ul>
+<ul>
+<li>除法运算中，两实数相除得实数，两整数相除得整数（向0取整，直接截去商的小数部分）</li>
+<li>求余运算，运算结果总是与左操作数的符号一致</li>
+<li>运算时两操作数的类型不同时，则会进行隐式类型转换，使得两操作数有相同的数据类型（<strong>低类型的向高类型转换</strong>）</li>
+</ul>
+<h3>(2)关系运算（结果为bool类型）</h3>
+<p>​	&gt; , &lt; , &lt;= , &gt;= , == , !=</p>
+<p>​	==<strong>注意：30&lt;=x&lt;=50要写成30&lt;=x and x&lt;=50,不然在c++中计算机理解的是或的意思</strong>==</p>
+<h3>(3)逻辑运算</h3>
+<ul>
+<li>与&amp;&amp;（and）</li>
+<li>或||（or）</li>
+<li>非  !  (not)</li>
+</ul>
+<h3>(4)位运算（二进制级别上）</h3>
+<ul>
+<li>按位与&amp;</li>
+<li>按位或 |</li>
+<li>按位异或^</li>
+<li>按位与反 ~</li>
+<li>向左移位 &lt;&lt;</li>
+<li>向右移位 &gt;&gt;</li>
+</ul>
+<h3>(5)赋值运算</h3>
+<p><strong>变量 操作符 = 表达式</strong></p>
+<p><strong>变量 = 变量 操作符 表达式</strong></p>
+<p>以上两种表示方法含义相同，可进行复合赋值的操作符有 *=，/=，%=，+=，-，|=，&amp;=，^=</p>
+<h3>(6)逗号运算</h3>
+<p>使用逗号运算符是为了把几个表达式放在一起。</p>
+<p>整个逗号表达式的值为系列中最后一个表达式的值。</p>
+<p>从本质上讲，逗号的作用是将一系列运算按顺序执行。</p>
+<pre><code>表达式1, 表达式2
+</code></pre>
+<p>求解过程是：先求解表达式 1，再求解表达式 2。整个逗号表达式的值是表达式 2 的值。</p>
+<p>最右边的那个表达式的值将作为整个逗号表达式的值，其他表达式的值会被丢弃。</p>
+<h3>(7)条件选择运算</h3>
+<p>条件运算符（conditional operator）有时候也称为三元运算符（ternary operator，或者trinary operator），因为它是唯一需要 3 个操作数的运算符：</p>
+<pre><code class="language-matlab">条件 ? 表达式1 : 表达式2
+先计算条件，若为true（非0），则计算表达式1作为结果
+		  若为false（0），则直接计算表达式2作为结果
+</code></pre>
+<h3>(8)sizeof</h3>
+<p>​	sizeof 是一个关键字，它是一个编译时运算符，用于判断变量或数据类型的字节大小。</p>
+<p>​	sizeof 运算符可用于获取类、结构、共用体和其他用户自定义数据类型的大小。</p>
+<pre><code>sizeof (data type)
+</code></pre>
+<hr>
+<h2>3.类型转换</h2>
+<p>C ++中有两种类型的类型转换。</p>
+<ol>
+<li>隐式转换</li>
+<li>显式转换（也称为强制类型转换）</li>
+</ol>
+<p>注意：一种数据类型转换为另一种数据类型很容易导致数据丢失。当较大类型的数据转换为较小类型的数据时，会发生这种情况。</p>
+<p>强制类型转换的语法:</p>
+<pre><code class="language-markdown">(目标数据类型) 原始数据类型
+或
+目标数据类型 (原始数据类型)
+</code></pre>
+<hr>
+<h2>4.查看变量类型</h2>
+<p>头文件</p>
+<pre><code class="language-cpp">#include &lt;typeinfo&gt;
+</code></pre>
+<p>格式</p>
+<pre><code class="language-cpp">typeid(variable).name();//其中 “variable”是你定义的变量名称
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

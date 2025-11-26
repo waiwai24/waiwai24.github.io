@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># sprintf() & __snprintf_chk(),sprintf() & __snprintf_chk()</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>sprintf() &amp; __snprintf_chk()</h1>
+<pre><code class="language-c">int sprintf(char *str, const char *format, ...)
+</code></pre>
+<ul>
+<li>发送格式化输出到 <strong>str</strong> 所指向的字符串</li>
+<li><strong>str</strong> – 这是指向一个字符数组的指针，该数组存储了 C 字符串</li>
+<li><strong>format</strong> – 这是字符串，包含了要被写入到字符串 str 的文本</li>
+</ul>
+<pre><code class="language-c">int __snprintf_chk(char *str, size_t size, int flag, size_t ssiz, const char *format, ...);
+</code></pre>
+<ul>
+<li>str：指向要写入格式化输出的缓冲区的指针</li>
+<li>size：指定缓冲区str的大小</li>
+<li>flag：标志位，启用额外的检查
+<ul>
+<li><code>0</code>：不启用额外检查</li>
+<li><code>1</code>：启用基本检查</li>
+<li><code>2</code>：启用更严格的检查</li>
+</ul>
+</li>
+<li>ssiz：再次指定缓冲区的大小，用于安全检查</li>
+<li>format：格式化字符串</li>
+<li>…：可变参数列表</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

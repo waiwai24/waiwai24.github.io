@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 指针,指针</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>指针</h1>
+<p>[TOC]</p>
+<h2>1.概念及其定义</h2>
+<ul>
+<li>
+<p>指针：具有确定类型的地址</p>
+</li>
+<li>
+<p>指针变量：可以存放指针的变量</p>
+</li>
+<li>
+<p>声明：</p>
+<pre><code class="language-cpp">类型名* 标识符
+</code></pre>
+</li>
+<li>
+<p>不管指针指向类型如何，指针变量本身一般占4个字节（32位系统）/ 8个字节（64位系统）</p>
+</li>
+<li>
+<p>指针变量的初始化：</p>
+<ul>
+<li>可在声明时初始化，也可通过赋值语句获得值</li>
+<li>不可以使用还没有赋予合法地址的指针变量</li>
+<li>空指针常量（不指向任何地址） NULL 和 nullper （内存地址编号位0）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>2.指针的使用</h2>
+<h3>（1）取地址运算符&amp;</h3>
+<p>​		作用：返回变量的地址</p>
+<h3>（2）间接引用运算符 *</h3>
+<p>​		作用：返回指针所指向的对象</p>
+<p>​		注意：&amp; 与 * 二者互为逆运算符</p>
+<h3>（3）算术运算</h3>
+<ul>
+<li>p1+n 或 p1-n     向前或向后移动n个数据单位</li>
+<li>p1-p2                  两指针之间的数据个数</li>
+<li>++p，–p</li>
+</ul>
+<h3>（4）关系运算</h3>
+<ul>
+<li>
+<p>p1&lt; p2           两地址之间的位置前后关系，满足true，否则false</p>
+</li>
+<li>
+<p>判断是否为空指针</p>
+<pre><code class="language-cpp">if(p1!=NULL) 
+</code></pre>
+</li>
+<li>
+<p>指针作为函数参数：传指针可以在被调用函数中修改传进来的实参</p>
+</li>
+</ul>
+<hr>
+<h2>3.动态内存分配</h2>
+<h3>（1）C语言</h3>
+<pre><code class="language-c">void * malloc(unsigned size);
+void * free(void* ptr);
+</code></pre>
+<h3>（2）C++</h3>
+<pre><code class="language-cpp">指针类型名 指针变量名 = new 类型数据;
+delete 指针变量名;
+</code></pre>
+<hr>
+<h2>4 .指针与数组</h2>
+<ul>
+<li>
+<p>数组名（也是一个数组的首地址）可视为一个指针</p>
+</li>
+<li>
+<p>数组赋值给指针，指针指向数组的第一个元素</p>
+</li>
+<li>
+<p>互换使用：</p>
+<pre><code class="language-cpp">a[i]
+*(a+i)
+*(aptr+i)
+aptr[i]
+</code></pre>
+</li>
+<li>
+<p>一维数组：</p>
+<pre><code class="language-cpp">int n=3;
+int* arry=new int [n];
+</code></pre>
+</li>
+<li>
+<p>二维数组：</p>
+<pre><code class="language-cpp">//n 行 m 列的二维动态数组
+int n = 3;
+int m = 4;
+int** arry = new int*[n];
+for (int i = 0; i &lt; n; ++i)
+{
+    arry[i] = new int[m];
+}
+
+// 释放内存
+for (int i = 0; i &lt; n; ++i)
+{
+    delete[] arry[i];
+}
+delete[] arry;
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>5.const限定符</h2>
+<ul>
+<li>通常在声明变量时使用</li>
+<li>目的：数据保护，声明不允许被修改的变量和形参</li>
+<li>常量指针：不能通过指针修改所指向数据 const int* p</li>
+<li>指针常量：不可修改的执政变量，指向固定地址 int* const p=a</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

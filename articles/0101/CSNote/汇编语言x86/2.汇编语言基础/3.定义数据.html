@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 定义数据,定义数据</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>定义数据</h1>
+<h2>1.内部数据类型</h2>
+<p>汇编语言中的数据类型主要包括以下几种：</p>
+<ul>
+<li>字节（DB，Byte）：8位二进制数，通常表示一个字符或标志位。</li>
+<li>字（DW，Word）：16位二进制数，表示一个整数。</li>
+<li>双字（DD，Double Word）：32位二进制数，表示一个整数。</li>
+<li>四字（DQ，Quad Word）：64位二进制数，表示一个整数。</li>
+<li>十字节（DT）：定义80位整数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BYTE</td>
+<td>8 位无符号整数，B 代表字节</td>
+</tr>
+<tr>
+<td>SBYTE</td>
+<td>8 位有符号整数，S 代表有符号</td>
+</tr>
+<tr>
+<td>WORD</td>
+<td>16 位无符号整数</td>
+</tr>
+<tr>
+<td>SWORD</td>
+<td>16 位有符号整数</td>
+</tr>
+<tr>
+<td>DWORD</td>
+<td>32 位无符号整数，D 代表双（字）</td>
+</tr>
+<tr>
+<td>SDWORD</td>
+<td>32 位有符号整数，SD 代表有符号双（字）</td>
+</tr>
+<tr>
+<td>FWORD</td>
+<td>48 位整数（保护模式中的远指针）</td>
+</tr>
+<tr>
+<td>QWORD</td>
+<td>64 位整数，Q 代表四（字）</td>
+</tr>
+<tr>
+<td>TBYTE</td>
+<td>80 位（10 字节）整数，T 代表 10 字节</td>
+</tr>
+<tr>
+<td>REAL4</td>
+<td>32 位（4 字节）IEEE 短实数</td>
+</tr>
+<tr>
+<td>REAL8</td>
+<td>64 位（8 字节）IEEE 长实数</td>
+</tr>
+<tr>
+<td>REAL10</td>
+<td>80 位（10 字节）IEEE 扩展实数</td>
+</tr>
+</tbody>
+</table>
+<h2>2.数据定义语句</h2>
+<p>$[name]\ directive\ initializer\ [,initializer]$</p>
+<p>$命名\  伪指令\ 初始值$</p>
+<ul>
+<li>命名：要复合标识符规范</li>
+<li>伪指令：可以是BYTE，WORD等，也可以是传统数据定义伪指令DB，DW等</li>
+<li>初始值：
+<ul>
+<li>至少要有一个初始值，即使该值为0</li>
+<li>如果不希望对变量进行初始化（随机分配值），可以用符号<code>?</code>作为初始值</li>
+<li>如果使用了多个初始值，那么他的标号只指出第一个初始值的偏移量</li>
+<li>定义一个字符串时，要用一个空字节（值为0）作为结束标记，如果每个字符占一个字节的存储空间，可以直接定义在引号中，而不需要逗号分隔</li>
+</ul>
+</li>
+</ul>
+<p>实用：</p>
+<p><strong>DUP操作符</strong>（duplicate）</p>
+<p>使用一个整数表达式(式子中间)作为计数器，为多个数据项分配存储空间</p>
+<pre><code class="language-assembly">BYTE 20 DUP(0)  ;20个字节，值都为0
+DW 3 DUP(0,1,2) ;00,01,02,00,01,02,00,01,02
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 栈,栈</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>栈</h1>
+<blockquote>
+<p>「栈 stack」是一种遵循先入后出的逻辑的线性数据结构</p>
+<p>把堆叠元素的顶部称为“栈顶”，底部称为“栈底”。将把元素添加到栈顶的操作叫做“入栈”，删除栈顶元素的操作叫做“出栈”</p>
+</blockquote>
+<h2>1.栈常用操作</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">时间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">push()</td>
+<td style="text-align:left">元素入栈（添加至栈顶）</td>
+<td style="text-align:left">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:left">pop()</td>
+<td style="text-align:left">栈顶元素出栈</td>
+<td style="text-align:left">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:left">peek()</td>
+<td style="text-align:left">访问栈顶元素</td>
+<td style="text-align:left">O(1)</td>
+</tr>
+</tbody>
+</table>
+<p>通常情况下，我们可以直接使用编程语言内置的栈类。然而，某些语言可能没有专门提供栈类，这时我们可以将该语言的“数组”或“链表”视作栈来使用，并在程序逻辑上忽略与栈无关的操作</p>
+<pre><code class="language-cpp">/* 初始化栈 */
+stack&lt;int&gt; stack;
+
+/* 元素入栈 */
+stack.push(1);
+stack.push(3);
+stack.push(2);
+stack.push(5);
+stack.push(4);
+
+/* 访问栈顶元素 */
+int top = stack.top();
+
+/* 元素出栈 */
+stack.pop(); // 无返回值
+
+/* 获取栈的长度 */
+int size = stack.size();
+
+/* 判断是否为空 */
+bool empty = stack.empty();
+</code></pre>
+<pre><code class="language-py"># 初始化栈
+# Python 没有内置的栈类，可以把 List 当作栈来使用 
+stack: list[int] = []
+
+# 元素入栈
+stack.append(1)
+stack.append(3)
+stack.append(2)
+stack.append(5)
+stack.append(4)
+
+# 访问栈顶元素
+peek: int = stack[-1]
+
+# 元素出栈
+pop: int = stack.pop()
+
+# 获取栈的长度
+size: int = len(stack)
+
+# 判断是否为空
+is_empty: bool = len(stack) == 0
+</code></pre>
+<h2>2.栈的实现</h2>
+<p>栈可以被视为一种受限制的数组或链表</p>
+<h3>（1）基于链表的实现</h3>
+<p>可以将头节点视为栈顶，尾节点视为栈底，相关操作都是从头节点开始</p>
+<h3>（2）基于数组的实现</h3>
+<h2>3.栈典型应用</h2>
+<ul>
+<li>
+<p>游览器的后退与前进，软件中的撤销与反撤销：</p>
+<ul>
+<li>
+<p>浏览器的前进后退功能本质上是“栈”的体现。当用户访问一个新页面时，该页面会被添加到栈顶；当用户点击后退按钮时，该页面会从栈顶弹出</p>
+</li>
+<li>
+<p>撤销（undo）和反撤销（redo）具体是如何实现的？</p>
+<p>​    使用两个堆栈，栈 <code>A</code> 用于撤销，栈 <code>B</code> 用于反撤销。</p>
+<ol>
+<li>每当用户执行一个操作，将这个操作压入栈 <code>A</code> ，并清空栈 <code>B</code> 。</li>
+<li>当用户执行“撤销”时，从栈 <code>A</code> 中弹出最近的操作，并将其压入栈 <code>B</code> 。</li>
+<li>当用户执行“反撤销”时，从栈 <code>B</code> 中弹出最近的操作，并将其压入栈 <code>A</code> 。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>程序内存管理</p>
+</li>
+<li>
+<p>表达式的计算：前缀，中缀，后缀表达式</p>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

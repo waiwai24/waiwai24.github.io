@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># gcc版本切换,gcc版本切换</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>gcc版本切换</h1>
+<pre><code class="language-shell">$ sudo apt -y install build-essential
+</code></pre>
+<p>安装不同的gcc版本</p>
+<pre><code class="language-shell">$ sudo apt -y install gcc-8 g++-8 gcc-9 g++-9
+</code></pre>
+<p>更新</p>
+<pre><code class="language-shell">$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 8 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9 --slave /usr/bin/g++ g++ /usr/bin/g++-9
+</code></pre>
+<p>选择gcc版本</p>
+<pre><code class="language-shell">$ sudo update-alternatives --config gcc
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>windows</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h2>1.cmd与power shell</h2>
+<p>cmd 是 power shell的子集</p>
+<h2>2. 说明</h2>
+<ul>
+<li>不区分大小写</li>
+<li>上下键可查看历史命令</li>
+<li>tab键可自动补全</li>
+<li>获取帮助命令 <code>/？</code></li>
+</ul>
+<h2>3.常用命令</h2>
+<ol>
+<li>
+<p>echo显示输出 pause暂停 cls清屏 exit退出</p>
+</li>
+<li>
+<p>进入磁盘</p>
+</li>
+</ol>
+<pre><code class="language-cmd">D: #进入d盘
+F: #进入F盘
+</code></pre>
+<ol start="3">
+<li>cd命令</li>
+</ol>
+<pre><code class="language-cmd">cd /? #获取使用帮助
+cd \ #跳转到硬盘的根目录
+cd C:\WINDOWS #跳转到当前硬盘的其他文件
+d: #跳转到其他硬盘
+cd /d e:\software #跳转到其他硬盘的其他文件夹，注意此处必须加/d参数。否则无法跳转
+cd.. #跳转到上一层目录
+</code></pre>
+<ol start="4">
+<li>创建/删除目录</li>
+</ol>
+<pre><code class="language-cmd">md 目录名（文件夹）#创建目录
+rd 目录名（文件夹）#删除目录
+</code></pre>
+<ol start="5">
+<li>删除文件</li>
+</ol>
+<pre><code class="language-cmd">del 文件名 #这个是专门删除文件的，不能删除文件夹
+</code></pre>
+<ol start="6">
+<li>查看文件内容</li>
+</ol>
+<pre><code class="language-cmd">type 文件名
+</code></pre>
+<ol start="7">
+<li>查看目录所有内容</li>
+</ol>
+<pre><code class="language-cmd">dir #类似于Linux下的ls
+tree
+</code></pre>
+<ol start="8">
+<li>IP信息</li>
+</ol>
+<pre><code class="language-cmd">ipconfig
+ipconfig /all
+</code></pre>
+<ol start="9">
+<li>mac地址</li>
+</ol>
+<pre><code class="language-cmd">getmac /v
+</code></pre>
+<ol start="10">
+<li>
+<p>网络连接测试ping</p>
+</li>
+<li>
+<p>copy</p>
+</li>
+</ol>
+<pre><code class="language-cmd">copy /b a.xxx [+b.xxx [+...]] c.xxx #[]代表可选意思是将a.xxx和b.xxx合并为c.xxx。
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

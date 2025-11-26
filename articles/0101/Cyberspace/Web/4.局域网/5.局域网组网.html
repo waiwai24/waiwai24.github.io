@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 局域网组网,局域网组网</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>局域网组网</h1>
+<h2>1.集线器（hub）组网</h2>
+<ul>
+<li>多级集线器的设计，整个互联的网络为一个LAN</li>
+<li>所有LAN网段处于同一个冲突域（碰撞域）</li>
+</ul>
+<h2>2.交换机（switch）组网</h2>
+<h3>2.1 功能与特点</h3>
+<ul>
+<li>
+<p>整个互联的网络为一个LAN</p>
+</li>
+<li>
+<p>每个LAN网段是一个独立的冲突域(碰撞域)</p>
+</li>
+<li>
+<p>转发链路层数据帧时运行CSMA/CD算法</p>
+</li>
+<li>
+<p>自学习的，即插即用的</p>
+</li>
+<li>
+<p>支持专用接入和全双工</p>
+</li>
+<li>
+<p>可以连接使用不同以太网技术的以太网网段</p>
+</li>
+</ul>
+<h3>2.2 交换机的转发过滤</h3>
+<p><img src="/0101/Cyberspace/Web/4.局域网/assets/5.%E5%B1%80%E5%9F%9F%E7%BD%91%E7%BB%84%E7%BD%91/image-20240414003329760.png" alt="image-20240414003329760"></p>
+<p>交换机内部：</p>
+<ul>
+<li>
+<p>地址表</p>
+</li>
+<li>
+<p>转发机构</p>
+</li>
+<li>
+<p>缓冲器</p>
+</li>
+<li>
+<p>端口</p>
+</li>
+</ul>
+<h3>2.3交换机的自学习能力</h3>
+<p>地址表的建立时自动，动态和自主的</p>
+<ul>
+<li>初始地址表为空</li>
+<li>对于在一个端口收到的每个入帧，交换机在表中存储该帧的源地址字段的MAC地址，到达的端口号和时间</li>
+<li>当一个帧到达其中一个端口，并且该帧的目的地址在表中，交换机转发到对应的端口</li>
+<li>如果该帧的地址不在地址表中，则会转发到所有端口的输出缓冲区</li>
+<li>如果一段时间（老化时间）后没有接收到表中某个地址作为源地址的帧，交换机将表中这个地址删除</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">二层交换机</th>
+<th style="text-align:left">三层交换机</th>
+<th style="text-align:left">路由器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">工作在第几层</td>
+<td style="text-align:left">数据链路层（第二层）</td>
+<td style="text-align:left">网络层（第三层）</td>
+<td style="text-align:left">网络层（第三层）</td>
+</tr>
+<tr>
+<td style="text-align:left">功能</td>
+<td style="text-align:left">学习和转发帧</td>
+<td style="text-align:left">根据IP地址转发数据包</td>
+<td style="text-align:left">根据IP地址转发数据包</td>
+</tr>
+<tr>
+<td style="text-align:left">应用</td>
+<td style="text-align:left">用于局域网内部的设备连接和通信</td>
+<td style="text-align:left">用于实现子网间的数据转发</td>
+<td style="text-align:left">用于不同子网之间的数据转发</td>
+</tr>
+<tr>
+<td style="text-align:left">速度</td>
+<td style="text-align:left">通常以千兆位每秒（Gbps）为单位</td>
+<td style="text-align:left">通常以千兆位每秒（Gbps）为单位</td>
+<td style="text-align:left">速度可变，常见百兆位每秒（Mbps）至千兆位每秒（Gbps）</td>
+</tr>
+<tr>
+<td style="text-align:left">地址处理</td>
+<td style="text-align:left">使用MAC地址</td>
+<td style="text-align:left">使用MAC地址和IP地址</td>
+<td style="text-align:left">使用IP地址</td>
+</tr>
+<tr>
+<td style="text-align:left">扩展性</td>
+<td style="text-align:left">可以连接大量设备</td>
+<td style="text-align:left">可以连接大量设备</td>
+<td style="text-align:left">通常适用于小型网络或边缘设备</td>
+</tr>
+<tr>
+<td style="text-align:left">路由功能</td>
+<td style="text-align:left">不具备路由功能</td>
+<td style="text-align:left">不具备完整路由功能</td>
+<td style="text-align:left">具备完整路由功能</td>
+</tr>
+<tr>
+<td style="text-align:left">网络隔离</td>
+<td style="text-align:left">逻辑隔离，广播域分割</td>
+<td style="text-align:left">可实现逻辑上的广播域分割</td>
+<td style="text-align:left">实现不同子网的物理隔离</td>
+</tr>
+<tr>
+<td style="text-align:left">网络控制</td>
+<td style="text-align:left">较简单，通常无需配置路由表</td>
+<td style="text-align:left">需要配置路由表</td>
+<td style="text-align:left">需要配置路由表</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

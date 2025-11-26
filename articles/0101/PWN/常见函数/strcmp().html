@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># strcmp(),strcmp()</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>strcmp()</h1>
+<pre><code class="language-c">int strcmp(const char *str1, const char *str2)
+</code></pre>
+<ul>
+<li>头文件：&lt;stdio.h&gt;</li>
+<li>参数：str1 – 要进行比较的第一个字符串。str2 – 要进行比较的第二个字符串。</li>
+<li>返回值：
+<ul>
+<li>如果返回值小于 0，则表示 str1 小于 str2。</li>
+<li>如果返回值大于 0，则表示 str1 大于 str2。</li>
+<li>如果返回值等于 0，则表示 str1 等于 str2。</li>
+</ul>
+</li>
+<li>strcmp是根据\x00截断</li>
+</ul>
+<p>源码：</p>
+<pre><code class="language-c">int
+strcmp (const char *p1, const char *p2)
+{
+  const unsigned char *s1 = (const unsigned char *) p1;
+  const unsigned char *s2 = (const unsigned char *) p2;
+  unsigned char c1, c2;
+
+  do
+    {
+      c1 = (unsigned char) *s1++;
+      c2 = (unsigned char) *s2++;
+      if (c1 == '\0') return c1 - c2;
+    }
+  while (c1 == c2);
+
+  return c1 - c2;
+}
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

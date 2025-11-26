@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Reptile介绍,Reptile介绍</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Reptile介绍</h1>
+<h2>1.background</h2>
+<p>apt组织，高隐藏、高持久化攻击</p>
+<h2>2.concept</h2>
+<ul>
+<li><code>rootkit</code>:控制目标计算机或网络的未授权恶意软件，也可理解为恶意软件用来隐藏自己的一种手段（固件（firmware）rootkit、虚拟化rootkit、内核级rootkit、库级rootkit、应用程序级rootkit等）</li>
+<li><code>trogan</code>:将通信流量伪装成互联网上最常见的https流量，从而有效防止流量被检测和干扰,绕过GFW</li>
+<li><code>LKM</code>:Loadable Kernel Modules,可加载内核模块程序.主要作用是用来扩展linux的内核功能。可以动态地加载到内存中，无须重新编译内核。故常被用在rootkit技术上</li>
+</ul>
+<h2>3.functions</h2>
+<ul>
+<li>Give root to unprivileged users</li>
+<li>Hide files and directories</li>
+<li>Hide processes</li>
+<li>Hide himself</li>
+<li>Hide TCP/UDP connections</li>
+<li>Hidden boot persistence</li>
+<li>File content tampering</li>
+<li>Some obfuscation techniques</li>
+<li>ICMP/UDP/TCP port-knocking backdoor</li>
+<li>Full TTY/PTY shell with file transfer</li>
+<li>Client to handle Reptile Shell</li>
+<li>Shell connect back each X times (not default)</li>
+</ul>
+<h2>4.foundation</h2>
+<p><a href="https://github.com/milabs/khook">khook</a>：内核钩子框架</p>
+<p><a href="https://github.com/milabs/kmatryoshka">kmatryoshka</a>：动态的模块加载器</p>
+<p>参考</p>
+<ul>
+<li><a href="https://github.com/mncoppola/suterusu">https://github.com/mncoppola/suterusu</a></li>
+<li><a href="https://github.com/David-Reguera-Garcia-Dreg/enyelkm.git">https://github.com/David-Reguera-Garcia-Dreg/enyelkm.git</a></li>
+<li><a href="https://github.com/creaktive/tsh">https://github.com/creaktive/tsh</a></li>
+<li><a href="https://github.com/brenns10/lsh">https://github.com/brenns10/lsh</a></li>
+</ul>
+<h2>5.source code</h2>
+<p>代码库中，主要包含以下目录和文件：</p>
+<ol>
+<li><strong>configs</strong> : 存放默认配置文件。</li>
+<li><strong>kernel</strong> : 存放内核模块的源代码，包括各种功能模块（如 <code>backdoor.c</code>，<code>dir.c</code>，<code>file.c</code>等）和辅助文件（如 <code>encrypt</code>目录下的加密模块 <code>encrypt.c</code>）。</li>
+<li><strong>Makefile</strong> : 包含项目的构建规则。</li>
+<li><strong>scripts</strong> : 存放脚本文件，如配置脚本 <code>config.sh</code>，安装脚本 <code>installer.sh</code>等。</li>
+<li><strong>userland</strong> : 存放用户空间应用程序的源代码，如客户端 <code>client.c</code>，传输模块 <code>pel.c</code>等。<img src="/0101/Cyberspace/RootKit/Linux/Reptile/assets/2.Reptile%E4%BB%8B%E7%BB%8D/image-20241223195216721.png" alt="image-20241223195216721"></li>
+</ol>
+<p><img src="/0101/Cyberspace/RootKit/Linux/Reptile/assets/2.Reptile%E4%BB%8B%E7%BB%8D/image-20241223195255364.png" alt="image-20241223195255364"></p>
+<p><img src="/0101/Cyberspace/RootKit/Linux/Reptile/assets/2.Reptile%E4%BB%8B%E7%BB%8D/image-20241223195323196.png" alt="image-20241223195323196"></p>
+<h2>6.使用</h2>
+<blockquote>
+<p>分为被控端和控制端，简单来说，<strong>被控端</strong>需要配置、编译，<strong>控制端</strong>只需要编译就可以</p>
+</blockquote>
+<h3>6.1 被控端</h3>
+<pre><code class="language-bash">apt install build-essential libncurses-dev linux-headers-$(uname -r)
+</code></pre>
+<pre><code class="language-bash">make menuconfig #配置
+make
+make install
+</code></pre>
+<p>Backdoor configuration：</p>
+<pre><code>password 是连接密码
+source port of magic packets 是控制端主动连被控端时，发送的交流包中的源端口
+magic value 控制端的token
+</code></pre>
+<p>Reverse shell：</p>
+<pre><code>第一个 Host 是控制端的ip
+第二个是控制端与被控端的通信端口
+第三个是反弹shell的请求间隔时间
+</code></pre>
+<h3>6.2 控制端</h3>
+<p>编译即可，<strong>output</strong> 目录产生有三个可执行文件</p>
+<pre><code class="language-bash">make client
+</code></pre>
+<h4>6.2.1 反向连接</h4>
+<p>listener ：就是监听反向连接的工具，用法如下：</p>
+<pre><code class="language-bash">Usage: ./listener [ -p port ] [ -s secret ]
+# -p是本地监听端口
+# -s是被控端配置的password
+</code></pre>
+<h4>6.2.2 正向连接</h4>
+<p>用到 <strong>client</strong> 文件，执行后会进入像 msfconsole 的配置界面，<code>show</code> 命令可以看配置参数</p>
+<pre><code class="language-bash">Reptile Client
+Written by: F0rb1dd3n
+
+	help		Show this help
+	set		Set value to a variable
+	unset		Unset value to a variable
+	show		Show the current configuration
+	run		Run the listener and send the magic packet
+	export		Export a configuration to a file
+	load		Load a configuration from a file
+	exit		Exit this shell
+
+Type: &quot;help &lt;command&gt;&quot; to see specific help
+
+reptile-client&gt; show
+
+VAR		VALUE			DESCRIPTION
+
+LHOST		      			Local host to receive the shell
+LPORT		      			Local port to receive the shell
+SRCHOST		      			Source host on magic packets (spoof)
+SRCPORT		      			Source port on magic packets (only for TCP/UDP)
+RHOST		      			Remote host
+RPORT		      			Remote port (only for TCP/UDP)
+PROT		      			Protocol to send magic packet (ICMP/TCP/UDP)
+PASS		      			Backdoor password (optional)
+TOKEN		      			Token to trigger the shell
+</code></pre>
+<ul>
+<li>LHOST、LPORT是控制端（也就是本地）的ip、port</li>
+<li>SRCHOST、SRCPORT是控制端连接被控端时，首个tcp会话的请求数据包的源地址、源端口，也就是说我配置成SRCHOST=1.1.1.1、SRCPORT=666，那么就会像这里显示这个样子</li>
+<li>RHOST、RPORT是被控端的ip、port。</li>
+<li>PROT是通信流量的协议。</li>
+<li>PASS是被控端配置的password。</li>
+<li>TOKEN是前面那个 magic value</li>
+</ul>
+<p>配置完成后，执行 <code>run</code>，就可以拿到正向shell</p>
+<h3>6.3 实操</h3>
+<p>控制端：192.168.20.156</p>
+<p>被控端：192.168.20.158</p>
+<h2>3.实操</h2>
+<p>控制端：192.168.20.156</p>
+<p>被控端：192.168.20.158</p>
+<p><img src="/0101/Cyberspace/RootKit/Linux/Reptile/assets/2.Reptile%E4%BB%8B%E7%BB%8D/image-20241223195556844.png" alt="image-20241223195556844"></p>
+<p><img src="/0101/Cyberspace/RootKit/Linux/Reptile/assets/2.Reptile%E4%BB%8B%E7%BB%8D/image-20241223195638518.png" alt="image-20241223195638518"></p>
+
+        </main>
+    </div>
+</body>
+</html>

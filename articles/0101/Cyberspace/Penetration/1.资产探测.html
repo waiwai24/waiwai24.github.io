@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 资产探测,资产探测</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>资产探测</h1>
+<blockquote>
+<p>判断是否云产品，是否具有利用价值</p>
+</blockquote>
+<h2>1.寻找目标网站与匿名资产</h2>
+<p>根域名，主域名，子域名</p>
+<ul>
+<li>搜索引擎查找主域名</li>
+<li>主域名枚举子域名</li>
+<li>获取所有域名对应 ip</li>
+<li>通过 ip 推测目标网段</li>
+<li>扫描网段，判断资产</li>
+</ul>
+<h2>2.主域名获取子域名</h2>
+<ul>
+<li>暴力枚举</li>
+<li>网页检索：google 语法</li>
+<li>证书检索：存在过时的记录，只适用于 https</li>
+</ul>
+<h2>3.获取真实 ip</h2>
+<p>原因：基于 waf 和 cdn 的流量解析导致无法解析到真实的 ip</p>
+<p>solve：</p>
+<ul>
+<li>不安全配置，只配置了www，但是未配置根域名</li>
+<li>历史DNS解析，最早未配置cdn时可以看到最早的ip地址</li>
+<li>多地DNS解析</li>
+<li>服务器主动回连</li>
+<li>服务器本地解析，eg:phpinfo</li>
+<li>网络空间搜索引擎</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

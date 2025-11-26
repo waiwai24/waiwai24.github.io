@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># checksec,checksec</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>checksec</h1>
+<h2>1.简介</h2>
+<p>checksec 可以识别编译时构建到二进制文件中的安全属性，是一个单文件的 shell 脚本，它位于 <code>/usr/bin/checksec</code></p>
+<p>各种安全技术的编译参数如下：</p>
+<table>
+<thead>
+<tr>
+<th>安全技术</th>
+<th>完全开启</th>
+<th>部分开启</th>
+<th>关闭</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Canary</td>
+<td>-fstack-protector-all</td>
+<td>-fstack-protector</td>
+<td>-fno-stack-protector</td>
+</tr>
+<tr>
+<td>NX</td>
+<td>-z noexecstack</td>
+<td></td>
+<td>-z execstack</td>
+</tr>
+<tr>
+<td>PIE</td>
+<td>-pie</td>
+<td></td>
+<td>-no-pie</td>
+</tr>
+<tr>
+<td>RELRO</td>
+<td>-z now</td>
+<td>-z lazy</td>
+<td>-z norelro</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

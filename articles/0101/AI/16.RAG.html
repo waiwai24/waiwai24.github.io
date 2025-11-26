@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># RAG,RAG</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>RAG</h1>
+<p>生成式 AI（Artificial Intelligence Generated Content，AIGC），在生成答案或内容时，RAG 技术能够参照精确的知识源，为用户提供高度合理和准确的响应</p>
+<p>嵌入模型 (embedding model) 来制作词向量，海量的词向量组成向量数据库</p>
+<p>构建知识库：</p>
+<ul>
+<li>选择并读取文件</li>
+<li>数据清洗（删除多余的换行符，符号等）</li>
+<li>文档分割：单篇文章过长，超出模型处理范围，需要将长文章分割成小段落chunk。LangChain提供了多种文本分割器</li>
+<li>构建向量知识库，使用Embedding</li>
+<li>向量检索：相似度，最大边际相关性</li>
+</ul>
+<p>ollama部署deepseekR1：</p>
+<pre><code>ollama run deepseek-r1
+ollama list
+</code></pre>
+<h2>MaxKB</h2>
+<p>Max Knowledge Base：<a href="https://github.com/1Panel-dev/MaxKB">https://github.com/1Panel-dev/MaxKB</a></p>
+<p>添加模型-&gt;创建知识库-&gt;创建应用-&gt;应用集成</p>
+<p>主要功能：</p>
+<ul>
+<li>应用：
+<ul>
+<li>简单配置</li>
+<li>高级编排：
+<ul>
+<li>AI对话：
+<ul>
+<li>AI模型选择</li>
+<li>提示词</li>
+<li>历史聊天记录：在当前对话中有关联的历史会话内容，表示当前问题以及上一次的对话内容一起输送给大模型</li>
+<li>返回内容</li>
+<li>输出思考</li>
+</ul>
+</li>
+<li>知识库检索：
+<ul>
+<li>知识库选择</li>
+<li>检索的参数设置：检索的模式和相似度</li>
+</ul>
+</li>
+<li>多路召回，重排：多个知识库的检索结果召回形成一个检索结果候选集合，并对检索结果候选集合重新打分和排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>知识库：（支持重新向量化）
+<ul>
+<li>文档</li>
+<li>web站点（支持同步）</li>
+<li>上传文档限制：格式，数量，大小</li>
+<li>数据分段：智能，自定义</li>
+</ul>
+</li>
+<li>函数库</li>
+<li>系统管理：
+<ul>
+<li>团队</li>
+<li>模型</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.面向对象的语言的基本概念</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <p># 面向对象的语言</p>
+<h1>Object Oriented Programming</h1>
+<h1>OOP</h1>
+<p>[toc]</p>
+<h2>一.结构化和面向对象的区别</h2>
+<h3>1.结构化程序设计方法</h3>
+<ul>
+<li>软件的结构化分析、设计方法</li>
+<li>工程化概念的方法</li>
+<li>但无法很好地支持越来越复杂、庞大的系统需求</li>
+</ul>
+<h3>2. 面向对象方法</h3>
+<ul>
+<li>直接将问题的求解映射到问题本身上</li>
+<li>将问题分解为一系列的实体（对象）</li>
+<li>方便设计，可维护性、可扩充性好</li>
+</ul>
+<h2>二.面向对象方法的特性</h2>
+<ul>
+<li>程序由一个个对象组成</li>
+<li>函数与相关的数据紧密结合</li>
+<li>数据可以被隐藏</li>
+<li>面向对象的三大特性：封装、继承、多态</li>
+</ul>
+<h2>三.设计步骤</h2>
+<ol>
+<li>分析实际问题，抽取其中的实体（对象）</li>
+<li>为对象设计类（新的类型），程序使用这些类创建各种对象</li>
+<li>协调这些对象完成程序功能（消息）</li>
+</ol>
+<h2>四.类（class）（抽象）和对象 （object）（具体）</h2>
+<p><code>&lt;u&gt;</code><em><strong><code>类=属性（数据）+方法（函数）</code></strong></em><code>&lt;/u&gt;</code></p>
+<h3>1.万物皆对象</h3>
+<ul>
+<li>“人”不是具体的实体，是类，是抽象概念</li>
+</ul>
+<ul>
+<li>“张三” 、 “李四”都是对象，但“人”不是</li>
+</ul>
+<h3>2.类是某些对象共同特征的表示</h3>
+<ul>
+<li>通过类定义出来的变量有了一个新名字，叫做对象（object）</li>
+<li>类是创建对象的模板，对象是类的实例</li>
+<li>类的成员不仅可以是变量，还可以是函数</li>
+<li>当我们创建一个对象时，对象会包含该类的所有成员的引用，而不是将成员直接包含在对象中。这意味着每个对象都可以访问和使用相同的成员，因为它们共享相同的成员定义</li>
+<li>对象是具体化，成员是类的一部分。就好像人是类，那么手就是人的成员。那么你就是对象</li>
+</ul>
+<h3>3.格式</h3>
+<ul>
+<li>定义：关键字 <strong>class &lt;类名&gt;</strong>(类名的首字母一般大写，以和其他的标识符区分开)</li>
+<li>花括号的部分是类的体</li>
+<li>定义以分号为结尾</li>
+</ul>
+<pre><code class="language-cpp">//定义洗衣机类CWashingMachine
+class CWashingMachine {
+public:
+	CWashingMachine(int v = 1, int m = 1); //构造函数
+	void setVolume(int v); //设置进水量
+	void setMode(int m); //设置洗衣模式
+	void washing(); //洗衣
+private:
+	int waterVolume; //进水量
+	int mode; //洗衣模式
+};
+</code></pre>
+<h3>4.内容说明</h3>
+<ul>
+<li>==默认情况下，类的成员是私有的==</li>
+</ul>
+<pre><code class="language-cpp">class 类名 
+{
+    public:
+    // 公有成员变量和函数（公共成员可以在类的内部和外部进行访问。这意味着，任何一个函数都可以访问公共成员，而不需要进行任何特殊的访问限制）
+  
+    private:
+    // 私有成员变量和函数（私有成员只能在类的内部进行访问。这意味着，除了类本身以外，没有任何其他函数或类可以访问私有成员）
+  
+    protected：
+    // 保护成员变量和函数（保护成员可以在类的内部和派生类中进行访问，但不能在类的外部进行访问。protected（受保护）成员变量或函数与私有成员十分相似，但有一点不同，protected（受保护）成员在派生类（即子类）中是可访问的。
+
+};
+</code></pre>
+<ul>
+<li>自定义类是一种新的自定义类型，可以声明变量、指针、 数组等</li>
+<li>对象各自拥有自己的数据空间，互不干扰</li>
+</ul>
+<pre><code class="language-cpp">CWashingMachine no1; //声明CWashingMachine类的对象no1
+CWashingMachine wm[1000]; //声明CWashingMachine类的数组
+CWashingMachine *wptr = &amp;no1; //声明CWashingMachine类型的指针
+CWashingMachine &amp;ref = no1; //声明CWashingMachine类型的引用
+</code></pre>
+<h3>5.对于public，protected，private的深入理解</h3>
+<h4>（1）共有成员public</h4>
+<pre><code>在程序中类的外部可以访问，任何一个函数都可以访问公有成员
+</code></pre>
+<h4>（2）保护成员protected</h4>
+<pre><code>与private类似，但可以在==派生类==中进行访问，
+</code></pre>
+<h4>（3）私有成员private</h4>
+<pre><code>只能在类的内部进行访问，只有友类和友元函数可以访问私有成员（可以在内部定义访问函数）
+</code></pre>
+<h3>6.const对数据的进一步保护</h3>
+<h4>（1）常数据成员</h4>
+<ul>
+<li>在类中用const限定的数据成员为==常数据成员==，常数据成员只能在构造函数的初始化列表中初始化</li>
+<li>const数据成员的值在对象的整个生命周期都不会发生变化</li>
+</ul>
+<h4>（2）常函数成员</h4>
+<ul>
+<li>将一个成员函数用const进行限制能保证对象的常量性，==常对象不能调用无const修饰的成员函数==，非常对象可以调用其const成员函数</li>
+</ul>
+<h2>五.消息</h2>
+<ul>
+<li>对象可以响应消息</li>
+<li>C++将“向对象发消息”处理成“调用对象的某个成员函数”</li>
+<li>调用对象no1的成员函数washing的方法</li>
+</ul>
+<pre><code class="language-cpp">no1.washing();
+wptr-&gt;washing();
+ref.washing();
+</code></pre>
+<h2>六.设计特点</h2>
+<h3>1.抽象和封装</h3>
+<ul>
+<li>抽象——提取和表现事物的核心特性，不描述背景细节</li>
+<li>封装——把数据及与数据相关的操作组织在一个单独的程序单元（对象）中</li>
+</ul>
+<h3>2.数据隐藏和访问机制</h3>
+<ul>
+<li>对象对内部数据提供了不同级别的保护</li>
+<li>外界程序不能直接访问对象的私有成员（包括私有成员函数和私有数据成员）</li>
+<li>外界程序只能通过<strong>公有成员函数</strong>和对象交互</li>
+<li>有效地保护数据，提高程序的可维护性</li>
+</ul>
+<h3>3.继承</h3>
+<ul>
+<li>继承允许基于现有的类（基类）建立新类（派生类）</li>
+<li>派生类继承基类的属性（数据）和行为（函数）</li>
+<li>派生类可以修改（重定义）继承来的行为</li>
+<li>派生类可以增加新的数据成员和成员函数</li>
+</ul>
+<h3>4.多态性</h3>
+<ul>
+<li>程序设计中很多类可以通过继承的关系构成树形结构</li>
+<li>多态性使程序员可以通过统一的接口操作具有继承关系的这些类的对象</li>
+<li>对于同一条函数调用语句不同的对象会执行不同的操作</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

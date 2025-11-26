@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 域名及解析,域名及解析</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>域名及解析</h1>
+<h2>1.域名</h2>
+<ul>
+<li>
+<p>域名系统 (Domain Name System, DNS)：</p>
+<ul>
+<li>实现域名到ip地址转换</li>
+<li>服务模型：C/S模型</li>
+</ul>
+</li>
+<li>
+<p>域名的层次结构：</p>
+<p><img src="/0101/Cyberspace/Web/7.应用层/assets/4.%E5%9F%9F%E5%90%8D%E5%8F%8A%E8%A7%A3%E6%9E%90/image-20240517115528190.png" alt="image-20240517115528190"></p>
+<ul>
+<li>各部分最多63个字符，整个路径不超过255个字符</li>
+<li>… 三级域名 . 二级域名 . 顶级域名</li>
+<li>举例：<a href="http://www.nudt.edu.cn">www.nudt.edu.cn</a></li>
+<li>叶节点代表主机名，可以只包含一台主机或几千台主机，访问域名www.baidu.com时，是访问该域内上千台服务器中的一台</li>
+</ul>
+</li>
+</ul>
+<h2>2.域名解析过程</h2>
+<h3>2.1 递归查询</h3>
+<p><img src="/0101/Cyberspace/Web/7.应用层/assets/4.%E5%9F%9F%E5%90%8D%E5%8F%8A%E8%A7%A3%E6%9E%90/1718413705158.png" alt="1718413705158"></p>
+<ul>
+<li>将域名解析任务交给所询问的域名服务器</li>
+<li>域名服务器替换本地域名字服务器继续查询</li>
+</ul>
+<h3>2.2 迭代查询</h3>
+<p><img src="/0101/Cyberspace/Web/7.应用层/assets/4.%E5%9F%9F%E5%90%8D%E5%8F%8A%E8%A7%A3%E6%9E%90/image-20240615091331539.png" alt="image-20240615091331539"></p>
+<h3>2.3 缓存和更新</h3>
+<ul>
+<li>缓存映射关系</li>
+<li>特定时长后被清除</li>
+</ul>
+<h2>3.DNS协议格式</h2>
+<p><img src="/0101/Cyberspace/Web/7.应用层/assets/4.%E5%9F%9F%E5%90%8D%E5%8F%8A%E8%A7%A3%E6%9E%90/image-20240615092508649.png" alt="image-20240615092508649"></p>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Privilege Control Defect in Blink Router Web Interface Permits Arbitrary Sensitive Operation Execution,Privilege Control Defect in Blink Router Web Interface Permits Arbitrary Sensitive Operation Execution</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Privilege Control Defect in Blink Router Web Interface Permits Arbitrary Sensitive Operation Execution</h1>
+<p>BUG_Author: waiwai</p>
+<p>Vendor：<a href="https://www.b-link.net.cn/">Blink</a></p>
+<p>Product: Multiple routers using <a href="http://libblinkapi.so">libblinkapi.so</a> component, including BL-AX5400P V1.0.19, BL-AX1800 V1.0.19, BL-AC3600 V1.0.22, BL-WR9000 V2.4.9, BL-AC1900 V1.0.2, BL-AC2100_AZ3 V1.0.4.</p>
+<p>Vulnerability Files: <a href="http://libblinkapi.so">libblinkapi.so</a></p>
+<h2>Description</h2>
+<p>The Blink router’s Web management interface contains a serious vulnerability of <strong>unverified identity permissions for sensitive operations</strong>. This vulnerability is not about bypassing existing authentication mechanisms, but rather the failure to verify the requester’s identity and permissions when handling specific sensitive operations. Attackers can execute sensitive operations such as restart and factory reset through simple HTTP requests, leading to network service interruption and configuration data loss.</p>
+<p><strong>Vulnerable API Endpoints</strong></p>
+<ul>
+<li><code>POST /cgi-bin/lighttpd.cgi</code> - <code>{&quot;type&quot;:&quot;reboot&quot;}</code> (System Reboot)</li>
+<li><code>POST /cgi-bin/lighttpd.cgi</code> - <code>{&quot;type&quot;:&quot;restore&quot;}</code> (Factory Settings Restore)</li>
+</ul>
+<p>Vulnerable frontend code here, and correspondingly, the backend CGI performs no verification</p>
+<p><img src="/0101/CVEs/Blink/assets/Privilege_Control_Defect_in_Blink_Router_Web_Interface_Permits_Arbitrary_Sensitive_Operation_Execution/image-20250702201055902.png" alt="image-20250702201055902"></p>
+<h2>POC</h2>
+<p><img src="/0101/CVEs/Blink/assets/Privilege_Control_Defect_in_Blink_Router_Web_Interface_Permits_Arbitrary_Sensitive_Operation_Execution/image-20250702201231576.png" alt="image-20250702201231576"></p>
+<p>The router service is offline and is waiting for a restart</p>
+<p><img src="/0101/CVEs/Blink/assets/Privilege_Control_Defect_in_Blink_Router_Web_Interface_Permits_Arbitrary_Sensitive_Operation_Execution/image-20250702201543987.png" alt="image-20250702201543987"></p>
+<h2>Impact</h2>
+<p>Immediate Consequences:</p>
+<ul>
+<li><strong>Network Service Outage:</strong> System reboot results in complete network connectivity loss</li>
+<li><strong>Configuration Data Loss:</strong> Factory restoration eliminates all personalized settings</li>
+<li><strong>Credential Loss:</strong> WiFi passwords, port forwarding configurations permanently deleted</li>
+<li><strong>Access Control Compromise:</strong> Administrative credentials reverted to factory defaults</li>
+</ul>
+<p>Secondary Effects:</p>
+<ul>
+<li><strong>Operational Disruption:</strong> Network-reliant business operations experience downtime</li>
+<li><strong>Security Exposure:</strong> Post-reset default settings may introduce security weaknesses</li>
+<li><strong>Recovery Overhead:</strong> Complete network reconfiguration required&quot;</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

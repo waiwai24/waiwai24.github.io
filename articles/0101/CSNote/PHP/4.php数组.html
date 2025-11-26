@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># PHP数组,PHP数组</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>PHP数组</h1>
+<p>[TOC]</p>
+<h2>一. 创建数组</h2>
+<p>在 PHP 中，array() 函数用于创建数组：</p>
+<pre><code class="language-php">array();
+</code></pre>
+<p>在 PHP 中，有三种类型的数组：</p>
+<ul>
+<li><strong>数值数组</strong> - 带有数字 ID 键的数组</li>
+<li><strong>关联数组</strong> - 带有指定的键的数组，每个键关联一个值</li>
+<li><strong>多维数组</strong> - 包含一个或多个数组的数组</li>
+</ul>
+<p>count() 函数用于返回数组的长度（元素的数量）</p>
+<pre><code class="language-php">&lt;?php
+$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+echo count($cars);
+?&gt;
+</code></pre>
+<p>遍历并打印数值数组中的所有值，可以使用 for 循环</p>
+<pre><code class="language-php">&lt;?php
+$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+$arrlength=count($cars);
+ 
+for($x=0;$x&lt;$arrlength;$x++)
+{
+    echo $cars[$x];
+    echo &quot;&lt;br&gt;&quot;;
+}
+?&gt;
+</code></pre>
+<h2>二. 数值数组</h2>
+<ul>
+<li>
+<p>自动分配ID键（<strong>总是从0开始</strong>）</p>
+<pre><code class="language-php">$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+</code></pre>
+</li>
+<li>
+<p>人工分配ID键</p>
+<pre><code class="language-php">$cars[0]=&quot;Volvo&quot;;
+$cars[1]=&quot;BMW&quot;;
+$cars[2]=&quot;Toyota&quot;;
+</code></pre>
+</li>
+</ul>
+<h2>三. 关联数组</h2>
+<p>PHP 中的关联数组以<strong>键值对的形式</strong>存储数据。与数字索引数组不同，关联数组可以使用标签或键来索引每个元素。钥匙很容易记住</p>
+<p>key 可以是 integer 或者 string。value 可以是任意类型</p>
+<p>此外 key 会有如下的强制转换：</p>
+<ul>
+<li>String 中包含有效的十进制 int，除非数字前面有一个 <code>+</code> 号，否则将被转换为 int 类型。例如键名 <code>&quot;8&quot;</code> 实际会被储存为 <code>8</code>。另外， <code>&quot;08&quot;</code> 不会被强制转换，因为它不是一个有效的十进制整数。</li>
+<li>Float 也会被转换为 int ，意味着其小数部分会被舍去。例如键名 <code>8.7</code> 实际会被储存为 <code>8</code>。</li>
+<li>Bool 也会被转换成 int。即键名 <strong><code>true</code></strong> 实际会被储存为 <code>1</code> 而键名 <strong><code>false</code></strong> 会被储存为 <code>0</code>。</li>
+<li>Null 会被转换为空字符串，即键名 <code>null</code> 实际会被储存为 <code>&quot;&quot;</code>。</li>
+<li>Array 和 object <em>不能</em> 被用为键名。坚持这么做会导致警告：<code>Illegal offset type</code>。</li>
+</ul>
+<p>==如果在数组定义时多个元素都使用相同键名，那么只有最后一个会被使用，其它的元素都会被覆盖==</p>
+<pre><code class="language-php">/*
+假设我们要创建一个数组来将学生的分数存储在一个数组中。最好以学生姓名为键，分数为值存储
+array(
+    key  =&gt; value,
+    key2 =&gt; value2,
+    key3 =&gt; value3,
+    ...
+    最后一个数组单元之后的逗号可以省略
+)
+*/
+&lt;?php
+  
+  $scoreArray = array(
+    'Chandler' =&gt; 50, 
+    'Monica' =&gt; 80, 
+    'Ross' =&gt; 95
+  ); 
+
+  //Inserting New Elements
+  $scoreArray['Joey'] = 75;
+  $scoreArray['Rachael'] = 55;
+
+?&gt;
+</code></pre>
+<p>遍历关联数组，使用foreach循环</p>
+<pre><code class="language-php">&lt;?php
+$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);
+ 
+foreach($age as $x=&gt;$x_value)
+{
+    echo &quot;Key=&quot; . $x . &quot;, Value=&quot; . $x_value;
+    echo &quot;&lt;br&gt;&quot;;
+}
+?&gt;
+</code></pre>
+<h2>四. 数组排序</h2>
+<ul>
+<li>sort() - 对数组进行升序排列</li>
+<li>rsort() - 对数组进行降序排列</li>
+<li>asort() - 根据关联数组的值，对数组进行升序排列</li>
+<li>ksort() - 根据关联数组的键，对数组进行升序排列</li>
+<li>arsort() - 根据关联数组的值，对数组进行降序排列</li>
+<li>krsort() - 根据关联数组的键，对数组进行降序排列</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

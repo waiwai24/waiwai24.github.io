@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># LOWORD, HIWORD, LOBYTE, HIBYTE,LOWORD, HIWORD, LOBYTE, HIBYTE</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>LOWORD, HIWORD, LOBYTE, HIBYTE</h1>
+<ul>
+<li>LOWORD()得到一个32bit数的低16bit</li>
+<li>HIWORD()得到一个32bit数的高16bit</li>
+<li>LOBYTE()得到一个16bit数最低（最右边）那个字节</li>
+<li>HIBYTE()得到一个16bit数最高（最左边）那个字节</li>
+<li>BYTE1~BYTE8()：从变量 <code>x</code> 中提取第 <code>n</code> 个字节的值</li>
+</ul>
+<pre><code class="language-c">#define BYTE(x, n) (*((uint8_t *)&amp;(x)+n))
+#define BYTE0(x) BYTEn(x, 0)
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

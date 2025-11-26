@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 注入漏洞,注入漏洞</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>注入漏洞</h1>
+<h2>1.注入漏洞原理和常见类型</h2>
+<p>注入对象和执行环境不同的区分：</p>
+<p>命令注入，代码注入，sql注入，反序列化，xxe</p>
+<h2>2.sql注入</h2>
+<p>按照注入到位置划分：</p>
+<ul>
+<li>get</li>
+<li>post</li>
+<li>cookie</li>
+<li>其他型</li>
+</ul>
+<p>按照数据拼接方式划分：</p>
+<ul>
+<li>数字型</li>
+<li>一般字符型</li>
+<li>宽字符型</li>
+</ul>
+<p>按照数据导出方式划分：</p>
+<ul>
+<li>带内注入：
+<ul>
+<li>明注：
+<ul>
+<li>联合注入</li>
+<li>报错注入</li>
+</ul>
+</li>
+<li>盲注：
+<ul>
+<li>布尔型</li>
+<li>时间型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>带外注入 ：（代理中转注入技术）
+<ul>
+<li>二次注入</li>
+<li>dns解析注入</li>
+<li>临时文件注入</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

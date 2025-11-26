@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 固件分析,固件分析</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>固件分析</h1>
+<h2>1.提取文件系统</h2>
+<p>binwalk工具安装：<a href="https://github.com/ReFirmLabs/binwalk/wiki#installation">https://github.com/ReFirmLabs/binwalk/wiki#installation</a></p>
+<p>使用：</p>
+<ul>
+<li><code>-e</code>：提取固件中的文件</li>
+<li><code>-Me</code>：递归扫描提取固件中的文件</li>
+<li><code>--entropy</code>：生成熵图，x 轴表示文件偏移量，y 轴表示文件数据的熵；该图的 y 轴是无单位尺度，从0（完全不随机）到8（非常随机）。熵是用来衡量不确定性的，如果熵值越大，说明固件越有可能是被加密或者压缩的，要注意的是，压缩也会使固件的熵值变大</li>
+<li><code> -W test1 test2 test3</code>：进行固件比较</li>
+</ul>
+<p>binwalk输出的颜色:</p>
+<ul>
+<li>
+<p>绿色的：高度可信；文件元数据和至少部分文件数据都经过了准确性检查</p>
+</li>
+<li>
+<p>黄色的：中等可信度；对文件元数据进行了合理数量的验证/健全性检查</p>
+</li>
+<li>
+<p>红色的：低置信度；已识别所报告文件类型的“魔法字节”，但几乎没有进行额外验证</p>
+</li>
+</ul>
+<h2>2.分析文件系统</h2>
+<h3>2.1 手动分析</h3>
+<p>固件通常由bootloader、内核、根文件系统及其他资源组成</p>
+<p>在固件分析中，常常遇到各种文件系统，如 Squashfs、Cramfs、YAFFS2、UBIFS、EXT4等，常见的 squashfs-root 文件系统通常可以将整个文件系统或者某个单一的目录压缩在一起, 存放在某个设备, 某个分区或者普通的文件中</p>
+<pre><code>stings|grep 检索文件系统magic签名头
+hexdump -C |grep 检索magic签名偏移
+dd|file 确定magic签名偏移处的文件类型
+
+cramfs文件头部特征字符为”0x28cd3d45”
+squashfs文件系统头部特征较多，有sqsh、hsqs、qshs、shsq、hsqt、tqsh、sqlz
+strings firmware.bin | grep `python -c 'print &quot;\x28\xcd\x3d\x45&quot;'`
+strings firmware.bin | grep `python -c 'print &quot;\x45\x3d\xcd\x28&quot;'`
+
+同时，我们还需要注意可能存在大小端的差异
+</code></pre>
+<h3>2.2 工具分析</h3>
+<p>firewalker：<a href="https://github.com/craigz28/firmwalker">https://github.com/craigz28/firmwalker</a></p>
+<p>firmwalker 是一个用于扫描固件文件系统的简单脚本。它搜索敏感信息，如硬编码的密码、私钥、证书等，并检查潜在的安全问题。它将在提取或安装的固件文件系统中搜索感兴趣的内容，例如：</p>
+<ul>
+<li>etc/shadow 和 etc/passwd</li>
+<li>列出 etc/ssl 目录</li>
+<li>搜索 SSL 相关文件，例如 .pem、.crt 等。</li>
+<li>搜索配置文件</li>
+<li>寻找脚本文件</li>
+<li>搜索其他 .bin 文件</li>
+<li>查找关键字，例如管理员、密码、远程等。</li>
+<li>搜索 IoT 设备上使用的常见 Web 服务器</li>
+<li>搜索常见的二进制文件，例如 ssh、tftp、dropbear 等。</li>
+<li>搜索 URL、电子邮件地址和 IP 地址</li>
+<li>使用 Shodan CLI 调用 Shodan API 的实验性支持</li>
+</ul>
+<p>fwanalyzer：<a href="https://github.com/cruise-automation/fwanalyzer">https://github.com/cruise-automation/fwanalyzer</a></p>
+<p>命令行选项</p>
+<ul>
+<li><code>-cfg</code> ：字符串，配置文件的路径</li>
+<li><code>-cfgpath</code> ：字符串，配置文件和包含文件的路径（可以重复）</li>
+<li><code>-in</code> ：字符串，文件系统映像文件或目录路径</li>
+<li><code>-out</code> ：字符串，使用 ‘-’ 将报告输出到文件或标准输出</li>
+<li><code>-extra</code> ：字符串，覆盖目录以读取额外数据（例如 filetree、filecmp）</li>
+<li><code>-ee</code> ：如果有违规者，则错误退出</li>
+<li><code>-invertMatch</code>：反转正则表达式匹配（用于测试）</li>
+</ul>
+<h2>3.动态分析</h2>
+<p>设备在正常运行或者在仿真环境中运行中的动态测试</p>
+<p>FirmAE：<a href="https://github.com/pr0v3rbs/FirmAE">https://github.com/pr0v3rbs/FirmAE</a></p>
+
+        </main>
+    </div>
+</body>
+</html>

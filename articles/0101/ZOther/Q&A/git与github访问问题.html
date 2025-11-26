@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>git与github访问问题</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <ol>
+<li>
+<p>fast github</p>
+</li>
+<li>
+<p>git clone 出现fatal:无法访问问题解决</p>
+<p>例如 git clone <a href="https://github.com/aboul3la/Sublist3r.git">https://github.com/aboul3la/Sublist3r.git</a> 直接进行clone 出现fatal：无法访问的问题</p>
+<p>直接在 中间加上 <a href="http://gitclone.com/">gitclone.com/</a></p>
+<p>例如 git clone <a href="https://gitclone.com/github.com/aboul3la/Sublist3r.git">https://gitclone.com/github.com/aboul3la/Sublist3r.git</a></p>
+<p>问题得到解决</p>
+</li>
+<li>
+<p>无法ping通github，返回<code>Temporary failure in name resolution</code></p>
+<p>解决方案：</p>
+<pre><code class="language-shell">echo &quot;nameserver 8.8.8.8&quot; | sudo tee /etc/resolv.conf
+</code></pre>
+</li>
+<li>
+<p>修改host /etc/hosts</p>
+</li>
+</ol>
+
+        </main>
+    </div>
+</body>
+</html>

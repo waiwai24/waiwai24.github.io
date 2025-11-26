@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># typedef详解,typedef详解</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>typedef详解</h1>
+<p>[TOC]</p>
+<h2>一. 三种基本用法</h2>
+<h3>1.1 基本数据类型定义新的类型名</h3>
+<p>下面是声明两个指向字符变量的指针的两种方法，普通的写法显然没有使用typedef的形式更方便和直观，而且同时声明多个指针变量容易漏写星号</p>
+<pre><code class="language-cpp">char *pa, *pb;
+//char* pa,pb;
+
+typedef char* pCHAR;
+pCHAR pa,pb;
+</code></pre>
+<h3>1.2 typedef struct</h3>
+<p>在c语言中typedef struct定义结构名，在声明时可以省略struct关键字。</p>
+<p>==c语言声明struct新对象时，必须带上struct==，即：struct [结构名] [对象名]</p>
+<pre><code class="language-c">struct A
+{
+    int x;
+    int y;
+}；
+struct A a;
+</code></pre>
+<p>而使用typedef之后可以直接写为：[结构名] [对象名]。</p>
+<pre><code class="language-c">typedef struct B
+{
+    int x;
+    int y;
+}pB;
+pB b;
+</code></pre>
+<p>而在C++中定义结构体无需typedef，而C++中无typedef时，在末尾定义的是<strong>变量</strong>，可以直接使用它对结构中的成员变量进行赋值；而c++有typedef 时，在末尾定义的是<strong>结构类型</strong>，相当于为struct定义的结构类型换了一个新的名字，使用时，需要先定义变量，然后对结构中的成员变量进行赋值</p>
+<pre><code class="language-cpp">struct A{
+    int m;
+}
+A a;
+</code></pre>
+<h3>1.3 声明函数指针类型</h3>
+<pre><code class="language-text">typedef void*(*Fun)(int,int);
+</code></pre>
+<p>这里将返回类型为void *，入参为int的函数类型命名为Fun，那么在其他地方，就可以像下面这样使用啦：</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+typedef void*(*Fun)(int,int);
+void *test(int a,int b)
+{
+    printf(&quot;%d,%d\n&quot;,a,b);
+    //do something
+    return NULL;
+}
+int main(void)
+{
+    Fun myfun = test;//这里的Fun已经是一种类型名了
+    myfun(1,1);
+    return 0;
+}
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

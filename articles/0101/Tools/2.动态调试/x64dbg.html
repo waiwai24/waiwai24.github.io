@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># x64dbg,x64dbg</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>x64dbg</h1>
+<p>从左往右从上往下的四个窗口依次是反汇编窗口，寄存器窗口，数据窗口，堆栈窗口</p>
+<p>字符串搜索功能，我们可以通过x64dbg的字符串搜索功能来查看内存中加载的字符串，具体操作步骤为：<strong>CPU(反汇编)窗口-&gt;鼠标右键-&gt;搜索-&gt;选择模块-&gt;字符串</strong></p>
+<p>快捷键：</p>
+<ul>
+<li><code>F2</code>：下断点</li>
+<li><code>F4</code>：运行到当前选中行</li>
+<li><code>F7</code>：单步步入（该行代码若无函数，则作用与步过相同。若有函数，则进入该函数的第一行代码）</li>
+<li><code>F8</code>：单步步过（不管该行代码是否有含函数，直接运行到下一行代码）</li>
+<li><code>F9</code>：运行</li>
+<li><code>Ctrl+F9</code>：执行到本函数的返回处，本函数ret</li>
+<li><code>Ctrl+G</code>：输入十六进制地址快速定位到该地址处</li>
+<li><code>G</code>：反汇编视图切换图形化视图</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

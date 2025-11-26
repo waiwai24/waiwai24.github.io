@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Fuzzing-Module,Fuzzing-Module</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Fuzzing-Module</h1>
+<h2>1.基础</h2>
+<ul>
+<li>使用 <code>dd</code> 命令生成伪随机输入：
+<ul>
+<li><code>dd if=/dev/urandom of=1.in bs=64 count=10</code></li>
+<li>if = 文件：从 &lt;文件&gt; 而非标准输入读取</li>
+<li>of = 文件：写入到 &lt;文件&gt; 而非标准输出</li>
+<li>bs = 字节数：一次读取和写入的字节数（默认：512）</li>
+<li>count = N，只复制 N 个输入块</li>
+</ul>
+</li>
+<li>afl-cc：是 afl-fuzz 的辅助应用程序，是 gcc 和 clang 的替代工具
+<ul>
+<li>常用使用模式：<code>  CC=afl-cc CXX=afl-c++ ./configure --disable-shared</code></li>
+<li>CXX 变量名始终与 CC 变量名相同，只是在末尾添加了 ++</li>
+</ul>
+</li>
+<li>cmake 工程生成 compile_commands.json：
+<ul>
+<li><code>cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1</code></li>
+</ul>
+</li>
+</ul>
+<h2>2.exercise1</h2>
+<pre><code class="language-shell">➜  exercise1 git:(main) mkdir build                          
+➜  exercise1 git:(main) cd build    
+➜  build git:(main) CC=$HOME/tool/AFLplusplus/afl-clang-fast CXX=$HOME/tool/AFLplusplus/afl-clang-fast++ cmake ..
+➜  build git:(main) cd ..   
+➜  exercise1 git:(main) mkdir seeds
+➜  exercise1 git:(main) cd seeds; for i in {0..4}; do dd if=/dev/urandom of=seed_$i bs=64 count=10; done; cd ..
+➜  exercise1 git:(main) ✗ cd build
+➜  build git:(main) ✗ make
+➜  build git:(main) ✗ afl-fuzz -i ../seeds -o ../output -m none -- /home/waiwai/fuzz/Fuzzing-Module/exercise1/build/simple_crash
+</code></pre>
+<p><img src="/0101/FUZZ/Fuzzing-Module/assets/Fuzzing-Module/image-20250304002913515.png" alt="image-20250304002913515"></p>
+<p>生成的三种类型的 crash 数据：</p>
+<p><img src="/0101/FUZZ/Fuzzing-Module/assets/Fuzzing-Module/image-20250304004232736.png" alt="image-20250304004232736"></p>
+<p>对应源程序引发 abort()的情况：</p>
+<ul>
+<li>输入的尾字符是 0</li>
+<li>输入的首字符是 0</li>
+<li>存在后一个数字是前一个数字+1</li>
+</ul>
+<h2>3.exercise2</h2>
+<pre><code class="language-shell">➜  Fuzzing-Module git:(main) ✗ cd exercise2
+➜  exercise2 git:(main) ✗ mkdir build; cd build
+➜  build git:(main) ✗ CC=$HOME/tool/AFLplusplus/afl-clang-lto CXX=$HOME/tool/AFLplusplus/afl-clang-lto++ cmake .. 
+➜  build git:(main) ✗ make
+➜  build git:(main) ✗ cd ..; mkdir seeds; cd seeds
+➜  seeds git:(main) ✗ for i in {0..4}; do dd if=/dev/urandom of=seed_$i bs=64 count=10; done; cd ..
+➜  exercise2 git:(main) ✗ afl-fuzz -i ./seeds -o ./output -m none -- /home/waiwai/fuzz/Fuzzing-Module/exercise2/build/medium 
+</code></pre>
+<p><img src="/0101/FUZZ/Fuzzing-Module/assets/Fuzzing-Module/image-20250304080905654.png" alt="image-20250304080905654"></p>
+<h2>3.exercise3</h2>
+<pre><code class="language-shell">➜  Fuzzing-Module git:(main) ✗ cd exercise3     
+➜  exercise3 git:(main) ✗ mkdir build; cd build
+➜  build git:(main) ✗ CC=$HOME/tool/AFLplusplus/afl-clang-lto CXX=$HOME/tool/AFLplusplus/afl-clang-lto++ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
+</code></pre>
+<p>生成 compile_commands.json，导入 Sourcetrail</p>
+<p>接下来是 slice fuzzing，即只针对特定部分进行 fuzzing</p>
+<p>specs-slice.cpp：</p>
+<pre><code class="language-c">#include &quot;specs.h&quot;
+
+int main(int argc, char** argv) {
+    // In order to call any functions in the Specs class, a Specs
+    // object is necessary. This is using one of the constructors
+    // found in the Specs class.
+    Specs spec(505, 110, 50);
+    // By looking at all the code in our project, this is all the 
+    // necessary setup required. Most projects will have much more
+    // that is needed to be done in order to properly setup objects.
+
+    // This section should be in your code that you write after all the 
+    // necessary setup is done. It allows AFL++ to start from here in 
+    // your main() to save time and just throw new input at the target.
+    #ifdef __AFL_HAVE_MANUAL_CONTROL
+        __AFL_INIT();
+    #endif
+
+    spec.choose_color();
+    //spec.min_alt();
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-shell">➜  build git:(main) ✗ make
+➜  build git:(main) ✗ cd ..; mkdir seeds; cd seeds
+➜  seeds git:(main) ✗  for i in {0..4}; do dd if=/dev/urandom of=seed_$i bs=64 count=10; done; cd ..
+➜  exercise3 git:(main) ✗ afl-fuzz -i ./seeds -o ./output -m none -- /home/waiwai/fuzz/Fuzzing-Module/exercise3/build/specs-slice
+</code></pre>
+<p><img src="/0101/FUZZ/Fuzzing-Module/assets/Fuzzing-Module/image-20250304152909202.png" alt="image-20250304152909202"></p>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># open() & fopen(),open() & fopen()</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>open() &amp; fopen()</h1>
+<h2>1.open()</h2>
+<pre><code class="language-c">int open(const char * filename, int flags);
+int open(const char * filename, int flags, mode_t mode);
+</code></pre>
+<ul>
+<li>
+<p>头文件</p>
+<pre><code class="language-c">#include &lt;sys/types.h&gt;    
+#include &lt;sys/stat.h&gt;    
+#include &lt;fcntl.h&gt;
+</code></pre>
+</li>
+<li>
+<p>返回值：若所有欲核查的权限都通过了检查则返回0 值, 表示成功, 只要有一个权限被禁止则返回-1</p>
+</li>
+<li>
+<p>flags：</p>
+<table>
+<thead>
+<tr>
+<th>O_RDONLY</th>
+<th>以只读方式打开文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O_WRONLY</td>
+<td>以只写方式打开文件</td>
+</tr>
+<tr>
+<td>O_RDWR</td>
+<td>以可读写方式打开文件. 上述三种旗标是互斥的, 也就是不可同时使用, 但可与下列的旗标利用OR(</td>
+</tr>
+<tr>
+<td>O_CREAT</td>
+<td>若欲打开的文件不存在则自动建立该文件.</td>
+</tr>
+<tr>
+<td>O_EXCL</td>
+<td>如果O_CREAT 也被设置, 此指令会去检查文件是否存在. 文件若不存在则建立该文件, 否则将导致打开文件错误. 此外, 若O_CREAT</td>
+</tr>
+<tr>
+<td>O_NOCTTY</td>
+<td>如果欲打开的文件为终端机设备时, 则不会将该终端机当成进程控制终端机.</td>
+</tr>
+<tr>
+<td>O_TRUNC</td>
+<td>若文件存在并且以可写的方式打开时, 此旗标会令文件长度清为0, 而原来存于该文件的资料也会消失.</td>
+</tr>
+<tr>
+<td>O_APPEND</td>
+<td>当读写文件时会从文件尾开始移动, 也就是所写入的数据会以附加的方式加入到文件后面.</td>
+</tr>
+<tr>
+<td>O_NONBLOCK</td>
+<td>以不可阻断的方式打开文件, 也就是无论有无数据读取或等待, 都会立即返回进程之中.</td>
+</tr>
+<tr>
+<td>O_NDELAY</td>
+<td>同<strong>O_NONBLOCK.</strong></td>
+</tr>
+<tr>
+<td>O_SYNC</td>
+<td>以同步的方式打开文件.</td>
+</tr>
+<tr>
+<td>O_NOFOLLOW</td>
+<td>如果参数pathname 所指的文件为一符号连接, 则会令打开文件失败.</td>
+</tr>
+<tr>
+<td>O_DIRECTORY</td>
+<td>如果参数pathname 所指的文件并非为一目录, 则会令打开文件失败。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>参数mode则有下列数种组合, 只有在建立新文件时才会生效, 此外真正建文件时的权限会受到umask 值所影响, 因此该文件权限应该为 (mode-umaks).</p>
+<table>
+<thead>
+<tr>
+<th>mode</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S_IRWXU00700</strong></td>
+<td>权限, 代表该文件所有者具有可读、可写及可执行的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IRUSR</strong></td>
+<td>或S_IREAD, 00400 权限, 代表该文件所有者具有可读取的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IWUSR</strong></td>
+<td>或S_IWRITE, 00200 权限, 代表该文件所有者具有可写入的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IXUSR</strong></td>
+<td>或S_IEXEC, 00100 权限, 代表该文件所有者具有可执行的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IRWXG</strong></td>
+<td>00070 权限, 代表该文件用户组具有可读、可写及可执行的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IRGRP</strong></td>
+<td>00040 权限, 代表该文件用户组具有可读的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IWGRP</strong></td>
+<td>00020 权限, 代表该文件用户组具有可写入的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IXGRP</strong></td>
+<td>00010 权限, 代表该文件用户组具有可执行的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IRWXO</strong></td>
+<td>00007 权限, 代表其他用户具有可读、可写及可执行的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IROTH</strong></td>
+<td>00004 权限, 代表其他用户具有可读的权限</td>
+</tr>
+<tr>
+<td><strong>S_IWOTH</strong></td>
+<td>00002 权限, 代表其他用户具有可写入的权限.</td>
+</tr>
+<tr>
+<td><strong>S_IXOTH</strong></td>
+<td>00001 权限, 代表其他用户具有可执行的权限…</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2>2.fopen()</h2>
+<pre><code class="language-c">FILE *fopen(const char *filename, const char *mode)
+</code></pre>
+<ul>
+<li>
+<p>头文件 : #include&lt;stdio.h&gt;</p>
+</li>
+<li>
+<p>函数返回一个 FILE 指针。否则返回 NULL，且设置全局变量 errno 来标识错误</p>
+</li>
+<li>
+<p>filename – 字符串，表示要打开的文件名称。</p>
+</li>
+<li>
+<p>mode – 字符串，表示文件的访问模式，可以是以下表格中的值：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“r”</td>
+<td>打开一个用于读取的文件。该文件必须存在。</td>
+</tr>
+<tr>
+<td>“w”</td>
+<td>创建一个用于写入的空文件。如果文件名称与已存在的文件相同，则会删除已有文件的内容，文件被视为一个新的空文件。</td>
+</tr>
+<tr>
+<td>“a”</td>
+<td>追加到一个文件。写操作向文件末尾追加数据。如果文件不存在，则创建文件。</td>
+</tr>
+<tr>
+<td>“r+”</td>
+<td>打开一个用于更新的文件，可读取也可写入。该文件必须存在。</td>
+</tr>
+<tr>
+<td>“w+”</td>
+<td>创建一个用于读写的空文件。</td>
+</tr>
+<tr>
+<td>“a+”</td>
+<td>打开一个用于读取和追加的文件。</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

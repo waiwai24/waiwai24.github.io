@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># readlef,readlef</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>readlef</h1>
+<h2>1.简介</h2>
+<p>用于显示 <code>elf</code> 格式文件的信息，与<code>objdump</code>类似，但是它显示的信息更为具体</p>
+<h2>2.使用</h2>
+<pre><code class="language-shell">readelf &lt;option(s)&gt; elf-file(s)
+</code></pre>
+<p>常用参数:</p>
+<ul>
+<li>
+<p><code>-a</code> ,  <code>--all</code>:  显示全部信息</p>
+</li>
+<li>
+<p><code>-h</code> ,  <code>--file-header</code> ：显示 <code>elf</code> 文件开始的文件头信息</p>
+</li>
+<li>
+<p><code>-l</code> ,  <code>--program-headers</code> ,  <code>--segments</code>：  显示程序头（段头）信息(如果有的话)</p>
+</li>
+<li>
+<p><code>-S</code> ,  <code>--section-headers</code> ,  <code>--sections</code>  ：显示节头信息(如果有的话)</p>
+</li>
+<li>
+<p><code>-e </code>，<code>--headers</code>： 显示全部头信息，等价于: -h -l -S</p>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

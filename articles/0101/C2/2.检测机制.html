@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 检测机制,检测机制</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>检测机制</h1>
+<h2>1.静态检测</h2>
+<ul>
+<li>特征码检测：
+<ul>
+<li>一段字节或字符串，用于唯一标识恶意软件</li>
+<li>YARA 是通常用于构建检测规则的工具之一：<a href="https://github.com/VirusTotal/yara">https://github.com/VirusTotal/yara</a></li>
+<li>特征码检测很容易绕过，避免在恶意软件中硬编码即可，尽量使用动态检索或者计算这些值</li>
+</ul>
+</li>
+<li>哈希检测：直接计算恶意软件的哈希值与数据库中的哈希值进行匹配即可</li>
+</ul>
+<h2>2.启发式检测</h2>
+<ul>
+<li>静态启发式分析：将可疑程序的代码片段与启发式数据库中的恶意软件进行比较，如果有一定比例的源码与启发式数据库中的内容匹配，则会进行标记</li>
+<li>动态启发式分析：将可疑程序放在虚拟环境或者沙箱中，又安全解决方案对其进行分析，查找任何的可疑行为</li>
+</ul>
+<h2>3.基于行为检测</h2>
+<ul>
+<li>恶意软件运行时，安全解决方案将查找运行中的进程所产生的可疑行为</li>
+<li>一旦检测到可疑行为，将会对正在运行的进程内存执行扫描，如果是恶意的，则将其终止</li>
+<li>避免基于行为的检测方法是让进程表现为良性，可以使用内存加密来绕过内存扫描</li>
+</ul>
+<h2>4.API HooKing</h2>
+<ul>
+<li>主要是 EDR 使用</li>
+<li>主要原理是拦截和分析常被滥用的 API，这就允许它在 API 被混淆或加密后查看其传递内容</li>
+</ul>
+<p><img src="/0101/C2/assets/2.%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6/image-20250815155031-ztomoea-1755700050394-4.png" alt="image-20250815155031-ztomoea"></p>
+<h2>5.IAT 检查</h2>
+<p>IAT 检查：</p>
+<ul>
+<li>PE 结构中的导入地址表 IAT，包含了 PE 在运行是所使用的函数名</li>
+<li>规避 IAT 的一种解决方案是使用 API 哈希</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

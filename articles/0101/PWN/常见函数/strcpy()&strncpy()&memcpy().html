@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># strcpy() & strncpy() & memcpy(),strcpy() & strncpy() & memcpy()</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>strcpy() &amp; strncpy() &amp; memcpy()</h1>
+<h2>1.strcpy()</h2>
+<pre><code class="language-c">char *strcpy(char* dest, const char *src);
+</code></pre>
+<ul>
+<li>#include &lt;string.h&gt; 和 #include &lt;stdio.h&gt;</li>
+<li>把从src地址开始且<strong>含有NULL结束符</strong>的字符串复制到以dest开始的地址空间</li>
+<li>遇到 <code>\0</code>（ascii码为0）的时候马上结束</li>
+<li>返回一个指向最终的目标字符串 dest 的指针</li>
+<li>注：dest的空间必须要能够存储src的长度加上NULL字符</li>
+</ul>
+<h2>2.strncpy()</h2>
+<pre><code class="language-c">char * strncpy（char * dest，const char * src，size_t n
+</code></pre>
+<ul>
+<li>strncpy()不会向dest追加结束标记’\0’，这就引发了很多不合常理的问题，后续对于字符串的操作可能会造成内存的非法访问</li>
+</ul>
+<h2>3.memcpy()</h2>
+<pre><code class="language-c">void *memcpy(void *str1, const void *str2, size_t n)
+</code></pre>
+<ul>
+<li>#include &lt;string.h&gt;</li>
+<li>从存储区 str2 复制 n 个字节到存储区 str1</li>
+<li>返回一个指向目标存储区 str1 的指针</li>
+<li>相较于 strcpy() 函数，memcpy函数遇到  \x00 将会继续复制，不发生 00 截断</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

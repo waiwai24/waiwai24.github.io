@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 数据链路层概述,数据链路层概述</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>数据链路层概述</h1>
+<blockquote>
+<p>完成<strong>相邻节点</strong>之间数据帧的可靠传输，网络上的主机和路由器等均称为节点</p>
+</blockquote>
+<h2>1.数据链路层的通道</h2>
+<ul>
+<li>
+<p>点对点通信链路：</p>
+<ul>
+<li>常用于两台路由器之间的通信链路</li>
+<li>关注数据成帧、可靠传输、差错检测和流量控制</li>
+</ul>
+</li>
+<li>
+<p>广播信道：</p>
+<ul>
+<li>
+<p>常出现多个主机连接到相同的通信信道，需要协调传输和避免碰撞</p>
+</li>
+<li>
+<p>用于LAN，无线LAN</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>2.数据链路层可能提供的服务</h2>
+<ul>
+<li>成帧：将网络层数据封装在链路层帧的数据字段中，帧头和帧尾包含一些必要的控制信息，比如同步信息、地址信息、差错控制信息等</li>
+<li>链路访问：帧在链路层上传输的规则</li>
+<li>流量控制：控制发送者的发送速度，受节点帧缓冲容量的限制</li>
+<li>可靠交付（可选）（对发送发而言）：无差错传输（无线一般要做）</li>
+<li>差错检测（对接收方而言）：是否存在比特错误</li>
+<li>差错纠正（可选）：判断帧中差错并纠正差错</li>
+<li>半双工和全双工</li>
+</ul>
+<h2>3.适配器——网卡</h2>
+<p>对于一个给定的通信链路，链路层协议 的主要部分在适配器中实现</p>
+
+        </main>
+    </div>
+</body>
+</html>

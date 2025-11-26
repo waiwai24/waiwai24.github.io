@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 固件仿真,固件仿真</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>固件仿真</h1>
+<blockquote>
+<p>QEMU（Quick Emulator）是一款开源的虚拟化工具和模拟器，用于在不同架构和操作系统之间进行硬件级别的虚拟化和模拟。它具有多种用途，包括虚拟机管理、嵌入式系统开发、操作系统开发和测试等</p>
+<p>他支持多平台支持、硬件级模拟、嵌入式开发、虚拟机管理、快照和还原、高度可定制、性能优化</p>
+<p>QEMU 在虚拟化和模拟领域非常有用，它是一个强大的工具，可用于多种开发、测试和虚拟化场景。它还是一个开源项目，因此可以根据需要进行自定义和扩展</p>
+<p>映像文件内核及文件系统下载地址：<a href="https://people.debian.org/~aurel32/%EF%BC%9Bhttps://people.debian.org/~gio/dqib/">https://people.debian.org/~aurel32/；https://people.debian.org/~gio/dqib/</a></p>
+</blockquote>
+<blockquote>
+<p>仿真经验：确定 CPU 架构和信息收集-&gt; 用户模式仿真(可以使用 chroot 更改为固件根目录获得一个 shell)-&gt; 完整的文件系统仿真</p>
+<p>定位到/etc/rc.d 或/etc/init.d 并运行适当的 RC 脚本以启动用户态服务</p>
+</blockquote>
+<h2>1.局部仿真</h2>
+<p>QEMU-User（简称 QEMU-U）是 QEMU 项目的一部分，它提供了一种用户态的 CPU 模拟，允许在一个架构上运行的二进制程序在不同架构的系统上执行。具体来说，QEMU-User 允许将一个 CPU 架构的二进制程序在另一个 CPU 架构的系统上运行，而不需要完全模拟整个虚拟机。</p>
+<p>如果仅仅只有单个 elf 静态链接文件，那么可以采用局部仿真的方法进行启动 例如 arm 架构的可以直接使用如下命令，然后监听 1234 端口，等待 gdb 连接。</p>
+<p>这样就可以开启一个 12345 端口的 server，然后可以在另一个终端中使用 gdb 的 <code>target remote</code> 命令进行连接，然后调试</p>
+<pre><code class="language-shell">qemu-arm -g 12345 ./elf_fie
+</code></pre>
+<p>如果是动态链接的二进制文件，可以指定共享库的位置，可以使用 qemu-user 的 <code>-L</code> 选项指定当前目录，然后将动态库存放于当目录的 lib 子目录中</p>
+<h2>2.系统仿真</h2>
+<p>仿真的前提：</p>
+<ul>
+<li>QEMU 磁盘映像文件（qcow2）</li>
+<li>为目标架构编译的 Linux 内核映像</li>
+<li>初始 RAM 磁盘映像（initrd）（有时需要）</li>
+</ul>
+<h3>2.1 qemu 仿真脚本</h3>
+<p>QEMU-System 是 QEMU 项目的一部分，它提供了完整的虚拟化和仿真环境，允许用户模拟整个计算机系统，包括 CPU、内存、外部设备等。QEMU-System 是一种强大的工具，可用于多种用途，包括虚拟化、操作系统开发、嵌入式系统测试和仿真等。</p>
+<p>QEMU-System 是一个非常强大和灵活的工具，广泛用于虚拟化、操作系统开发、嵌入式系统测试和仿真等领域。它是一个开源项目，因此用户可以根据需要进行自定义和扩展。</p>
+<p>如果有文件系统，就可以使用 qemu-system 来进行系统仿真 举个例子来说明各个参数</p>
+<pre><code class="language-sh">sudo qemu-system-arm \
+	-M vexpress-a9 \
+	-kernel vmlinuz-3.2.0-4-vexpress \
+	-initrd initrd.img-3.2.0-4-vexpress \
+	-drive if=sd,file=debian_wheezy_armhf_standard.qcow2 \
+	-append &quot;root=/dev/mmcblk0p2 console=ttyAMA0&quot; \
+	-net nic \
+	-net tap,ifname=tap0,script=no,downscript=no \
+	-nographic
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-M &lt;machine&gt;</code></td>
+<td>指定仿真目标机器类型（如：<code>pc</code>、<code>vexpress-a9</code>）</td>
+</tr>
+<tr>
+<td><code>-kernel &lt;file&gt;</code></td>
+<td>指定内核映像文件</td>
+</tr>
+<tr>
+<td><code>-initrd &lt;file&gt;</code></td>
+<td>指定初始 RAM 磁盘映像文件</td>
+</tr>
+<tr>
+<td><code>-drive &lt;opts&gt;</code></td>
+<td>高级硬盘映像文件配置选项（如：<code>file=&lt;file&gt;,if=&lt;interface&gt;,media=&lt;media&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-drive file=&lt;file&gt;</code></td>
+<td>指定硬盘映像文件</td>
+</tr>
+<tr>
+<td><code>-append &lt;cmdline&gt;</code></td>
+<td>向内核传递命令行参数</td>
+</tr>
+<tr>
+<td><code>-net nic</code></td>
+<td>添加一个虚拟网络接口卡（默认为 <code>tap0</code>）</td>
+</tr>
+<tr>
+<td><code>-net user</code></td>
+<td>使用用户模式网络堆栈</td>
+</tr>
+<tr>
+<td><code>-net tap,&lt;opts&gt;</code></td>
+<td>使用 TAP 接口进行网络配置（如：<code>ifname=&lt;tapN&gt;</code>、<code>script=&lt;script&gt;</code>、<code>downscript=&lt;script&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-netdev &lt;opts&gt;</code></td>
+<td>高级网络配置选项（例如：<code>tap,id=&lt;id&gt;,ifname=&lt;tapN&gt;,script=&lt;script&gt;,downscript=&lt;script&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-nographic</code></td>
+<td>禁用图形输出，所有输出通过控制台</td>
+</tr>
+<tr>
+<td><code>-smp &lt;n&gt;</code></td>
+<td>指定虚拟机使用的虚拟 CPU 数量</td>
+</tr>
+<tr>
+<td><code>-m &lt;size&gt;</code></td>
+<td>指定虚拟机内存大小（例如：<code>512M</code>、<code>1G</code>）</td>
+</tr>
+<tr>
+<td><code>-cpu &lt;model&gt;</code></td>
+<td>指定虚拟 CPU 模型（如：<code>qemu64</code>、<code>host</code>）</td>
+</tr>
+<tr>
+<td><code>-hda &lt;file&gt;</code></td>
+<td>指定第一个虚拟硬盘映像文件</td>
+</tr>
+<tr>
+<td><code>-hdb &lt;file&gt;</code></td>
+<td>指定第二个虚拟硬盘映像文件</td>
+</tr>
+<tr>
+<td><code>-hdc &lt;file&gt;</code></td>
+<td>指定第三个虚拟硬盘映像文件</td>
+</tr>
+<tr>
+<td><code>-hdd &lt;file&gt;</code></td>
+<td>指定第四个虚拟硬盘映像文件</td>
+</tr>
+<tr>
+<td><code>-cdrom &lt;file&gt;</code></td>
+<td>指定 CD-ROM 映像文件</td>
+</tr>
+<tr>
+<td><code>-boot &lt;device&gt;</code></td>
+<td>指定启动设备顺序（例如：<code>a</code>、<code>c</code>、<code>d</code>、<code>n</code>）</td>
+</tr>
+<tr>
+<td><code>-device &lt;device&gt;</code></td>
+<td>添加虚拟设备（例如：<code>virtio-net-device,netdev=&lt;id&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-serial &lt;opts&gt;</code></td>
+<td>配置虚拟机的串行端口（如：<code>file:&lt;file&gt;</code>、<code>pty</code>、<code>tcp:&lt;host&gt;:&lt;port&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-monitor &lt;opts&gt;</code></td>
+<td>配置 QEMU 监视器（如：<code>file:&lt;file&gt;</code>、<code>stdio</code>、<code>tcp:&lt;host&gt;:&lt;port&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-snapshot</code></td>
+<td>启动虚拟机时不保存更改（快照模式）</td>
+</tr>
+<tr>
+<td><code>-usb</code></td>
+<td>启用 USB 支持</td>
+</tr>
+<tr>
+<td><code>-device usb-&lt;device&gt;</code></td>
+<td>添加 USB 设备（如：<code>usb-mouse</code>、<code>usb-keyboard</code>、<code>usb-storage</code>）</td>
+</tr>
+<tr>
+<td><code>-redir &lt;opts&gt;</code></td>
+<td>重定向主机到虚拟机的网络端口（如：<code>tcp:&lt;host-port&gt;::&lt;guest-port&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-display &lt;opts&gt;</code></td>
+<td>配置显示输出（如：<code>sdl</code>、<code>curses</code>、<code>gtk</code>、<code>vnc=&lt;host&gt;:&lt;port&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-spice &lt;opts&gt;</code></td>
+<td>配置 SPICE 协议支持，用于高性能的远程显示（如：<code>port=&lt;port&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>-enable-kvm</code></td>
+<td>启用 KVM 加速（需要硬件支持）</td>
+</tr>
+<tr>
+<td><code>-full-screen</code></td>
+<td>以全屏模式启动虚拟机</td>
+</tr>
+<tr>
+<td><code>-pidfile &lt;file&gt;</code></td>
+<td>将 QEMU 进程 ID 写入指定文件</td>
+</tr>
+<tr>
+<td><code>-daemonize</code></td>
+<td>以守护进程模式运行 QEMU</td>
+</tr>
+<tr>
+<td><code>-rtc &lt;opts&gt;</code></td>
+<td>配置 RTC 选项（如：<code>base=utc</code>、<code>base=localtime</code>、<code>clock=host</code>）</td>
+</tr>
+<tr>
+<td><code>-name &lt;name&gt;</code></td>
+<td>指定虚拟机名称</td>
+</tr>
+<tr>
+<td><code>-uuid &lt;uuid&gt;</code></td>
+<td>指定虚拟机 UUID</td>
+</tr>
+</tbody>
+</table>
+<p>其他结构示例：</p>
+<pre><code class="language-sh">sudo qemu-system-mips \
+	-M malta \
+	-kernel vmlinux-3.2.0-4-4kc-malta \
+	-hda debian_wheezy_mips_standard.qcow2 \
+	-append &quot;root=/dev/sda1 console=tty0&quot; \
+	-net nic -net tap,ifname=tap0,script=no,downscript=no \
+	-nographic
+</code></pre>
+<pre><code class="language-sh">sudo qemu-system-mipsel \
+	-M malta \
+	-kernel vmlinux-3.2.0-4-4kc-malta \
+	-hda debian_wheezy_mipsel_standard.qcow2 \
+	-append &quot;root=/dev/sda1 console=tty0&quot; \
+	-net nic -net tap,ifname=tap0,script=no,downscript=no \
+	-nographic
+</code></pre>
+<h3>2.2 qemu 网络配置</h3>
+<p>为了让虚拟机能够和 qmu 通信，需要配置一下网络：</p>
+<p>配置网络的基本原理：</p>
+<p><img src="/0101/IOT/固件基础/assets/4.%E5%9B%BA%E4%BB%B6%E4%BB%BF%E7%9C%9F/IOT%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA34-1739666209045-3.png" alt="IOT 环境搭建 34"></p>
+<p>宿主机工具安装：</p>
+<pre><code class="language-shell">sudo apt install bridge-utils uml-utilities
+</code></pre>
+<p>网络配置脚本 <code>net.sh</code>:(配置成功，会多出两个虚拟网卡 <code>br0</code> 和 <code>tap0</code>, 每次重启虚拟机后，都需要重新配置一下)</p>
+<pre><code class="language-shell">#!/bin/sh
+sudo brctl addbr br0                   # 添加一个名为 br0 的网桥
+sudo ifconfig br0 192.168.2.3/24 up    # 启用 br0 接口
+sudo tunctl -t tap0 -u root            # 创建一个只许 root 访问的 tap0 接口
+sudo ifconfig tap0 192.168.2.1/24 up   # 启用 tap0 接口
+sudo brctl addif br0 tap0              # 在虚拟网桥中增加一个 tap0 接口
+</code></pre>
+<p>取消网络配置脚本 <code>unset_net.sh</code>:</p>
+<pre><code class="language-shell">#!/bin/sh
+sudo ifconfig br0 down # 关闭设备
+sudo ifconfig tap0 down # 关闭设备
+sudo brctl delbr br0 # 删除网桥
+sudo tunctl -d tap0 # 删除网卡
+</code></pre>
+<p>qemu 里配置网络与 <code>tap0</code> 在同一网段内：</p>
+<pre><code class="language-sh">ifconfig eth0 192.168.2.2/24 up
+ping 192.168.2.1 
+</code></pre>
+<h3>2.3 上传文件系统</h3>
+<p>传入文件系统</p>
+<pre><code class="language-sh">sudo scp -r ./squashfs-root root@192.168.2.2:/root/
+</code></pre>
+<p>这里有个坑，如果直接传入 squashfs-root，var 下的软链接会出问题，导致后面相关服务无法正常启动</p>
+<p>然后将 squashfs-root 的压缩包传入 qemu 中并解压</p>
+<pre><code class="language-sh">tar -czvf rootfs.tar.gz squashfs-root
+sudo scp -r rootfs.tar.gz root@192.168.2.2:/root/
+tar -xzvf rootfs.tar.gz
+</code></pre>
+<p>出现传输或者连接时的 <code>Unable to negotiate with x.x.x.x port 22: no matching host key type found. Their offer: ssh-rsa,ssh-dss</code> 问题</p>
+<p>在命令行选项中添加 <code> ssh -oHostKeyAlgorithms=+ssh-dss user@host -p port</code> 可以解决算法安全性问题</p>
+<h3>2.4 启动</h3>
+<p>挂载文件系统， chroot 命令创建隔离的文件系统环境，但这会导致无法在隔离的文件系统中访问原本的 /proc 和 /dev 目录，因为它们是特殊的虚拟文件夹（用于提供系统信息和设备的访问）</p>
+<p>为了让 QEMU 环境正常运行，需将原本 QEMU 的 /proc 和 /dev 目录挂载到新创建的隔离环境中</p>
+<pre><code class="language-sh">chmod -R 777 squashfs-root
+cd squashfs-root/
+# 挂载文件系统
+mount --bind /proc proc
+mount --bind /dev dev
+chroot . /bin/sh
+</code></pre>
+<pre><code class="language-shell">/etc/init.d/boot boot     # 创建初始化环境
+generate_default_cert     # 生成 ssl 证书文件
+/etc/init.d/confd start   # 启动 confd 服务
+/etc/init.d/nginx start   # 启动 nginx 服务
+</code></pre>
+<h2>3.自动化仿真工具</h2>
+<p>Firmware Analysis Toolkit（简称 FAT）：<a href="https://github.com/attify/firmware-analysis-toolkit">https://github.com/attify/firmware-analysis-toolkit</a></p>
+<p>主要功能;</p>
+<ul>
+<li>
+<p>固件提取：FAT 允许您从嵌入式设备中提取固件，无论它们是存储在闪存芯片、固态硬盘还是其他媒体上。这是进行后续分析的第一步。</p>
+</li>
+<li>
+<p>固件分析：FAT 提供了各种分析工具，以帮助您深入研究固件的内部结构和组件。这包括文件系统解析、二进制文件分析、文件提取等。</p>
+</li>
+<li>
+<p>字符串提取：该工具还能够从固件中提取字符串，以帮助您识别固件中可能包含的敏感信息或有用的配置参数。</p>
+</li>
+<li>
+<p>固件比较：FAT 允许您比较不同版本的固件，以查找更改和差异。这对于检测漏洞修复或新功能添加等方面很有用。</p>
+</li>
+<li>
+<p>漏洞分析：FAT 包括一些用于静态和动态漏洞分析的工具，以帮助您发现潜在的安全问题。</p>
+</li>
+<li>
+<p>攻击面评估：该工具套件还提供了一些功能，用于评估嵌入式设备的潜在攻击面，帮助您识别可能的攻击矢量。</p>
+</li>
+<li>
+<p>插件系统：FAT 支持插件系统，这意味着您可以编写自定义插件来扩展工具的功能，以满足特定的需求</p>
+</li>
+</ul>
+<p>FirmAE：<a href="https://github.com/pr0v3rbs/FirmAE%EF%BC%9A%E4%B8%80%E4%B8%AA%E6%89%A7%E8%A1%8C%E4%BB%BF%E7%9C%9F%E5%92%8C%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E7%9A%84%E5%85%A8%E8%87%AA%E5%8A%A8%E6%A1%86%E6%9E%B6%E3%80%82FirmAE">https://github.com/pr0v3rbs/FirmAE：一个执行仿真和漏洞分析的全自动框架。FirmAE</a> 使用五种仲裁技术显著提高仿真成功率（从 Firmadyne 的 16.28% 提高到 79.36%）</p>
+<p>firmdyne：<a href="https://github.com/firmadyne/firmadyne">https://github.com/firmadyne/firmadyne</a></p>
+<p>emux：<a href="https://github.com/therealsaumil/emux">https://github.com/therealsaumil/emux</a></p>
+<h2>4.GNS3</h2>
+<p>Graphical Network Simulator(GNS3)是一个网络设备模拟器软件，主要模拟 Cisco 的 Router Switch 和 Firewall</p>
+<h2>5.Unicorn</h2>
+<p>SEmu</p>
+<p>Ghidra Emulato</p>
+
+        </main>
+    </div>
+</body>
+</html>

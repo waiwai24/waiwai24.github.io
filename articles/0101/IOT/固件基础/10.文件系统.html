@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 文件系统,文件系统</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>文件系统</h1>
+<h2>1.简介</h2>
+<p>文件系统是操作系统用于明确存储设备（常见的是磁盘)或分区上的文件的方法和数据结构；即在存储设备上组织文件的方法。操作系统中负责管理和存储文件信息的软件机构称为文件管理系统，简称文件系统</p>
+<p>linux 中的虚拟文件系统 VFS（无法查看大小）：</p>
+<p><img src="/0101/IOT/固件基础/assets/10.%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250325155118168.png" alt="image-20250325155118168"></p>
+<p>虚拟文件系统：</p>
+<p>procfs：/proc目录中包含许多以数字命名的子目录，这些数字表示系统当前正在运行进程的进程号，里面包含对应进程相关的多个信息文件</p>
+<ul>
+<li>/proc/loadavg：包含系统负载平均值；</li>
+<li>/proc/meminfo：包含存储管理统计量；</li>
+<li>/proc/net/dev：包含网卡度量；</li>
+<li>/proc/stat：包含内核统计量；</li>
+<li>/proc/uptime：包含总的系统正常工作时间及空闲时间。</li>
+</ul>
+<p>sysfs：用来导出内核对象(kernel object)的数据、属性到用户空间，以文件目录结构的形式为用户空间提供对这些数据、属性的访问支持</p>
+<p>devfs：通过 /dev 目录中的各项来访问所有设备</p>
+<p>tmpfs：临时性，快速duxie，动态收缩</p>
+<p>根文件系统首先是内核启动时所 mout 的第 1 个文件系统，内核代码映像文件保存在根文件系统中，而系统引导启动程序会在根文件系统挂载之后，从中把一些基本的初始化脚本和服务等加载到内存中去运行</p>
+<h2>2.嵌入式常用文件系统</h2>
+<p><img src="/0101/IOT/固件基础/assets/10.%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250325155730085.png" alt="image-20250325155730085"></p>
+<p>flash 文件系统：</p>
+<ul>
+<li>cramfs 是只读压缩的文件系统，可以将文件系统进行压缩，提高存储效率。</li>
+<li>squashfs 是只读压缩的文件系统，相比于 cramfs 可以支持更大的单个文件大小</li>
+<li>jffs/jffs2 是可以读写，压缩的日志闪存文件系统，主要是应用于 nor flash</li>
+<li>yaffs/yaffs2 是另一种日志闪存文件系统，主要是为 nand 型 flash 设计的文件系统，为了应对 flash 容量的快速增长</li>
+<li>ubifs 是作为 jffs2 的后继文件系统，满足大容量的需求</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

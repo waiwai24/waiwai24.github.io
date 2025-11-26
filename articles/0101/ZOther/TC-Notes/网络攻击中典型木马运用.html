@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 网络攻击中典型木马运用,网络攻击中典型木马运用</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>网络攻击中典型木马运用</h1>
+<blockquote>
+<p>2024.04.23</p>
+<p>无花果，灰鸽子，广外女生，毒药，海龙</p>
+</blockquote>
+<h2>1.木马的概念</h2>
+<p>远控</p>
+<p>通常两个程序：控制端，被控制端</p>
+<h2>2.分类</h2>
+<h3>2.1 从架构设计</h3>
+<ul>
+<li>C/S模式：client，server，被控端从有界面变成无界面，木马程序从有进程到无进程</li>
+<li>B/S模式：browser</li>
+<li>云木马：异步通信木马</li>
+<li>驱动木马：驱动层通信程序开发（底层）</li>
+</ul>
+<h3>2.2 从应用场景</h3>
+<ul>
+<li>前锋马：功能单一，仅完成下载执行功能（美国知名木马PI，常驻内存）</li>
+<li>控守马：也叫功能马，对网路目标进行长期的控守，使用频率高，代码量大</li>
+<li>潜伏马：前两种马掉线后，通过潜伏马再把目标重新连接出来</li>
+<li>代理马：终端连接互联网不仅仅要走代理服务器还需要有身份认证</li>
+<li>桥接马：解决数据包的代理转发</li>
+</ul>
+<h3>2.3 从连接方式</h3>
+<ul>
+<li>直连马</li>
+<li>反弹马：也叫反连马，控制端主动开启监听端口</li>
+<li>异步马：非实时</li>
+</ul>
+<h2>3.木马开发关键技术</h2>
+<h3>3.1 通信技术</h3>
+<ul>
+<li>TCP协议马
+<ul>
+<li>传统协议木马</li>
+<li>基于socks协议族</li>
+<li>采取C/S模式设计架构</li>
+</ul>
+</li>
+<li>http/https协议马</li>
+<li>DNS协议马</li>
+</ul>
+<h3>3.2 启动技术</h3>
+<ul>
+<li>startup启动（startup目录）</li>
+<li>注册表启动（系统注册表键位）</li>
+<li>利用漏洞捆绑启动</li>
+<li>系统劫持启动</li>
+<li>“白加黑”启动</li>
+<li>病毒感染文件启动</li>
+<li>系统服务启动</li>
+</ul>
+<h3>3.3 隐藏技术</h3>
+<ul>
+<li>驱动隐藏</li>
+<li>系统文件替换隐藏</li>
+<li>文件分片重组隐藏</li>
+<li>文件不落地隐藏运行</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># RISC-V指令集数据传输,RISC-V指令集数据传输</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>RISC-V指令集数据传输</h1>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>示例</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lb 取字节</td>
+<td>lb x5,40(x6)</td>
+<td>x5=memory[x6+40]</td>
+</tr>
+<tr>
+<td>lbu 取字节(无符号数)</td>
+<td>lbu x5,40(x6)</td>
+<td>x5=memory[x6+40]</td>
+</tr>
+<tr>
+<td>lw 取字word</td>
+<td>lw x5,40(x6)</td>
+<td>x5=memory[x6+40]</td>
+</tr>
+<tr>
+<td>lwu 取字(无符号数)</td>
+<td>lwu x5,40(x6)</td>
+<td>x5=memory[x6+40]</td>
+</tr>
+<tr>
+<td>ld 取双字</td>
+<td>ld x5,40(x6)</td>
+<td>x5=memory[x6+40]</td>
+</tr>
+<tr>
+<td>sb 存字节</td>
+<td>sb x5,40(x6)</td>
+<td>memory[x6+40]=x5</td>
+</tr>
+<tr>
+<td>sw 存字</td>
+<td>sw x5,40(x6)</td>
+<td>memory[x6+40]=x5</td>
+</tr>
+<tr>
+<td>sd 存双字</td>
+<td>sd x5,40(x6)</td>
+<td>memory[x6+40]=x5</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>load相当于pop 加载到寄存器</p>
+</li>
+<li>
+<p>store相当于push,数据存储到内存中</p>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

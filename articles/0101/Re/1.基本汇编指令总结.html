@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 基本汇编指令总结,基本汇编指令总结</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>基本汇编指令总结</h1>
+<h2>1.NOP</h2>
+<p>No Operation 空指令，意味着什么都不做的意思，程序计数器 PC 加 1，所以占用一个机器周期</p>
+<h2>2.PUSH</h2>
+<p>减少 ESP 的值，再将源操作数复制到堆栈</p>
+<h2>3.POP</h2>
+<p>首先把 ESP 指向的堆栈元素内容复制到一个目的操作数中，再增加 ESP 的值</p>
+<h2>4.CALL</h2>
+<p>先将返回地址压入堆栈，减小 ESP 的值，再把被调用的地址复制到 EIP</p>
+<h2>5.RET</h2>
+<p>从堆栈中把返回地址弹回到 EIP，同时 ESP 增加</p>
+<h2>6.MOV</h2>
+<pre><code>mov destination,source
+</code></pre>
+<h2>7.LEA</h2>
+<pre><code>lea eax, [ebx+4]   ; 计算ebx+4的地址并将结果存储在eax中
+</code></pre>
+<p>Load Effective Address 用于计算有效地址并将其加载到指定的寄存器中。这不是进行实际的内存引用，而是用于地址计算</p>
+<h2>8.ADD</h2>
+<p>将两个数相加，并将结果存储在第一个操作数中</p>
+<h2>9.SUB</h2>
+<p>从第一个操作数中减去第二个操作数的值并保存在第一个操作数</p>
+<h2>10.JMP</h2>
+<p>无条件转移指令，只修改 EIP</p>
+<h2>11.JCC</h2>
+<table>
+<thead>
+<tr>
+<th>JCC 指令</th>
+<th>中文含义</th>
+<th>英文原意</th>
+<th>检查符号位</th>
+<th>典型 C 应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JZ/JE</code></td>
+<td>若为 0 则跳转；若相等则跳转</td>
+<td>jump if zero; jump if equal</td>
+<td><code>ZF=1</code></td>
+<td><code>if (i == j);if (i == 0);</code></td>
+</tr>
+<tr>
+<td><code>JNZ/JNE</code></td>
+<td>若不为 0 则跳转；若不相等则跳转</td>
+<td>jump if not zero; jump if not equal</td>
+<td><code>ZF=0</code></td>
+<td><code>if (i != j);if (i != 0);</code></td>
+</tr>
+<tr>
+<td><code>JS</code></td>
+<td>若为负则跳转</td>
+<td>jump if sign</td>
+<td><code>SF=1</code></td>
+<td><code>if (i &lt; 0);</code></td>
+</tr>
+<tr>
+<td><code>JNS</code></td>
+<td>若为正则跳转</td>
+<td>jump if not sign</td>
+<td><code>SF=0</code></td>
+<td><code>if (i &gt; 0);</code></td>
+</tr>
+<tr>
+<td><code>JP/JPE</code></td>
+<td>若 1 出现次数为偶数则跳转</td>
+<td>jump if Parity (Even)</td>
+<td><code>PF=1</code></td>
+<td><code>(null)</code></td>
+</tr>
+<tr>
+<td><code>JNP/JPO</code></td>
+<td>若 1 出现次数为奇数则跳转</td>
+<td>jump if not parity (odd)</td>
+<td><code>PF=0</code></td>
+<td><code>(null)</code></td>
+</tr>
+<tr>
+<td><code>JO</code></td>
+<td>若溢出则跳转</td>
+<td>jump if overflow</td>
+<td><code>OF=1</code></td>
+<td><code>(null)</code></td>
+</tr>
+<tr>
+<td><code>JNO</code></td>
+<td>若无溢出则跳转</td>
+<td>jump if not overflow</td>
+<td><code>OF=0</code></td>
+<td><code>(null)</code></td>
+</tr>
+<tr>
+<td><code>JC/JB/JNAE</code></td>
+<td>若进位则跳转；若低于则跳转；若不高于等于则跳转</td>
+<td>jump if carry; jump if below; jump if not above equal</td>
+<td><code>CF=1</code></td>
+<td><code>if (i &lt; j);</code></td>
+</tr>
+<tr>
+<td><code>JNC/JNB/JAE</code></td>
+<td>若无进位则跳转；若不低于则跳转；若高于等于则跳转；</td>
+<td>jump if not carry; jump if not below; jump if above equal</td>
+<td><code>CF=0</code></td>
+<td><code>if (i &gt;= j);</code></td>
+</tr>
+<tr>
+<td><code>JBE/JNA</code></td>
+<td>若低于等于则跳转；若不高于则跳转</td>
+<td>jump if below equal; jump if not above</td>
+<td><code>ZF=1或CF=1</code></td>
+<td><code>if (i &lt;= j);</code></td>
+</tr>
+<tr>
+<td><code>JNBE/JA</code></td>
+<td>若不低于等于则跳转；若高于则跳转</td>
+<td>jump if not below equal; jump if above</td>
+<td><code>ZF=0或CF=0</code></td>
+<td><code>if (i &gt; j);</code></td>
+</tr>
+<tr>
+<td><code>JL/JNGE</code></td>
+<td>若小于则跳转；若不大于等于则跳转</td>
+<td>jump if less; jump if not greater equal jump</td>
+<td><code>SF != OF</code></td>
+<td><code>if (si &lt; sj);</code></td>
+</tr>
+<tr>
+<td><code>JNL/JGE</code></td>
+<td>若不小于则跳转；若大于等于则跳转；</td>
+<td>jump if not less; jump if greater equal</td>
+<td><code>SF = OF</code></td>
+<td><code>if (si &gt;= sj);</code></td>
+</tr>
+<tr>
+<td><code>JLE/JNG</code></td>
+<td>若小于等于则跳转；若不大于则跳转</td>
+<td>jump if less equal; jump if not greater</td>
+<td><code>ZF != OF 或 ZF=1</code></td>
+<td><code>if (si &lt;= sj);</code></td>
+</tr>
+<tr>
+<td><code>JNLE/JG</code></td>
+<td>若不小于等于则跳转；若大于则跳转</td>
+<td>jump if not less equal; jump if greater</td>
+<td><code>SF=0F 且 ZF=0</code></td>
+<td><code>if(si&gt;sj)</code></td>
+</tr>
+</tbody>
+</table>
+<h2>12.CMP</h2>
+<p>CMP(比较)指令执行从目的操作数中减去源操作数的隐含减法操作，并且不修改任何操作数</p>
+<p>如果比较的是两个无符号数，则零标志位和进位标志位表示的两个操作数之间的关系：</p>
+<table>
+<thead>
+<tr>
+<th>CMP 结果</th>
+<th>ZF</th>
+<th>CF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的操作数 &lt; 源操作数</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>目的操作数〉源操作数</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>目的操作数 = 源操作数</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>如果比较的是两个有符号数，则符号标志位、零标志位和溢出标志位表示的两个操作数之间的关系：</p>
+<table>
+<thead>
+<tr>
+<th>CMP 结果</th>
+<th>标志位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的操作数 &lt; 源操作数</td>
+<td>SF ≠ OF</td>
+</tr>
+<tr>
+<td>目的操作数〉源操作数</td>
+<td>SF = OF</td>
+</tr>
+<tr>
+<td>目的操作数 = 源操作数</td>
+<td>ZF = 1</td>
+</tr>
+</tbody>
+</table>
+<h2>13.TEST</h2>
+<p>在两个操作数的对应位之间进行 AND 操作，并根据运算结果设置符号标志位、零标志位和奇偶标志位</p>
+<p>与 AND 指令唯一不同的地方是，TEST 指令不修改目标操作数</p>
+<p>TEST 的一个非常普遍的用法是用来测试一方寄存器是否为空:</p>
+<pre><code>TEST ECX, ECX 
+JZ SOMEWHERE
+</code></pre>
+<p>如果 ECX 为零, 设置 ZF 零标志为 1, JZ 跳转，如果 EAX 的二进制某些位为 1 的话, 那么运算的结果就不为零</p>
+<h2>14.AND</h2>
+<p>执行按位 AND 运算来支持逻辑表达式</p>
+<h2>15.OR</h2>
+<p>通过执行按位或运算来支持逻辑表达式</p>
+<h2>16.XOR</h2>
+<p>按位 XOR 运算，当且仅当来自操作数的位不同时，XOR 操作将结果位设置为 1</p>
+<h2>17.NOT</h2>
+<p>NOT 指令不影响标志位，会反转操作数中的位</p>
+<h2>18.SHL</h2>
+<p>逻辑左移，将一个寄存器或内存单元中的数据向左移位，将最后移出的一位写入 CF 中，最低位用 0 补充</p>
+<h2>19.SHR</h2>
+<p>逻辑右移，将一个寄存器或内存单元中的数据向右移位，将最后移出的一位写入 CF 中，最高位用 0 补充</p>
+<h2>20.MUL/IMUL</h2>
+<p>MUL 无符号数的乘法，IMUL 有符号整数乘法</p>
+<h2>21.DIV/IDIV</h2>
+<p>div 为无符号除法，idiv 为有符号除法</p>
+<table>
+<thead>
+<tr>
+<th><strong>被除数</strong></th>
+<th><strong>除数</strong></th>
+<th><strong>商</strong></th>
+<th><strong>余数</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AX</td>
+<td>reg/mem8</td>
+<td>AL</td>
+<td>AH</td>
+</tr>
+<tr>
+<td>DX: AX</td>
+<td>reg/mem16</td>
+<td>AX</td>
+<td>DX</td>
+</tr>
+<tr>
+<td>EDX: EAX</td>
+<td>reg/mem32</td>
+<td>EAX</td>
+<td>EDX</td>
+</tr>
+</tbody>
+</table>
+<h2>22.REP STOS</h2>
+<p>REP（repeat）重复，按计数寄存器 (ECX) 中指定的次数重复执行字符串指令，每执行一次，ECX 减 1，直到 ECX 为 0</p>
+<p>STOPS(store string data)存储字符串数据，将 Al/AX/EAX 的值存储到 [EDI] 指定的内存单元，EDI 同时也会自增</p>
+<p>STOS BYTE PTR ES: [EDI]　　　　简写为 STOSB</p>
+<p>STOS WORD PTR ES: [EDI]　　　　 简写为 STOSW</p>
+<p>STOS DWORD PTR ES: [EDI]　　　　简写为 STOSD</p>
+<h2>23.REP MOVS</h2>
+<p>将数据从 ESI 指向的内存位置复制到 EDI 指向的内存位置。（根据方向标志位的值）这两个寄存器自动地增加或减少：</p>
+<h2>24.LEAVE</h2>
+<pre><code>mov rsp rbp;
+pop rbp;
+</code></pre>
+<h2>25.fld、fstp</h2>
+<p>浮点指令：</p>
+<pre><code>FLD类似于   PUSH指令
+FSTP类似于  POP指令
+FADD类似于  ADD指令 
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

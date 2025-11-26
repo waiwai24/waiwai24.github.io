@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 字符串,字符串</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>字符串</h1>
+<p>[TOC]</p>
+<h2>1.string类型的基本用法</h2>
+<p>使用之前必须要先引入头文件</p>
+<pre><code class="language-cpp">#include &lt;string&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用法</th>
+<th style="text-align:center">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">s1=s2</td>
+<td style="text-align:center">s1内容替换为s2副本</td>
+</tr>
+<tr>
+<td style="text-align:center">s1+s2</td>
+<td style="text-align:center">字符串拼接</td>
+</tr>
+<tr>
+<td style="text-align:center">==，！=，&lt;,&gt;,&lt;=,&gt;=</td>
+<td style="text-align:center">关系运算</td>
+</tr>
+<tr>
+<td style="text-align:center">s[n] 或 <a href="http://s.at">s.at</a>(n)</td>
+<td style="text-align:center">返回位置为n的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">s.length() 或 s.zize()</td>
+<td style="text-align:center">字符个数</td>
+</tr>
+<tr>
+<td style="text-align:center">s.empty()</td>
+<td style="text-align:center">若空，返true，否则false</td>
+</tr>
+</tbody>
+</table>
+<h2>2.字符串函数</h2>
+<p>使用之前必须要先引入头文件</p>
+<pre><code class="language-cpp">#include &lt;cstring&gt;
+</code></pre>
+<h3>2.1计算长度</h3>
+<pre><code class="language-cpp">size.t strlen(const char* s);
+</code></pre>
+<h3>2.2拷贝/复制</h3>
+<p>src内容拷贝到dest中，返回dest的值</p>
+<pre><code class="language-cpp">char* strcpy(char* dest,const char* src);
+char* strncpy(char* dest,const char* src,size.t n)//前n个
+</code></pre>
+<h3>2.3连接</h3>
+<p>将src连接在dest之后，返回dest的值</p>
+<pre><code class="language-cpp">char* strcat(char* dest,const char* src);
+</code></pre>
+<h3>2.4比较</h3>
+<ul>
+<li>从前往后比较ASCII码值：
+<ul>
+<li>s1&gt;s2,返回1</li>
+<li>s1=s2，返回0</li>
+<li>s1&lt;s2,返回-1</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-cpp">int strcmp(const char* s1,const char* s2);
+</code></pre>
+<h3>2.5查找字符</h3>
+<p>第一次出现的位置。</p>
+<p>成功，返回地址；否则，NULL</p>
+<pre><code class="language-cpp">char* strchr(const char* s,int c);
+</code></pre>
+<p>逆序查找：</p>
+<pre><code class="language-cpp">char* strrchr(const char* s,int c);
+</code></pre>
+<h3>2.6查找字串</h3>
+<p>从s1查找s2第一次出现的位置</p>
+<p>成功，返回首次出现的首地址，否则返回NULL</p>
+<pre><code class="language-cpp">char* strstr(const char*s1,const char*s2);
+</code></pre>
+<h3>2.7字符串分解</h3>
+<p>将s根据分隔符分解为若干字串</p>
+<p>返回被分解的第一个子字符串，若无，返回NULL</p>
+<p>反复调用，第一次参数s要指向分解的字符串，后续调用s对应的实参须为NULL</p>
+<pre><code class="language-cpp">char* strtok(char* s,char* delim);
+</code></pre>
+<h3>2.8大小写转换</h3>
+<p>小写——&gt;大写</p>
+<pre><code class="language-cpp">char* strupr(char* s);
+</code></pre>
+<p>大写——&gt;小写</p>
+<pre><code class="language-cpp">char* strlwr(char* s);
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

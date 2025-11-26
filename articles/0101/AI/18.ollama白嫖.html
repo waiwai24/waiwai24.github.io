@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># ollama 白嫖,ollama 白嫖</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>ollama 白嫖</h1>
+<p>大模型查询接口：<code>/api/tags</code></p>
+<p>fofa 搜索语句：<code>app=&quot;Ollama&quot; &amp;&amp; is_domain=false &amp;&amp; status_code=&quot;200&quot; &amp;&amp; body=&quot;Ollama is running&quot;</code></p>
+<p>性能监控包括响应时间和 TPS(每秒事务处理量)测试:</p>
+<pre><code>export async function testPerformance(url: string, model: string) {
+  const startTime = performance.now();
+  
+  try {
+    const response = await fetch(`${url}/api/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: model,
+        prompt: &quot;Hello&quot;, // 使用简单prompt测试性能
+        stream: false
+      })
+    });
+    
+    const endTime = performance.now();
+    const responseTime = endTime - startTime;
+
+    return {
+      status: 'success',
+      responseTime,
+      success: response.ok
+    };
+  } catch (error) {
+    return {
+      status: 'error',
+      message: error.message
+    };
+  }
+}
+
+// TPS测试
+export async function testTPS(url: string, model: string, duration: number = 10000) {
+  const requests = [];
+  const startTime = performance.now();
+  let completedRequests = 0;
+  
+  while (performance.now() - startTime &lt; duration) {
+    requests.push(testPerformance(url, model));
+    completedRequests++;
+  }
+  
+  await Promise.all(requests);
+  
+  const totalTime = (performance.now() - startTime) / 1000; // 转换为秒
+  const tps = completedRequests / totalTime;
+  
+  return {
+    tps: Math.round(tps),
+    totalRequests: completedRequests,
+    duration: totalTime
+  };
+}
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

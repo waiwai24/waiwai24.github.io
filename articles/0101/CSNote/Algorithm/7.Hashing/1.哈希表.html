@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 哈希表,哈希表</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>哈希表</h1>
+<blockquote>
+<p>「哈希表 hash table」，又称「散列表」，其通过建立键 <code>key</code> 与值 <code>value</code> 之间的映射，实现高效的元素查询。具体而言，我们向哈希表输入一个键 <code>key</code> ，则可以在 $O(1)$  时间内获取对应的值 <code>value</code> 。</p>
+</blockquote>
+<h2>1.哈希表常用操作</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>数组</th>
+<th>链表</th>
+<th>哈希表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查找元素</td>
+<td>$O(n)$</td>
+<td>$O(n)$</td>
+<td>$O(1)$</td>
+</tr>
+<tr>
+<td>添加元素</td>
+<td>$O(1)$</td>
+<td>$O(1)$</td>
+<td>$O(1)$</td>
+</tr>
+<tr>
+<td>删除元素</td>
+<td>$O(n)$</td>
+<td>$O(n)$</td>
+<td>$O(1)$</td>
+</tr>
+</tbody>
+</table>
+<p>观察发现，<strong>在哈希表中进行增删查改的时间复杂度都是 $O(1)$</strong> ，非常高效。</p>
+<pre><code class="language-cpp">/* 初始化哈希表 */
+unordered_map&lt;int, string&gt; map;
+
+/* 添加操作 */
+// 在哈希表中添加键值对 (key, value)
+map[12836] = &quot;小哈&quot;;
+map[15937] = &quot;小啰&quot;;
+map[16750] = &quot;小算&quot;;
+map[13276] = &quot;小法&quot;;
+map[10583] = &quot;小鸭&quot;;
+
+/* 查询操作 */
+// 向哈希表输入键 key ，得到值 value
+string name = map[15937];
+
+/* 删除操作 */
+// 在哈希表中删除键值对 (key, value)
+map.erase(10583);
+
+/* 遍历哈希表 */
+// 遍历键值对 key-&gt;value
+for (auto kv: map) {
+    cout &lt;&lt; kv.first &lt;&lt; &quot; -&gt; &quot; &lt;&lt; kv.second &lt;&lt; endl;
+}
+// 单独遍历键 key
+for (auto kv: map) {
+    cout &lt;&lt; kv.first &lt;&lt; endl;
+}
+// 单独遍历值 value
+for (auto kv: map) {
+    cout &lt;&lt; kv.second &lt;&lt; endl;
+}
+</code></pre>
+<h2>2.哈希表简单实现</h2>
+<p>我们先考虑最简单的情况，<strong>仅用一个数组来实现哈希表</strong>。在哈希表中，我们将数组中的每个空位称为「桶 bucket」，每个桶可存储一个键值对。因此，查询操作就是找到 <code>key</code> 对应的桶，并在桶中获取 <code>value</code> 。</p>
+<p>那么，如何基于 <code>key</code> 来定位对应的桶呢？这是通过「哈希函数 hash function」实现的。哈希函数的作用是将一个较大的输入空间映射到一个较小的输出空间。在哈希表中，输入空间是所有 <code>key</code> ，输出空间是所有桶（数组索引）。换句话说，输入一个 <code>key</code> ，<strong>我们可以通过哈希函数得到该 <code>key</code> 对应的键值对在数组中的存储位置</strong>。</p>
+<p>输入一个 <code>key</code> ，哈希函数的计算过程分为以下两步。</p>
+<ol>
+<li>
+<p>通过某种哈希算法 <code>hash()</code> 计算得到哈希值。</p>
+</li>
+<li>
+<p>将哈希值对桶数量（数组长度）<code>capacity</code> 取模，从而获取该 <code>key</code> 对应的数组索引 <code>index</code> 。</p>
+</li>
+</ol>
+<h2>3.哈希冲突与扩容</h2>
+<p>由于输入空间远远大于输出空间，因此，理论上一定存在多对一的输出情况，显然，这种情况是不对的，我们将这种情况称为哈希冲突hash collision</p>
+<p>当哈希表容量越大，多个key被分配到同一个桶的概率就会降低，冲突就会越少，于是我们可以通过扩容哈希表来减少哈希冲突</p>
+<p>「负载因子 load factor」定义为哈希表的元素数量除以桶数量，可以理解为哈希冲突概率，该值越大，哈希冲突发生的概率越大，因为剩下空的桶的数量变少了，新加一个元素就大概率与原来的桶重合</p>
+
+        </main>
+    </div>
+</body>
+</html>

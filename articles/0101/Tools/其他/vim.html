@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># vim,vim</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>vim</h1>
+<blockquote>
+<p>vi/vim 共分为三种模式，<strong>命令模式（Command Mode）、输入模式（Insert Mode）和命令行模式（Command-Line Mode）</strong></p>
+</blockquote>
+<h2>1.命令模式</h2>
+<p>用户刚刚启动 vi/vim，便进入了命令模式</p>
+<p>此状态下敲击键盘动作会被 Vim 识别为命令，而非输入字符，比如我们此时按下 i，并不会输入一个字符，i 被当作了一个命令</p>
+<ul>
+<li>i – 切换到输入模式，在光标当前位置开始输入文本。</li>
+<li>x – 删除当前光标所在处的字符。</li>
+<li>: – 切换到底线命令模式，以在最底一行输入命令。</li>
+<li>a – 进入插入模式，在光标下一个位置开始输入文本。</li>
+<li>o：在当前行的下方插入一个新行，并进入插入模式。</li>
+<li>O – 在当前行的上方插入一个新行，并进入插入模式。</li>
+<li>dd – 剪切当前行。</li>
+<li>yy – 复制当前行。</li>
+<li>p（小写） – 粘贴剪贴板内容到光标下方。</li>
+<li>P（大写）-- 粘贴剪贴板内容到光标上方。</li>
+<li>u – 撤销上一次操作。</li>
+<li>h–左移光标，j–下移光标，k–上移光标，l–右移光标</li>
+<li>Ctrl + r – 重做上一次撤销的操作。</li>
+<li>: w – 保存文件。</li>
+<li>: q – 退出 Vim 编辑器。</li>
+<li>: q! – 强制退出 Vim 编辑器，不保存修改。</li>
+</ul>
+<h2>2.输入模式</h2>
+<p>在命令模式下按下 i 就进入了输入模式，使用 Esc 键可以返回到普通模式</p>
+<ul>
+<li>字符按键以及 Shift 组合，输入字符</li>
+<li>ENTER，回车键，换行</li>
+<li>BACK SPACE，退格键，删除光标前一个字符</li>
+<li>DEL，删除键，删除光标后一个字符</li>
+<li>方向键，在文本中移动光标</li>
+<li>HOME/END，移动光标到行首/行尾</li>
+<li>Page Up/Page Down，上/下翻页</li>
+<li>Insert，切换光标为输入/替换模式，光标将变成竖线/下划线</li>
+<li>ESC，退出输入模式，切换到命令模式</li>
+</ul>
+<h2>3.底线命令模式</h2>
+<p>命令模式下按下 :（英文冒号）就进入了底线命令模式。</p>
+<p>底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。</p>
+<p>在底线命令模式中，基本的命令有（已经省略了冒号）：</p>
+<ul>
+<li><code>:w</code>：保存文件。</li>
+<li><code>:q</code>：退出 Vim 编辑器。</li>
+<li><code>:wq</code>：保存文件并退出 Vim 编辑器。</li>
+<li><code>:q!</code>：强制退出 Vim 编辑器，不保存修改。</li>
+</ul>
+<h2>4.Neovim 配置</h2>
+<p>插件使用：nvchad</p>
+<p>快捷键：</p>
+<ul>
+<li>:NvCheatsheet 或者是 leader + ch：查看快捷键列表，不会给你列出 Neovim 默认自带的那些快捷键，而只会展示自定义快捷键，可以通过 NvChad 默认安装的 WhichKey 插件来查看所有快捷键的列表，NvChad 默认为其绑定的快捷键是 <code>&lt;leader&gt;wK</code>，WhichKey 提示你使用 <code>^D/^U</code> 来翻页——这里的 <code>^</code> 也是一种约定俗成的记号，就表示 <code>Ctrl</code> 键
+<ul>
+<li>名称映射：
+<ul>
+<li><code>&lt;C&gt;</code>-&gt; Ctrl</li>
+<li><code>&lt;leader&gt;</code> -&gt; Space</li>
+<li><code>&lt;A&gt;</code> -&gt; alt</li>
+<li><code>&lt;S&gt;</code> -&gt; shift</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>空格 + e 或者是 ctrl + n ：nvim tree</li>
+<li>ctrl + l ：切换到文件</li>
+<li>ctrl + h : 切换到文件树</li>
+<li>% ：可以用于在前后的括号（包括花括号、圆括号、方括号等）之间快速跳转</li>
+<li><code>*</code> 和 <code>#</code>，分别用于向下和向上查找当前光标所在的单词并跳转到对应位置</li>
+<li><code>gd</code>/<code>gD</code>/<code>gi</code>/<code>gr</code>：分别用于跳转到定义/跳转到声明/跳转到实现/跳转到引用</li>
+<li><code>K</code>：用于查看当前光标所在位置的帮助信息（比如类型信息、函数签名等</li>
+<li><code>&lt;leader&gt;x</code>：关闭当前的标签页（Buffer）</li>
+<li>:Nvdash ：仪表盘</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

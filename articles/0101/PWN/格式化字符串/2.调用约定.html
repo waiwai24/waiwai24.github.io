@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 调用约定,调用约定</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>调用约定</h1>
+<h2>1.x86</h2>
+<p>printf的参数是按参数顺序依次存放在栈上的</p>
+<h2>2.x86-64</h2>
+<p>64位系统中前六个参数按序存放在 RDI(指向format string的指针) 、RSI、RDX、 RCX、 R8以及R9(前5个变长参数)寄存器中，其余的变长参数依次存放在栈上</p>
+<h2>3.底层调用</h2>
+<p>printf底层调用了_vfprintf_internal函数：</p>
+<pre><code class="language-c">int _vfprintf_internal(FILE *stream, const char *format, va_list ap, unsigned int flags);
+</code></pre>
+<ul>
+<li><strong><code>FILE *stream</code></strong>:
+<ul>
+<li>指向文件流的指针，表示输出的目标文件。通常是标准输出（<code>stdout</code>）、标准错误（<code>stderr</code>）或文件指针。</li>
+</ul>
+</li>
+<li><strong><code>const char *format</code></strong>:
+<ul>
+<li>格式化字符串，指定了如何格式化输出。包含普通字符和格式说明符（以 <code>%</code> 开头），这些说明符指示如何格式化后续的参数。</li>
+</ul>
+</li>
+<li><strong><code>va_list ap</code></strong>:
+<ul>
+<li>可变参数列表，由 <code>stdarg.h</code> 中的 <code>va_list</code> 类型定义。表示一组传递给格式化字符串的参数。这个参数列表通过 <code>va_start</code> 宏初始化，并通过 <code>va_end</code> 宏清理。</li>
+</ul>
+</li>
+<li><strong><code>unsigned int flags</code></strong>:
+<ul>
+<li>一组标志，用于控制函数的行为。这些标志通常由库的内部实现使用，以确定不同的格式化选项和功能。</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

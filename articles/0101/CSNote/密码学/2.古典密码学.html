@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 古典密码学,古典密码学</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>古典密码学</h1>
+<h2>1.隐写技术</h2>
+<p>将秘密信息隐藏在某些宿主对象中，使信息传输或存储过程中不被发现和引起注意，接收者按照约定规则可读取秘密信息的技术</p>
+<h2>2.替换密码</h2>
+<ul>
+<li>
+<p><strong>凯撒密码</strong>：对英文字母的典型逐字母加密的密码</p>
+</li>
+<li>
+<p><strong>仿射密码</strong>：要求K1和26互素</p>
+<ul>
+<li>
+<p>加密：</p>
+<p>$\begin{aligned}&amp;K=(K_1,K_2)\&amp;\mathbf{E}_{\mathbf{K}}(\mathbf{p})=(\mathbf{p}\times\mathbf{K}_1+\mathbf{K}_2)\mathrm{~mod~}26=\mathbf{c}\end{aligned}$</p>
+</li>
+<li>
+<p>解密：</p>
+<p>$\begin{aligned}&amp;\mathrm{K=(K_1,K_2)}\&amp;\mathbf{D_K©=(c-K_2)\times K_1^{-1}mod~26=p}\end{aligned}$</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>单表代换密码</strong>：无法抵御频率攻击</p>
+</li>
+<li>
+<p><strong>多表代换密码</strong>：密钥量太大</p>
+<p>​	$\begin{aligned}&amp;\text{明文}p\in(\mathbb{Z}<em>{26})^{\mathrm{m}}\text{,密文}c\in(\mathbb{Z}</em>{26})^{\mathrm{m}}\text{,密钥}k\in(\mathbb{Z}_{26})^{\mathrm{m}}\&amp;\text{加密}\&amp;c=(p_1+k_1,p_2+k_2,…,p_m+k_m)\bmod26;\&amp;\text{解密}\&amp;p=(c_1-k_1,c_2-k_2,…,c_m-k_m)\bmod26.\end{aligned}$</p>
+</li>
+<li>
+<p>简化的多表代换密码----<strong>维吉尼亚密码</strong>(Vixenere Cipher,密钥是一个词的重复)</p>
+<p><img src="/0101/CSNote/密码学/assets/2.%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/image-20240826112652046.png" alt="image-20240826112652046"></p>
+</li>
+</ul>
+<h2>3.置换密码</h2>
+<p>对明文字符或字符组进行位置移动的密码,明文的字母保持相同，但顺序被打乱了</p>
+
+        </main>
+    </div>
+</body>
+</html>

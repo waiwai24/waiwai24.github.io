@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.extractor.py分析</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <p>代码主要定义了两个类：<code>Extractor</code> 类和 <code>ExtractionItem</code> 类，其中的核心函数为 <code>io_find_rootfs</code> 和 <code>extract</code></p>
+<ul>
+<li><code>Extractor</code> 是主类，负责管理提取过程，包括输入文件的解析、提取任务的分发以及输出的组织。它支持多线程处理和递归目录解析
+<ul>
+<li>extract：遍历输入路径中的所有文件，将其加入待处理列表 list 使用多线程池或单线程模式处理每个文件</li>
+<li>extract item：为每个文件创建一个 Extractionltem 对象，并调用其 extract 方法完成提取。</li>
+</ul>
+</li>
+<li><code>ExtractionItem</code> 封装了单个文件的提取状态和逻辑
+<ul>
+<li>主要的提取逻辑：
+<ul>
+<li>检查文件是否已完成提取或超出递归深度</li>
+<li>检查文件类型是否在黑名单中</li>
+<li>使用回 binwalk 工具扫描文件，提取内核和文件系统</li>
+<li>递归处理嵌套的固件结构</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>debug 模式默认 false，可根据调试需求开启</p>
+
+        </main>
+    </div>
+</body>
+</html>

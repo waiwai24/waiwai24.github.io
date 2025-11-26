@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># IO 接口,IO 接口</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>IO 接口</h1>
+<blockquote>
+<p>I/O 接口，或者是 <code>I/O 控制器</code>，是 <code>主机和外设之间地交接界面</code>，通过接口可以 <code>实现主机和外设之间地信息交换</code>。主机和外设具有各自工作特点，它们在信息形式和工作速度具有很大地差异，接口就是为了解决这些差异而设置的</p>
+<p>传输信息通路：IO接口，总线</p>
+<p>对外设进行区分，使CPU访问：端口，编制</p>
+</blockquote>
+<p><img src="/0101/CSNote/计算机原理/6.输入输出系统/assets/2.IO%E6%8E%A5%E5%8F%A3/image-20240619193504873.png" alt="image-20240619193504873"></p>
+<h2>1.功能</h2>
+<ul>
+<li>主机和外设的通信联系控制</li>
+<li>地址译码和设备选择</li>
+<li>数据缓冲</li>
+<li>信号格式转换</li>
+<li>传送控制指令和状态信息</li>
+</ul>
+<h2><a href="http://2.IO">2.IO</a> 端口</h2>
+<p>接口电路中可被 CPU 直接访问的寄存器，主要有数据端口、状态端口和控制端口，若干端口加上相应的控制逻辑电路组成接口；一般 CPU 只能对数据端口执行读写操作、状态端口只能执行读操作、控制端口只能执行写操作</p>
+<h2><a href="http://3.IO">3.IO</a> 端口编址</h2>
+<ul>
+<li>统一编制：将 I/O 设备地址 <strong>看成是内存地址的一部分</strong>，CPU 可以直接用取数、存数等指令对 I/O 设备进行访问
+<ul>
+<li>优点：不需要单独的 IO 指令，访问方便，灵活，有较大的编址空间</li>
+<li>缺点：内存容量变小，数据输入输出等操作变慢</li>
+<li>如IBM公司处理器</li>
+</ul>
+</li>
+<li>独立编制：在内存地址之外额外开辟一块地址空间作为单独外设空间。为了区分对内存、外设的操作，需要设置专门的 I/O 指令来操作外设
+<ul>
+<li>优点：使用专门的 I/O 指令，程序编制清晰，易于理解</li>
+<li>缺点：控制复杂</li>
+<li>如Intel公司处理器</li>
+</ul>
+</li>
+</ul>
+<h2>4.总线</h2>
+<ul>
+<li>数据线（Data Bus），用来传输实际的数据信息</li>
+<li>地址线（Address Bus），用来确定到底把数据传输到哪里去，是内存的某个位置，还是某一个 I/O 设备</li>
+<li>控制线（Control Bus），用来控制对于总线的访问</li>
+</ul>
+<p><img src="/0101/CSNote/计算机原理/6.输入输出系统/assets/2.IO%E6%8E%A5%E5%8F%A3/image-20240619193615008.png" alt="image-20240619193615008"></p>
+
+        </main>
+    </div>
+</body>
+</html>

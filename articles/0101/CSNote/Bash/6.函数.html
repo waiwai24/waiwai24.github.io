@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 函数,函数</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>函数</h1>
+<h2>1.定义</h2>
+<pre><code class="language-shell">[ function ] funname [()]
+
+{
+
+    action;
+
+    [return int;]
+
+}
+</code></pre>
+<ul>
+<li>函数定义可以带参数，也可以不带参数，可以有 return 返回值（数值 0-255, 如果返回的数值不在该范围内，则使用 echo 返回），也可以没有 return 返回值，这样就将默认以最后一条命令运行结果，作为返回值</li>
+<li>调用函数时可以向其传递参数，在函数体内部，通过 <code>$n</code> 或者 <code>${n}</code>（参数数量大于等于 10 时） 的形式来获取参数的值</li>
+<li>函数返回值在调用该函数后通过 <code>$?</code> 来获得</li>
+</ul>
+<p>其余用于处理参数的特殊字符：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数处理</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">$#</td>
+<td style="text-align:left">传递到脚本或函数的参数个数，不包括$0</td>
+</tr>
+<tr>
+<td style="text-align:left">$*</td>
+<td style="text-align:left">以一个单字符串显示所有向脚本传递的参数</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">脚本运行的当前进程ID号</td>
+</tr>
+<tr>
+<td style="text-align:left">$!</td>
+<td style="text-align:left">后台运行的最后一个进程的ID号</td>
+</tr>
+<tr>
+<td style="text-align:left">$@</td>
+<td style="text-align:left">与$*相同，但是使用时加引号，并在引号中返回每个参数。</td>
+</tr>
+<tr>
+<td style="text-align:left">$-</td>
+<td style="text-align:left">显示Shell使用的当前选项，与set命令功能相同。</td>
+</tr>
+<tr>
+<td style="text-align:left">$?</td>
+<td style="text-align:left">显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

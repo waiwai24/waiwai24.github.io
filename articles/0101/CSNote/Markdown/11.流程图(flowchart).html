@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.流程图(flowchart)</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>流程图（float chart）</h1>
+<blockquote>
+<p>流程图（flow chart）是体现封闭系统运动状态的有效展示形式，可以让管理者、实现者清晰的认识系统运转流程，也可以直观的描述工作过程。</p>
+</blockquote>
+<p>[TOC]</p>
+<h2>1.基本的流程图</h2>
+<p>流程图由几何图形节点及连接线组成。几何图形节点是流程图内的各元素的载体，通常用形状来区分其属性，例如圆形代表开始或结束、菱形代表判断等。连接线用于描述几何图形节点之间的联系，可能是有向线段，也可能是无向线段等。</p>
+<p>在 Markdown 中添加 Mermaid 图形，需要声明 Mermaid 类型的代码块，代码如下：</p>
+<pre><code>```mermaid
+&lt;!-- 此处的内容会被渲染成 mermaid 图形 --&gt;
+```
+代码块123
+</code></pre>
+<p>基本的流程图包含：流程图布局方向、几何图形和连接线三个部分组成。</p>
+<h3>基本竖向流程图</h3>
+<pre><code>```mermaid
+graph TD
+	开始--&gt;结束
+```
+</code></pre>
+<pre><code class="language-mermaid">graph TD
+	开始--&gt;结束
+</code></pre>
+<h3>基本横向流程图</h3>
+<pre><code>```mermaid
+graph LR
+	开始--&gt;结束
+```
+</code></pre>
+<pre><code class="language-mermaid">graph LR
+	开始--&gt;结束
+</code></pre>
+<h3>支持的方向</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标志</th>
+<th style="text-align:center">方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TB</td>
+<td style="text-align:center">（top bottom）上到下</td>
+</tr>
+<tr>
+<td style="text-align:center">BT</td>
+<td style="text-align:center">（bottom top）下到上</td>
+</tr>
+<tr>
+<td style="text-align:center">RL</td>
+<td style="text-align:center">右到左</td>
+</tr>
+<tr>
+<td style="text-align:center">LR</td>
+<td style="text-align:center">左到右</td>
+</tr>
+<tr>
+<td style="text-align:center">TD</td>
+<td style="text-align:center">等同于TD</td>
+</tr>
+</tbody>
+</table>
+<h2>2.几何图形结点</h2>
+<p>结点是流程图的核心元素，其要素包括形状和内容</p>
+<h3>默认的结点</h3>
+<pre><code>```mermaid
+graph LR
+	几何图形文本内容
+```
+</code></pre>
+<pre><code class="language-mermaid">graph LR
+	几何图形文本内容
+</code></pre>
+<h3>分离结点ID与内容</h3>
+<pre><code>```mermaid
+graph LR
+	一号节点[文本内容]
+```
+</code></pre>
+<pre><code class="language-mermaid">graph LR
+	一号节点[文本内容]
+</code></pre>
+<h3>结点的形状</h3>
+<ul>
+<li>圆角形结点</li>
+</ul>
+<pre><code>```mermaid
+graph TD
+	结点ID(文本)
+```
+</code></pre>
+<pre><code class="language-mermaid">graph TD
+	结点ID(文本)
+</code></pre>
+<ul>
+<li>圆形结点</li>
+</ul>
+<pre><code>```mermaid
+graph TD
+	结点ID((文本))
+```
+</code></pre>
+<pre><code class="language-mermaid">graph TD
+	结点ID((文本))
+</code></pre>
+<ul>
+<li>非对称形结点</li>
+</ul>
+<pre><code>```mermaid
+graph TD
+	结点ID&gt;文本]
+```
+</code></pre>
+<pre><code class="language-mermaid">graph TD
+	结点ID&gt;文本]
+</code></pre>
+<ul>
+<li>菱形结点</li>
+</ul>
+<pre><code>```mermaid
+graph TD
+	结点ID{文本}
+```
+</code></pre>
+<pre><code class="language-mermaid">graph TD
+	结点ID{文本}
+</code></pre>
+<ul>
+<li>六角形结点</li>
+</ul>
+<pre><code>```mermaid
+graph TD
+	结点ID{{文本}}
+```
+</code></pre>
+<pre><code class="language-mermaid">graph TD
+	结点ID{{文本}}
+</code></pre>
+<h2>3.连接线</h2>
+<p>在流程图中，不同结点之间需要通过连接线来描述其相关性</p>
+<h3>基本连接线</h3>
+<pre><code>```mermaid
+graph LR
+	A--&gt;B
+```
+</code></pre>
+<pre><code class="language-mermaid">graph LR
+	A--&gt;B
+</code></pre>
+<h3>无向线段连接线</h3>
+<pre><code>```mermaid
+graph LR
+	A---B--带文字连接线---C
+```
+</code></pre>
+<pre><code class="language-mermaid">graph LR
+	A---B--带文字连接线---C
+</code></pre>
+<h3>点状连接性线</h3>
+<pre><code>```mermaid
+graph LR
+	A-.-B-.带文字连接线.-&gt;c
+```
+</code></pre>
+<pre><code class="language-mermaid">graph LR
+	A-.-B-.带文字连接线.-&gt;c
+</code></pre>
+<h3>粗实连接线</h3>
+<pre><code>```mermaid
+graph LR
+	A==&gt;B==带文字连接线==&gt;C
+```
+</code></pre>
+<pre><code class="language-mermaid">graph LR
+	A==&gt;B==带文字连接线==&gt;C
+</code></pre>
+<h2>4.视图分组</h2>
+<pre><code>```mermaid
+graph TB
+	c1--&gt;a2
+	subgraph 第一组
+	a1--&gt;a2
+	end
+	subgraph 第二组
+	c1--&gt;c2
+	end
+```
+</code></pre>
+<pre><code class="language-mermaid">graph TB
+	c1--&gt;a2
+	subgraph 第一组
+	a1--&gt;a2
+	end
+	subgraph 第二组
+	c1--&gt;c2
+	end
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

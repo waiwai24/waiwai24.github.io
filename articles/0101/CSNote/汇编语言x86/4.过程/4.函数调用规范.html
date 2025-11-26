@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># cdecl函数调用规范,cdecl函数调用规范</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>cdecl函数调用规范</h1>
+<ul>
+<li>
+<p>由于地址长度64位，所以调用call时RSP-8</p>
+</li>
+<li>
+<p>x86使用栈传参</p>
+</li>
+<li>
+<p>x64使用寄存器和栈传参：</p>
+<ul>
+<li>Unix系统下：分别用rdi、rsi、rdx、rcx、r8、r9来传递参数（参数个数小于7的时候）</li>
+<li>Windows下：分别用rcx,rdx,r8,r9来传递参数（参数个数小于5的时候）</li>
+<li>参数按照从左到右的顺序入栈</li>
+</ul>
+</li>
+<li>
+<p>返回值是通过 RAX 返回的</p>
+</li>
+<li>
+<p>主调者负责在堆栈中分配至少32字节的影子空间以便被调用的子程序可以选择将寄存器保存在这个区域</p>
+</li>
+<li>
+<p>RSP必须进行16字节边界对齐（16的倍数）</p>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

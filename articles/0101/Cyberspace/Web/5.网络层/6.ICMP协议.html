@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># ICMP协议,ICMP协议</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>ICMP协议</h1>
+<blockquote>
+<p>Internet Control Message Protocol 的缩写，即网络控制消息协议</p>
+</blockquote>
+<h2>1.概述</h2>
+<p>由于 IP 层不提供可靠传输，如果包丢了，当通信介质或路由器出现故障、目的端主机不可到达、 报文生存定时器超时、路由器或通信线路拥塞等问题出现时， IP 包都无法正常到达目的主机，因为IP协议并不能通知传输层是否丢包以及丢包的原因，故源主机却无法判断发送失败的原因，故需要使用ICMP</p>
+<p><img src="/0101/Cyberspace/Web/5.网络层/assets/6.ICMP%E5%8D%8F%E8%AE%AE/image-20240325115536555.png" alt="image-20240325115536555"></p>
+<p><img src="/0101/Cyberspace/Web/5.网络层/assets/6.ICMP%E5%8D%8F%E8%AE%AE/image-20240529202108770.png" alt="image-20240529202108770"></p>
+<p>TYPE占一字节，CODE占一字节</p>
+<table>
+<thead>
+<tr>
+<th>TYPE</th>
+<th>CODE</th>
+<th>Description</th>
+<th>Query</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>Echo Reply——回显应答（Ping应答）</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>Network Unreachable——网络不可达</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>Host Unreachable——主机不可达</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>Protocol Unreachable——协议不可达</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>Port Unreachable——端口不可达</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>Fragmentation needed but no frag. bit set——需要进行分片但设置不分片比特</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>Source routing failed——源站选路失败</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6</td>
+<td>Destination network unknown——目的网络未知</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7</td>
+<td>Destination host unknown——目的主机未知</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8</td>
+<td>Source host isolated (obsolete)——源主机被隔离（作废不用）</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>9</td>
+<td>Destination network administratively prohibited——目的网络被强制禁止</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>10</td>
+<td>Destination host administratively prohibited——目的主机被强制禁止</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>11</td>
+<td>Network unreachable for TOS——由于服务类型TOS，网络不可达</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>12</td>
+<td>Host unreachable for TOS——由于服务类型TOS，主机不可达</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>13</td>
+<td>Communication administratively prohibited by filtering——由于过滤，通信被强制禁止</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>14</td>
+<td>Host precedence violation——主机越权</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>15</td>
+<td>Precedence cutoff in effect——优先中止生效</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>Source quench——源端被关闭（基本流控制）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>Redirect for network——对网络重定向</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>Redirect for host——对主机重定向</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>Redirect for TOS and network——对服务类型和网络重定向</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>3</td>
+<td>Redirect for TOS and host——对服务类型和主机重定向</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>0</td>
+<td>Echo request——回显请求（Ping请求）</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>0</td>
+<td>Router advertisement——路由器通告</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>0</td>
+<td>Route solicitation——路由器请求</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>0</td>
+<td>TTL equals 0 during transit——传输期间生存时间为0</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>11</td>
+<td>1</td>
+<td>TTL equals 0 during reassembly——在数据报组装期间生存时间为0</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0</td>
+<td>IP header bad (catchall error)——坏的IP首部（包括各种差错）</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>12</td>
+<td>1</td>
+<td>Required options missing——缺少必需的选项</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>13</td>
+<td>0</td>
+<td>Timestamp request (obsolete)——时间戳请求（作废不用）</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td></td>
+<td>Timestamp reply (obsolete)——时间戳应答（作废不用）</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>0</td>
+<td>Information request (obsolete)——信息请求（作废不用）</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td>0</td>
+<td>Information reply (obsolete)——信息应答（作废不用）</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>17</td>
+<td>0</td>
+<td>Address mask request——地址掩码请求</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>18</td>
+<td>0</td>
+<td>Address mask reply——地址掩码应答</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>2.主要作用</h2>
+<ul>
+<li>
+<p>确认IP包是否成功到达目标地址</p>
+</li>
+<li>
+<p>通知在发送过程中IP包被丢弃的原因</p>
+</li>
+</ul>
+<h2>3.ICMP协议实现–ping/traceroute</h2>
+<ul>
+<li>ping：<strong>查询报文</strong>的应用，验证网络的连通性，统计响应时间和TTL(Time-To-Live(生存时间值)，该字段指定IP包被路由器丢弃之前允许通过的最大网段数量，即当一个ip数据包每经过一个路由器时，该TTL的值就会减1。ping locahost可以看到本机系统TTL的默认开始值，不同系统一般不同)
+<ol>
+<li>向目的服务器执行ping命令，发送回显请求(主机回构建一个ICMP回显请求消息数据包)</li>
+<li>目的服务器发送回显应答</li>
+<li>源服务器显示相关数据</li>
+</ol>
+</li>
+<li>traceroute：<strong>差错报文</strong>的应用（win下是tracert），用来显示IP数据包所走的路径（经过的设备）</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

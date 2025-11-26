@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 整数的运算,整数的运算</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>整数的运算</h1>
+<blockquote>
+<p><strong>隐式转换</strong></p>
+<p>c语言在以下几种情况下会进行隐式转换</p>
+<blockquote>
+<p>1、算术运算式中，低类型能够转换为高类型。</p>
+<p>​    例：int + char +double运算的结果应该为double类型</p>
+<p>2、赋值表达式中，右边表达式的值自动隐式转换为左边变量的类型，并赋值给他。</p>
+<p>​    例：int = float + char,表达式的右边char 类型和float类型进行运算进行隐式转换为float类型，在将float类型转换为int类型赋值给表达式左边的int类型变量。</p>
+<p>3、函数调用中参数传递时，系统隐式地将实参转换为形参的类型后，赋给形参。</p>
+<p>4、函数有返回值时，系统将隐式地将返回表达式类型转换为返回值类型，赋值给调用函数。</p>
+</blockquote>
+<p><strong>2.算术运算的隐式转换</strong></p>
+<p>转换规则如下</p>
+<blockquote>
+<p>1、字符必须先转换为整数(C语言规定字符类型数据和整型数据之间可以通用) 。</p>
+<p>2、short型转换为int型(同属于整型) 。</p>
+<p>3、float型数据在运算时一律转换为双精度(double)型，以提高运算精度(同属于实型) 。其次，有下面的规则。</p>
+<p>同时，算术运算中不同类型之间的运算也遵循隐式转换规则和整型提升规则。</p>
+</blockquote>
+</blockquote>
+<h2>1.无符号整数的加法</h2>
+<p>溢出：运算结果不能放到数据类型的字长限制中（最高位有进位就溢出了）</p>
+<h2>2.有符号整数的加法</h2>
+<p><strong>补码加法溢出：（符号位参与运算）</strong>
+$
+[A+B]<em>{补}=[A]</em>{补}+[B]_{补}
+$</p>
+<ul>
+<li>正溢出：两正数相加，得到非正</li>
+<li>负溢出：两负数相加，得到非负</li>
+</ul>
+<p>溢出的机器检测：</p>
+<ul>
+<li>补码采用两位符号位（变形补码）</li>
+<li>符号位仍参与运算，结果中两位符号标识溢出状态（符号位相同正常，01正溢出，10负溢出）</li>
+</ul>
+<h2>3.有符号整数的减法</h2>
+<p>补码表示法可以将减法变成加法
+$
+[A - B]<em>{补}＝[A]</em>{补} + [-B]_{补}
+$</p>
+<h2>4.整数的乘法</h2>
+<p>乘法器的实现：移位累加乘法器、查询表乘法器、阵列乘法器、Booth 乘法器、Wallace树型乘法器……</p>
+<h2>5.整数的逻辑运算和按位运算</h2>
+<h3>5.1 位操作</h3>
+<ul>
+<li><code>&amp;</code>：按位与：两个位都为1时结果才为1</li>
+<li><code>|</code>：按位或：两个位都为0时结果才为0</li>
+<li><code>~</code>：按位取反：0变1，1变0</li>
+<li><code>^</code>：按位异或：相同为0，相异为1</li>
+<li><code>&lt;&lt;</code>：左移：高位丢弃。低位补0</li>
+<li><code>&gt;&gt;</code>：右移：对于无符号数高位补0，对于有符号数各编译器的处理方法不太一样，有的补符号位（算术右移），有的补0（逻辑右移）</li>
+</ul>
+<h3>5.2 逻辑运算</h3>
+<ul>
+<li><code>&amp;&amp;</code>：逻辑与and</li>
+<li><code>||</code>逻辑或or</li>
+<li><code>!</code>：逻辑非not</li>
+</ul>
+<h3>5.3 掩码</h3>
+<p>掩码是一串二进制代码对目标字段进行<strong>位运算</strong> ，<strong>屏蔽部分输入位</strong></p>
+<p>例：对于任意变量S，如何获得S的最低有效字节？</p>
+<p>如S = 0x89ABCDEF， 则S &amp; 0xFF = 0x000000EF</p>
+
+        </main>
+    </div>
+</body>
+</html>

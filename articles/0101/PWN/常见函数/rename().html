@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># rename(),rename()</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>rename()</h1>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int rename(const char *oldpath, const char *newpath);
+
+#include &lt;fcntl.h&gt;           /* Definition of AT_* constants */
+#include &lt;stdio.h&gt;
+
+int renameat(int olddirfd, const char *oldpath,
+             int newdirfd, const char *newpath);
+
+int renameat2(int olddirfd, const char *oldpath,
+              int newdirfd, const char *newpath, unsigned int flags);
+
+# namedat2()：
+# _GNU_SOURCE
+</code></pre>
+<ul>
+<li>rename():
+<ul>
+<li>将文件名从 <em>oldpath</em> 指向的名称更改为 <em>newpath</em> 指向的名称，两者必须具有相同类型，即两个目录或两个文件，但依赖全局路径</li>
+<li>如果 <em>newpath</em> 已存在，那么在将 <em>oldpath</em> 重命名为 <em>newnpath</em> 之前将其除去。 因此，如果 <em>newpath</em> 指定现有目录的名称，那么它必须是空目录</li>
+<li>成功返回 0，不成功返回非 0</li>
+</ul>
+</li>
+<li>renameat()：
+<ul>
+<li>多了目录文件描述符，支持相对路径和特定目录的 FD</li>
+<li>成功返回 0，不成功返回非 0</li>
+</ul>
+</li>
+<li>renameat2():
+<ul>
+<li>与 renameat()相比， renameat2() 具有额外的 flags 自变量。 不带 flags 参数的 renameat2() 调用等同于 renameat()</li>
+<li>如果 flags 包含 RENAME_EXCHANGE，则不会删除位于 newname 的现有文件，相反，它将被重命名为 oldname。因此，有了这个标志，可以使用 renameat2()原子地交换两个文件</li>
+<li>成功返回 0，不成功返回 -1</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

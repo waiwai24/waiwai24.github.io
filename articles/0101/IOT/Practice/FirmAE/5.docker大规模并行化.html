@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.docker大规模并行化</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <p><a href="http://docker-help.py">docker-help.py</a>:（sudo权限运行）</p>
+<p>几种运行模式：</p>
+<ul>
+<li><code>-ec</code></li>
+<li><code>-ea</code></li>
+<li><code>-er</code></li>
+<li><code>-ed</code></li>
+<li><code>-c</code></li>
+<li><code>-s</code></li>
+</ul>
+<p>主要是对docker_help类进行的相关处理，核心处理函数为run_core</p>
+<p>对于大规模仿真，传入的firmware_path参数应该是以.list结尾的文件或者传入的是一个文件夹，修改num_cores可以控制大规模仿真的并行数</p>
+<p>对于psql数据库连接的问题，psql默认只能从本地连接，修改postgresql.conf，pg_hba.conf，配置监听地址为0.0.0.0/0</p>
+
+        </main>
+    </div>
+</body>
+</html>

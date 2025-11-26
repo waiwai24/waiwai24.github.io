@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 无线局域网,无线局域网</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>无线局域网</h1>
+<h2>1.拓扑结构</h2>
+<ul>
+<li>独立BSS</li>
+<li>有AP的BSS</li>
+<li>扩展服务集ESS</li>
+</ul>
+<h2>2.协议栈</h2>
+<h3>2.1 CSMA/CA协议</h3>
+<p><img src="/0101/Cyberspace/Web/4.局域网/assets/4.%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91/image-20240414001301857.png" alt="image-20240414001301857"></p>
+<p><img src="/0101/Cyberspace/Web/4.局域网/assets/4.%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91/image-20240414001325488.png" alt="image-20240414001325488"></p>
+<ul>
+<li>
+<p>帧间间隔IFS(InterFrame Space)：</p>
+<p>所有的节点完成发送后，必须再等待一段时间 才能发送下一帧，这段时间称帧间间隔，帧间间隔长度取决于帧的类型(优先级越高越短)</p>
+</li>
+</ul>
+<h3>2.2 隐藏站，暴露站</h3>
+<p>这两个问题根源是无线局域网不适用载波监听的方式（上述应用场景1，2）</p>
+<ul>
+<li>
+<p>隐藏站<strong>影响</strong>CSMA/CA协议的运行</p>
+<p>当 A 和 C 检测不到对方的无线信号时，都以为 B 是空闲的，因而都向 B 发送数据，结果发生碰撞，这种未能检测出媒体上已存在的信号的问题</p>
+</li>
+<li>
+<p>暴露站不影响CSMA/CA协议的运行，但是信道利用率下降</p>
+<p>B 向 A 发送数据，而 C 又想和 D 通信。C 检测到媒体上有信号，于是就不敢向 D 发送数据(C检测到B有信号发出，误以为D也接收到，但其实D不在B的作用范围)</p>
+</li>
+<li>
+<p>隐蔽站问题的解决？</p>
+<p>发送数据之前进行预约解决了隐蔽站问题</p>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

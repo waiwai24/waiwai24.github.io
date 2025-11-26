@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 路由器基础,路由器基础</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>路由器基础</h1>
+<h2>1.简介</h2>
+<p>路由器大多是基于 linux 系统，在利用漏洞成功获得一台路由器的控制权后，路由器会返回一个命令行会话 shell，该会话接入路由器的 linux 系统，拥有最高权限，可以通过他对路由器进行管理，如关闭防火墙，修改 DNS，重启路由器等</p>
+<p>路由器的 linux 系统的特点：</p>
+<ul>
+<li>指令架构，路由器是一种嵌入式系统，多采用 mips 和 arm 这两种指令架构</li>
+<li>路由器的 shell 是基于 busybox 的</li>
+</ul>
+<h2>2.MIPS Linux</h2>
+<p>MIPS 属于 RISC 精简指令集体系，普遍应用与小型设备的处理器架构</p>
+<p>路由器的根文件系统与 linux 系统基本一致</p>
+<p>bin，sbin，usr 目录下的 bin，sbin 都是用于存放路由器的应用程序的目录</p>
+<p>lib，usr 目录下的 lib 适用于存放程序运行时所需要的动态库文件的目录</p>
+<p>etc 目录用于存放路由器的配置文件</p>
+<h2>3.BusyBox</h2>
+<p>路由器系统因为存储空间受到限制，所以使用的 shell 通常是经过裁剪的名为 busybox 的程序，在路由器系统的 shell 支持的命令都执行 busybox 的符号链接</p>
+<p>不同路由器上的 busybox 裁剪程度不同，因此每个路由器设备所支持的命令种类也可能不同</p>
+<p>为了收集路由器有关的信息，可以查看路由器文件系统 <code>/bin</code> 目录下的 busybox，用 <code>file</code> 命令查看路由器的架构</p>
+<h2>4.模拟</h2>
+<p>一些特殊的协议：https 协议，ssl 协议的路由器不太好模拟</p>
+<p>模拟时重点关注的文件：/etc/rc.*；/etc/init.d；还有一些 web 服务器的配置文件</p>
+
+        </main>
+    </div>
+</body>
+</html>

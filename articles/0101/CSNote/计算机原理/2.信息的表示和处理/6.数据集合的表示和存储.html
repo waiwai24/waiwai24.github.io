@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 数据集合的表示和存储,数据集合的表示和存储</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>数据集合的表示和存储</h1>
+<h2>1.数组</h2>
+<ul>
+<li>特点：数据的元素类型相同</li>
+<li>数据类型T，整型常数N，声明：T  A[N]
+<ul>
+<li>内存中分配$L\times N$字节的<strong>连续空间</strong>，L为T的大小</li>
+<li>数组起始地址是$X_{A}$</li>
+</ul>
+</li>
+<li>对于嵌套数组，<strong>行优先</strong>（编写代码时如果按照列优先则会影响速度）</li>
+</ul>
+<h2>2.结构体</h2>
+<ul>
+<li>特点：数据的元素类型不同</li>
+<li>struct内部元素在内存中分配一段连续的空间，按一定顺序排列</li>
+<li>结构体内部对齐，可能会需要一些填充</li>
+</ul>
+<p><img src="/0101/CSNote/计算机原理/2.信息的表示和处理/assets/6.%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%AD%98%E5%82%A8/image-20240328110713382.png" alt="image-20240328110713382"></p>
+
+        </main>
+    </div>
+</body>
+</html>

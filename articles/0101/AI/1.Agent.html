@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Agent,Agent</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Agent</h1>
+<h2>1.基础概念</h2>
+<p>Agent：凡是能够跟环境交互的事物都可以称为 Agent</p>
+<p>Agent 能通过传感器感知环境并通过执行器对所处环境产生影响</p>
+<p>Agent 函数：描述 Agent 行为的抽象数学表示，从感知序列到行为的映射, 但并非每个 Agent 函数都可以准确地用程序/机器组合实现</p>
+<p>Agent 程序：Agent 函数的具体实现，从函数到程序，理想到现实的失真，一个 Agent 函数可能对应多个 Agent 程序</p>
+<p>理性 Agent：探索，学习，自主，根据已知。对每一个可能的感知序列，根据已知的感知序列提供的证据和Agent具有的先验知识，理性Agent应该选择能使其<strong>性能度量最大化</strong>的行动</p>
+<h2>2.环境</h2>
+<p>任务环境的规范描述：PEAS 描述：</p>
+<ul>
+<li>performance measure 性能评价指标</li>
+<li>environment 环境</li>
+<li>actuators 行为器</li>
+<li>sensors 感知器</li>
+</ul>
+<h2>3.Agent 的结构</h2>
+<h3>3.1 简单反射 Agent</h3>
+<p><img src="/0101/AI/assets/1.Agent/image-20241224204449123.png" alt="image-20241224204449123"></p>
+<p>存在的问题：<strong>无法处理动态的、随机的、延续的、部分可观察的任务环境</strong></p>
+<h3>3.2 基于模型的反射 Agent</h3>
+<p><img src="/0101/AI/assets/1.Agent/image-20241224204632426.png" alt="image-20241224204632426"></p>
+<p>部分可观察、动态的、片段式的</p>
+<p><strong>更新当前环境状态</strong>：</p>
+<ul>
+<li>世界本身是如何变化的</li>
+<li>Agent 的动作将如何影响世界的变化</li>
+<li>当前的感知如何</li>
+</ul>
+<h3>3.3 基于目标的 Agent</h3>
+<p><img src="/0101/AI/assets/1.Agent/image-20241224204938343.png" alt="image-20241224204938343"></p>
+<p>部分可观察、动态的、连续式的</p>
+<ul>
+<li>主要用在搜索和规划问题中：Agent 需要一个目标来了解期望达到什么状况</li>
+<li>随着达到目标所需要的动作数目的增多，问题越来越难求解</li>
+</ul>
+<h3>3.4 基于效益的 Agent</h3>
+<p><img src="/0101/AI/assets/1.Agent/image-20241224205152882.png" alt="image-20241224205152882"></p>
+<p><strong>部分可观察、动态的、连续式的</strong></p>
+<h3>3.5 学习 Agent</h3>
+<p><img src="/0101/AI/assets/1.Agent/image-20241224205301468.png" alt="image-20241224205301468"></p>
+<p>学习 Agent 的构成：</p>
+<ul>
+<li>评判元件：探查环境状态的改变，给出正或负反馈</li>
+<li>学习元件：根据评判元件的反馈对知识做出适当调整</li>
+<li>性能元件：根据当前感知和学习元件提供的知识做出动作选择</li>
+<li>问题生成元件：建议探索性实验</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

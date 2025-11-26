@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header-style.css">
+    <link rel="stylesheet" href="assets/css/notes.min.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div class="container">
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar menu" aria-expanded="false">
+            <span class="hamburger-icon"></span>
+        </button>
+        <div class="main-content-wrapper">
+            <aside class="sidebar" tabindex="-1" role="navigation" aria-label="Knowledge categories">
+                <div class="sidebar-header">
+                    <div class="search-wrapper">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="search-box" placeholder="Search notes..." class="search-box" aria-label="Search notes">
+                    </div>
+                    <button id="expand-all-btn" class="control-btn" aria-label="Expand all folders" title="Expand all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18v-6l-2 2"/>
+                            <path d="m9 12 2 2"/>
+                            <path d="M14 12v6l2 2"/>
+                            <path d="m14 18-2 2"/>
+                            <path d="M12 6V5a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v1"/>
+                            <path d="M18 6V5a1 1 0 0 0-1-1h-5"/>
+                            <rect width="18" height="18" x="3" y="3" rx="2"/>
+                        </svg>
+                    </button>
+                    <button id="collapse-all-btn" class="control-btn" aria-label="Collapse all folders" title="Collapse all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 12v6l-2-2"/>
+                            <path d="m9 18 2-2"/>
+                            <path d="M14 18v-6l2-2"/>
+                            <path d="m14 12-2-2"/>
+                            <path d="M12 6V5a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v1"/>
+                            <path d="M18 6V5a1 1 0 0 0-1-1h-5"/>
+                            <rect width="18" height="18" x="3" y="3" rx="2"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="file-tree"></nav>
+            </aside>
+            <main id="content-display" class="content" role="main" aria-label="Article content">
+                <div class="content-search-wrapper">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="content-search-box" placeholder="Search content..." class="search-box" aria-label="Search content">
+                </div>
+                <div class="placeholder">
+                    <svg class="placeholder-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.1,18.9l-5.2-5.2l5.2-5.2"/><path d="M8.9,18.9l-5.2-5.2l5.2-5.2"/></svg>
+                    <span>请从左侧选择一篇文章开始阅读</span>
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
+    </footer>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/include-header.js"></script>
+    <script src="assets/js/notes.min.js"></script>
+</body>
+</html>

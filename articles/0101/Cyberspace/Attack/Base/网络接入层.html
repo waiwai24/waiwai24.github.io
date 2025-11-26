@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 网络接入层,网络接入层</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>网络接入层</h1>
+<h2>1.硬件地址欺骗</h2>
+<h2>2.网络监听</h2>
+<ul>
+<li>
+<p>属于被动攻击</p>
+</li>
+<li>
+<p>冲突域：两两之间相互冲突的网络设备所构成的最大网络范围</p>
+</li>
+<li>
+<p>不同网络环境下的嗅探：</p>
+<ul>
+<li>端口镜像：将设备的一个或多个端口的报文复制到本设备的一个监听端口，用于报文分析和监视</li>
+<li>集线器输出：目标设备和分析系统在同一个网段中，然后接入一个集线器</li>
+<li>网络分流器：安置在两个设备之间来嗅探所有流经的网络通信，分为聚合（3端口in/out/monitor）和非聚合（4端口in/out/monitorA/B）的网络分流器</li>
+<li>arp欺骗：发送虚假mac地址和arp消息以劫持其他计算机流量的过程</li>
+</ul>
+</li>
+<li>
+<p>CRC校验机制安全缺陷</p>
+</li>
+</ul>
+<h2>3.802.11无线网络安全</h2>
+<p>加解密技术：WEP，TKIP</p>
+<p>认证技术：RSNA，WPA/WPA2/WPA3，WAPI</p>
+<ul>
+<li>WEP：（Wired Equivalent Privacy）有线等效隐私，只支持数据加解密，不支持身份认证</li>
+<li>TKIP：临时密钥完整性协议</li>
+<li>RSNA：鲁棒安全性网络关联</li>
+<li>WPA：wifi访问保护</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

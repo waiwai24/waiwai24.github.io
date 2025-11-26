@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 计算机的性能,计算机的性能</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>计算机的性能</h1>
+<h2>1.性能的基本指标</h2>
+<ul>
+<li>
+<p>响应时间：完成单个任务所需的时间（个人计算机用户较为关心）</p>
+</li>
+<li>
+<p>吞吐率：单位时间内完成的任务总量（数据中心管理员较为关心）</p>
+</li>
+</ul>
+<p>系统响应时间：</p>
+<ul>
+<li>CPU执行时间：CPU真正花费在程序执行上的时间</li>
+<li>其他时间：IO操作或CPU花在其他用户程序的时间</li>
+</ul>
+<p>计算机系统性能$\ne$CPU性能</p>
+<ul>
+<li>系统性能：系统响应时间</li>
+<li>CPU性能：用户CPU的时间</li>
+</ul>
+<h2>2.CPU执行时间</h2>
+<ul>
+<li>
+<p>时钟周期：硬件时钟所产生的离散时间间隔，CPU中最小的时间单位</p>
+</li>
+<li>
+<p>时钟频率：时钟周期的倒数</p>
+</li>
+<li>
+<p>指令周期数CPI(Clock cycle Per Instruction)：平均每条指令耗费的时钟周期数</p>
+</li>
+</ul>
+<p>$一个程序的CPU执行时间=一个程序的CPU时钟周期数×时钟周期时间$</p>
+<p>$一个程序的CPU时钟周期数=程序的指令数×每条指令的平均时钟周期数（CPI）$</p>
+<h2>3.功耗</h2>
+<ul>
+<li>
+<p>动态功耗：CMOS中主要的能量消耗</p>
+</li>
+<li>
+<p>静态功耗：即使芯片内晶体管关闭，仍有漏电流的发生</p>
+</li>
+</ul>
+<h2>4.Amdahl定律</h2>
+<p>$改进后的执行时间=受改进影响部分的原执行时间/改进提高的倍数+不受影响的执行时间$</p>
+<ul>
+<li>硬件设计的基本策略：使最常用的部件执行的最快</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

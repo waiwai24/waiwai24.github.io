@@ -1,0 +1,799 @@
+/* General Reset & Body */
+html {
+    height: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: #212529;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main Layout - Sticky Footer Implementation */
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.main-content-wrapper {
+    display: flex;
+    flex-grow: 1; /* This makes the content area take up all available space */
+    overflow: hidden; /* Let children handle scrolling */
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 0 0 280px; /* flex-grow, flex-shrink, flex-basis */
+    min-width: 260px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #e9e9e9;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    margin-bottom: 16px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.control-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    padding: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+}
+
+.control-btn:hover {
+    background-color: #e8e8e8;
+    color: #111;
+}
+.control-btn:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 1px;
+}
+
+.search-wrapper {
+    position: relative;
+    flex-grow: 1;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.search-box {
+    width: 100%;
+    padding: 10px 12px 10px 38px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    transition: all 0.2s ease;
+}
+
+.search-box:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: #ccc;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.search-box:focus + .search-icon {
+    color: #333;
+}
+
+/* File Tree */
+#file-tree {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 0 8px;
+}
+#file-tree ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#file-tree ul ul {
+    padding-left: 20px;
+}
+
+#file-tree li {
+    margin-bottom: 2px;
+}
+
+.folder-summary {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: #444;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.folder-summary:hover {
+    background-color: #e8e8e8;
+}
+
+.folder-details:focus-within > .folder-summary {
+    outline: 2px solid #007bff;
+    outline-offset: -2px;
+}
+
+.folder-summary .icon {
+    margin-right: 8px;
+    transition: transform 0.2s ease-in-out;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    transform-origin: center;
+}
+
+.folder-details[open] > .folder-summary .icon {
+    transform: rotate(90deg);
+}
+
+.file {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    color: #555;
+    white-space: nowrap;
+    user-select: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.file .icon {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    color: #777;
+}
+
+.file:hover {
+    background-color: #e8e8e8;
+}
+
+.file.active {
+    background-color: #e0efff;
+    color: #0056b3;
+    font-weight: 500;
+}
+
+.file.active .icon {
+    color: #0056b3;
+}
+
+/* Content Area */
+.content {
+    flex: 1 1 auto;
+    padding: 2rem 3rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #e6e6e6;
+  color: #6c757d;
+  font-size: 0.8rem;
+  flex-shrink: 0; /* Prevents the footer from shrinking */
+  background-color: #f7f7f7;
+}
+
+.placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    color: #b3b3b3;
+    user-select: none;
+    text-align: center;
+}
+
+/* Make article content fill height */
+.content > :not(.content-search-wrapper) {
+    flex-grow: 1;
+}
+
+.placeholder-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 16px;
+    color: #ccc;
+}
+
+/* Markdown content styling */
+.content h1, .content h2, .content h3, .content h4 {
+    color: #212529;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.4em;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+}
+
+.content h1 { font-size: 2em; }
+.content h2 { font-size: 1.5em; }
+.content h3 { font-size: 1.25em; }
+
+.content p {
+    line-height: 1.7;
+    margin-bottom: 1em;
+    color: #333;
+}
+
+.content a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+
+.content code {
+    background-color: #f0f0f0;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 88%;
+    border-radius: 4px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.content pre {
+    position: relative;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 16px;
+    white-space: pre-wrap;
+    line-height: 1.45;
+    word-wrap: break-word;
+}
+
+.content pre:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 0.8em;
+}
+
+.copy-btn:hover {
+    background-color: #5a6268;
+}
+
+.copy-btn.copied {
+    background-color: #28a745;
+}
+
+.content pre code {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    border-radius: 0;
+    white-space: pre-wrap;
+}
+
+.content blockquote {
+    border-left: 4px solid #ced4da;
+    padding-left: 16px;
+    color: #6c757d;
+    margin-left: 0;
+}
+
+.content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.content ul, .content ol {
+    padding-left: 2em;
+    line-height: 1.8;
+}
+
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    display: block;
+    overflow-x: auto;
+}
+
+.content th, .content td {
+    border: 1px solid #dee2e6;
+    padding: 8px 12px;
+}
+
+.content th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Responsive: collapse sidebar into vertical flow on narrow viewports */
+@media (max-width: 900px) {
+    .main-content-wrapper {
+        flex-direction: column;
+        overflow: visible;
+        min-height: calc(100vh - 120px);
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: auto;
+        flex-shrink: 0;
+        border-right: none;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 16px;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+
+    .content {
+        padding: 20px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        max-height: calc(100vh - 120px);
+    }
+    
+    /* 修复iframe滚动问题 */
+    .content iframe {
+        height: auto !important;
+        min-height: 600px;
+        max-height: none !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .content {
+        padding: 16px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar {
+        padding: 12px;
+        max-height: none;
+    }
+    
+    /* 小屏幕iframe特殊处理 */
+    .content iframe {
+        min-height: 400px;
+        width: 100%;
+    }
+}
+
+/* 移动端汉堡菜单显示优化 */
+@media (max-width: 900px) {
+    .sidebar-toggle {
+        display: flex; /* 使用flex确保图标居中 */
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* 可拖拽的悬浮汉堡菜单 */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    z-index: 1200;
+    top: 20px;
+    left: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 6px;
+    border-radius: 8px;
+    cursor: grab; /* 拖拽时显示抓取光标 */
+    transition: all 0.2s ease;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    user-select: none; /* 防止拖拽时选中文本 */
+    touch-action: none; /* 防止触摸设备上的默认行为 */
+}
+
+/* 拖拽中的样式 */
+.sidebar-toggle.dragging {
+    cursor: grabbing;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transform: scale(1.05);
+    z-index: 9999; /* 确保在最上层 */
+}
+
+/* 拖拽时的视觉反馈 */
+.sidebar-toggle:active {
+    transform: scale(0.95);
+}
+
+.sidebar-toggle:hover {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.sidebar-toggle:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* 汉堡菜单图标 - 优化尺寸 */
+.hamburger-icon {
+    position: relative;
+    width: 16px; /* 减小图标宽度 */
+    height: 12px; /* 减小图标高度 */
+    display: block;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px; /* 减细线条 */
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+.hamburger-icon::before {
+    top: 0;
+}
+
+.hamburger-icon::after {
+    bottom: 0;
+}
+
+.hamburger-icon {
+    background-color: #333;
+    transition: all 0.3s ease;
+    height: 1.5px; /* 减细中间线条 */
+}
+
+/* 激活状态的动画 - 适配新尺寸 */
+.sidebar-toggle.is-active .hamburger-icon {
+    background-color: transparent;
+}
+
+.sidebar-toggle.is-active .hamburger-icon::before {
+    top: 5px; /* 调整旋转中心 */
+    transform: rotate(45deg);
+}
+
+.sidebar-toggle.is-active .hamburger-icon::after {
+    bottom: 5px; /* 调整旋转中心 */
+    transform: rotate(-45deg);
+}
+
+/* 移动端汉堡菜单显示优化 */
+@media (max-width: 900px) {
+    .sidebar-toggle {
+        display: flex !important; /* 确保显示 */
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* 增强可见性 */
+.sidebar-toggle {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* 汉堡图标颜色适配 */
+.hamburger-icon,
+.hamburger-icon::before,
+.hamburger-icon::after {
+    background-color: #333;
+}
+
+/* 暗色主题支持 */
+@media (prefers-color-scheme: dark) {
+    .sidebar-toggle {
+        background: rgba(45, 45, 45, 0.95);
+        border-color: rgba(255,255,255,0.1);
+    }
+    
+    .hamburger-icon,
+    .hamburger-icon::before,
+    .hamburger-icon::after {
+        background-color: #fff;
+    }
+}
+
+/* 小屏幕优化 */
+@media (max-width: 600px) {
+    .sidebar-toggle {
+        top: 100px; /* 更小屏幕上进一步下移 */
+        left: 12px;
+        width: 32px; /* 更小尺寸 */
+        height: 32px;
+        padding: 4px;
+    }
+    
+    .hamburger-icon {
+        width: 14px;
+        height: 10px;
+    }
+    
+    .hamburger-icon::before,
+    .hamburger-icon::after,
+    .hamburger-icon {
+        height: 1px; /* 更细的线条 */
+    }
+}
+
+/* 拖拽体验优化 */
+@media (max-width: 900px) {
+    .sidebar-toggle {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* 拖拽时的视觉反馈 */
+    .sidebar-toggle.dragging {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+    
+    /* 防止拖拽时页面滚动 */
+    body.dragging {
+        overflow: hidden;
+        touch-action: none;
+    }
+}
+
+/* 拖拽手柄提示 */
+.sidebar-toggle::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 123, 255, 0.3);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-toggle:hover::after,
+.sidebar-toggle.dragging::after {
+    opacity: 1;
+}
+
+/* 拖拽边界指示器 */
+.drag-boundary {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9998;
+    border: 2px dashed rgba(0, 123, 255, 0.3);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.drag-boundary.active {
+    opacity: 1;
+}
+
+/* overlay when sidebar is open on mobile */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+/* Mobile sidebar behavior */
+@media (max-width: 900px) {
+    .sidebar-toggle { display: block; }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 84%;
+        max-width: 360px;
+        background: #fff;
+        z-index: 1150;
+        overflow-y: auto;
+        transition: left 220ms ease;
+        box-shadow: none;
+    }
+
+    /* when the body has .sidebar-open, slide sidebar in */
+    body.sidebar-open .sidebar {
+        left: 0;
+        box-shadow: 8px 0 30px rgba(0,0,0,0.18);
+    }
+
+    body.sidebar-open .sidebar-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* prevent underlying content scroll when sidebar open */
+    body.sidebar-open {
+        overflow: hidden;
+    }
+}
+
+/* ensure file tree items remain readable */
+.sidebar .folder-summary, .sidebar .file { 
+    padding: 10px 14px;
+}
+
+/* Keyboard focus styles for accessibility */
+.folder-summary:focus, 
+.file:focus {
+    outline: 2px solid #007bff;
+    outline-offset: -1px;
+    background-color: #e8f4ff;
+}
+
+.folder-summary:focus-visible,
+.file:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: -1px;
+    background-color: #e8f4ff;
+}
+
+/* Ensure toggle button is visible and focusable */
+.sidebar-toggle:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Screen reader only class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Content Search Box */
+.content-search-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.content .search-box {
+    width: 100%;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 12px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.content .search-box:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+.content .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.search-results {
+    margin-top: 20px;
+}
+
+.search-result-item {
+    margin-bottom: 10px;
+}
+
+.search-result-link {
+    display: block;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.search-result-link:hover {
+    background-color: #e9e9e9;
+}
+
+.search-result-snippet {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.highlight {
+    background-color: #ffe082;
+    padding: 1px 3px;
+    border-radius: 3px;
+}
+.highlight {
+    background-color: #f0e68c;
+    color: #000000;
+}

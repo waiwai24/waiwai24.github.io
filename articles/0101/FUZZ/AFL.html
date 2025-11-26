@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFL</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <p>coverage and evolve：</p>
+<ul>
+<li>basic block（单入单出）</li>
+<li>hash id for blocks and edges</li>
+<li>store hit count：bitmap
+<ul>
+<li>trace_bits：单个</li>
+<li>virgin_bits：全局</li>
+<li>testcase（whether good）：compare these two type bits</li>
+</ul>
+</li>
+</ul>
+<p>trace coverage：</p>
+<ul>
+<li>idea1：monitor application‘s execution，tool：PIN（only base on intel）hardware</li>
+<li>idea2：instruction pin</li>
+</ul>
+<p>mdoe：</p>
+<ul>
+<li>llvm（src）</li>
+<li>gcc（src）</li>
+<li>qemu（binary only）</li>
+</ul>
+<p>has_new_bits</p>
+<p>security violation：</p>
+<p>asan:buffer overflow, uaf</p>
+<p>ubsan</p>
+<p>datafolwsanitizer</p>
+<p>源码编译程序时进行插桩，以记录代码覆盖率（Code Coverage）</p>
+<p>初始测试集加入输入队列（queue）；</p>
+<p>将队列中的文件按一定的策略进行“突变”；</p>
+<p>如果经过变异文件更新了覆盖范围，则将其保留添加到队列中;</p>
+<p>上述过程会一直循环进行，期间触发了crash的文件会被记录下来</p>
+
+        </main>
+    </div>
+</body>
+</html>

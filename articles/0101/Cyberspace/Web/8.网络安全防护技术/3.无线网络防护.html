@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 无线网络防护,无线网络防护</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>无线网络防护</h1>
+<h2>1.认证机制</h2>
+<ul>
+<li>mac地址过滤（硬件认证）</li>
+<li>服务标识符（SSID）匹配（口令认证）</li>
+</ul>
+<h2>2.认证+加密</h2>
+<ul>
+<li>有线对等加密（WEP）：
+<ul>
+<li>为WLAN提供与有线网络相同级别的安全防护，保障无线通信中数据私密性与访问控制</li>
+<li>工作原理：
+<ul>
+<li>数据加密：链路层采用RC4对称加密</li>
+<li>接入认证：当用户的加密密钥与AP的密钥相同时才获准接入</li>
+</ul>
+</li>
+<li>认证机制过于简单，RC4算法有弱密钥问题，无法应付重传攻击</li>
+<li>安全性较差，已被逐渐淘汰</li>
+</ul>
+</li>
+<li>wifi访问保护（WPA）：
+<ul>
+<li>包含认证，加密和数据完整性校验三个组成部分</li>
+<li>认证：802.1x协议（基于端口的网络接入控制）进行认证，需设置认证服务器（大型企业）或预先共享密钥（家庭网络）</li>
+<li>加密：采用TKIP协议（临时密钥集成协议）</li>
+</ul>
+</li>
+<li>无线局域网鉴别和保密基础结构（WPI）：
+<ul>
+<li>中国无线局域网安全强制性标准</li>
+<li>采取双向认证</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

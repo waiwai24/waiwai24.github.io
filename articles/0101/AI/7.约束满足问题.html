@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 约束满足问题,约束满足问题</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>约束满足问题</h1>
+<h2>1.约束满足问题形式化</h2>
+<p>约束满足问题(Constraint satisfaction problem，CSPs)包含三部分：</p>
+<ul>
+<li>变量集合 X： {X1，…，Xn}。</li>
+<li>值域集合 D： {D1，…，Dn}，每个变量的值域</li>
+<li>约束集合 C：描述变量取值的约束</li>
+</ul>
+<p>求解：</p>
+<ul>
+<li>状态：部分或全部变量的赋值</li>
+<li>目标测试：变量取值是否满足约束
+<ul>
+<li>赋值是否相容(consistent)或合法(legal)：不违反任何约束条件</li>
+<li>完整(complete)赋值：每个变量都已赋值</li>
+</ul>
+</li>
+<li>问题的解：相容的、完整的赋</li>
+</ul>
+<p><img src="/0101/AI/assets/7.%E7%BA%A6%E6%9D%9F%E6%BB%A1%E8%B6%B3%E9%97%AE%E9%A2%98/image-20250103090553740.png" alt="image-20250103090553740"></p>
+<p><img src="/0101/AI/assets/7.%E7%BA%A6%E6%9D%9F%E6%BB%A1%E8%B6%B3%E9%97%AE%E9%A2%98/image-20250103090624129.png" alt="image-20250103090624129"></p>
+<p>约束图：</p>
+<ul>
+<li>二元(Binary) CSP ：每个约束最多涉及的两个变量</li>
+<li>约束图以变量为结点，以约束为边</li>
+<li>利用图结构特点加速搜索</li>
+</ul>
+<h2>2.约束满足问题求解：回溯搜索</h2>
+<table>
+<thead>
+<tr>
+<th>初始状态</th>
+<th>以部分变量的赋值集合作为状态，初始状态为{}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行动</td>
+<td>将某个变量的赋值var value加入到赋值集合中</td>
+</tr>
+<tr>
+<td>转移模型</td>
+<td>RESULT(s, var = value） = s U {var = value}</td>
+</tr>
+<tr>
+<td>目标测试</td>
+<td>是否为每个变量赋值且满足所有约束</td>
+</tr>
+<tr>
+<td>路径代价</td>
+<td>单步代价为1，整个解路径的代价为路径的步数</td>
+</tr>
+</tbody>
+</table>
+<p>搜索空间巨大：</p>
+<ul>
+<li>𝑛个变量，每个变量𝑑个取值</li>
+<li>各层分支因子：𝑛𝑑, (𝑛−1)𝑑,…</li>
+<li>搜索树有𝑛!·𝑑^𝑛个叶结点</li>
+<li>可能的完整赋值只有𝑑^𝑛个</li>
+</ul>
+<p>CSP问题的深度优先搜索：</p>
+<ul>
+<li>每一步只考虑对一个变量赋值</li>
+<li>每一步只考虑合法的赋值</li>
+<li>当没有合法的值赋给某个变量的时候就回溯</li>
+</ul>
+<h2>3.回溯搜索的启发式函数</h2>
+<p>变量的选择：</p>
+<ul>
+<li>
+<p>最小剩余值(MRV, Minimum Remaining Values)：</p>
+<ul>
+<li>
+<p>选择值域最小的约束变元</p>
+</li>
+<li>
+<p>选择“合法”取值最少的变量</p>
+</li>
+<li>
+<p>“失败优先”(fail-first)启发式：选择最可能很快导致失败的变量，实现对搜索树的剪枝，缩小分支因子</p>
+</li>
+</ul>
+</li>
+<li>
+<p>度启发式(Degree heuristic)：</p>
+<ul>
+<li>选择与其它未赋值变量约束最多的变量</li>
+<li>试图降低未来选择的分支因子</li>
+</ul>
+</li>
+<li>
+<p>最少约束值（Least constraining value)：</p>
+<ul>
+<li>优先选择给约束图中的相邻变量留下更多选择的值</li>
+</ul>
+</li>
+</ul>
+<h2>4.约束满足问题的推理：向前检测</h2>
+<p>思想：跟踪未分配变量的剩余合法值，当某个变量没有合法值时回溯</p>
+
+        </main>
+    </div>
+</body>
+</html>

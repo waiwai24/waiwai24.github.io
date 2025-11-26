@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># ARM 基础,ARM 基础</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>ARM 基础</h1>
+<h2>1.简介</h2>
+<p>Intel和ARM之间的区别主要是指令集</p>
+<ul>
+<li>
+<p>CISC 复杂指令集</p>
+</li>
+<li>
+<p>RISC 精简指令集</p>
+</li>
+</ul>
+<p>精简指令集通过减少每条指令的时钟周期来缩短执行时间，可以更快的执行指令，但因为指令较少，因此在实现功能时，会显得比Intel冗长</p>
+<p>其次，在x86上，大多数指令都可以直接对内存中的数据进行操作，而在ARM上，必须先将内存中的数据从内存移到寄存器中，然后再进行操作</p>
+<p>ARM 家族指令集版本和处理器版本之间的映射关系：</p>
+<p>在v3之前，ARM体系结构为little-endian字节序，此后，ARM处理器成为BI-endian，并具允许可切换字节</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ARM 处理器家族</th>
+<th style="text-align:center">ARM 指令集架构</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ARM7</td>
+<td style="text-align:center">ARM v4</td>
+</tr>
+<tr>
+<td style="text-align:center">ARM9</td>
+<td style="text-align:center">ARM v5</td>
+</tr>
+<tr>
+<td style="text-align:center">ARM11</td>
+<td style="text-align:center">ARM v6</td>
+</tr>
+<tr>
+<td style="text-align:center">Cortex-A</td>
+<td style="text-align:center">ARM v7-A</td>
+</tr>
+<tr>
+<td style="text-align:center">Cortex-R</td>
+<td style="text-align:center">ARM v7-R</td>
+</tr>
+<tr>
+<td style="text-align:center">Cortex-M</td>
+<td style="text-align:center">ARM v7-M</td>
+</tr>
+<tr>
+<td style="text-align:center">Cortex-A50</td>
+<td style="text-align:center">ARM v8</td>
+</tr>
+</tbody>
+</table>
+<p>ARM 处理器有两种工作状态 ARM 和 Thumb（Jazelle 暂不考虑）。这两种工作状态之间最大的差异是指令集，ARM 状态的指令长度是 32 位的，Thumb 状态的指令长度是 16 位的（也可能为 32 位）。当编写 ARM shellcode 时，需要使用 16 bit 的 Thumb 指令代替 32 bit 的 ARM 指令，从而避免在指令中出现’\0’截断</p>
+<h2>2.寄存器</h2>
+<p>除了基于 ARMv6-M 和 ARMv7-M 的处理器，其它的 ARM 处理器都有 30 个 32 bit 的通用寄存器。前 17 个寄存器是在用户模式下可访问的，其它的寄存器只有在特定的运行模式下才可以访问（ARMv6-M 和 ARMv7-M 除外，根据指令集架构而定），调试分析时需要注意流水线效应</p>
+<ul>
+<li>R1-R5 相当于 x86 架构下的 EBX，ECX，EDX，ESI，EDI</li>
+<li>子程序返回32位的整数，使用R0返回；返回64位整数时，使用R0返回低位，R1返回高位</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>别名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0</td>
+<td>-</td>
+<td>通用，相当于 x86 下的 eax</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>-</td>
+<td>常用于保存系统调用号</td>
+</tr>
+<tr>
+<td>R8</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R9</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>-</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>R11</td>
+<td>FP</td>
+<td>用于保存栈帧，相当于 x86 下的 ebp</td>
+</tr>
+<tr>
+<td>专用寄存器</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>R12</td>
+<td>IP</td>
+<td>内部调用暂存寄存器</td>
+</tr>
+<tr>
+<td>R13</td>
+<td>SP</td>
+<td>栈顶指针，相当于 x86 下的 esp</td>
+</tr>
+<tr>
+<td>R14</td>
+<td>LR</td>
+<td>链接寄存器，用于保存函数返回地址</td>
+</tr>
+<tr>
+<td>R15</td>
+<td>PC</td>
+<td>用于保存下一条指令的地址，相当于 x86 下的 esp</td>
+</tr>
+<tr>
+<td>CPSR</td>
+<td>-</td>
+<td>当前程序状态寄存器</td>
+</tr>
+</tbody>
+</table>
+<h2>3.ARM指令</h2>
+<p>基本语法：</p>
+<pre><code>MNEMONIC{S}{condition} {Rd}, Operand1, Operand2
+- MNEMONIC：助记符
+- S：可选扩展位
+- condition：执行条件
+- Rd：目的寄存器，存储计算结果
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MOV</td>
+<td>移动数据</td>
+<td>EOR</td>
+<td>单比特异或</td>
+</tr>
+<tr>
+<td>MVN</td>
+<td>取反移动数据</td>
+<td>LDR，LDRB，LDRH</td>
+<td>字32/字节8/半字16加载数据</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>数据相加</td>
+<td>STR，STRB，STRH</td>
+<td>字32/字节8/半字16存储数据</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>数据相减</td>
+<td>LDM</td>
+<td>多次加载</td>
+</tr>
+<tr>
+<td>MUL</td>
+<td>数据相乘</td>
+<td>STM</td>
+<td>多次存储</td>
+</tr>
+<tr>
+<td>LSL</td>
+<td>逻辑左移</td>
+<td>PUSH</td>
+<td>压栈</td>
+</tr>
+<tr>
+<td>LSR</td>
+<td>逻辑右移</td>
+<td>POP</td>
+<td>出栈</td>
+</tr>
+<tr>
+<td>ASR</td>
+<td>算数右移</td>
+<td>B</td>
+<td>立即跳转</td>
+</tr>
+<tr>
+<td>ROR</td>
+<td>循环右移</td>
+<td>BL</td>
+<td>跳转链接，R14保存PC</td>
+</tr>
+<tr>
+<td>CMP</td>
+<td>比较操作</td>
+<td>BX</td>
+<td>带状态切换的分支 ，目标地址处指令既可以ARM指令/Thumb指令</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>单比特与</td>
+<td>BLX</td>
+<td>带返回、状态切换的分支 ，R14保存PC</td>
+</tr>
+<tr>
+<td>ORR</td>
+<td>单比特或</td>
+<td>SWI/SVC</td>
+<td>系统调用</td>
+</tr>
+</tbody>
+</table>
+<pre><code>ldr = Load Word
+ldrh = Load unsigned Half Word
+ldrsh = Load signed Half Word
+ldrb = Load unsigned Byte
+ldrsb = Load signed Bytes
+
+str = Store Word
+strh = Store unsigned Half Word
+strsh = Store signed Half Word
+strb = Store unsigned Byte
+strsb = Store signed Byte
+
+SWP   R0，R1，[R2]     ; 将R2所指向的存储器中的字数据传送到R0，同时将R1 中的字数据传送到R2所指向的存储单元
+SWP   R0，R0，[R1]     ; 该指令完成将R1所指向的存储器中的字数 据与R0中的数据交换
+</code></pre>
+<h2>4.函数调用</h2>
+<p>函数的第 1 ～ 4 个参数分别保存在 r0 ～ r3 寄存器中， 剩下的参数从右向左依次入栈</p>
+<p>被调用者实现栈平衡，函数的返回值保存在 r0 中</p>
+<pre><code>STMFD  R13!，{R0，R4-R12，LR}  ；入栈，将寄存器列表中的寄存器（按照从右到左的方式进行入栈）存入堆栈
+LDMFD  R13!，{R0，R4-R12，PC}  ；出栈，将堆栈内容恢复到寄存器
+PUSH {r0,r4-r7}
+POP {r0,r4-r7}
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

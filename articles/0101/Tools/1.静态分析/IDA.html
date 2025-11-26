@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># IDA,IDA</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>IDA</h1>
+<h2>1.反汇编视图 IDA View-A</h2>
+<ul>
+<li>是主要的数据视图，有两种不同的形式：
+<ul>
+<li>图形视图（默认）</li>
+<li>列表视图（使用 <code>space</code> 键切换）</li>
+</ul>
+</li>
+<li>图形视图：将一个函数分解成了许多基本块
+<ul>
+<li>绿色箭头：分支 yes</li>
+<li>红色箭头：分支 no</li>
+<li>蓝色箭头：执行下一个基本块，顺序执行</li>
+<li><code>ctrl+鼠标滚轮</code>：调整图形大小</li>
+</ul>
+</li>
+<li>列表视图：
+<ul>
+<li>左边的窗口箭头：
+<ul>
+<li>实线：非条件跳转</li>
+<li>虚线：条件跳转</li>
+<li>粗线（实/虚）：逆向流程（循环）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可创建其他的反汇编窗口帮助分析</li>
+</ul>
+<h2>2.桌面使用技巧</h2>
+<ul>
+<li>View-&gt; Open Subviews 恢复无意关闭的数据窗口</li>
+<li>Window-&gt; Reset Desktop 将桌面恢复原始布局</li>
+<li>Windows-&gt; Save Desktop 保存桌面布局</li>
+<li>Windows-&gt; Load Desktop 打开之前保存的一个桌面布局</li>
+</ul>
+<h2>3.假名字</h2>
+<ul>
+<li>
+<p>sub_ 指令和子函数起点</p>
+</li>
+<li>
+<p>locret_ 返回指令</p>
+</li>
+<li>
+<p>loc_ 指令</p>
+</li>
+<li>
+<p>off_ 数据，包含偏移量</p>
+</li>
+<li>
+<p>seg_ 数据，包含段地址值</p>
+</li>
+<li>
+<p>asc_ 数据，ASCII 字符串</p>
+</li>
+<li>
+<p>byte_ 数据，字节（或字节数组）</p>
+</li>
+<li>
+<p>word_ 数据，16 位数据（或字数组）</p>
+</li>
+<li>
+<p>dword_ 数据，32 位数据（或双字数组）</p>
+</li>
+<li>
+<p>qword_ 数据，64 位数据（或 4 字数组）</p>
+</li>
+<li>
+<p>flt_ 浮点数据，32 位（或浮点数组）</p>
+</li>
+<li>
+<p>dbl_ 浮点数，64 位（或双精度数组）</p>
+</li>
+<li>
+<p>tbyte_ 浮点数，80 位（或扩展精度浮点数）</p>
+</li>
+<li>
+<p>stru_ 结构体(或结构体数组)</p>
+</li>
+<li>
+<p>algn_ 对齐指示</p>
+</li>
+<li>
+<p>unk_ 未处理字节</p>
+</li>
+<li>
+<p>LOWORD()得到一个 32bit 数的低 16bit</p>
+</li>
+<li>
+<p>HIWORD()得到一个 32bit 数的高 16bit</p>
+</li>
+<li>
+<p>LOBYTE()得到一个 16bit 数最低（最右边）那个字节</p>
+</li>
+<li>
+<p>HIBYTE()得到一个 16bit 数最高（最左边）那个字节</p>
+</li>
+</ul>
+<h2>4.交叉引用</h2>
+<p>两种基本的交叉引用 xref：</p>
+<ul>
+<li>代码交叉引用</li>
+<li>数据交叉引用</li>
+</ul>
+<p><img src="/0101/Tools/1.静态分析/assets/IDA/image-20240822194232980.png" alt="image-20240822194232980"></p>
+<ul>
+<li>CODE XREF：代码交叉引用</li>
+<li>main+CB：交叉引用的源地址</li>
+<li>↓p：引用位置的相对方向</li>
+</ul>
+<h3>4.1 代码交叉引用</h3>
+<p>代码交叉引用用于一条指令将控制权转交给另一条指令，在 IDA 里也称之为流（flow），同时又分为三种基本的流：</p>
+<ul>
+<li>普通流：是一种最简单的流，表示从一条指令到另一条指令的顺序流，这是默认的执行流，没有特殊的显示标志</li>
+<li>跳转流：每个无条件分支指令和条件分支指令，后缀 <code>j</code> (jump)</li>
+<li>调用流：call 指令, 由函数调用导致的交叉引用用后缀 <code>p</code> (procedure)</li>
+</ul>
+<h3>4.2 数据交叉引用</h3>
+<p>数据交叉引用用于跟踪二进制文件访问数据的方式</p>
+<ul>
+<li>读取交叉引用：访问的是某个内存位置的内容，后缀 <code>r</code></li>
+<li>写入交叉引用：指出了修改变量内容的位置，后缀 <code>w</code></li>
+<li>偏移量交叉引用：引用某个位置的地址，后缀 <code>o</code></li>
+</ul>
+<h2>5.快捷键</h2>
+<ul>
+<li><code>space</code>：在 IDA View 窗口切换视图</li>
+<li><code>shift+F2</code>：脚本</li>
+<li><code>Shift+E</code>：提取数据</li>
+<li><code>F5</code>：汇编代码转成 C 代码</li>
+<li><code>/</code>，<code>;</code>：添加注释</li>
+<li><code>Ctrl+W</code>：保存数据库</li>
+<li><code>Ctrl+Shift+W</code>：唤起 IDB 快照窗口</li>
+<li><code>Ctrl+Shift+T</code>：唤出 IDB 快照弹窗</li>
+</ul>
+<p>search:</p>
+<ul>
+<li><code>shift+F12</code>：打开 string 窗口</li>
+<li><code>ALT+T</code>：子字符串搜索，<code>CTRL+T</code> 可匹配下一个</li>
+<li><code>ALT+B</code>：二进制搜索（十六进制应每两位一个空格），<code>CTRL+B</code> 可匹配下一个</li>
+</ul>
+<p>jump：</p>
+<ul>
+<li><code>G</code>：跳转到指定虚拟地址</li>
+<li><code>Esc</code>：在 IDA View 窗口相当于后退，其他窗口相当于关闭窗口</li>
+<li><code>CTRL+L</code>：名字选择器</li>
+<li><code>CTRL+P</code>：函数选择器</li>
+<li><code>CTRL+S</code>：段选择器</li>
+<li><code>x</code>：查看某个变量或函数的交叉引用</li>
+<li><code>Alt+M</code>：标记</li>
+<li><code>CTRL+M</code>：跳转到标记</li>
+</ul>
+<p>edit:</p>
+<ul>
+<li>
+<p><code>C</code>：将数据转化为指令</p>
+</li>
+<li>
+<p><code>D</code>：将指令转化为数据</p>
+</li>
+<li>
+<p><code>N</code>：更改某个变量或函数的名称</p>
+</li>
+<li>
+<p><code>R</code>：将选中的数字转换为相应的 ASCII 字符</p>
+</li>
+<li>
+<p><code>A</code>：将选中的数字转换为相应的字符串</p>
+</li>
+</ul>
+<p>other：</p>
+<ul>
+<li>快速导航菜单：Windows 上按住 <code>Alt</code> 键（或启用一个系统选项），就能看到菜单选项名称下面的下划线</li>
+<li>命令选项板：默认快捷方式为<code>Ctrl</code>–<code>Shift</code>–<code>P</code></li>
+</ul>
+<h2>6.结构体</h2>
+<p>先在 structure 中添加一个空白的结构体，然后在，local type 中用 c 代码写好结构体的定义</p>
+<h2>7.插件推荐</h2>
+<p>卡巴斯基分析插件：<a href="https://github.com/KasperskyLab/hrtng">https://github.com/KasperskyLab/hrtng</a></p>
+<p>llm：<a href="https://github.com/WPeace-HcH/WPeChatGPT">https://github.com/WPeace-HcH/WPeChatGPT</a></p>
+<p>patch：<a href="https://github.com/keystone-engine/keypatch%EF%BC%9Bhttps://github.com/gaasedelen/patching">https://github.com/keystone-engine/keypatch；https://github.com/gaasedelen/patching</a></p>
+<p>vulfi:<a href="https://github.com/Accenture/VulFi">https://github.com/Accenture/VulFi</a></p>
+
+        </main>
+    </div>
+</body>
+</html>

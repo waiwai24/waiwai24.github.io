@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># JavaScript 基础,JavaScript 基础</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>JavaScript 基础</h1>
+<h2>1.js 引入方式</h2>
+<ul>
+<li><strong>行内式</strong>：写在 HTML 标签内部。</li>
+<li><strong>内嵌式</strong>（内联式）：写在 script 标签中。在 HTML 页面的 <code>&lt;body&gt;</code> 标签里放入 <code>&lt;script type=”text/javascript”&gt;&lt;/script&gt;</code> 标签对，并在 <code>&lt;script&gt;</code> 里书写</li>
+<li><strong>外链式</strong>：引入外部 JS 文件。</li>
+</ul>
+<h2>2.基本语法</h2>
+<ul>
+<li>
+<p>注释：</p>
+<pre><code class="language-javascript">// 我是注释
+
+/*
+ 多行注释 1
+ 多行注释 2
+*/
+</code></pre>
+</li>
+<li>
+<p>JS 对换行、缩进、空格不敏感。每一条语句以分号结尾</p>
+</li>
+<li>
+<p>JS 严格区分大小写。HTML 和 CSS 不区分大小写，但是 JS 严格区分大小写</p>
+</li>
+<li>
+<p>弹窗：alert()语句</p>
+</li>
+<li>
+<p>控制台输出：console.log() 打印日志：</p>
+<ul>
+<li>console.log(‘1’); // 普通打印</li>
+<li>console.warn(‘2’); // 警告打印</li>
+<li>console.error(‘3’); // 错误打印</li>
+</ul>
+</li>
+<li>
+<p>常量：</p>
+<ul>
+<li>数字常量（数值常量）</li>
+<li>字符串常量：‘’</li>
+<li>布尔常量：true，false</li>
+<li>自定义常量：const</li>
+</ul>
+</li>
+<li>
+<p>变量：</p>
+<pre><code class="language-javascript">在 ES6 语法之前
+var name; // 定义一个名为 name 的变量。name 是变量名。
+
+在 ES6 语法及之后的版本里，可以使用let关键字来定义一个变量
+let age; // 定义一个变量
+</code></pre>
+</li>
+<li>
+<p>流程控制：</p>
+<ul>
+<li>选择：if，switch</li>
+<li>循环：for，while</li>
+</ul>
+</li>
+</ul>
+<h2>3.对象</h2>
+<p>JavaScript 中，对象是一组无序的相关属性和方法的集合</p>
+<p>对象的作用是：封装信息。比如 Student 类里可以封装学生的姓名、年龄、成绩等</p>
+<p>对象具有特征（属性）和行为（方法）</p>
+<p>对象的分类：</p>
+<ul>
+<li>
+<p>内置对象：如 Object、Math、Date、String、Array、Number、Boolean、Function 等</p>
+</li>
+<li>
+<p>宿主对象：JS 的运行环境提供的对象，比如 console、document</p>
+</li>
+<li>
+<p>自定义对象：自己创建的对象</p>
+<ul>
+<li>
+<p>自定义对象里面的属性均是键值对（key: value），表示属性和值的映射关系：</p>
+<ul>
+<li>
+<p>键/属性：属性名</p>
+</li>
+<li>
+<p>值：属性值，可以是任意类型的值（数字类型、字符串类型、布尔类型，函数类型等）</p>
+<pre><code class="language-javascript">const obj = {
+    key: value,
+    key: value,
+    key: value,
+};
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>传值与传地址：</p>
+<ul>
+<li>基本数据类型的值直接保存在<strong>栈内存</strong>中</li>
+<li>对象是保存到<strong>堆内存</strong>中的，每创建一个新的对象，就会在堆内存中开辟出一个新的空间。变量保存的是对象的内存地址（对象的引用）
+<ul>
+<li>可以通过 Object.assign() 来复制对象</li>
+</ul>
+</li>
+</ul>
+<p>数组：普通对象是使用字符串作为属性名，而数组是使用数字作为<strong>索引</strong>来操作元素:</p>
+<ul>
+<li>索引：从 0 开始的整数就是索引</li>
+<li>数组可以存储不同类型数据，其它编程语言中数组只能存储相同类型数据</li>
+<li>数组分配的存储空间不一定是连续的。其它语言数组分配的存储空间是连续的</li>
+<li>当数组的存储空间不够时，数组会自动扩容。其它编程语言中数组的大小是固定的，不会自动扩容</li>
+<li>如果访问数组中不存在的索引时，不会报错，会返回undefined</li>
+</ul>
+<pre><code class="language-javascript">let arr1 = []; // 创建一个空的数组
+let arr2 = [1, 2, 3]; // 创建带初始值的数组
+
+let arr = new Array(参数);
+let arr = Array(参数);
+</code></pre>
+<h2>4.基本包装类型</h2>
+<p>属性和方法只能添加给对象，不能添加给基本数据类型</p>
+<p>JS 为我们提供了三个基本包装类：</p>
+<ul>
+<li>
+<p>String()：将基本数据类型字符串，转换为 String 对象。</p>
+</li>
+<li>
+<p>Number()：将基本数据类型的数字，转换为 Number 对象。</p>
+</li>
+<li>
+<p>Boolean()：将基本数据类型的布尔值，转换为 Boolean 对象。</p>
+</li>
+</ul>
+<h2>5.函数</h2>
+<p>将一些功能或语句的<strong>封装</strong>。在需要的时候，通过<strong>调用</strong>的形式，执行这些语句</p>
+<p>函数声明，命名函数：</p>
+<pre><code class="language-javascript">function 函数名([形参1,形参2...形参N]){  // 备注：语法中的中括号，表示“可选”
+	// 函数体语句
+}
+</code></pre>
+<p>函数表达式（匿名函数）：将匿名函数赋值给一个变量。因为，一个匿名函数终究还是要给它一个接收对象，进而方便地调用这个函数</p>
+<pre><code class="language-javascript">const 变量名  = function([形参1,形参2...形参N]){
+	语句....
+}
+</code></pre>
+<p>构造函数 new Function()：用的较少</p>
+<pre><code class="language-javascript">const 变量名/函数名  = new Function('形参1', '形参2', '函数体');
+</code></pre>
+<p>函数调用：</p>
+<pre><code class="language-javascript">// 写法1（最常用）
+函数名();
+
+// 写法2
+函数名.call();
+
+// 写法3 通过对象的方法来调用
+var obj = {
+	a: 'qianguyihao',
+	fn2: function() {
+		console.log('!');
+	},
+};
+
+obj.fn2(); // 调用函数
+</code></pre>
+<p>函数体内可以没有返回值，也可以根据需要加返回值。语法格式：<code>return 函数的返回值</code>，return 只能返回一个值</p>
+
+        </main>
+    </div>
+</body>
+</html>

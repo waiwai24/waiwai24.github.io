@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># C++语言基础,C++语言基础</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>C++语言基础</h1>
+<p>[TOC]</p>
+<h2>1.main函数</h2>
+<p>作为主函数，是程序执行的唯一入口，每个程序有且仅有一个main函数</p>
+<h2>2.初识输入输出</h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;//头文件，预处理指令
+using namespace std;//命名空间，std 是 standard 的缩写，意思是“标准命名空间”
+</code></pre>
+<p>I/O：</p>
+<ul>
+<li>cout 标准输出流——显示器</li>
+<li>cout&lt;&lt; 表达式</li>
+<li>&lt;&lt; 流插入运算符</li>
+</ul>
+<ul>
+<li>cin 标准输入流——键盘</li>
+<li>cin&gt;&gt; 变量  （==只能读取到空格前的内容==）</li>
+<li>&gt;&gt;流读取运算符</li>
+</ul>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+</code></pre>
+<h2>3.字符集、关键字</h2>
+<p>（1）合法字符</p>
+<p>​	除‘@’、‘$’之外的其余键盘符号</p>
+<p>（2）标识符</p>
+<p>​	非数字字符开头，==区分大小写==</p>
+<h2>4.基本数据类型</h2>
+<h3>（1）整型</h3>
+<ul>
+<li>按最高位的作用：
+<ul>
+<li>signed</li>
+<li>unsigned</li>
+</ul>
+</li>
+<li>存储长度：
+<ul>
+<li>short——16位</li>
+<li>int——32位</li>
+<li>long——32位</li>
+<li>long long——64位</li>
+</ul>
+</li>
+</ul>
+<h3>（2）浮点型（均有符号)</h3>
+<ul>
+<li>float——32位</li>
+<li>double——64位</li>
+<li>long double——64位</li>
+</ul>
+<h3>（3）字符型</h3>
+<ul>
+<li>char——8位</li>
+<li>宽字符：
+<ul>
+<li>wchar_t——16位</li>
+</ul>
+</li>
+<li>Unicode字符：
+<ul>
+<li>char16_t——16位</li>
+<li>char32_t——32位</li>
+</ul>
+</li>
+</ul>
+<h3>（4）布尔型</h3>
+<ul>
+<li>true</li>
+<li>false</li>
+<li>转换关系：
+<ul>
+<li>其他→布尔：非0整数为true，0为false</li>
+<li>布尔→其他：true为1，false为0</li>
+</ul>
+</li>
+</ul>
+<h2>5.常量与变量</h2>
+<h3>（1）常量</h3>
+<ul>
+<li>
+<p>整型常量：</p>
+<blockquote>
+<p>如果整数的值超出了相应整型所能表示的范围，成为整数溢出，这将造成程序逻辑上的错误，要特别注意加以避免</p>
+</blockquote>
+<ul>
+<li>十进制</li>
+<li>八进制：以0开头</li>
+<li>十六进制：以0X或0x开头</li>
+</ul>
+</li>
+<li>
+<p>浮点型常量：</p>
+<ul>
+<li>
+<p>十进制</p>
+</li>
+<li>
+<p>科学表示法（E表示法）：</p>
+<pre><code class="language-matlab">3.14159
+0.314159e1
+314.159e-2
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>字符型：</p>
+<ul>
+<li>
+<p>直接用==单引号==括起来，但只能表示一个字符</p>
+</li>
+<li>
+<p>在内存中以ASCII码存储，所以既能以字符形式输出，也能以整数形式输出</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    cout &lt;&lt; 'A' &lt;&lt; endl;
+    cout &lt;&lt; char(65) &lt;&lt; endl;
+    cout &lt;&lt; char('A' + 32) &lt;&lt; endl;
+    cout &lt;&lt; 'A' + 32;
+    return 0;
+}
+</code></pre>
+<pre><code class="language-shell">A
+A
+a
+97
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>字符串：</p>
+<ul>
+<li>用==双引号==括起来</li>
+<li>在内部存储方面，字符型常量储存的其实是数字，而字符串常量常占用连续的存储单元，并在最后一个字符的后面加一个空字符’\0’作为字符串结束标志</li>
+</ul>
+<pre><code class="language-markdown">'a'在内存的存储方式为：a
+&quot;a&quot;在内存的存储方式为：a \0
+空字符串&quot;&quot;在内存的存储方式为: \0
+</code></pre>
+</li>
+<li>
+<p>布尔型</p>
+</li>
+</ul>
+<h3>（2）变量</h3>
+<ul>
+<li>必须先声明后使用</li>
+<li>在初始化时可用等号赋值</li>
+</ul>
+<h3>（3）符号常量</h3>
+<p>当用一个标识符代表一个常量时，称之为符号常量</p>
+<p>也称为宏（Macro）定义，也是预处理指令之一</p>
+<p>格式：</p>
+<pre><code class="language-cpp">#define 标识符 常量 //一般标识符用大写字母组成
+</code></pre>
+<p>eg：</p>
+<pre><code class="language-cpp">#define PI 3.14
+</code></pre>
+<h3>（4）const修饰符</h3>
+<p>const修饰符能够明确指定常量的数据类型，除了基本的数据类型之外，还可以是数组，结构等复杂的数据类型</p>
+<p>使用const修饰符的限制是要求该常量必须进行初始化，即在声明的同时给其赋一个初值，不可以在后续程序中给其赋值</p>
+<p>eg：</p>
+<pre><code class="language-cpp">const double PI = 3.14;
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

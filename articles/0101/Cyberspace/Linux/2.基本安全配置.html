@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 基本安全配置,基本安全配置</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>基本安全配置</h1>
+<ol>
+<li>
+<p>常规安全设置</p>
+<p>：</p>
+<ul>
+<li><strong>文件目录权限设置</strong>：Linux系统中，文件和目录的权限设置非常重要。通过<code>chmod</code>和<code>chown</code>命令，可以确保只有授权的用户或组才能访问、修改或执行特定的文件或目录。</li>
+<li><strong>历史命令记录</strong>：默认情况下，Linux系统会记录用户执行过的命令。但出于安全考虑，可以限制历史命令记录的数量，或者禁用某些用户的历史记录功能。</li>
+<li><strong>登录超时</strong>：设置登录超时时间可以防止未授权用户长时间占用系统资源。当用户在一定时间内没有活动时，系统会自动断开连接。</li>
+</ul>
+</li>
+<li>
+<p>账号安全设置</p>
+<p>：</p>
+<ul>
+<li><strong>锁定不必要的账号</strong>：对于系统中不再使用的账号，应该进行锁定，以防止被恶意用户利用。</li>
+<li><strong>配置账号口令策略</strong>：设置强密码策略，如要求密码长度、复杂度、定期更换等，可以大大提高账号的安全性。</li>
+<li><strong>账号口令审计</strong>：定期审计账号的口令，确保没有使用弱口令或默认口令。</li>
+</ul>
+</li>
+<li>
+<p>系统服务进程安全配置</p>
+<p>：</p>
+<ul>
+<li><strong>服务启动方式</strong>：了解并配置服务的启动方式，如使用systemd或init.d脚本，可以确保服务在系统启动时按照预期运行。</li>
+<li><strong>常见服务的端口号</strong>：了解并配置常见服务的端口号，如SSH、HTTP、HTTPS等，可以防止未经授权的访问。</li>
+<li><strong>进程查看方式</strong>：掌握如何查看系统进程的方法，如使用<code>ps</code>、<code>top</code>、<code>htop</code>等工具，可以帮助管理员及时发现异常进程。</li>
+<li><strong>常见服务的配置文件及安全配置方法</strong>：了解并配置常见服务的配置文件，如<code>/etc/ssh/sshd_config</code>（SSH服务）、<code>/etc/apache2/apache2.conf</code>（Apache HTTP服务）等，可以确保服务按照安全要求运行。</li>
+</ul>
+</li>
+<li>
+<p>其他安全配置</p>
+<p>：</p>
+<ul>
+<li><strong>审计系统</strong>：启用审计系统（如auditd）可以记录系统上的所有活动，包括文件访问、进程创建等，有助于发现潜在的安全问题。</li>
+<li><strong>防火墙配置</strong>：使用防火墙（如iptables或firewalld）可以限制对系统的访问，只允许必要的流量通过。</li>
+<li><strong>安全更新和补丁</strong>：定期更新系统和应用程序以获取最新的安全补丁和修复程序，可以确保系统免受已知漏洞的攻击。 通过以上措施的综合应用，可以大大提高Linux系统的安全性。</li>
+</ul>
+</li>
+</ol>
+
+        </main>
+    </div>
+</body>
+</html>

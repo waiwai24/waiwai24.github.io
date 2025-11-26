@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Unauthorized Access Leads to Sensitive Information Leakage in Vaelsys V4 Platform,Unauthorized Access Leads to Sensitive Information Leakage in Vaelsys V4 Platform</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Unauthorized Access Leads to Sensitive Information Leakage in Vaelsys V4 Platform</h1>
+<p>BUG_Author: waiwai</p>
+<p>Affected Version: v4.1.0</p>
+<p>Vendor：<a href="https://vaelsys.com/">Vaelsys</a></p>
+<p>Product: Vaelsys V4</p>
+<p>Vulnerability Files: /grid/vgrid_server.php</p>
+<h2>Description</h2>
+<p>In the <code>vgrid_server.php</code> interface of the Vaelsys V4 Platform, there exists a serious unauthorized access vulnerability. Attackers can exploit this vulnerability to obtain MD4 password hash values of all system users, and this encryption is insecure.</p>
+<h2>POC</h2>
+<p>xAJAX parameter description: xajaxargs[]=1: The first user (usually the admin user). Through enumeration, it’s possible to obtain the MD4-encrypted hash values of all users’ passwords.</p>
+<p><img src="/0101/CVEs/Vaelsys/assets/Unauthorized_Access_Leads_to_Sensitive_Information_Leakage_in_Vaelsys_V4_Platform/image-20250716162508572.png" alt="image-20250716162508572"></p>
+<p><img src="/0101/CVEs/Vaelsys/assets/Unauthorized_Access_Leads_to_Sensitive_Information_Leakage_in_Vaelsys_V4_Platform/1111111111.png" alt="屏幕截图 2025-07-16 150451"></p>
+
+        </main>
+    </div>
+</body>
+</html>

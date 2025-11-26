@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 数组,数组</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>数组</h1>
+<p>[TOC]</p>
+<h2>1.一维数组</h2>
+<h3>（1）声明</h3>
+<pre><code class="language-cpp">元素类型 数组名 [元素个数]
+</code></pre>
+<p>注意：</p>
+<p>元素个数要为一个**常量表达式 ** (数组元素个数必须在编译程序前确定，分配储存空间)</p>
+<h3>（2）初始化</h3>
+<ul>
+<li>只有声明数组的同时才能初始化</li>
+<li>如果初始值数目小于数组元素数目，则剩余元素自动初始化为0</li>
+</ul>
+<h3>（3）数组的访问</h3>
+<ul>
+<li>通过数组名和下标</li>
+<li>数组名表示数组的首地址，从0开始</li>
+<li>==数组名的值是一个指针常量==</li>
+</ul>
+<h3>（4）创建动态数组</h3>
+<ul>
+<li>
+<p>用new创建动态数组</p>
+</li>
+<li>
+<p>eg：</p>
+<pre><code class="language-cpp">int* a=new int [n] //此时n可为变量
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>2.数组作为函数参数</h2>
+<ul>
+<li>
+<p>数组名作为函数实参</p>
+</li>
+<li>
+<p>传的是数组地址，可通过该地址访问数组中的全部元素</p>
+</li>
+<li>
+<p>为了防止越界，数组元素个数也常作为另一个参数传递</p>
+</li>
+<li>
+<p>尽管是传值，但客观上起了传引用的作用</p>
+</li>
+<li>
+<p>eg：</p>
+<pre><code class="language-cpp">void Arr(int a[],int len)
+{
+	……
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>3.多维数组</h2>
+<ul>
+<li>
+<p>以二维数组声明为例：</p>
+<pre><code class="language-cpp">元素类型 数组名 [一维数目][二维数目];
+</code></pre>
+</li>
+<li>
+<p>存放顺序：行序优先</p>
+</li>
+</ul>
+<hr>
+<h2>4.字符数组</h2>
+<blockquote>
+<p>每个元素存一个字符，主要是对字符串进行操作</p>
+</blockquote>
+<h3>（1）初始化</h3>
+<ul>
+<li>
+<p>标准初始化：</p>
+<pre><code class="language-cpp">char str[4]={'a','b','c','\0'}; // \0不能少
+</code></pre>
+</li>
+<li>
+<p>字符串初始化：</p>
+<pre><code class="language-cpp">char str[4]=&quot;abc&quot;; //系统会自动在末尾补'\0'
+</code></pre>
+</li>
+</ul>
+<p>==注意：字符’\0’必不可少，这是字符串结束的标志==</p>
+<h3>（2）访问</h3>
+<ul>
+<li>字符数组，其元素既可以通过下标逐个输出，也可以整体输出</li>
+<li>从键盘上读取字符数组时，若输入字符数小于数组大小，则最后一个元素是输入的最后一个字符，后面紧跟着’\0’，若大于等于数组大小，则后面不会跟着’\0’，因此要注意<strong>防止越界访问</strong>。</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># payload 混淆,payload 混淆</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>payload 混淆</h1>
+<p>IPv4/IPv6 混淆：将 shellcode 的字节转换为 IPv4 或 IPv6 字符串</p>
+<ul>
+<li>IPv4 混淆：使用 4 个字节生成一个 IPv4 地址</li>
+<li>IPv6 混淆：使用 16 个字节生成一个 IPv6 地址
+<ul>
+<li>RtlIpv4StringToAddressA： 该 API 将 IPv4 地址的字符串表示形式转换为二进制 IPv4 地址</li>
+<li>RtlIpv6StringToAddressA：该 API 将 IPv6 地址的字符串表示形式转换为二进制 IPv6 地址</li>
+</ul>
+</li>
+</ul>
+<p>MAC 地址混淆：使用 6 个字节生成一个 mac 地址，解混淆 RtlEthernetStringToAddressA 函数</p>
+<p>UUID 混淆：16 个字节组成，去混淆使用 UuidFromStringA 函数</p>
+
+        </main>
+    </div>
+</body>
+</html>

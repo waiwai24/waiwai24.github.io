@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 布尔与比较,布尔与比较</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>布尔与比较</h1>
+<h2>1.AND指令</h2>
+<pre><code class="language-assembly">AND destination，source
+</code></pre>
+<p>两个操作数的对应位进行按位与操作（只有都为1时才为1），并将结果存放在目标操作数中</p>
+<p>注意：</p>
+<ul>
+<li>两个操作数必须是同样大小</li>
+<li>两个目标操作数不能同为内存操作数</li>
+</ul>
+<p>应用：</p>
+<ul>
+<li>
+<p>将字符串小写转换为大写</p>
+<p>对比A（65）和a（97）的ASCII码，相差32，就会发现只有位5（$2^5$）不同，其他的字符也是同样的关系，故把任何一个字符与<code>1101 1111</code>进行and操作除位5外其他所有的位都不变，把位5清0，小写字母也就转换成大写了</p>
+</li>
+</ul>
+<h2>2.OR指令</h2>
+<pre><code class="language-assembly">OR destination，source
+</code></pre>
+<p>两个操作数的对应位进行按位或操作（只有都为0时才为0），并将结果存放在目标操作数中</p>
+<h2>3.XOR指令</h2>
+<pre><code class="language-assembly">XOR destination，source
+</code></pre>
+<p>两个操作数的对应位进行按位逻辑异或操作（同0异1），并将结果存放在目标操作数中</p>
+<p>特点：</p>
+<ul>
+<li>与0异或值保持不变，与1异或值求补</li>
+<li><strong>可逆性对相同操作数进行两次XOR操作，则结果逆转为本身$(x\oplus y)\oplus y=x$</strong></li>
+</ul>
+<h2>4.NOT指令</h2>
+<pre><code class="language-assembly">NOT reg
+NOT mem
+</code></pre>
+<p>翻转操作数中的所有位，结果称为反码，NOT指令不影响标志位</p>
+<h2>5.CMP指令</h2>
+<pre><code class="language-assembly">CMP destination，source
+</code></pre>
+<p>CMP指令执行从目的操作数减去源操作数的隐含减法操作，并且<strong>不修改</strong>任何操作数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">CMP结果</th>
+<th style="text-align:center">ZF</th>
+<th style="text-align:center">CF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">目的操作数 &lt; 源操作数</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">目的操作数 &gt; 源操作数</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">目的操作数 = 源操作数</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">CMP结果</th>
+<th style="text-align:center">标志位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">目的操作数 &lt; 源操作数</td>
+<td style="text-align:center">SF ≠ OF</td>
+</tr>
+<tr>
+<td style="text-align:center">目的操作数 &gt; 源操作数</td>
+<td style="text-align:center">SF=OF</td>
+</tr>
+<tr>
+<td style="text-align:center">目的操作数 = 源操作数</td>
+<td style="text-align:center">ZF=1</td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

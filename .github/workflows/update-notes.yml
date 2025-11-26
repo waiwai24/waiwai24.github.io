@@ -1,10 +1,10 @@
-name: Sync 0101 and Generate Knowledge Tree
+name: Build and Deploy Notes
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
 jobs:
-  sync-and-generate:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -16,31 +16,33 @@ jobs:
         run: |
           rm -rf 0101
           git clone https://github.com/waiwai24/0101.git 0101
-          rm -rf 0101/.git  # 关键：移除.git目录，使其成为普通目录
+          rm -rf 0101/.git
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          
-      - name: Generate knowledge tree
-        run: node generate-tree.js
+      
+      - name: Install dependencies
+        run: npm install
         
-      - name: Debug before commit
-        run: |
-          echo "=== Files changed ==="
-          git status
-          echo "=== Staged changes ==="
-          git diff --cached --name-only
-          
+      - name: Generate knowledge tree
+        run: node assets/js/generate-tree.js
+
+      - name: Clean old articles
+        run: rm -rf articles
+
+      - name: Build static site
+        run: node build.js
+        
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add 0101 knowledge-tree.json
+          git add -A 0101 _data/notes-tree.json articles
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore(bot): sync 0101 and update knowledge tree"
+            git commit -m "chore(bot): sync notes, update tree and build site"
             git push
           fi

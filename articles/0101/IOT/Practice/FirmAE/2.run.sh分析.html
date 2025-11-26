@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.run.sh分析</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <p>FirmAE的代码架构和代码看起来和firmdyne差不多，基本的主要代码文件都一样</p>
+<p>firmae.config：五个仲裁变量</p>
+<p><a href="http://init.sh">init.sh</a>：初始化脚本，如果执行命令失败，则整个脚本将立即停止执行。其中 <code>set -x</code> 则启用了调试模式，它会在执行每个命令之前将其打印到终端。接下来就是重启 PostgreSQL 数据库</p>
+<p><a href="http://run.sh">run.sh</a>：</p>
+<p>读取配置文件 firmae.config，并读取命令参数，选择处理模式，同时还需要传递版本参数，调试固件的文件（可对文件夹下的所有固件进行仿真，但是只能对单个固件启动调试模式）</p>
+<ul>
+<li><code>-r</code>：run
+<ul>
+<li>首先进行版本和数据库连接检查</li>
+<li>运行 <a href="http://extractor.py">extractor.py</a> 脚本，限制解压时间为 300s，获取固件架构</li>
+<li>解析固件并保存至 PostgreSQL 数据库中，并创建 qemu-img 镜像</li>
+<li>仿真环境网络配置</li>
+<li>运行固件目录下生成的 <a href="http://run.sh">run.sh</a></li>
+</ul>
+</li>
+<li><code>-c</code>：checke web
+<ul>
+<li>直接输出 result 文件中的内容 true/false</li>
+</ul>
+</li>
+<li><code>-a</code>：analyze
+<ul>
+<li>运行固件目录下生成的 run_analyze.sh 和 analyze 目录下的 analyses_all.sh</li>
+</ul>
+</li>
+<li><code>-d</code>：debug
+<ul>
+<li>如果网络可达，则运行固件目录下生成的 run_debug.sh 和项目目录下的 <a href="http://debug.py">debug.py</a></li>
+</ul>
+</li>
+<li><code>-b</code>：boot debug
+<ul>
+<li>运行固件目录下生成的 run_boot.sh</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

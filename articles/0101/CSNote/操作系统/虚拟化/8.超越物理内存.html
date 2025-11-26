@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 超越物理内存,超越物理内存</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>超越物理内存</h1>
+<h2>1.虚拟内存</h2>
+<ul>
+<li>基本原理：OS的存储是分层级(hierarchy)的，越上层的存储越快，越底层的存储空间越大</li>
+<li>解决方案：用外存(硬盘)模拟内存，达到扩大内存的效果</li>
+<li>交换空间：在硬盘上开辟一部分空间用于物理页的移入和移出，交换空间以页为单位进行组织</li>
+<li>实现机制：页表项新增存在位(present bit)，当页表不存在内存中，则引发页错误，陷入内核…</li>
+</ul>
+<p><img src="/0101/CSNote/操作系统/虚拟化/assets/8.%E8%B6%85%E8%B6%8A%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98/image-20241128204152434.png" alt="image-20241128204152434"></p>
+<h2>2.策略</h2>
+<h3>2.1 页面替换策略</h3>
+<p>度量指标：平均内存访问时间（AMAT）</p>
+<p><strong>𝐴𝑀𝐴𝑇 = （𝑃~𝐻𝑖𝑡~ ∗ 𝑇~𝑀~） + (𝑃~𝑀𝑖𝑠𝑠~ ∗ 𝑇~𝐷~)</strong></p>
+<p>命中率：$\frac{Hits}{Hits+Misses}$</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T~M~</td>
+<td>The cost of accessing memory</td>
+</tr>
+<tr>
+<td>T~D~</td>
+<td>The cost of accessing disk</td>
+</tr>
+<tr>
+<td>P~Hit~</td>
+<td>The probability of finding the data item in the cache (a hit)</td>
+</tr>
+<tr>
+<td>P~Miss~</td>
+<td>The probability of not finding the data in the cache (a miss)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>最优替换策略（OPT，optimal）：
+<ul>
+<li>替换下次访问距当前最远的页</li>
+<li>当前留在内存里的页都比它重要</li>
+<li>理论上可以达到总体未命中数最少</li>
+<li>未来是不确定的，因此只具有参考价值</li>
+</ul>
+</li>
+<li>先入先出策略（FIFO）：
+<ul>
+<li>进入内存时间最早的页面被淘汰</li>
+<li>页面加入时放在队列头部，每次从页面尾部淘汰页面</li>
+<li>无法反映页面的重要程度</li>
+</ul>
+</li>
+<li>随机选择（random）</li>
+<li><strong>最近最少使用策略（LRU）</strong>
+<ul>
+<li>Least Recently Used</li>
+<li>替换上次使用距离最远的页面</li>
+</ul>
+</li>
+<li>时钟算法（Clock）
+<ul>
+<li>一种基于FIFO+LRU的简化算法</li>
+<li>将内存中的所有页面都通过链接指针链接成一个循环队列；当某个页面被访问时，其访问位 置1。淘汰时，检查其访问位，如果是0，就换出；若为1，则重新将它置0；再按FIFO算法检查下一个页面，到队列中的最后一个页面时，若其访问位仍为1，则再返回到队首再去检查第一个页面</li>
+<li>轮流淘汰，被访问的页面则推迟一轮淘汰</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># CDQ,CDQ</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>CDQ</h1>
+<p>x86 汇编中， <code>cdq</code> 指令用于将 32 位有符号整数扩展为 64 位有符号整数。它的作用是将存储在 <code>EDX:EAX</code> 寄存器对中的 32 位有符号数扩展为 64 位有符号数，其中 <code>EDX</code> 寄存器存储高 32 位， <code>EAX</code> 寄存器存储低 32 位</p>
+<p>cdq 指令把 EAX 的第 31 bit （最高符号位） 复制到 EDX 的每一个 bit 上。 它大多出现在除法运算之前。它实际的作用只是把 EDX 的所有位都设成 EAX 最高位的值。也就是说，当 EAX &lt;0x80000000, EDX 为00000000；当EAX &gt; = 0x80000000， EDX 则为 FFFFFFFF。</p>
+<p>例如 :</p>
+<p>假设 EAX 是 FFFFFFFB (-5) ，它的第 31 bit (最左边) 是 1，执行 CDQ 后， CDQ 把第 31 bit 复制至 EDX 所有 bit，EDX 变成 FFFFFFFF，这时候，EDX: EAX 变成 FFFFFFFF FFFFFFFB ，它是一个 64 bit 的大型数字，数值依旧是 -5。</p>
+<p>备注：</p>
+<pre><code>EDX: EAX, 这里表示 EDX，EAX 连用表示 64 位数
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

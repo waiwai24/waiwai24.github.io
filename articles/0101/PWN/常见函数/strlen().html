@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># strlen(),strlen()</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>strlen()</h1>
+<pre><code class="language-c">size_t strlen(const char *str)
+</code></pre>
+<ul>
+<li>计算字符串 <strong>str</strong> 的长度，直到空结束字符，但不包括空结束字符</li>
+<li>利用：利用strlen函数判断字符串时以 <strong>b’\x00’</strong> 结尾，可以用b’\x00’绕过strlen的判断</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

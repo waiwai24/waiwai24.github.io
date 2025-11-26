@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>patch</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <pre><code class="language-python">import os
+
+version=&quot;2.31&quot;
+
+file_name= 'test'
+arch = 'amd64'
+libc_name=&quot;libc-&quot;+version+&quot;.so&quot;
+ld_name=&quot;ld-&quot;+version+&quot;.so&quot;
+
+os.system(&quot;cp /glibc/{}/{}/lib/{} .&quot;.format(version,arch,libc_name))
+os.system(&quot;cp /glibc/{}/{}/lib/{} .&quot;.format(version,arch,ld_name))
+os.system(&quot;chmod 777 &quot;+libc_name)
+os.system(&quot;chmod 777 &quot;+ld_name)
+
+for file_name in list(os.walk(&quot;.&quot;))[0][2]:
+	if &quot;.&quot; not in file_name:
+		os.system(&quot;patchelf --replace-needed libc.so.6 ./{} ./{}&quot;.format(libc_name,file_name))
+		os.system(&quot;patchelf --set-interpreter ./{} ./{}&quot;.format(ld_name,file_name))
+</code></pre>
+<pre><code class="language-shell">#!/bin/bash
+
+FILE_NAME=test
+GLIBC_VERSION=2.23
+ARCH=amd64
+
+sudo cp /glibc/${GLIBC_VERSION}/${ARCH}/lib/libc-${GLIBC_VERSION}.so .
+sudo cp /glibc/${GLIBC_VERSION}/${ARCH}/lib/ld-${GLIBC_VERSION}.so .
+
+sudo chmod 777 ./${FILE_NAME}
+sudo chmod 777 ./libc-${GLIBC_VERSION}.so
+sudo chmod 777 ./ld-${GLIBC_VERSION}.so
+
+patchelf --replace-needed libc.so.6 ./libc-${GLIBC_VERSION}.so ./${FILE_NAME}
+patchelf --set-interpreter ./ld-${GLIBC_VERSION}.so ./${FILE_NAME}
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

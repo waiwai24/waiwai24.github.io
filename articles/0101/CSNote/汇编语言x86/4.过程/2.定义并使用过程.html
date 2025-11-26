@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 定义并使用过程,定义并使用过程</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>定义并使用过程</h1>
+<blockquote>
+<p>一个程序会被分割成若干子过程（subroutine），在汇编语言中，通常用过程（procedure）来代指这些子过程的程序，在其他语言中，子程序也被称为方法或者函数</p>
+</blockquote>
+<h2>1.PROC伪指令</h2>
+<ul>
+<li>
+<p>过程的非正式定义：由返回语句结束的已命名语句块</p>
+</li>
+<li>
+<p>过程用PROC和ENDP伪指令来定义，并且必须为其分配一个名字（有效标识符）</p>
+<pre><code class="language-assembly">main PROC
+.
+.
+main ENDP
+</code></pre>
+</li>
+</ul>
+<h2>2.CALL，RET指令</h2>
+<ul>
+<li>
+<p>CALL：</p>
+<ul>
+<li>指令调用一个过程，指挥处理器从一个新地址开始执行</li>
+<li>先将返回地址压入堆栈，<code>ESP-4</code>,再把被调用的地址复制到<code>EIP</code></li>
+</ul>
+</li>
+<li>
+<p>RET:</p>
+<ul>
+<li>
+<p>指令将处理器转回到该过程被调用的程序点上</p>
+</li>
+<li>
+<p>从堆栈中把返回地址弹回到<code>EIP</code>，同时<code>ESP+4</code></p>
+<pre><code>ret:(return)默认retn
+retn:return near=pop eip，近跳转
+retf: return far=pop eip;pop cs，远跳转 
+</code></pre>
+</li>
+<li>
+<p>retn 16：</p>
+<ul>
+<li><code>retn 16</code> 中的 <code>16</code> 是一个立即数参数，表示从栈上移除的字节数。</li>
+<li>当执行 <code>retn 16</code> 指令时，除了将控制权返回到调用者之外，还会从栈上移除 <code>16</code> 字节的数据。这通常用于清理函数调用时压入栈的参数。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

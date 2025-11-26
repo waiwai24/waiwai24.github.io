@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># objdump,objdump</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>objdump</h1>
+<h2>1.简介</h2>
+<p>objdump命令来自于英文词组“object files dump”（dump转储）的缩写，其功能是用于<strong>显示</strong>目标文件附加信息，以一种可阅读的格式让你更多地了解二进制文件可能带有的附加信息</p>
+<h2>2.使用</h2>
+<pre><code class="language-shell">objdump &lt;option(s)&gt; &lt;file(s)&gt;
+</code></pre>
+<p>常用参数:</p>
+<ul>
+<li>
+<p><code>-h</code>：Display the contents of the section headers</p>
+</li>
+<li>
+<p><code>-x</code>：Display the contents of all headers</p>
+</li>
+<li>
+<p><code>-s</code>：显示指定section的完整内容。默认所有的非空section都会被显示</p>
+</li>
+<li>
+<p><code>-d</code>：从objfile中反汇编那些特定指令机器码的section</p>
+</li>
+<li>
+<p><code>-D</code>：从objfile中反汇编那些所有指令机器码的section</p>
+</li>
+<li>
+<p><code>-M intel</code>： 选择intel语法模式</p>
+</li>
+</ul>
+<p>解释：VMA 表示Virtual Memory Address, 即虚拟地址，LMA 表示 Load Memory  Address，即加载地址，正常情况下这两个值应该是一样的，但是在有些嵌入式系统中，特别是在那些程序放在 ROM 的系统中时，LMA 和 VMA 是不相同的</p>
+
+        </main>
+    </div>
+</body>
+</html>

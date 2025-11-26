@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 函数,函数</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>函数</h1>
+<p>[TOC]</p>
+<h2>1.基本概念</h2>
+<blockquote>
+<p>一个命名的程序代码块，是程序完成其操作的功能单位</p>
+</blockquote>
+<ul>
+<li>
+<p>作用：分而治之，软件重用，易于差错和修改，方便扩展</p>
+</li>
+<li>
+<p>分类:</p>
+<ul>
+<li>预定义函数：c++系统库（第三方）提供 eg：#include&lt;cmath&gt;</li>
+<li>自定义函数：程序员自己编写</li>
+</ul>
+</li>
+<li>
+<p>定义格式：</p>
+<pre><code class="language-cpp">返回值类型 函数名(参数列表)
+{
+	函数体
+}
+</code></pre>
+</li>
+<li>
+<p>返回值类型：函数返回的数据类型</p>
+<ul>
+<li>若无，则用空类型void</li>
+<li>默认为int，未指定返回即int</li>
+</ul>
+</li>
+<li>
+<p>参数列表：若干 “参数类型  参数名”构成，用逗号分隔；定义的参数称为形式参数(形参)</p>
+</li>
+<li>
+<p>函数体：函数执行直到遇到return语句或函数体结束的右花括号为止</p>
+<pre><code class="language-cpp">int max(int a,int b,int c)
+{
+	int m;
+	m=(a&gt;b)?a:b;
+	return (m&gt;c)?m:c;
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>2.函数原型(声明函数)</h2>
+<blockquote>
+<p>函数必须先声明后使用</p>
+</blockquote>
+<ul>
+<li>
+<p>基本类型：</p>
+<pre><code class="language-cpp">返回值类型 函数名(参数列表); //参数的名字可以省略
+</code></pre>
+</li>
+<li>
+<p>main函数在前，被调用函数写在后，声明在最前</p>
+</li>
+</ul>
+<hr>
+<h2>3.函数调用</h2>
+<ol>
+<li>传递参数 	实参→形参</li>
+<li>跳转到被调函数体</li>
+<li>返回执行结果，回到主调函数</li>
+</ol>
+<hr>
+<h2>4.参数传递</h2>
+<ul>
+<li>传值调用：形参对应的内存单位改变对实参无影响</li>
+<li>传引用调用：形参前面加上**&amp;**符号（可视形参，为同一变量）</li>
+</ul>
+<hr>
+<h2>5.默认参数</h2>
+<blockquote>
+<p>默写参数常取固定值</p>
+</blockquote>
+<p><strong>定义必须从右往左</strong></p>
+<pre><code class="language-cpp">True: int calc(int n,int m=1);
+False: int calc(int m=1,int n);
+</code></pre>
+<hr>
+<h2>6.内联函数</h2>
+<ul>
+<li>
+<p>声明：</p>
+<pre><code class="language-cpp">inline 返回值类型 函数名(参数列表);
+</code></pre>
+</li>
+<li>
+<p>调用时会把调用该函数的位置用实际函数代码替换</p>
+</li>
+</ul>
+<hr>
+<h2>7.函数重载</h2>
+<ul>
+<li>允许定义多个函数同名</li>
+<li>但必须有不同的参数</li>
+</ul>
+<hr>
+<h2>8.作用域</h2>
+<ul>
+<li>
+<p>最近嵌套原则</p>
+</li>
+<li>
+<p>作用域最小化原则</p>
+</li>
+<li>
+<p>全局变量：在函数之外定义的变量</p>
+</li>
+</ul>
+<hr>
+<h2>9.存储类别</h2>
+<ol>
+<li>自动存储：定义在函数快中的，终止于函数块结束
+<ol>
+<li>auto 自动变量</li>
+<li>register 寄存器变量：为变量分配高速寄存器</li>
+</ol>
+</li>
+<li>静态存储：程序整个运行期间
+<ol>
+<li>static：局部变量</li>
+<li>extern：全局变量</li>
+</ol>
+</li>
+<li>动态存储</li>
+<li>线性存储</li>
+</ol>
+<hr>
+<h2>10.递归函数</h2>
+<ul>
+<li>函数直接或间接调用自己的行为</li>
+<li>思路清晰简洁，易于理解维护，但效率低</li>
+</ul>
+<hr>
+<h2>11.预处理指令</h2>
+<blockquote>
+<p>不是c++语句，所以不用；</p>
+</blockquote>
+<ol>
+<li>#include指令（头文件包含指令）：
+<ol>
+<li>#include &lt;文件名&gt;：从系统头文件目录搜索</li>
+<li>#include “文件名”：从当前目录工程</li>
+<li>工程上，头文件（.h）中声明若干函数，原文件（.cpp）定义相应的函数</li>
+</ol>
+</li>
+<li>#define指令：
+<ol>
+<li>#define 常量标识符 常量</li>
+<li>#define 宏标识符 字符串</li>
+</ol>
+</li>
+</ol>
+
+        </main>
+    </div>
+</body>
+</html>

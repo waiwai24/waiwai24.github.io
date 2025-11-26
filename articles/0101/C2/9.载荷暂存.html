@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 载荷暂存,载荷暂存</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>载荷暂存</h1>
+<h2><a href="http://1.web">1.web</a> 服务器</h2>
+<p>有效负载一直直接存储在二进制文件中。这是一种获取有效负载的快速且常用的方法。不幸的是，在某些存在有效负载大小限制的情况下，将有效负载保存在代码中并不是一种可行的办法。替代方案是在 Web 服务器上托管有效负载，并在执行期间获取它</p>
+<p>为了从 Web 服务器获取 Payload，将使用以下 Windows API：</p>
+<ul>
+<li>InternetOpenW：打开 Internet 会话句柄，这是使用其他 Internet Windows API 的先决条件</li>
+<li>InternetOpenUrlW： 针对指定资源（即 Payload 的 URL）打开句柄</li>
+<li>InternetReadFile：从 Web 资源句柄读取数据。这是由 InternetOpenUrlW 打开的句柄</li>
+<li>InternetCloseHandle：关闭句柄</li>
+<li>InternetSetOptionW：设置 Internet 选项</li>
+</ul>
+<h2>2.windows 注册表</h2>
+
+        </main>
+    </div>
+</body>
+</html>

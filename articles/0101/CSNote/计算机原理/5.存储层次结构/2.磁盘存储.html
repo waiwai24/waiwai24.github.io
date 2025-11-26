@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 磁盘存储,磁盘存储</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>磁盘存储</h1>
+<blockquote>
+<p>磁存储是将数据存储在磁化介质上。磁存储在可磁化材料中使用不同的磁化模式来存储数据，是一种非易失性存储器。使用一个或多个读/写头访问信息</p>
+</blockquote>
+<h2>1.磁盘构造</h2>
+<ul>
+<li>
+<p>磁面/盘面：由于盘片正反都可以涂上磁性物质，故一个盘片可能会有两个盘面</p>
+</li>
+<li>
+<p>磁头：所有的磁头都是连在同一个磁臂上，因此所有磁头只能共进退</p>
+</li>
+<li>
+<p>磁道：每个记录面划分为许多个同心圆，每个同心圆轨迹称为一个磁道</p>
+</li>
+<li>
+<p>扇区：每个磁道被分成若干大小相同的圆弧，各个扇区存放的数据量相同。最内侧磁道上扇区面积最小，因此数据密度最大</p>
+</li>
+<li>
+<p>柱面：多个盘面位于同一半径的磁道构成的一个圆柱</p>
+</li>
+</ul>
+<p><img src="/0101/CSNote/计算机原理/5.存储层次结构/assets/2.%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8/image-20240601081951449.png" alt="image-20240601081951449"></p>
+<h2>2.磁盘存储</h2>
+<h3>2.1 记录密度</h3>
+<p>单位长度或面积磁表面存储的二进制信息数</p>
+<ul>
+<li>道密度：
+<ul>
+<li>在垂直于磁道方向上单位长度磁介质所容纳的磁道数</li>
+<li>单位：tpm( tracks per millimeter )，tpi( tracks per inch )</li>
+</ul>
+</li>
+<li>位密度：（通常指的是最内圈, 内圈磁道位密度高）
+<ul>
+<li>单位长度磁道上所能记录的二进制信息位数</li>
+<li>单位：bpm，bpi</li>
+<li>外圈磁道位密度低，记录信息出错概率小，常用于存储操作系统等重要信息</li>
+</ul>
+</li>
+<li>面密度：
+<ul>
+<li>单位面积上记录的二进制信息位数</li>
+<li>单位：bpm^2^，bpi^2^</li>
+<li><strong>面密度 = 道密度 $\times$ 位密度</strong></li>
+</ul>
+</li>
+</ul>
+<h3>2.2 磁盘容量</h3>
+<ul>
+<li>磁表面存储器所能记录的二进制信息总量</li>
+<li>单位：B，MB，GB</li>
+<li>rps （转/秒）或 rpm （转/分）</li>
+<li>磁盘格式化：根据记录格式的要求，对磁道<strong>划分扇区</strong>，留出各种间隙并写入各种标志信息，地址信息和其他控制类信息
+<ul>
+<li>非格式化容量
+<ul>
+<li>完全从记录密度考虑的容量</li>
+<li>$非格式化容量C_n=数据传输率\times转一圈时间\times磁面数\times磁道数$</li>
+<li>$非格式化容量C_n=π\times最内圈直径\times位密度\times磁面数\times磁道数$</li>
+</ul>
+</li>
+<li>格式化容量
+<ul>
+<li>格式化后所能记录的信息量，从扇区容量考虑</li>
+<li>通常，格式化容量是非格式化容量的 0.7~0.9 倍</li>
+<li>$格式化容量C_f = 扇区存储大小\times每条磁道扇区数\times每面磁道数\times记录面数$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>2.3 存取时间</h3>
+<p>当磁头从当前所在位置移动到目标扇区，并完成读写所需时间 t~a~，访问磁盘的时间主要开销是寻道时间和旋转延迟</p>
+<ul>
+<li>
+<p>寻道时间 t~s~</p>
+</li>
+<li>
+<p>旋转等待时间 t~w~</p>
+</li>
+<li>
+<p>数据传输时间 t~wr~</p>
+</li>
+<li>
+<p>平均存取时间 $(\mathbf{t}<em>\mathrm{smax}+\mathbf{t}</em>\mathrm{smin})/2+(\mathbf{t}<em>\mathrm{wmax}+\mathbf{t}</em>\mathrm{wmin})/2=\bar{\mathbf{t}}<em>\mathrm{s}+\bar{\mathbf{t}}</em>\mathrm{w}$</p>
+</li>
+<li>
+<p>数据传输率，单位：位/秒，字节/秒，KB/秒，MB/秒</p>
+<p>$f=位密度\times周长/转一圈时间$</p>
+</li>
+</ul>
+<h3>2.4 误码率</h3>
+<p>读数据出错位数占总位数的比例</p>
+<ul>
+<li>软错误：随机偶然性错误</li>
+<li>硬错误：突发错误，永久性错误</li>
+</ul>
+<h2>3.访问磁盘</h2>
+<ul>
+<li>
+<p>CPU使用一种称为内存映射I/O(memory-mapped I/O)的技术向I/O设备发送命令</p>
+</li>
+<li>
+<p>CPU将命令，地址写道磁盘控制器相关联的端口，发起一个操作，磁盘控制读扇区，并执行到主存的DMA传输，DMA传输完成时，磁盘控制器用中断方式通知CPU</p>
+<p>（DMA传输：一个设备可以自己执行读或者写总线事务，而不需要CPU干预的数据传输方式）</p>
+</li>
+</ul>
+<h2>4.固态硬盘</h2>
+<p>SSD，Solid State Disk 是基于闪存技术、拥有硬盘接口的硬件</p>
+<p>SSD 封装 (package)插到 I/O 总线上标准磁盘插槽(通常是 USB or SATA)中，处理来自 CPU 读写逻辑磁盘块的请求</p>
+<ul>
+<li>优点
+<ul>
+<li>没有移动(机械)部件，随机访问时间快、能耗低、更紧固</li>
+</ul>
+</li>
+<li>缺点</li>
+<li>读写不均衡，读比写快，写需要先擦除</li>
+<li>反复写之后，闪存块容易磨损</li>
+<li>价格贵：SSD 每字节比磁盘大约贵 30 倍，常用的存储容量比磁盘小 100 倍</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,27 +1,28 @@
 const fs = require('fs');
 const path = require('path');
 
-const dirPath = path.join(__dirname, '0101');
-const outputJsonPath = path.join(__dirname, 'knowledge-tree.json');
+const rootPath = path.join(__dirname, '..', '..');
+const dirPath = path.join(rootPath, '0101');
+const outputJsonPath = path.join(rootPath, '_data', 'knowledge-tree.json');
 
-function directoryTree(dir) {
+function directoryTree(dir, root) {
     const baseName = path.basename(dir);
-    // Skip directories starting with a dot
-    if (baseName.startsWith('.')) {
+    // Skip directories starting with a dot or named 'assets'
+    if (baseName.startsWith('.') || baseName === 'assets') {
         return null;
     }
 
     try {
         const stats = fs.statSync(dir);
         const item = {
-            path: path.relative(__dirname, dir).replace(/\\/g, '/'),
+            path: path.relative(root, dir).replace(/\\/g, '/'),
             name: baseName
         };
 
         if (stats.isDirectory()) {
             item.type = 'directory';
             const children = fs.readdirSync(dir)
-                .map(child => directoryTree(path.join(dir, child)))
+                .map(child => directoryTree(path.join(dir, child), root))
                 .filter(child => child !== null);
 
             // Sort: directories first, then natural sort for names
@@ -55,7 +56,7 @@ if (!fs.existsSync(dirPath)) {
     process.exit(1);
 }
 
-const tree = directoryTree(dirPath);
+const tree = directoryTree(dirPath, rootPath);
 
 if (tree) {
     fs.writeFileSync(outputJsonPath, JSON.stringify(tree, null, 2));

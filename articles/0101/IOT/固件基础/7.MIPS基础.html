@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># MIPS 基础,MIPS 基础</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>MIPS 基础</h1>
+<blockquote>
+<p>mips 系统结构设计经过长期发展，已经非常成熟</p>
+<p>MPS32 架构是一种基于固定长度的定期编码指令集，并采用导入/存储(load/store)数据模型。经改进，这种架构可支持高级语言的优化执行。在路由器中，我们经常使用的一种 MIPS 架构就是 MIPS32。</p>
+</blockquote>
+<h2>1.编译与调试</h2>
+<ul>
+<li>
+<p>mips 是 big-endian 的 mips 架构</p>
+</li>
+<li>
+<p>mipsel 是 little-endian 的 mips 架构</p>
+</li>
+</ul>
+<p>使用 buildroot 安装交叉编译环境：</p>
+<ul>
+<li>
+<pre><code class="language-shell"># 安装依赖库
+$ sudo apt-get update
+$ sudo apt-get install libncurses5-dev patch
+ 
+# 下载源码
+$ git clone https://github.com/buildroot/buildroot.git
+ 
+# 进行编译的配置
+$ cd buildroot
+$ make clean
+$ make menuconfig
+</code></pre>
+</li>
+<li>
+<p>出现配置界面，选择第一项“Target Architecture”，改成 MIPS（little endian），另外，选择“Toolchain”，务必将“Kernel Headers”的 Linux 版本改成你自己主机的 Linux 版本</p>
+<ul>
+<li>
+<p>在 Debugging, profiling and benchmark 中勾选 dt 和 starce、gdb 等需要的</p>
+</li>
+<li>
+<p>在 &gt; Target packages &gt; Networking applications 中选中 netcat nmap ncat openssh</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>make</code> 后等待半小时左右 buildroot 的 <code>output/host/usr/bin</code> 即是编译好的工具链</p>
+</li>
+<li>
+<p><code>gedit ~/.bashrc</code> 配置环境变量 <code>export PATH=$PATH:/Your_Path/buildroot/output/host/usr/bin</code>，这样就可以直接使用命令编译文件</p>
+</li>
+<li>
+<p><code>source ~/.bashrc</code></p>
+</li>
+<li>
+<p>测试命令：<code>mipsel-linux-gcc</code></p>
+</li>
+</ul>
+<p>其他的：</p>
+<pre><code>sudo apt-get install qemu 
+sudo apt install qemu-user
+sudo apt-get install qemu-user-static
+sudo apt-get install qemu-system
+sudo apt-get install uml-utilities
+sudo apt-get install bridge-utils
+sudo apt install gdb-multiarch
+sudo apt install gcc-aarch64-linux-gnu
+</code></pre>
+<p>编译：大小端。如果是动态编译（不使用-static 参数），则还需要（-L 参数）指定器动态链接库</p>
+<pre><code class="language-shell">mips-linux-gnu-gcc 32位大端
+mipsel-linux-gnu-gcc 32位小端
+mips64-linux-gnuabi64-gcc 64位大端
+mips64el-linux-gnuabi64-gcc 64位小端
+</code></pre>
+<p>启动：</p>
+<pre><code class="language-shell">qemu-mips ./xxx
+qemu-mipsel ./xxx
+</code></pre>
+<p>调试：</p>
+<pre><code class="language-shell">-g port              QEMU_GDB          wait gdb connection to 'port'
+qemu-mipsel -g 1234 ./xxx
+</code></pre>
+<p>再开一个终端启动调试：</p>
+<pre><code class="language-shell">gdb-multiarch
+set architecture mips
+set endian little
+target remote localhost:1234
+</code></pre>
+<p>每次太麻烦可以将上面的写入 shell 脚本，eg：<a href="http://loader.sh">loader.sh</a></p>
+<p>然后每次进入 gdb 之后运行 <code>source loader.sh</code></p>
+<h2>2.寄存器</h2>
+<p>在 MIPS 体系结构中有 32 个通用寄存器，在汇编程序中可以用编号 <code>$0~$31</code> 表示，也可以用寄存器的名字表示，如 <code>$sp</code>、<code>$t1</code>、<code>$ta</code> 等。栈是从内存的高地址方向向低地址方向增长的。</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>寄存器名称</th>
+<th>寄存器描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>zero</code></td>
+<td>第 0 号寄存器，其值始终为 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>$at</code></td>
+<td>assembly temporary 汇编暂存器，保留寄存器</td>
+</tr>
+<tr>
+<td>2～3</td>
+<td><code>$v0~$v1</code></td>
+<td>values, 保存表达式或函数返回结果</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td><code>$a0~$a3</code></td>
+<td>aruments, 作为函数的前 4 个参数，不够的用堆栈处理</td>
+</tr>
+<tr>
+<td>8～15</td>
+<td><code>$t0~$t7</code></td>
+<td>temporaries，供汇编程序使用的临时寄存器</td>
+</tr>
+<tr>
+<td>16～23</td>
+<td><code>$s0~$s7</code></td>
+<td>saved values，子函数使用时需要先保存原寄存器的值</td>
+</tr>
+<tr>
+<td>24～25</td>
+<td><code>$t8~$t9</code></td>
+<td>temporaries, 供汇编程序的临时寄存器，补充$t0~t7</td>
+</tr>
+<tr>
+<td>26~27</td>
+<td><code>$k0~$k1</code></td>
+<td>保留，中断处理函数使用</td>
+</tr>
+<tr>
+<td>28</td>
+<td><code>$gp</code></td>
+<td>global pointer，全局指针</td>
+</tr>
+<tr>
+<td>29</td>
+<td><code>$sp</code></td>
+<td>stack pointer, 堆栈指针，指向堆栈的栈顶</td>
+</tr>
+<tr>
+<td>30</td>
+<td><code>$fp</code>，<code>$s8</code></td>
+<td>frame pointer, 保存栈指针</td>
+</tr>
+<tr>
+<td>31</td>
+<td><code>$ra</code></td>
+<td>return address, 返回地址</td>
+</tr>
+</tbody>
+</table>
+<p><code>$f0 ~ $f31</code> 表示浮点寄存器（floating-point register）</p>
+<p><code>$pc</code>：Program Counter（程序计数器），类似于 x86 的 eip，标志着当前要执行的指令</p>
+<p><code>$sr</code>：全称 Status Register（状态寄存器）</p>
+<p><code>HI</code>：乘除结果高位寄存器</p>
+<p><code>LO</code>：乘除结果低位寄存器</p>
+<p>在进行乘法运算时，HI 和 LO 保存乘法的运算结果，其中 HI 存储高 32 位，LO 存储低 32 位：而在进行除法运算时，HI 保存余数，LO 存储商。</p>
+<h2>3.指令分类</h2>
+<p>MIPS 固定 4 字节指令长度</p>
+<p>指令分为三种类型：R 型、I 型 和 J 型，每种类型有不同的操作码格式。</p>
+<ul>
+<li>R 型指令（寄存器-寄存器操作）：适用于寄存器之间的运算，通常包括算术和逻辑操作</li>
+<li>I 型指令（立即数操作）：适用于需要立即数或地址的操作</li>
+<li>J 型指令（跳转操作）：用于跳转指令</li>
+</ul>
+<p>流水线效应：在分析 MIPS 汇编代码时会发现，其跳转到函数或者分支跳转语句的下一条都是 nop ，这是因为 MIPS 采用了高度的流水线，其中最重要的是跳转指令导致的分支延迟效应。在分支跳转语句后面那条语句叫做分支延迟槽，当跳转语句刚执行的一瞬间，跳转到的地址刚填充好（填充到程序计数器），还没有执行程序计数器中存放的指令，分支延迟槽的指令已经被执行了，这就是流水线效应（几条指令被同时执行，只是处于不同的阶段， MIPS 不像其他架构那样存在流水线阻塞），为了避免出现问题，因此在分支跳转语句的下一条指令通常是 nop 指令或者其他有用的指令</p>
+<p>缓存刷新机制：MIPS CPUs 有两个独立的 cache : 指令 cache 和 数据 cache 。 指令和数据分别在两个不同的缓存中。当缓存满了，会触发 flush , 将数据写回到主内存。攻击者的攻击 payload 通常会被应用当做数据来处理，存储在数据缓存中。当 payload 触发漏洞， 劫持程序执行流程的时候，会去执行内存中的 shellcode .如果数据缓存没有触发 flush 的话，shellcode 依然存储在缓存中，而没有写入主内存。这会导致程序执行了本该存储 shellcode 的地址处随机的代码，导致不可预知的后果</p>
+<p><code>MIPS</code> 架构中立即数通常是 <code>16</code> 位的有符号整数（范围 <code>-32768 ~ 32767</code> ），如果需要使用一个超出这个范围的立即数，汇编器会自动将其拆分为两个 <code>16</code> 位的立即数，并使用 <code>lui</code> 和 <code>ori</code> 指令将其装载到寄存器中</p>
+<h3>3.1 算数运算</h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add</code></td>
+<td>有符号整数加法</td>
+<td><code>add rd, rs, rt</code></td>
+</tr>
+<tr>
+<td><code>addi</code></td>
+<td>有符号整数加法（立即数）</td>
+<td><code>addi rt, rs, imm</code></td>
+</tr>
+<tr>
+<td><code>sub</code></td>
+<td>有符号整数减法</td>
+<td><code>sub rd, rs, rt</code></td>
+</tr>
+<tr>
+<td><code>mult</code></td>
+<td>有符号乘法</td>
+<td><code>mult rs, rt</code></td>
+</tr>
+<tr>
+<td><code>div</code></td>
+<td>有符号除法</td>
+<td><code>div rs, rt</code></td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 逻辑运算</h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>and</code></td>
+<td>按位与</td>
+<td><code>and rd, rs, rt</code></td>
+</tr>
+<tr>
+<td><code>andi</code></td>
+<td>按位与（立即数）</td>
+<td><code>andi rt, rs, imm</code></td>
+</tr>
+<tr>
+<td><code>or</code></td>
+<td>按位或</td>
+<td><code>or rd, rs, rt</code></td>
+</tr>
+<tr>
+<td><code>ori</code></td>
+<td>按位或（立即数）</td>
+<td><code>ori rt, rs, imm</code></td>
+</tr>
+<tr>
+<td><code>xor</code></td>
+<td>按位异或</td>
+<td><code>xor rd, rs, rt</code></td>
+</tr>
+<tr>
+<td><code>nor</code></td>
+<td>按位取反或</td>
+<td><code>nor rd, rs, rt</code></td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 移位</h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sll</code></td>
+<td>左移</td>
+<td><code>sll rd, rt, shamt</code></td>
+</tr>
+<tr>
+<td><code>srl</code></td>
+<td>逻辑右移</td>
+<td><code>srl rd, rt, shamt</code></td>
+</tr>
+<tr>
+<td><code>sra</code></td>
+<td>算术右移</td>
+<td><code>sra rd, rt, shamt</code></td>
+</tr>
+</tbody>
+</table>
+<h3>3.4 数据传输</h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lw</code></td>
+<td>加载字</td>
+<td><code>lw rt, offset(rs)</code></td>
+</tr>
+<tr>
+<td><code>sw</code></td>
+<td>存储字</td>
+<td><code>sw rt, offset(rs)</code></td>
+</tr>
+<tr>
+<td><code>lb</code></td>
+<td>加载字节</td>
+<td><code>lb rt, offset(rs)</code></td>
+</tr>
+<tr>
+<td><code>sb</code></td>
+<td>存储字节</td>
+<td><code>sb rt, offset(rs)</code></td>
+</tr>
+<tr>
+<td><code>li</code></td>
+<td>加载立即数</td>
+<td><code>li rt, imm</code></td>
+</tr>
+<tr>
+<td><code>lh</code></td>
+<td>加载半字节</td>
+<td><code>lh rt offset(rs) </code></td>
+</tr>
+<tr>
+<td><code>ld</code></td>
+<td>加载双字</td>
+<td><code>lw rt, offset(rs)</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>lui</code>专门用于设置寄存器中常数的高16位置，将高16位立即数量值存放到寄存器的高16位，低16位用0填充。允许后续指令设置常数的低16位</p>
+<h3>3.5 条件分支</h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beq</code></td>
+<td>等于则分支跳转</td>
+<td><code>beq rs, rt, label</code></td>
+</tr>
+<tr>
+<td><code>bne</code></td>
+<td>不等则分支跳转</td>
+<td><code>bne rs, rt, label</code></td>
+</tr>
+<tr>
+<td><code>bgtz</code></td>
+<td>大于零则跳转</td>
+<td><code>bgtz rs, label</code></td>
+</tr>
+<tr>
+<td><code>blez</code></td>
+<td>小于等于零则跳转</td>
+<td><code>blez rs, label</code></td>
+</tr>
+</tbody>
+</table>
+<h3>3.6 跳转</h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>j</code></td>
+<td>无条件跳转</td>
+<td><code>j label</code></td>
+</tr>
+<tr>
+<td><code>jal</code></td>
+<td>跳转并链接</td>
+<td><code>jal label</code></td>
+</tr>
+<tr>
+<td><code>jr</code></td>
+<td>寄存器跳转</td>
+<td><code>jr rs</code></td>
+</tr>
+</tbody>
+</table>
+<p>函数调用：<code>jal</code> 指令会跳转到目标地址，同时将返回地址保存在 <code>$ra</code> 寄存器中</p>
+<p>函数返回：通过 <code>jr $ra</code> 指令完成的，它会跳转到 <code>$ra</code> 寄存器中存储的地址，从而返回到调用函数的位置</p>
+<h2>4.叶子函数与非叶子函数</h2>
+<p>如果一个函数 A 不再调用任何其他函数，那么当前的函数 A 就是一个叶子函数，否则函数 A 就是一个非叶子函数</p>
+<p>函数调用过程：（汇编层面）</p>
+<ul>
+<li>函数 A 执行到调用函数 B 的指令时，函数调用指令复制当前 pc 寄存器的值到 ra 寄存器，即当前 ra 寄存器的值就是当前函数执行结束的返回地址，然后跳转到函数 B 执行</li>
+<li>程序跳转到函数 B 后，如果 B 是非叶子函数，那么函数 B 首先会把函数 A 的返回地址存入堆栈，否则返回函数 A 的地址仍然在 ra 寄存器中</li>
+<li>函数返回时，如果 B 是叶子函数，那么直接使用 jr $ra 指令返回函数 A，如果函数 B 是非叶子函数，返回过程相对复杂一些，函数 B 先从堆栈中取出被保存在堆栈上的返回地址，然后将返回地址存入寄存器 ra 中，再使用上面的指令返回函数 A</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

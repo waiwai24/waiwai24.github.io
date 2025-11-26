@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 递归,递归</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>递归</h1>
+<p>[TOC]</p>
+<h2>1.递归入门</h2>
+<h3>编写一个递归函数</h3>
+<ul>
+<li>
+<p>递归就是在过程或函数中调用自己</p>
+</li>
+<li>
+<p>为了避免出现死循环，在使用递归策略时，必须有一个明确的递归结束条件，即出口</p>
+</li>
+</ul>
+<h3>计算阶乘</h3>
+<pre><code class="language-cpp">int fac(int x)
+{
+	if (x == 0 or x == 1)
+		return 1;
+	else
+		return x * fac(x - 1);
+}
+</code></pre>
+<h3>辗转相除法（欧几里得算法）</h3>
+<p>定理：两个正整数a和b，它们的最大公约数等于a除以b的余数c和b之间的最大公约数</p>
+<pre><code class="language-cpp">int gcd(int a, int b)
+{
+    if (a % b == 0) return b;
+    else return gcd(b, a % b);
+}
+</code></pre>
+<h3>例题：走楼梯</h3>
+<pre><code class="language-m">题目：
+一个台阶一共有n级，如果一次可以跳1级，也可以跳2级，求总共有多少种总跳法
+</code></pre>
+<pre><code class="language-cpp">int solve(int x)
+{
+    if (x == 1) return 1;
+    if (x == 2) return 2;
+    else
+        return solve(x - 1) + solve(x - 2);//类似于斐波那契数列
+}
+</code></pre>
+<pre><code class="language-mermaid">graph TB
+	4--&gt;3
+	4--&gt;one(2)
+	3--&gt;2
+	3--&gt;1
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

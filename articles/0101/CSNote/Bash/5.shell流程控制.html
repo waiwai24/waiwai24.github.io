@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># shell 流程控制,shell 流程控制</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>shell 流程控制</h1>
+<h2>1.条件分支</h2>
+<p>if，if-else，if-elif-else</p>
+<p>if 或者 elif 后面需要接 condition，condition 可以使用 <code>[...]</code> 或者 <code>((...))</code> 闭包起来，<code>[]</code> 中的大于小于用 <code>-gt</code>、<code>-lt</code>，单个<code>=</code>用于检查字符串是否相等</p>
+<p>其结构如下：</p>
+<pre><code class="language-shell">if condition
+then
+	...
+elif confition
+then
+	...
+else
+	...
+fi
+</code></pre>
+<p>补充：</p>
+<p>字符串的比较：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>string1 = string2</code></td>
+<td style="text-align:left">如果两个串相等，则结果为真（true: 0）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>string1 != string2</code></td>
+<td style="text-align:left">如果两个串不相等，则结果为真</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>string</code> 或 <code>-n string</code></td>
+<td style="text-align:left">如果字符串 string 长度不为 0，则结果为真</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-z string</code></td>
+<td style="text-align:left">如果字符串 string 长度为 0，则结果为真</td>
+</tr>
+</tbody>
+</table>
+<p>数值比较：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>-eq</code></td>
+<td style="text-align:left">等于</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-ne</code></td>
+<td style="text-align:left">不等于</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-gt</code></td>
+<td style="text-align:left">大于</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-ge</code></td>
+<td style="text-align:left">大于等于</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-lt</code></td>
+<td style="text-align:left">小于</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-le</code></td>
+<td style="text-align:left">小于等于</td>
+</tr>
+</tbody>
+</table>
+<p>文件状态：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>-r file</code></td>
+<td style="text-align:left">文件存在且可读</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-w file</code></td>
+<td style="text-align:left">文件存在且可写</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-x file</code></td>
+<td style="text-align:left">文件存在且可执行</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-f file</code></td>
+<td style="text-align:left">文件存在且为普通文件</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-d file</code></td>
+<td style="text-align:left">文件存在且为目录</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-s file</code></td>
+<td style="text-align:left">文件存在且长度大于 0</td>
+</tr>
+</tbody>
+</table>
+<p>逻辑表达式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>! expr</code></td>
+<td style="text-align:left">否运算</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>expr1 –a expr2</code></td>
+<td style="text-align:left">与运算</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>expr1 –o expr2</code></td>
+<td style="text-align:left">或运算</td>
+</tr>
+</tbody>
+</table>
+<h2>2.循环</h2>
+<p>支持 break 和 continue</p>
+<p>for：</p>
+<pre><code class="language-shell">for var in item1 item2 item2
+do
+	...
+done
+</code></pre>
+<p>while:</p>
+<pre><code class="language-shell">while condition
+do
+	...
+done
+</code></pre>
+<h2>3.多选择</h2>
+<p>case…esac 类似于 c 中的 switch…case, 是一种多分支选择语句，每个分支 case 由 <code>）</code> 开始，<code>;;</code> 结束，case 中的 <code>*</code> 类似于 c 中的 default，一旦模式匹配，执行完后，不再执行其他的匹配</p>
+<pre><code class="language-shell">case value in
+	1）
+		...
+		;;
+	2)
+		...
+		;;
+	*)
+		...
+		;;
+esac
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

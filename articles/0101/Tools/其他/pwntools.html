@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># pwntools,pwntools</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>pwntools</h1>
+<pre><code class="language-python">from pwm import *
+</code></pre>
+<p>注意：py3使用时确保所有字符串都有个<code>b</code>前缀，因为python2的str类型是bytes类型，但python3时是Unicode类型，和bytes类型有区别</p>
+<p>tips：使用ipython可以方便查看各自模块和函数的详细使用用法<code>? name</code></p>
+<h2>1.tubes</h2>
+<p>主要函数在 <code>pwnlib.tubes.tube</code>,子模块只实现某管道特殊的地方。四种管道和相对应的子模块如下</p>
+<p>四种管道：</p>
+<ul>
+<li>
+<p>进程：<code>p=process(&quot;/bin/sh&quot;)</code></p>
+</li>
+<li>
+<p>套接字：<code>l=listen(1080)</code>，<code>r=remote('1270.0.1',1080)</code></p>
+</li>
+<li>
+<p>SSH ：<code>session=ssh(host='example.com',port=22，user='name',password='passwd')</code></p>
+</li>
+<li>
+<p>串口：<code>pwnlib.tubes.serialtube</code></p>
+<p>tips:串口通信是指外设和计算机间，通过数据信号线 、地线、控制线等，按位进行传输数据的一种通讯方式</p>
+</li>
+</ul>
+<p>交互：</p>
+<ul>
+<li><code>interactive()</code>：同时读写管道，相当于回到 shell 模式进行交互，在取得 shell 之后调用</li>
+</ul>
+<p>接收数据：</p>
+<ul>
+<li><code>recv(num,timeout=default)</code>：接收指定数量的可用字节</li>
+<li><code>recvall()</code>：接受数据直到EOF</li>
+<li><code>recvline()</code>：接受一行数据直到遇到换行，设置参数 keepends = False 可不保留 \n</li>
+<li><code>recvuntil(delims, timeout=default)</code>：接收数据直到 delims 出现</li>
+<li><code>recvrepeat(timeout)</code>：继续接收数据，直到发生超时</li>
+<li><code>clean()</code>：丢弃所有缓冲的数据</li>
+</ul>
+<p>发送数据</p>
+<ul>
+<li><code>send(data)</code>：发送数据</li>
+<li><code>sendline(data)</code>：发送一行数据，默认在行尾加\n，也就是0xa</li>
+<li><code>sendafter(some_string, payload)</code>：接收到 some_string 后, 发送你的 payload</li>
+<li><code>close()</code>：关闭管道</li>
+</ul>
+<h2>2.pack&amp;unpack</h2>
+<p>打包/解包任意长度的整数，默认小端，添加参数<code>endian</code>,<code>signed</code>可以设置端序和是否带符号</p>
+<ul>
+<li><code>p16()</code>，<code>p32()</code>：打包16/32位的整数，将整数打包为相对应位数的地址表示方式</li>
+<li><code>u16()</code>，<code>u32()</code>：解包16/32位的整数，把\x\x码重新变为整数</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; p32(0xdeadbeef)
+'\xef\xbe\xad\xde'
+&gt;&gt;&gt; p64(0xdeadbeef).encode('hex')
+'efbeadde00000000'
+&gt;&gt;&gt; p32(0xdeadbeef, endian='big', sign='unsigned')
+'\xde\xad\xbe\xef'
+</code></pre>
+<h2>3.哈希和编码</h2>
+<ul>
+<li><code>b64e()</code>，<code>b64d()</code></li>
+<li><code>md5sumhex()</code>，<code>md5filehex()</code>，</li>
+<li><code>sha1sumhex()</code></li>
+<li><code>enhex</code>,<code>unhex</code></li>
+<li><code>urlencode()</code></li>
+</ul>
+<h2>4.shellcraft</h2>
+<p>使用 shellcraft 模块可以生成对应架构和 shellcode 代码，直接使用链式调用的方法就可以得到，首先指定体系结构，再指定操作系统</p>
+<p>示例：</p>
+<pre><code class="language-python">from pwn import *
+help(shellcraft.sh)
+print '---'
+print shellcraft.sh()
+print '---'
+print enhex(asm(shellcraft.sh()))
+</code></pre>
+<pre><code class="language-python">Help on function sh in module pwnlib.shellcraft.internal:
+sh()
+Execute /bin/sh
+---
+/* push '/bin///sh\x00' */
+push 0x68
+push 0x732f2f2f
+push 0x6e69622f
+/* call execve('esp', 0, 0) */
+push (SYS_execve) /* 0xb */
+                    pop eax
+mov ebx, esp
+xor ecx, ecx
+cdq /* edx=0 */
+int 0x80
+---
+6a68682f2f2f73682f62696e6a0b5889e331c999cd80
+</code></pre>
+<h2>5.asm</h2>
+<p>用于汇编和反汇编</p>
+<ul>
+<li>
+<p><code>asm()</code>汇编</p>
+<pre><code>asm('mov eax, 0')
+'\xb8\x00\x00\x00\x00'
+</code></pre>
+</li>
+<li>
+<p><code>disasm()</code>反汇编</p>
+<pre><code>disasm('\xb8\x0b\x00\x00\x00')
+'  0: b8 0b 00 00 00        mov  eax,0xb'
+</code></pre>
+</li>
+</ul>
+<p>体系结构，端序和字长需要在 <code>asm()</code> 和 <code>disasm()</code> 中设置，但为了避免重复，运行时变量最好使用 <code>pwnlib.context</code> 来设置</p>
+<pre><code class="language-python">context(arch='amd64', os='linux', endian='little')
+context.log_level = &quot;debug&quot; # 打印调试信息
+context.log_level = &quot;error&quot; # 打印错误信息, 此时很多回显就看不到了
+context.log_level = &quot;info&quot;  #默认
+</code></pre>
+<h2>6.联动GDB调试</h2>
+<pre><code class="language-python">启动一个进程，并且停在第一条指令(推荐使用)
+io = gdb.debug(&quot;/bin/bash&quot;, gdbscript='continue')
+
+附加到一个进程，target可以是pid也可以是process
+gdb.attach(target, gdbscript=None)
+gdb.attach(proc.pidof(p)[0])
+pause()
+</code></pre>
+<p>在脚本中调用 gdb 并不是准确停在调用这一行，而是会执行到脚本的 下一（或几）行，举个例子：</p>
+<h2>7.ELF</h2>
+<p>ELF文件有几组不同的符号表可用，每组都包含在<code>{name: data}</code>的字典中</p>
+<ul>
+<li><code>ELF.symbols[]</code> 列出所有已知的符号，包括下面的符号(符号可以是变量、函数、或其他常量)。优先考虑PLT条目，而不是GOT条目。</li>
+<li><code>ELF.got[]</code> 只包含GOT表</li>
+<li><code>ELF.plt[]</code> 只包含PLT表</li>
+<li><code>ELF.functions</code> 只包含函数符号表（需要DWARF符号表）</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; e = ELF('/bin/cat')
+[*] '/bin/cat'
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+&gt;&gt;&gt; print hex(e.address) 
+#文件装载基地址,如果二进制文件没有启用PIE，那么它是绝对地址;如果启用了，所有地址都是相对地址
+#设置address值会自动更新symbols、got、plt和functions的地址，这使得它在调整PIE或ASLR时非常有用
+0x400000
+&gt;&gt;&gt; print hex(e.symbols['write'])
+0x401680
+&gt;&gt;&gt; print hex(e.got['write'])
+0x60b070
+&gt;&gt;&gt; print hex(e.plt['write'])
+0x401680
+</code></pre>
+<h2>8.其他</h2>
+<ul>
+<li>
+<p><code>cyclic(len)</code>：生成指定长度的数据</p>
+</li>
+<li>
+<p><code>cyclic -l lookup_value</code>:执行查找</p>
+</li>
+<li>
+<p><code>b *$rebase(0x相对基址偏移)</code> 是 pwngdb 中的一个调试命令，用于在基地址重定位后设置断点</p>
+</li>
+<li>
+<p><code>flat</code>函数可以将一个列表（或其他可迭代对象）中的元素转换为二进制字符串，并将这些字符串连续拼接起来。这对于在二进制漏洞利用中构造包含多个数据块的payload特别有用</p>
+<pre><code class="language-python">In [1]: flat([1,2],endianness = 'little', word_size = 32, sign = False)                                                       Out[1]: b'\x01\x00\x00\x00\x02\x00\x00\x00'
+
+In [2]: flat([1,2],word_size=64)                                                                                             Out[2]: b'\x01\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00'
+</code></pre>
+</li>
+<li>
+<p><code>log.info()</code>：打印状态信息</p>
+</li>
+<li>
+<p><code>FmtStr(execute_fmt, offset=None, padlen=0, numbwritten=0)</code></p>
+<ul>
+<li>execute_fmt(function)：与漏洞进程进行交互的函数；</li>
+<li>offset(int)：控制的第一个格式化程序的偏移量</li>
+<li>padlen(int)：在payload之前添加的pad的大小</li>
+<li>numbwritten(int)：已经写入的字节数</li>
+</ul>
+</li>
+<li>
+<p><code>fmtstr_payload(offset, {address:data}, numbwritten=0, write_size='byte')</code></p>
+<ul>
+<li>自动生成格式化字符串 paylod</li>
+<li>offset 表示格式化字符串的偏移</li>
+<li>{address:data} 表示在address写入data</li>
+<li>numbwritten 表示已经输出的字符个数</li>
+<li>write_size 表示写入方式，是按字节（byte）、按双字节（short）还是按四字节（int），对应着hhn、hn和n，默认值是byte，即按hhn写</li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

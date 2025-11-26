@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># unsortedbin attack,unsortedbin attack</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>unsortedbin attack</h1>
+<h2>1.基本原理</h2>
+<p>基本来源：</p>
+<ul>
+<li>当一个较大的 chunk 被分割成两半后，如果剩下的部分大于 MINSIZE，就会被放到 unsorted bin 中。</li>
+<li>释放一个不属于 fast bin 的 chunk，并且该 chunk 不和 top chunk 紧邻时，该 chunk 会被首先放到 unsorted bin 中。</li>
+<li>当进行 malloc_consolidate 时，可能会把合并后的 chunk 放到 unsorted bin 中，如果不是和 top chunk 近邻的话。</li>
+</ul>
+<p>使用：</p>
+<ul>
+<li>Unsorted Bin 在使用的过程中，采用的遍历顺序是 FIFO，<strong>即插入的时候插入到 unsorted bin 的头部（靠近bins的），取出的时候从链表尾获取（远离bins的）</strong>。</li>
+<li>在程序 malloc 时，如果在 fastbin，small bin 中找不到对应大小的 chunk，就会尝试从 Unsorted Bin 中寻找 chunk。如果取出来的 chunk 大小刚好满足，就会直接返回给用户，否则就会把这些 chunk 分别插入到对应的 bin 中。</li>
+</ul>
+<p>_int_malloc 中：</p>
+<pre><code class="language-c">while ((victim = unsorted_chunks (av)-&gt;bk) != unsorted_chunks (av))
+{
+  bck = victim-&gt;bk;
+  if (__builtin_expect (chunksize_nomask (victim) &lt;= 2 * SIZE_SZ, 0)
+      || __builtin_expect (chunksize_nomask (victim)
+           &gt; av-&gt;system_mem, 0))
+    malloc_printerr (&quot;malloc(): memory corruption&quot;);
+  size = chunksize (victim);
+
+  /*
+     If a small request, try to use last remainder if it is the
+     only chunk in unsorted bin.  This helps promote locality for
+     runs of consecutive small requests. This is the only
+     exception to best-fit, and applies only when there is
+     no exact fit for a small chunk.
+   */
+
+  if (in_smallbin_range (nb) &amp;&amp;
+      bck == unsorted_chunks (av) &amp;&amp;
+      victim == av-&gt;last_remainder &amp;&amp;
+      (unsigned long) (size) &gt; (unsigned long) (nb + MINSIZE))
+    {
+      /* split and reattach remainder */
+      remainder_size = size - nb;
+      remainder = chunk_at_offset (victim, nb);
+      unsorted_chunks (av)-&gt;bk = unsorted_chunks (av)-&gt;fd = remainder;
+      av-&gt;last_remainder = remainder;
+      remainder-&gt;bk = remainder-&gt;fd = unsorted_chunks (av);
+      if (!in_smallbin_range (remainder_size))
+        {
+          remainder-&gt;fd_nextsize = NULL;
+          remainder-&gt;bk_nextsize = NULL;
+        }
+
+      set_head (victim, nb | PREV_INUSE |
+                (av != &amp;main_arena ? NON_MAIN_ARENA : 0));
+      set_head (remainder, remainder_size | PREV_INUSE);
+      set_foot (remainder, remainder_size);
+
+      check_malloced_chunk (av, victim, nb);
+      void *p = chunk2mem (victim);
+      alloc_perturb (p, bytes);
+      return p;
+    }
+
+  /* remove from unsorted list */
+  unsorted_chunks (av)-&gt;bk = bck;
+  bck-&gt;fd = unsorted_chunks (av);
+</code></pre>
+<p>重点关注最后两行代码，在存在一个 UAF 的前提下，可以修改 bk 指针到 fake chunk，当我们再 malloc 一个 chunk 从 unsortedbin 中时，bck 是 fake chunk，bins 中的 bk 会指向 fake chunk，同时 fake chunk 的 fd 处的值会被修改</p>
+<p><img src="/0101/PWN/堆利用/BinAttack/assets/2.unsortedbin_attack/unsorted_bin_attack_order-1734969415727-2.png" alt="unsorted_bin_attack_order"></p>
+<p>这样我们就可以实现任意地址写。在 target value 中写一个较大的值，或者方便内存中某些地方绕过判断</p>
+<p>通过gdb打印出<code>global_max_fast</code>的地址的解，但是下载的libc，好像并没有这个<code>global_max_fast</code>符号，因为这是一个static变量，是可以被strip去符号的。不太清楚别人是怎么搞得，我只能通过原理上去找这个地址(libc+偏移)</p>
+<p><code>global_max_fast</code>这个全局变量的作用是用来标志<code>fastbin</code>的大小的阈值，小于这个值的堆块会被认为是fastbin</p>
+<p>注意：bk字段必须可写</p>
+<p>glibc2.28开始失效，因为会检查</p>
+<pre><code class="language-c">  /* remove from unsorted list */
+  if (__glibc_unlikely (bck-&gt;fd != victim))
+    malloc_printerr (&quot;malloc(): corrupted unsorted chunks 3&quot;);
+  unsorted_chunks (av)-&gt;bk = bck;
+  bck-&gt;fd = unsorted_chunks (av);
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

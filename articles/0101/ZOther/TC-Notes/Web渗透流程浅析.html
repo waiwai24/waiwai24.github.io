@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Web渗透流程浅析,Web渗透流程浅析</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Web渗透流程浅析</h1>
+<h2>一. 渗透三板斧</h2>
+<p>信息收集，打点突破，横向渗透</p>
+<p><img src="/0101/ZOther/TC-Notes/assets/Web%E6%B8%97%E9%80%8F%E6%B5%81%E7%A8%8B%E6%B5%85%E6%9E%90/a1871728a13525458ccb59a2c4e8145.jpg" alt="a1871728a13525458ccb59a2c4e8145"></p>
+<h2>二. 信息收集</h2>
+<h3>2.1目标组织架构</h3>
+<ul>
+<li>爱企查</li>
+<li>企查查</li>
+</ul>
+<h3>2.2主域名</h3>
+<ul>
+<li>
+<p>天眼查（网站备案，微信公众号）</p>
+</li>
+<li>
+<p>小蓝本（备案未备案（无法访问）都可查）</p>
+</li>
+<li>
+<p>ENScanGO（GitHub）</p>
+</li>
+<li>
+<p>Goole，WIkipedia（国外）</p>
+</li>
+</ul>
+<h3>2.3 子域名</h3>
+<ul>
+<li>
+<p>利用搜索引擎发现子域名，常见资产包括办公系统，邮箱i同，论坛，管理系统，网站管理后台等</p>
+</li>
+<li>
+<p>子域名爆破</p>
+</li>
+<li>
+<p>DNS数据集搜集子域，威胁情报平台搜集子域名</p>
+</li>
+<li>
+<p>子域爬取</p>
+</li>
+<li>
+<p>利用证书透明度搜集子域</p>
+</li>
+<li>
+<p>网上爬虫档案搜集子域名</p>
+</li>
+<li>
+<p><a href="https://hunter.qianxin.com/">https://hunter.qianxin.com/</a></p>
+</li>
+<li>
+<p><a href="https://fofa.info">https://fofa.info</a></p>
+</li>
+<li>
+<p><a href="https://github.con/wgppsec/fofa_viewer">https://github.con/wgppsec/fofa_viewer</a></p>
+</li>
+<li>
+<p>自动搜索工具：OneForAll（<a href="https://github.com/shmilylty/OneForAll%EF%BC%89">https://github.com/shmilylty/OneForAll）</a></p>
+</li>
+</ul>
+<h3>2.4 IP, 端口，旁段，C段</h3>
+<p>IP：</p>
+<ul>
+<li>子域名IP：
+<ul>
+<li>主站虽然是用了CDN，但子域名可能没有使用CDN</li>
+</ul>
+</li>
+<li>多地ping</li>
+<li>历史DNS解析记录</li>
+</ul>
+<p>端口：</p>
+<ul>
+<li>nmap扫描</li>
+<li>在线端口检测</li>
+</ul>
+<p>旁站，C段：</p>
+<ul>
+<li>旁站：是和目标网站在同一台服务器但开放在其他端口的网站</li>
+<li>C段：是和目标服务器ip处在同一个C段的其它服务器</li>
+<li>站长之家——同IP网站查询</li>
+<li>网络空间搜索引擎</li>
+</ul>
+<h2>三. 打点突破</h2>
+<blockquote>
+<p>核心思想：突破网络边界（上传webshell，命令执行，vpn拨入）</p>
+</blockquote>
+<p><img src="/0101/ZOther/TC-Notes/assets/Web%E6%B8%97%E9%80%8F%E6%B5%81%E7%A8%8B%E6%B5%85%E6%9E%90/2e9abe36f0dfd03f9988b9a5c940d40.jpg" alt="2e9abe36f0dfd03f9988b9a5c940d40"></p>
+<p><img src="/0101/ZOther/TC-Notes/assets/Web%E6%B8%97%E9%80%8F%E6%B5%81%E7%A8%8B%E6%B5%85%E6%9E%90/9c7895fad98b976467c0349255024d4.jpg" alt="9c7895fad98b976467c0349255024d4"></p>
+<h3>3.1 指纹识别</h3>
+<p>了解web服务类型，框架，版本，帮助我们更好的去测试已知漏洞和大概的利用方法，为渗透测试提供重要方向</p>
+<ul>
+<li>在线网站：云悉，潮汐指纹，CMS指纹识别，</li>
+<li>GitHub：EHOle</li>
+</ul>
+<h3>3.2 漏洞发现</h3>
+<h4>3.2.1 基于已知漏洞的poc获exp进行验证</h4>
+<ul>
+<li>GitHub：zin8in/aforg，r00tSe7en/JNDIMontior，welk1n/JNDI-Injection-Exploit，chaitin/xray/release，chaitin/xpoc</li>
+<li>dnslog</li>
+</ul>
+<h4>3.2.2基于常见web漏洞payload的fuzz</h4>
+<ul>
+<li>AWVS</li>
+</ul>
+<h3>3.3 源码泄露</h3>
+<p>针对所有目标url，批量扫描文件泄露</p>
+<p>当某web应用是某种通过框架，通用系统，先搜集去哪玩相同web应用，再批量扫描其文件泄露</p>
+<p>工具：projectdiscovery/httpx（GitHub）</p>
+<h3>3.4 路径扫描</h3>
+<p>dirsearch，御剑，dirmap</p>
+<p>字典：TheKingOfDuck/fuzzDicts（GitHub）</p>
+<h3>3.5 接口发现</h3>
+<ul>
+<li>
+<p>mickeystone/JSFinderPlus</p>
+</li>
+<li>
+<p>rtcatc/Packer-FUzzer</p>
+</li>
+<li>
+<p>ping0cy/URLFinder</p>
+</li>
+</ul>
+<p><img src="/0101/ZOther/TC-Notes/assets/Web%E6%B8%97%E9%80%8F%E6%B5%81%E7%A8%8B%E6%B5%85%E6%9E%90/d5d73613aca86789f1bfae72ef88f02.jpg" alt="d5d73613aca86789f1bfae72ef88f02"></p>
+
+        </main>
+    </div>
+</body>
+</html>

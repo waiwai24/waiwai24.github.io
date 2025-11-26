@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># IP报文,IP报文</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>IP报文</h1>
+<p><img src="/0101/Cyberspace/Web/5.网络层/assets/2.IP%E6%8A%A5%E6%96%87/14ybyfbtnc.png" alt="img"></p>
+<h2>1.字段解释</h2>
+<ul>
+<li>版本：IP协议的版本号，为一个四位字段，常用的版本为 IPV4 和 IPV6</li>
+<li>头部长度：最小<strong>20字节</strong>，最大60字节（一定是4字节的整数倍）</li>
+<li>服务类型：实际上一直未被使用过</li>
+<li>总长度：指<strong>首部和数据之和的长度</strong>，单位为字节，因此数据报的最大长度为 65535 字节。总长度必须不超过最大传送单元 MTU（最大传输单元MTU（Maximum Transmission Unit，MTU，数据链路层提供给上层的最大一次传输数据的大小），是指网络能够传输的最大数据包大小，以字节为单位）</li>
+<li>标识：用于判断分片属于哪个分组</li>
+<li><strong>标志</strong>：占3位，只有2位有意义</li>
+<li><strong>分片偏移：用来说明分片后某片在原分组中的相对位置（偏移量以8字节为单位</strong>）</li>
+<li>生存期：用于限制分组生命周期的计时器 <strong>TTL</strong> (Time To Live)，是数据报可经过的路由器数量的上限。发送方在初始发送时设定某个值（建议为64,、128或255），每台路由器再转发时都将其减一，当字段达到0时，该数据报被丢弃，并使用一个ICMP消息通知发送方</li>
+<li>协议：表明IP 数据报中的数据部分所使用的的协议类型，TCP/UDP/IPv6</li>
+<li>头部校验和：仅对头部进行校验</li>
+<li>源地址</li>
+<li>目的地址</li>
+<li>选项：用于扩充协议功能。例如安 全性，记录路由，时间戳等 , 可选</li>
+</ul>
+<h2>2.IP分片和重组</h2>
+<h3>2.1 背景</h3>
+<p>在一个异构的网络集合中，每种网络技术都定义了自己分组的大小，不同的链路层有不同的<strong>MTU</strong>（最大传输单元）：</p>
+<ul>
+<li>以太网分组最大长度可为 1500字节</li>
+<li>FDDI 分组最大长度可为 4500字节</li>
+<li>ATM 的信元固定为 48 字节</li>
+</ul>
+<h3>2.2 策略</h3>
+<p>当 IP 数据报对某一网络技术来说太大时，提供一种方法将分组分片和重组</p>
+<ul>
+<li>当 MTU &lt; Datagram 时，需要进行分片</li>
+<li>尽可能避免在源主机上进行分片，一般是在连接两个网络的路由器上进行分片</li>
+<li>数据报在多个网络中传递时，有可能被再次分片，分片成的每个分组都是一个独立的 IP 数据报</li>
+<li><strong>在目的主机上进行分片的重组，而不是在路由器上进行重组</strong></li>
+<li>IP 不恢复丢失的分片</li>
+</ul>
+<h3>2.3 IP报文中的标志段</h3>
+<p>占 3 位：</p>
+<ul>
+<li>第一位未使用，其值为 0</li>
+<li>第二位称为 DF（不分片Don’t Fragment）：
+<ul>
+<li>取值为 1 时，表示不可分片</li>
+<li>取值为 0 时，表示可分片</li>
+</ul>
+</li>
+<li>第三位称为 MF（更多分片More Fragment）：表示是否还有分片正在传输
+<ul>
+<li>设置为 0 时，表示没有更多分片需要发送，也就是最后的分组片</li>
+<li>设置为 1时，表示不是最后的分组片</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>当DF位被设置为1时，表示数据包在传输过程中不允许被分片。如果数据包的大小超过了网络的最大传输单元（MTU），那么数据包将被丢弃，并且发送一个ICMP消息给发送方，告知其数据包过大无法传输。</li>
+<li>当DF位被设置为0时，表示数据包在传输过程中可以被分片。如果数据包的大小超过了MTU，中间的路由器会将数据包分割成更小的片段，以便它们能够通过网络。</li>
+</ul>
+<p>DF位的主要作用是确保数据包的完整性，特别是对于某些需要保持数据包完整性的应用，如视频会议或实时音频传输。然而，如果网络中存在MTU限制，设置DF位可能会导致数据包丢失，因此需要谨慎使用。</p>
+</blockquote>
+
+        </main>
+    </div>
+</body>
+</html>

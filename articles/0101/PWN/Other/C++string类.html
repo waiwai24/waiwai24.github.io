@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># C++ string 类,C++ string 类</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>C++ string 类</h1>
+<h2>1.头文件</h2>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;string&gt;
+</code></pre>
+<p>在 C++ 中，字符串是由字符组成的序列。<code>&lt;string&gt;</code> 头文件提供了 <code>std::string</code> 类，它是对 C 风格字符串的封装，提供了更安全、更易用的字符串操作功能</p>
+<p>string与char*的区别：</p>
+<ul>
+<li><strong><code>char*</code></strong> 是一个指针</li>
+<li><strong><code>string</code><strong>本质上是一个类，类的内部封装了</strong><code>char*</code></strong>，即**<code>string</code><strong>是一个</strong><code>char*</code>**型的容器</li>
+<li>**<code>string</code><strong>管理</strong><code>char*</code>**所分配的内存，不用担心复制越界和取值越界等</li>
+</ul>
+<h2>2.基本语法</h2>
+<ul>
+<li>
+<p>声明字符串变量：</p>
+<pre><code>std::string str;
+</code></pre>
+</li>
+<li>
+<p>初始化字符串：</p>
+<pre><code>std::string str = &quot;Hello, World!&quot;;
+</code></pre>
+</li>
+<li>
+<p>使用 <code>+</code> 连接字符串</p>
+</li>
+</ul>
+<h2>3.常用成员函数</h2>
+<p><code>std::string</code> 类提供了许多成员函数来操作字符串，以下是一些常用的成员函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>描述</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size()</code></td>
+<td>返回字符串的长度（字符数）。</td>
+<td><code>std::cout &lt;&lt; str.size();</code></td>
+</tr>
+<tr>
+<td><code>length()</code></td>
+<td>与 <code>size()</code> 相同，返回字符串的长度。</td>
+<td><code>std::cout &lt;&lt; str.length();</code></td>
+</tr>
+<tr>
+<td><code>empty()</code></td>
+<td>判断字符串是否为空。</td>
+<td><code>std::cout &lt;&lt; (str.empty() ? &quot;Yes&quot; : &quot;No&quot;);</code></td>
+</tr>
+<tr>
+<td><code>operator[]</code></td>
+<td>访问字符串中指定位置的字符。</td>
+<td><code>std::cout &lt;&lt; str[0];</code></td>
+</tr>
+<tr>
+<td><code>at()</code></td>
+<td>访问字符串中指定位置的字符（带边界检查）。</td>
+<td><code>std::cout &lt;&lt; str.at(0);</code></td>
+</tr>
+<tr>
+<td><code>substr()</code></td>
+<td>返回从指定位置开始的子字符串。</td>
+<td><code>std::string sub = str.substr(0, 5);</code></td>
+</tr>
+<tr>
+<td><code>find()</code></td>
+<td>查找子字符串在字符串中的位置。</td>
+<td><code>std::cout &lt;&lt; str.find(&quot;sub&quot;) &lt;&lt; std::endl;</code></td>
+</tr>
+<tr>
+<td><code>rfind()</code></td>
+<td>从字符串末尾开始查找子字符串的位置。</td>
+<td><code>std::cout &lt;&lt; str.rfind(&quot;sub&quot;) &lt;&lt; std::endl;</code></td>
+</tr>
+<tr>
+<td><code>replace()</code></td>
+<td>替换字符串中的部分内容。</td>
+<td><code>str.replace(pos, length, &quot;new_substring&quot;);</code></td>
+</tr>
+<tr>
+<td><code>append()</code></td>
+<td>在字符串末尾添加内容。</td>
+<td><code>str.append(&quot; more&quot;);</code></td>
+</tr>
+<tr>
+<td><code>insert()</code></td>
+<td>在指定位置插入内容。</td>
+<td><code>str.insert(pos, &quot;inserted&quot;);</code></td>
+</tr>
+<tr>
+<td><code>erase()</code></td>
+<td>删除指定位置的字符或子字符串。</td>
+<td><code>str.erase(pos, length);</code></td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>清空字符串。</td>
+<td><code>str.clear();</code></td>
+</tr>
+<tr>
+<td><code>c_str()</code></td>
+<td>返回 C 风格的字符串（以 null 结尾）。</td>
+<td><code>const char* cstr = str.c_str();</code></td>
+</tr>
+<tr>
+<td><code>data()</code></td>
+<td>返回指向字符数据的指针（C++11 及之后的版本）。</td>
+<td><code>const char* data = str.data();</code></td>
+</tr>
+<tr>
+<td><code>compare()</code></td>
+<td>比较两个字符串。</td>
+<td><code>int result = str.compare(&quot;other&quot;);</code></td>
+</tr>
+<tr>
+<td><code>find_first_of()</code></td>
+<td>查找第一个匹配任意字符的位置。</td>
+<td><code>size_t pos = str.find_first_of(&quot;aeiou&quot;);</code></td>
+</tr>
+<tr>
+<td><code>find_last_of()</code></td>
+<td>查找最后一个匹配任意字符的位置。</td>
+<td><code>size_t pos = str.find_last_of(&quot;aeiou&quot;);</code></td>
+</tr>
+<tr>
+<td><code>find_first_not_of()</code></td>
+<td>查找第一个不匹配任意字符的位置。</td>
+<td><code>size_t pos = str.find_first_not_of(&quot;aeiou&quot;);</code></td>
+</tr>
+<tr>
+<td><code>find_last_not_of()</code></td>
+<td>查找最后一个不匹配任意字符的位置。</td>
+<td><code>size_t pos = str.find_last_not_of(&quot;aeiou&quot;);</code></td>
+</tr>
+</tbody>
+</table>
+
+        </main>
+    </div>
+</body>
+</html>

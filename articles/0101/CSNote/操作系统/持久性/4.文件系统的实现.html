@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 文件系统的实现,文件系统的实现</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>文件系统的实现</h1>
+<h2>1.整体组织</h2>
+<p><img src="/0101/CSNote/操作系统/持久性/assets/4.%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/image-20241030202214607.png" alt="image-20241030202214607"></p>
+<ul>
+<li>
+<p>将磁盘分成块（block）</p>
+</li>
+<li>
+<p>分配<strong>数据区域</strong>（data region）存储用户数据</p>
+</li>
+<li>
+<p>分配<strong>inode表</strong>（index node table）存储inode信息。（unix）利用inode存储元数据</p>
+<ul>
+<li>创建者</li>
+<li>文件物理位置信息：如链表或索引表</li>
+<li>创建、修改时间、保存时间</li>
+<li>口令：用于对文件访问进行验证</li>
+<li>访问权限：如读、写、执行等</li>
+</ul>
+</li>
+<li>
+<p>利用分配结构（allocation structrue）记录inode和数据块是空闲还是已分配</p>
+<p>利用<strong>位图</strong>（bitmap）记录分配情况：每个bit以0（空闲），1（使用）来记录使用情况</p>
+</li>
+<li>
+<p>利用<strong>超级块</strong>（superblock）记录文件系统信息：如文件系统类型，文件系统有多少inode和数据块</p>
+</li>
+</ul>
+<h2>2.文件组织和目录组织</h2>
+<p><img src="/0101/CSNote/操作系统/持久性/assets/4.%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/image-20241101104037910.png" alt="image-20241101104037910"></p>
+<p>文件组织：inode（index node）</p>
+<h3>2.1 连续分配</h3>
+<ul>
+<li>inode记录base addr和len</li>
+<li>优点：实现简单，访问高效</li>
+<li>缺点：文件难以动态增长；外部碎片</li>
+</ul>
+<h3>2.2 链接分配：</h3>
+<ul>
+<li>inode指向文件第一块的指针</li>
+<li>优点：可以动态增长，顺序访问块，减少碎片化</li>
+<li>缺点：由于链表在磁盘上，访问开销大，随机访问非常耗时，指针额外占用空间，影响对齐</li>
+</ul>
+<p>解决方案：FAT（file allocation table），将链接放在一个固定的表中，而不是放在每块中</p>
+<p><img src="/0101/CSNote/操作系统/持久性/assets/4.%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/image-20241201112349770.png" alt="image-20241201112349770"></p>
+<h3>2.3 索引分配（单级索引）</h3>
+<ul>
+<li>inode记录块地址</li>
+<li>优点：访问快，减少碎片化</li>
+<li>缺点：索引表需要大块的连续空间</li>
+</ul>
+<h2>3.访问路径：读取和写入</h2>
+<p><img src="/0101/CSNote/操作系统/持久性/assets/4.%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/image-20241201131030110.png" alt="image-20241201131030110"></p>
+<h2>4.性能优化</h2>
+<p>磁盘vs内存：</p>
+<ul>
+<li>磁盘是非易失的存储</li>
+<li>磁盘的访问(ms)比内存访问(ns)慢很多</li>
+<li>磁盘的空间比内存大很多</li>
+</ul>
+<p>性能优化：</p>
+<p>file buffer cache</p>
+<ul>
+<li>原理：利用程序访问文件的局部性原理</li>
+<li>思路：将文件块缓存在内存中</li>
+<li>实现：现代操作系统将虚拟内存缓存和文件系统缓存集成到统一页面缓存(unified page cache)中</li>
+</ul>
+<p>写缓冲：</p>
+<p>write buffering</p>
+<ul>
+<li>原理：利用缓冲，分批次写入</li>
+<li>思路：将一些更新编成一个批，然后一次性写入</li>
+<li>实现：
+<ul>
+<li>维护一个需要更新的块的队列</li>
+<li>确定一个固定的时间间隔(e.g,30s)，将队列刷新(fush)到磁盘
+<ul>
+<li>如果30s内有频繁的更新，只需要一次I/O</li>
+<li>如果30s之内更新被取消了，则不需要I/O了(lazy也是一种重要思想)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可靠性无法得到保障，但是很实用，当出现crash,近30s的数据修改都会丢失，当前OS均把写缓冲作为默认选项，不然会使I/O非常慢，可以用系统调用(fsync)强制写回磁盘</li>
+</ul>
+<p>预读：</p>
+<p>read ahead</p>
+<ul>
+<li>原理：使IO和计算重叠</li>
+<li>思路：文件系统预测下一个要读的块，并提前放入cache</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

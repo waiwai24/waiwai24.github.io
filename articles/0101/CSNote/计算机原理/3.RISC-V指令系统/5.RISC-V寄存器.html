@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># RISC-V寄存器,RISC-V寄存器</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>RISC-V寄存器</h1>
+<p>32个通用寄存器：</p>
+<ul>
+<li>
+<p>编号为X0~X31，<strong>X0值恒为0</strong></p>
+</li>
+<li>
+<p>32位架构下每个寄存器32位，64位架构下每个寄存器64位</p>
+</li>
+<li>
+<p>用于数据的快速存取，<strong>RISC-V中数据只能存放在寄存器后参与运算</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>ABI名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x0</td>
+<td>zero</td>
+<td>0值寄存器，硬编码为0，写入数据忽略，读取数据为0</td>
+</tr>
+<tr>
+<td>x1</td>
+<td>ra</td>
+<td>用于返回地址（return address）</td>
+</tr>
+<tr>
+<td>x2</td>
+<td>sp</td>
+<td>用于栈指针（stack pointer）</td>
+</tr>
+<tr>
+<td>x3</td>
+<td>gp</td>
+<td>用于通用指针（global pointer）</td>
+</tr>
+<tr>
+<td>x4</td>
+<td>tp</td>
+<td>用于线程指针</td>
+</tr>
+<tr>
+<td>x5</td>
+<td>t0</td>
+<td>用于存放临时数据或者备用链接寄存器</td>
+</tr>
+<tr>
+<td>x6~x7</td>
+<td>t1~t2</td>
+<td>用于存放临时数据寄存器</td>
+</tr>
+<tr>
+<td>x8</td>
+<td>s0/fp</td>
+<td>callee需要保存的寄存器或者帧指针寄存器</td>
+</tr>
+<tr>
+<td>x9</td>
+<td>s1</td>
+<td>callee需要保存寄存器</td>
+</tr>
+<tr>
+<td>x10~x11</td>
+<td>a0~a1</td>
+<td>函数参数或者返回值寄存器</td>
+</tr>
+<tr>
+<td>x12~x17</td>
+<td>a2-a7</td>
+<td>函数传递参数寄存器</td>
+</tr>
+<tr>
+<td>x18~x27</td>
+<td>s2-s11</td>
+<td>callee需要保存的寄存器</td>
+</tr>
+<tr>
+<td>x28~x31</td>
+<td>t3~t6</td>
+<td>用于存放临时数据寄存器</td>
+</tr>
+</tbody>
+</table>
+<p>（ ABI，Application Binary Interface，即 应用程序二进制接口，可以理解为寄存器别名，在高级语言在生成汇编语言的时候会用到它们）</p>
+
+        </main>
+    </div>
+</body>
+</html>

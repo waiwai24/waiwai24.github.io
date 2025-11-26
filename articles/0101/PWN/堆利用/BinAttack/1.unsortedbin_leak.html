@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># unsorted bin leak,unsorted bin leak</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>unsorted bin leak</h1>
+<h2>1.基本原理</h2>
+<p>由于 unsorted bin 是双向链表，因此在 unsorted bin 链表中必有一个节点的 fd 指针会指向 main_arena 结构体内部</p>
+<p>如果我们可以把正确的 fd 指针 leak 出来，就可以获得一个与 main_arena 有固定偏移的地址，这个偏移可以通过调试得出</p>
+<p>而 main_arena 是一个 struct malloc_state 类型的全局变量，是 ptmalloc 管理主分配区的唯一实例。</p>
+<p>说到全局变量，立马可以想到他会被分配在 .data 或者 .bss 等段上，那么如果我们有进程所使用的 libc 的 .so 文件的话，我们就可以获得 main_arena 与 libc 基地址的偏移，从而获取 libc 的基地址</p>
+<h2>2.利用思路</h2>
+<p>超多漏洞测试程序：</p>
+<pre><code class="language-c">// gcc test.c -o test -g
+#include&lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+char* chunklist[100];
+
+void menu() {
+    puts(&quot;1. add chunk&quot;);
+    puts(&quot;2. delete chunk&quot;);
+    puts(&quot;3. edit chunk&quot;);
+    puts(&quot;4. show chunk&quot;);
+    puts(&quot;5. exit&quot;);
+    puts(&quot;choice:&quot;);
+}
+
+int get_num(){
+    char buf[0x10];
+    read(0, buf, sizeof(buf));
+    return atoi(buf);
+}
+
+void add_chunk(){
+    puts(&quot;index:&quot;);
+    int index = get_num();
+    puts(&quot;size:&quot;);
+    int size = get_num();
+    chunklist[index] = malloc(size);
+}
+
+void delete_chunk(){
+    puts(&quot;index:&quot;);
+    int index = get_num();
+    free(chunklist[index]);
+}
+
+void edit_chunk(){
+    puts(&quot;index:&quot;);
+    int index = get_num();
+    puts(&quot;legth:&quot;);
+    int length = get_num();
+    puts(&quot;content:&quot;);
+    read(0, chunklist[index], length);
+}
+
+void show_chunk(){
+    puts(&quot;index:&quot;);
+    int index = get_num();
+    puts(chunklist[index]);
+}
+
+int main(){
+    setbuf(stdin, NULL);
+    setbuf(stdout, NULL);
+    setbuf(stderr, NULL);
+    while (1) {
+        menu();
+        switch (get_num()) {
+            case 1: 
+                add_chunk();
+                break;
+            case 2:
+                delete_chunk();
+                break;
+            case 3:
+                edit_chunk();
+                break;
+            case 4:
+                show_chunk();
+                break;
+            case 5:
+                exit(0);
+            default:
+                puts(&quot;invalid input&quot;);
+        }
+    
+    }
+}
+</code></pre>
+<p>调试版本：2.23</p>
+<p>申请较大的堆块（不然会被放到 fastbin 中），申请两个，释放前一个，不然申请一个的话释放时就会和 top chunk 发生合并</p>
+<p>可以很明显看到 unsortedbin 中泄露了相关的信息</p>
+<p><img src="/0101/PWN/堆利用/BinAttack/assets/1.unsortedbin_leak/image-20241222000833087.png" alt="image-20241222000833087"></p>
+<p>main_arena 是在 libc 上的，show(0)就可以泄露堆中的内容，计算偏移从而可以得到 libc 基址</p>
+<p>另一种不利用上面漏洞的方法是再申请一遍 malloc 的第一次大小，此时 unsortedbin 回到 allocated chunk 中，但此时 chun 中的内容并不会被清空，所以 main_arena 的内容仍然保存在上面</p>
+<p><img src="/0101/PWN/堆利用/BinAttack/assets/1.unsortedbin_leak/image-20241222004347172.png" alt="image-20241222004347172"></p>
+<p>利用该方法既可以泄露 libc 地址，也可以泄露堆地址，两个地址不相邻的 chunk 都 free 到 unsortedbin 上，此时 chunk0 中的 bk 会保存堆中的地址</p>
+<p>但是由于 0 截断，所以要先编辑 chunk0 中的 fd，然后接收地址再减去其偏移，在远程环境下，最好是直接 and 0xfff，后三位直接清 0，因为地址是四字节对齐的</p>
+<p><img src="/0101/PWN/堆利用/BinAttack/assets/1.unsortedbin_leak/image-20241222111517211.png" alt="image-20241222111517211"></p>
+<p>同时，还可以泄露栈地址，利用 libc 上的 <code>_environ</code> 变量</p>
+
+        </main>
+    </div>
+</body>
+</html>

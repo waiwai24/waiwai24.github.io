@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 高速缓存,高速缓存</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>高速缓存</h1>
+<h2>1.局部性原理</h2>
+<p>程序访问局部性分类：</p>
+<ul>
+<li>时间局部性：刚被访问过的存储单元不久又被访问</li>
+<li>空间局部性：刚被访问过的存储单元不久临近单元也被访问</li>
+</ul>
+<h2>2.存储层次结构</h2>
+<p><img src="/0101/CSNote/计算机原理/5.存储层次结构/assets/3.%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98/image-20240620154451302.png" alt="image-20240620154451302"></p>
+<h2>3.高速缓存</h2>
+<blockquote>
+<p>数据总是以块为单位在存储结构中来回复制</p>
+</blockquote>
+<h3>3.1 通用高速缓存存储器组织架构</h3>
+<ul>
+<li>
+<p>每个cache被划分成一个或多个set组</p>
+</li>
+<li>
+<p>每个set包含一个或多个 cache line</p>
+</li>
+<li>
+<p>每个 cache line 中都包含</p>
+<ul>
+<li>有效位:1bit,表示数据是否有效</li>
+<li>标记:表示当前的数据是否存储在cache line 中</li>
+<li>数据块:一小部分数据内存的副本</li>
+</ul>
+</li>
+</ul>
+<p><img src="/0101/CSNote/计算机原理/5.存储层次结构/assets/3.%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98/image-20240620154707567.png" alt="image-20240620154707567"></p>
+<h3>3.2 三种映射关系</h3>
+<blockquote>
+<p>直接映射：唯一映射(只有一个可能的位置)
+全相联映射：任意映射(每个位置都可能)
+N-路组相联映射：N-路映射(有N个可能的位置)</p>
+</blockquote>
+<h4>3.2.1 直接映射</h4>
+<ul>
+<li>组选择,行匹配,字抽取</li>
+<li>替换策略：用新取出的行替换当前行</li>
+<li>cache容量指所有cache block加起来的大小,但实际容量还要包含valid和tag位</li>
+</ul>
+<p><img src="/0101/CSNote/计算机原理/5.存储层次结构/assets/3.%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98/image-20240711084111169.png" alt="image-20240711084111169"></p>
+<h4>3.2.2 全相联高速缓存</h4>
+<p><img src="/0101/CSNote/计算机原理/5.存储层次结构/assets/3.%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98/image-20240620160341699.png" alt="image-20240620160341699"></p>
+<h4>3.2.3 组相联高速缓存</h4>
+<p>组相联高速缓存必须搜索组中的每一行进行标记匹配</p>
+<p><img src="/0101/CSNote/计算机原理/5.存储层次结构/assets/3.%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98/image-20240711094212524.png" alt="image-20240711094212524"></p>
+<h2>4.高速缓存参数</h2>
+<ul>
+<li>
+<p>关联度:主存块映射到Cache时，可能存放的位置个数</p>
+<ul>
+<li>直接映射关联度为1</li>
+<li>全相联映射关联度为行数</li>
+<li>N路组相连映射关联度为N</li>
+<li>Cache大小和块大小一定的情况下,提高关联度通常能够降低缺失率；但可能增加命中时间</li>
+</ul>
+</li>
+<li>
+<p>缓存命中(cache hit):要访问的信息在Cache中</p>
+<ul>
+<li>Hit Rate(命中率p)：在Cache中的概率</li>
+<li>Hit Time (命中时间Tc) ：访问Cache所需时间，包括：判断时间+ Cache访问</li>
+</ul>
+</li>
+<li>
+<p>缓存不命中(cache miss):要访问的信息不在Cache中,替换策略</p>
+<ul>
+<li>Miss Rate (失靶率/失效率1－p)= 1-(Hit Rate)</li>
+<li>Miss Penalty (失效损失Tm)：从主存将一块信息替换到Cache所需时间，包括访问主存块，向上逐层传输块直至将数据块放入发生缺失的那一层所需时间</li>
+</ul>
+</li>
+</ul>
+<p><strong>平均访问时间= p×Tc+ (1-p) ×(Tm+Tc)=Tc+ (1-p) ×Tm</strong></p>
+<p><strong>提高平均访问速度，必须提高命中率</strong></p>
+<h2>5.哈佛结构</h2>
+<ul>
+<li>将程序指令存储和数据存储分开的存储器结构</li>
+<li>只保存指令的高速缓存i-cache，只保存数据的高速缓存d-cache</li>
+<li>主要目的是减少指令流水线冲突</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

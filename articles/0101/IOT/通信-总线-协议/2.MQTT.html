@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># MQTT,MQTT</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>MQTT</h1>
+<h2>1.介绍</h2>
+<p>MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（publish/subscribe）模式的 “轻量级” 通讯协议，该协议构建于 TCP/IP 协议上</p>
+<p>协议特点：</p>
+<ul>
+<li>MQTT 协议轻量、简单、开放和易于实现</li>
+<li>MQTT 是基于发布 (Publish) / 订阅 (Subscribe) 范式的消息协议，支持一对多</li>
+<li>MQTT 工作在 TCP/IP 协议族上</li>
+<li>有三种消息发布服务质量</li>
+<li>小型传输，开销很小（固定长度的头部是 2 字节，最小的报文也就是 2 字节），协议交换最小化，以降低网络流量</li>
+<li>MQTT 默认端口为1883，加密的端口为8883（加密后会增大网络开销）</li>
+</ul>
+<h2>2.基本原理</h2>
+<p>MQTT 协议中有三种角色和一个主要概念，三种角色分别是发布者（PUBLISHER）、订阅者（SUBCRIBER）、代理（BROKER），还有一个主要的概念为主题（TOPIC）</p>
+<p>该协议具有总线的特点，所有数据并不直接发送至接收端，而是先发送至一个总线服务器（也就是代理），由其负责转发</p>
+<p>消息通过主题标识，订阅者根据主题订阅消息才会接收消息</p>
+<p><img src="/0101/IOT/通信-总线-协议/assets/2.MQTT/image-20250216213357338.png" alt="image-20250216213357338"></p>
+<h2>3.MQTT安全</h2>
+<p>攻击点：</p>
+<ul>
+<li>认证：弱口令</li>
+<li>传输：默认未加密，可中间人攻击</li>
+<li>配置错误</li>
+<li>自身漏洞</li>
+</ul>
+<p>开源利用工具：<a href="https://github.com/akamai-threat-research/mqtt-pwn">https://github.com/akamai-threat-research/mqtt-pwn</a></p>
+<p>测试工具：<a href="https://cloud-tools.emqx.com/%EF%BC%8Chttps://testclient-cloud.mqtt.cool/">https://cloud-tools.emqx.com/，https://testclient-cloud.mqtt.cool/</a></p>
+
+        </main>
+    </div>
+</body>
+</html>

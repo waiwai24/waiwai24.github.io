@@ -4,47 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Project</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"></noscript>
   <link rel="icon" href="assets/images/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/style-project-tool.css" />
   <link rel="stylesheet" href="assets/css/header-style.css" />
 </head>
 <body class="project-page">
-  <header class="main-header">
-      <a href="index.html" class="nav-brand">waiwai</a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <span class="hamburger"></span>
-      </button>
-      <nav class="main-nav">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="knowledge.html" class="nav-link">Knowledge</a>
-          <a href="project.html" class="nav-link">Projects</a>
-          <a href="tool.html" class="nav-link">Tools</a>
-      </nav>
-  </header>
+  <div id="header-placeholder"></div>
 
   <main id="main-content" role="main">
     <div class="project-list" aria-live="polite">
-      <a class="project-item" href="https://github.com/waiwai24/rust-c2-framework" target="_blank" rel="noopener" aria-label="rust-c2-framework 仓库">
-        <img class="thumb" src="https://opengraph.githubassets.com/1/waiwai24/rust-c2-framework" alt="rust-c2-framework 仓库封面" loading="lazy" />
+      <article class="project-item" aria-labelledby="proj-title-rust-c2">
         <div class="meta">
-          <h3 class="title">rust-c2-framework</h3>
+          <h3 class="title" id="proj-title-rust-c2">
+            <a href="https://github.com/waiwai24/rust-c2-framework" target="_blank" rel="noopener">rust-c2-framework</a>
+          </h3>
           <p class="desc">Rust 编写的 C2 框架</p>
-          <div class="repo-meta" data-repo="waiwai24/rust-c2-framework" aria-hidden="true">加载中...</div>
+          <footer class="card-footer">
+            <div class="repo-meta" data-repo="waiwai24/rust-c2-framework" aria-hidden="true">加载中...</div>
+          </footer>
         </div>
-      </a>
+      </article>
 
-      <a class="project-item" href="https://github.com/waiwai24/0101" target="_blank" rel="noopener" aria-label="0101 仓库">
-        <img class="thumb" src="https://opengraph.githubassets.com/1/waiwai24/0101" alt="0101 仓库封面" loading="lazy" />
+      <article class="project-item" aria-labelledby="proj-title-0101">
         <div class="meta">
-          <h3 class="title">0101</h3>
+          <h3 class="title" id="proj-title-0101">
+            <a href="https://github.com/waiwai24/0101" target="_blank" rel="noopener">0101</a>
+          </h3>
           <p class="desc">个人笔记仓库</p>
-          <div class="repo-meta" data-repo="waiwai24/0101" aria-hidden="true">加载中...</div>
+          <footer class="card-footer">
+            <div class="repo-meta" data-repo="waiwai24/0101" aria-hidden="true">加载中...</div>
+          </footer>
         </div>
-      </a>
+      </article>
     </div>
   </main>
 
@@ -60,10 +52,14 @@
         const stars = data.stargazers_count ?? 0;
         const lang = data.language ?? '';
         const updated = data.updated_at ? new Date(data.updated_at).toLocaleDateString() : '';
+        
+        // Generate a color from the language name for the dot
+        const langColor = lang ? `#${SDBMHash(lang).toString(16).padStart(6, '0').substring(0, 6)}` : 'transparent';
+
         el.innerHTML = ''
-          + '<span aria-hidden="true" style="display:inline-flex;align-items:center;gap:6px;"><i class="fas fa-star" style="color:#f4d35e"></i> ' + stars + '</span>'
-          + (lang ? (' <span style="margin-left:8px"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" style="vertical-align:middle;margin-right:6px;border-radius:50%;opacity:0.9"></svg><strong>' + lang + '</strong></span>') : '')
-          + (updated ? (' <span style="color:var(--muted);margin-left:10px">更新: ' + updated + '</span>') : '');
+          + '<span aria-hidden="true" style="display:inline-flex;align-items:center;gap:4px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star" style="color:#f4d35e;fill:#f4d35e;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> ' + stars + '</span>'
+          + (lang ? ('<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:50%;background-color:' + langColor + ';"></span><strong>' + lang + '</strong></span>') : '')
+          + (updated ? ('<span style="color:var(--color-text-tertiary);font-size:12px;">更新于 ' + updated + '</span>') : '');
       };
 
       const renderError = (el, repo) => {
@@ -105,11 +101,21 @@
         }
       }
     })();
+
+    // Simple hash function to generate a color from a string
+    function SDBMHash(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + (hash << 6) + (hash << 16) - hash;
+      }
+      return hash >>> 0; // Ensure positive integer
+    }
   </script>
 
   <footer class="footer">
     <p>&copy; 2024 waiwai24. All rights reserved.</p>
   </footer>
   <script src="assets/js/header.js"></script>
+  <script src="assets/js/include-header.js"></script>
 </body>
 </html>

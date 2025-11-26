@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修复vm虚拟机启动失败</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <p>打开虚拟机目录，删除以 .lck 结尾的文件</p>
+<p>如果还不能打开，打开VMware的安装目录，使用vmware-vdiskmanager.exe工具修复所有的vmdk文件和vmx文件</p>
+<pre><code>ls &quot;M:\VM\DDC\*.vmdk&quot; | % { .\vmware-vdiskmanager.exe -R $_.FullName }
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

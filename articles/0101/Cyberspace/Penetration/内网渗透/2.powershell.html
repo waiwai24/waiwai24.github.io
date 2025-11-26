@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># powershell,powershell</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>powershell</h1>
+<h2>1.介绍</h2>
+<ul>
+<li>PowerShell 可以简单的理解为 cmd 的高级版，cmd 能做的事在 PowerShell 中都能做，但 PowerShell 还能做很多 cmd 不能做的事情</li>
+<li>ps1 是PowerShell 的脚本扩展名，一个 PowerShell 脚本文件其实就是一个简单的文本文件</li>
+<li>脚本执行策略（为了防止恶意脚本在 PowerShell 中被运行，PowerShell 有个执行策略，默认情况下，这个执行策略是受限模式<code>Restricted</code>）
+<ul>
+<li>查看当前执行策略<code>Get-ExecutionPolicy</code></li>
+<li><strong>Restricted</strong>：不能运行脚本</li>
+<li><strong>RemoteSigned</strong>：本地创建的脚本可以运行，但从网上下载的脚本不能运行（除非它们拥有由受信任的发布者签署的数字签名)</li>
+<li><strong>AllSigned</strong>：仅当脚本由受信任的发布者签名才能运行</li>
+<li><strong>Unrestricted</strong>：脚本执行不受限制，不管来自哪里，也不管它们是否有签名</li>
+<li>使用<code>Set-ExecutionPolicy &lt;policy name&gt;</code>设置执行策略，该命令需要管理员权限</li>
+</ul>
+</li>
+</ul>
+<h2>2.脚本执行</h2>
+<ul>
+<li>绕过本地权限：加上 <code>-ExecutionPolicy Bypass</code></li>
+<li>绕过本地权限并隐藏执行，加入<code>-WindowStyle Hidden -NoLogo -NonInteractive -NoProfile</code></li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

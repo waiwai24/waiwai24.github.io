@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.linux-用户&权限</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <blockquote>
+<p><code>ls -l</code>后每行的第一个字符表示文件类型。<code>d</code>表示它是一个目录，<code>-</code>表示它是一个普通文件。</p>
+<p>接下来的9个字符是文件或目录的实际访问权限，分成3个字符表示拥有文件的用户（称为“所有者”）对文件的权限，3个字符表示拥有文件的组（称为“组”）对文件的权限，并且3个字符表示所有其他访问（例如，由其他用户和其他组）必须添加到文件</p>
+<p>文件类型：</p>
+<ul>
+<li>普通文件(-):存放数据、程序等信息的文件，一般为文本文件和二进制文件。</li>
+<li>目录文件(d):文件系统中一个目录所包含的目录文件，包括文件名和子目录名。</li>
+<li>链接文件I):可以在不同的文件系统之间建立链接关系来实现对文件的访问。</li>
+<li>设备文件©:把IO设备映射为一个设备文件。</li>
+<li>管道文件(p):主要用于在进程间传递数据。</li>
+</ul>
+<p>文件的权限针对三类对象进行定义</p>
+<p>owner 属主，缩写u</p>
+<p>group 属组，缩写g</p>
+<p>other 其他，缩写o</p>
+<p>每个文件针对每类访问者定义了三种主要权限</p>
+<p>r：Read 读</p>
+<p>w：Write 写</p>
+<p>x：eXecute 执行</p>
+<p><img src="/0101/CSNote/命令行/assets/2.linux-%E7%94%A8%E6%88%B7&%E6%9D%83%E9%99%90/20181230191538790.png" alt="20181230191538790"></p>
+<p>除此之外，还有三种特殊权限为：suid权限，sgid权限，sticky权限</p>
+<p>其中suid权限作用于文件属主，sgid权限作用于属组上，sticky权限作用于other其他上</p>
+<p>设置使文件在执行阶段具有文件所有者的权限，相当于临时拥有文件所有者的身份</p>
+</blockquote>
+<h2>w</h2>
+<p>显示目前登入系统的用户信息</p>
+<h2>whoami</h2>
+<p>打印当前有效的用户名称</p>
+<h2>id</h2>
+<p>打印真实以及有效的用户和所在组的信息</p>
+<p>useradd</p>
+<p>groupadd</p>
+<h2>chown</h2>
+<p>用来变更文件或目录的拥有者或所属群组</p>
+<pre><code>chown [OPTION]... [OWNER][:[GROUP]] FILE
+-R: 递归处理
+</code></pre>
+<h2>chgrp</h2>
+<p>用来变更文件或目录的所属群组</p>
+<h2>chmod</h2>
+<p>用来变更文件或目录的权限</p>
+<p>sudo</p>
+<p>passwd</p>
+
+        </main>
+    </div>
+</body>
+</html>

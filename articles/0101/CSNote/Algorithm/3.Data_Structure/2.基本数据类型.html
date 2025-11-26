@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 基本数据类型,基本数据类型</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>基本数据类型</h1>
+<blockquote>
+<p>谈及计算机中的数据，尽管各种数据的组织形式各异，但他们都是由各种基本的数据类型组成</p>
+</blockquote>
+<h2>1.基本类型</h2>
+<blockquote>
+<p>基本数据类型时CPU可以直接进行运算的类型</p>
+</blockquote>
+<ul>
+<li>整数型 byte ，short ，int ，long</li>
+<li>浮点型 float ，double</li>
+<li>字符型 char</li>
+<li>布尔型 bool</li>
+</ul>
+<h2>2.基本数据类型的存储</h2>
+<blockquote>
+<p>基本数据类型以二进制的形式存储在计算机中</p>
+<p>一个二进制位位1比特，1字节由8比特组成，1byte=8bits</p>
+</blockquote>
+<p align="center"> 表 <id> &nbsp; 基本数据类型的占用空间和取值范围 </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">占用空间</th>
+<th style="text-align:center">最小值</th>
+<th style="text-align:center">最大值</th>
+<th style="text-align:center">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">整数</td>
+<td style="text-align:center"><code>byte</code></td>
+<td style="text-align:center">1 byte</td>
+<td style="text-align:center">$-2^7$ ($-128$)</td>
+<td style="text-align:center">$2^7 - 1$ ($127$)</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>short</code></td>
+<td style="text-align:center">2 bytes</td>
+<td style="text-align:center">$-2^{15}$</td>
+<td style="text-align:center">$2^{15} - 1$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>int</code></td>
+<td style="text-align:center">4 bytes</td>
+<td style="text-align:center">$-2^{31}$</td>
+<td style="text-align:center">$2^{31} - 1$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>long</code></td>
+<td style="text-align:center">8 bytes</td>
+<td style="text-align:center">$-2^{63}$</td>
+<td style="text-align:center">$2^{63} - 1$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">浮点数</td>
+<td style="text-align:center"><code>float</code></td>
+<td style="text-align:center">4 bytes</td>
+<td style="text-align:center">$1.175 \times 10^{-38}$</td>
+<td style="text-align:center">$3.403 \times 10^{38}$</td>
+<td style="text-align:center">$0.0 f$</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>double</code></td>
+<td style="text-align:center">8 bytes</td>
+<td style="text-align:center">$2.225 \times 10^{-308}$</td>
+<td style="text-align:center">$1.798 \times 10^{308}$</td>
+<td style="text-align:center">$0.0$</td>
+</tr>
+<tr>
+<td style="text-align:center">字符</td>
+<td style="text-align:center"><code>char</code></td>
+<td style="text-align:center">2 bytes / 1 byte</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$2^{16} - 1$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">布尔</td>
+<td style="text-align:center"><code>bool</code></td>
+<td style="text-align:center">1 byte</td>
+<td style="text-align:center">$\text{false}$</td>
+<td style="text-align:center">$\text{true}$</td>
+<td style="text-align:center">$\text{false}$</td>
+</tr>
+</tbody>
+</table>
+<p>注意：</p>
+<ul>
+<li>C和C++未明确基本数据类型的大小，而因实现和平台各异，char在C和C++中为1字节</li>
+<li>即使表示布尔量仅需 1 位（$0$ 或 $1$），它在内存中通常被存储为 1 字节。这是因为现代计算机 CPU 通常将 1 字节作为最小寻址内存单元</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

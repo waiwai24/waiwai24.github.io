@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 计算机网络概述,计算机网络概述</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>计算机网络概述</h1>
+<h2>1.计算机网络分类</h2>
+<h3>1.1 分类标准</h3>
+<ul>
+<li>按传输速率/介质</li>
+<li>按数据传输方式：广播式和点到点式</li>
+<li>按拓扑结构</li>
+<li>按网络距离（规模）</li>
+<li>按网络的用途：教育，科研，商业，企业</li>
+</ul>
+<h3>1.2 按距离分类</h3>
+<h4>1.2.1 个域网（PAN）</h4>
+<ul>
+<li>
+<p>Personal Area Network</p>
+</li>
+<li>
+<p>围绕个人而搭建的计算机网络</p>
+</li>
+<li>
+<p>特点：</p>
+<ul>
+<li>主要传输文件，照片等</li>
+<li>覆盖范围一般小于10m</li>
+</ul>
+</li>
+<li>
+<p>典型案例：</p>
+<ul>
+<li>USB，蓝牙（Bluetooth）</li>
+</ul>
+</li>
+</ul>
+<h4>1.2.2 局域网（LAN）</h4>
+<ul>
+<li>Local Area Network</li>
+<li>特点：
+<ul>
+<li>覆盖范围：几公里~几十公里</li>
+<li>数据传输效率较高，延迟低，误码率低</li>
+<li>由某单位单独拥有，使用，维护</li>
+</ul>
+</li>
+<li>典型案例：
+<ul>
+<li>以太网（Ethernet），令牌环网（Token-Ring）</li>
+</ul>
+</li>
+</ul>
+<h4>1.2.3 城域网（MAN）</h4>
+<ul>
+<li>Metropolitan Area Network</li>
+</ul>
+<h4>1.2.4 广域网（WAN）</h4>
+<ul>
+<li>Wide Area Network</li>
+</ul>
+<h4>1.2.5 互联网</h4>
+<h2>2.网络体系结构</h2>
+<h3>2.1 分层模型</h3>
+<ul>
+<li>一种更为模块化的设计</li>
+<li>常用的开发网络系统的方法</li>
+</ul>
+<h3>2.2 协议和接口</h3>
+<ul>
+<li>协议：protocol 控制和管理网络中不同主机中对等层实体之间数据 通信过程的一组规则和约定</li>
+<li>接口：interface 相邻层之间是接口，定义了下层向上层提供的原语操作和服务</li>
+<li>协议的层次结构：<strong>每一层的目的都是向上一层提供特定的服务，而把服务的细节对上一层隐蔽</strong></li>
+</ul>
+<h3>2.3 网络服务</h3>
+<blockquote>
+<p>每一层可以向上一层提供两种类型的服务：面向连接和无连接的服务</p>
+</blockquote>
+<h4>2.3.1 面向连接服务</h4>
+<ul>
+<li>
+<p>类似电话服务</p>
+</li>
+<li>
+<p>面向连接服务的数据传输过程必须经过连接建立、连接维护（数据传输）与连接撤销的三个过程</p>
+</li>
+<li>
+<p>面向连接服务的数据单元在数据传输过程中，各分组可以不携带目的结点的地址</p>
+</li>
+<li>
+<p>面向连接数据传输的收发数据顺序不变，传输可靠性好，但是协议复杂，通信效率不高</p>
+</li>
+</ul>
+<h4>2.3.2 面向无连接的服务</h4>
+<ul>
+<li>类似邮政服务</li>
+<li>没有连接建立、连接维护与连接撤销的三个过程</li>
+<li>无连接服务的每个分组都携带完整的目的结点地址，各分组在系统中是独立传送的</li>
+<li>数据分组传输过程中，目的结点接收的数据分组可能出现乱序、重复与丢失的现象</li>
+<li>无连接服务的可靠性不好，但是协议相对简单，通信效率较高</li>
+</ul>
+<h3>2.4 服务和协议的关系</h3>
+<ul>
+<li>服务：定义了该层能够代表用户执行哪些操作，但不涉及操作如何实现，<strong>垂直的</strong></li>
+<li>协议：规定同一层上对等实体之间交换数据包或消息的格式和含义，<strong>水平的</strong></li>
+</ul>
+<h2>3.网络参考模型</h2>
+<h3>3.1 ISO/OSI参考模型</h3>
+<blockquote>
+<p>由国际标准化组织（International Standards Organization ，ISO）开发的提案，被称为OSI（Open System Interaction，开放系统互联），分层设计的思想，有利于标准化，规范化的发展，但是太复杂，难以完全实现</p>
+</blockquote>
+<p><img src="/0101/Cyberspace/Web/1.概述/assets/1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/osi.png" alt=""></p>
+<h4>3.1.1 物理层（Physical Layer）</h4>
+<ul>
+<li>功能：完成相邻节点之间原始<strong>比特流</strong>的传输</li>
+<li>举例：EIA RRS-232-C，RJ-45，USB接口</li>
+</ul>
+<h4>3.1.2 数据链路层（Data Link Layer）</h4>
+<ul>
+<li>功能：完成相邻节点之间数据的可靠传输</li>
+<li>协议：
+<ul>
+<li><strong>帧</strong></li>
+<li>差错控制</li>
+<li>流量控制</li>
+</ul>
+</li>
+<li>LAN的数据链路层又分为两个子层：
+<ul>
+<li>介质访问子层MAC</li>
+<li>逻辑链路子层LLC</li>
+</ul>
+</li>
+</ul>
+<h4>3.1.3 网络层（Network Layer）</h4>
+<ul>
+<li>功能：完成任意两台主机之间的报文传输</li>
+<li>协议：
+<ul>
+<li><strong>报文（分组）</strong></li>
+<li>网络互联</li>
+<li>路由控制</li>
+<li>拥塞控制</li>
+</ul>
+</li>
+</ul>
+<h4>3.1.4 传输层（Transport Layer）</h4>
+<ul>
+<li>功能：完成任意两台主机上的<strong>应用进程</strong>之间的数据传输/负责<strong>端到端</strong>的信息传输</li>
+<li>协议：
+<ul>
+<li><strong>段/消息</strong></li>
+<li>进程寻址</li>
+<li>流量控制</li>
+<li>差错控制</li>
+<li>服务质量QoS（Quality of Service）</li>
+<li>多路复合和分解</li>
+</ul>
+</li>
+<li>举例：TCP（可靠的，面向连接的协议）/UDP（不可靠，无连接的协议），XTP，RPT</li>
+</ul>
+<h4>3.1.5 会话层（Session Layer）</h4>
+<ul>
+<li>功能：完成用户进程之间的会话管理</li>
+<li>协议：
+<ul>
+<li>同步</li>
+<li>令牌管理</li>
+<li>安全认证</li>
+</ul>
+</li>
+</ul>
+<h4>3.1.6 表示层（Presentation Layer）</h4>
+<ul>
+<li>功能：
+<ul>
+<li>数据格式转换</li>
+<li>数据加密/解密，压缩/解压</li>
+</ul>
+</li>
+</ul>
+<h4>3.1.7 应用层（Application Layer）</h4>
+<ul>
+<li>
+<p>功能：提供访问网络的各种接口和应用层协议，直接向用户提供服务</p>
+</li>
+<li>
+<p>举例：</p>
+<ul>
+<li>
+<p>E-mail</p>
+</li>
+<li>
+<p>Telnet：虚拟终端协议</p>
+</li>
+<li>
+<p>SSH：Secure Shell 安全外壳协议</p>
+</li>
+<li>
+<p>FTP：文件传输协议</p>
+</li>
+<li>
+<p>HTTP：获取WWW的页面</p>
+</li>
+<li>
+<p>DNS：域名解析系统</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>3.2 TCP/IP参考模型</h3>
+<blockquote>
+<p>OSI模型的简化版</p>
+</blockquote>
+<h4>3.2.1 网络接口层</h4>
+<h4>3.2.2 网络层</h4>
+<h4>3.2.3 传输层</h4>
+<h4>3.2.4 应用层</h4>
+<p>注意：OSI模型的网络层同时支持无连接和面向连接的通信，<strong>TCP/IP模型的网络层只有无连接通信一种模式，但在传输层上支持两种连接方式</strong></p>
+<h2>4.everything over IP和IP over everthing</h2>
+<ul>
+<li>TCP/IP协议可以为各式各样的应用提供服务(所谓的 everyhing over ip)</li>
+<li>允许IP协议在各式各样的网络构成的互联网上运行(所谓的ip over everything)</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

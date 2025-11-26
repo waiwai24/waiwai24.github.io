@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># PHP魔术常量,PHP魔术常量</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>PHP魔术常量</h1>
+<p>[TOC]</p>
+<h2>一. 基本概念</h2>
+<p>PHP 向它运行的任何脚本提供了大量的预定义常量。</p>
+<p>不过很多常量都是由不同的扩展库定义的，只有在加载了这些扩展库时才会出现，或者动态加载后，或者在编译时已经包括进去了。</p>
+<p>有八个魔术常量它们的值随着它们在代码中的位置改变而改变,些特殊的常量不区分大小写</p>
+<h2>二. _<em>LINE</em>_</h2>
+<p>显示文件中的当前行号</p>
+<pre><code class="language-php">&lt;?php
+echo '这是第 &quot; '  . __LINE__ . ' &quot; 行';
+?&gt;
+
+out：这是第 “ 2 ” 行
+</code></pre>
+<h2>三. _<em>FILE</em>_</h2>
+<p>文件的完整路径和文件名。如果用在被包含文件中，则返回被包含的文件名</p>
+<pre><code class="language-php">&lt;?php
+echo '该文件位于 &quot; '  . __FILE__ . ' &quot; ';
+?&gt;
+</code></pre>
+<h2>四. _<em>DIR</em>_</h2>
+<p>文件所在的目录。如果用在被包括文件中，则返回被包括的文件所在的目录</p>
+<pre><code class="language-php">&lt;?php
+echo '该文件位于 &quot; '  . __DIR__ . ' &quot; ';
+?&gt;
+</code></pre>
+<h2>五. _<em>FUNCTION</em>_</h2>
+<p>返回该函数被定义时的名字</p>
+<pre><code class="language-php">&lt;?php
+function test() {
+    echo  '函数名为：' . __FUNCTION__ ;
+}
+test();
+?&gt;
+</code></pre>
+<h2>六. _<em>CLASS</em>_</h2>
+<p>回该类被定义时的名字</p>
+<pre><code class="language-php">&lt;?php
+class test {
+    function _print() {
+        echo '类名为：'  . __CLASS__ . &quot;&lt;br&gt;&quot;;
+        echo  '函数名为：' . __FUNCTION__ ;
+    }
+}
+$t = new test();
+$t-&gt;_print();
+?&gt;
+</code></pre>
+<h2>七. _<em>TRAIT</em>_</h2>
+<p>代码复用的一个方法，称为 traits</p>
+<h2>八. _<em>METHOD</em>_</h2>
+<p>返回该方法被定义时的名字</p>
+<pre><code class="language-php">&lt;?php
+function test() {
+    echo  '函数名为：' . __METHOD__ ;
+}
+test();
+?&gt;
+</code></pre>
+<h2>九. _<em>NAMESPACE</em>_</h2>
+<p>当前命名空间的名称</p>
+<pre><code class="language-php">&lt;?php
+namespace MyProject;
+ 
+echo '命名空间为：&quot;', __NAMESPACE__, '&quot;'; // 输出 &quot;MyProject&quot;
+?&gt;
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

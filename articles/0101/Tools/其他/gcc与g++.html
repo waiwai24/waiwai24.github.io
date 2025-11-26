@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># gcc与g++,gcc与g++</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>gcc与g++</h1>
+<h2>1.背景知识</h2>
+<p>GCC:GNU Compiler Collection(GUN 编译器集合)，它可以编译C、C++、JAV、Fortran、Pascal、Object-C等语言。</p>
+<p>gcc是GCC中的GUN C Compiler（C 编译器）</p>
+<p>g++是GCC中的GUN C++ Compiler（C++编译器）</p>
+<h2>2.程序处理流程</h2>
+<p><img src="/0101/Tools/其他/assets/gcc%E4%B8%8Eg++/image-20240303234108791.png" alt="image-20240303234108791"></p>
+<ul>
+<li><strong>预处理</strong>： 编译器处理预处理命令，包括头文件包含、宏定义的扩展、条件编译的选择等；</li>
+<li><strong>编译</strong>：将预处理后的源代码文件 <em>翻译转换</em> 得到机器语言的目标程序，得到机器语言<strong>汇编文件</strong>；</li>
+<li><strong>汇编</strong>：将汇编代码翻译成<strong>机器码</strong>，此时的机器码尚不能直接运行；</li>
+<li><strong>链接</strong>：处理可重定位文件，把各种符号引用和符号定义转换成为可执行文件中的合适信息，通常是虚拟地址。</li>
+</ul>
+<h2>3.常用命令</h2>
+<pre><code class="language-shell">gcc [options] [filenames]
+gcc -E hello.c -o hello.i
+gcc -S hello.i -o hello.s
+gcc -c hello.s -o hello.o
+gcc hello.o -o hello.exe
+gcc hello.c -o hello -save-temps  
+</code></pre>
+<p>常用参数：</p>
+<ul>
+<li>
+<p><code>-E</code>：对文件作预处理，将<code>#</code>开始的预处理指令转换后直接插入到程序文本中</p>
+</li>
+<li>
+<p><code>-S</code>：对文件进行编译</p>
+<ul>
+<li>Linux下的gdb和gcc默认输出的汇编都是AT&amp;T格式的但是它们都有方式来转换为Intel格式。</li>
+<li>-masm=[intel|att] 选择intel或AT&amp;T的汇编语法，AT&amp;T和Intel格式中的源操作数和目标操作数的位置正好相反</li>
+<li>参考：<a href="https://zhuanlan.zhihu.com/p/527208939">https://zhuanlan.zhihu.com/p/527208939</a></li>
+</ul>
+</li>
+<li>
+<p><code>-c</code>：对文件进行汇编</p>
+</li>
+<li>
+<p><code>-o</code>：指定输出文件名</p>
+</li>
+<li>
+<p><code>-g</code>：保留调试信息，通常用gdb分析时要使用此参数</p>
+</li>
+<li>
+<p><code>-O0</code>:不进行优化处理</p>
+</li>
+<li>
+<p><code>-O 或 -O</code>：优化生成代码</p>
+</li>
+<li>
+<p><code>-O2</code>：进一步优化。</p>
+</li>
+<li>
+<p><code>-O3</code>：比 -O2 更进一步优化，包括 inline 函数。</p>
+</li>
+<li>
+<p><code>-save-temps</code> ： Do not delete intermediate files.</p>
+</li>
+<li>
+<p><code>m32</code>：编译32位程序命令</p>
+</li>
+<li>
+<p><code>-static</code>：静态链接</p>
+</li>
+<li>
+<p><code>-fno-stack-protector</code></p>
+</li>
+</ul>
+<h2>4.gcc与g++的区别</h2>
+<ol>
+<li>
+<p>对于 <em>.c和</em>.cpp文件，gcc分别当做c和cpp文件编译（c和cpp的语法强度是不一样的）</p>
+</li>
+<li>
+<p>对于 <em>.c和</em>.cpp文件，g++则统一当做cpp文件编译</p>
+</li>
+<li>
+<p>使用g++编译文件时，<strong>g++会自动链接标准库STL，而gcc不会自动链接STL</strong></p>
+</li>
+<li>
+<p>gcc在编译C文件时，可使用的预定义宏是比较少的</p>
+</li>
+<li>
+<p>gcc在编译cpp文件时/g++在编译c文件和cpp文件时（这时候gcc和g++调用的都是cpp文件的编译器），会加入一些额外的宏。</p>
+</li>
+<li>
+<p>在用gcc编译c++文件时，为了能够使用STL，需要加参数 –lstdc++ ，但这并不代表 gcc –lstdc++ 和 g++等价，它们的区别不仅仅是这个</p>
+</li>
+</ol>
+
+        </main>
+    </div>
+</body>
+</html>

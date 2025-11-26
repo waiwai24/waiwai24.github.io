@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.linux-进程</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h2>ps</h2>
+<p>报告当前系统的进程状态</p>
+<pre><code> ps-aux：列出目前所有的正在内存当中的程序
+</code></pre>
+<p>chkconfig --list</p>
+<h2>kill</h2>
+<p>发送信号到进程</p>
+<pre><code>kill pid
+</code></pre>
+<h2>Ctrl+C</h2>
+<p>中断进程，强制中断程序的运行，释放内存</p>
+<h2>Ctrl+z</h2>
+<p>暂停进程，可用<code>fg</code>命令恢复，<code>jobs</code>命令可以查看当前被挂起的进程</p>
+<p>如果有多个被挂起的进程，可以使用 <code>fg %N</code> 或 <code>bg %N</code> ，使第N个任务在 <strong>前台或后台</strong> 运行。</p>
+<p>也可以直接使用 <strong>fg</strong> (将后台作业移动到前台终端运行)或 <strong>bg</strong>(将前台终端作业移动到后台运行) ,默认运行最后一个进程。</p>
+<p><strong>通过在命令后加上 &amp; ,可以立即启动后台</strong>，而不用先挂起再后台</p>
+<h2>Ctrl+D</h2>
+<p>发送一个exit信号</p>
+<h2>pstree</h2>
+
+        </main>
+    </div>
+</body>
+</html>

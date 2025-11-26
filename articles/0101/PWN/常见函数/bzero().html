@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># bzero(),bzero()</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>bzero()</h1>
+<pre><code class="language-c"> void bzero(void *s, int n);
+</code></pre>
+<ul>
+<li>头文件：#include &lt;string.h&gt;</li>
+<li>bzero() 会将内存块（字符串）的前n个字节清零</li>
+<li>bzero(void <em>s, int n) 等价于 memset((void</em>)s, 0,size_tn)，用来将内存块的前 n 个字节清零</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

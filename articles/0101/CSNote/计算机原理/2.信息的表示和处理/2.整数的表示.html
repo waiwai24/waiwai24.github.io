@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 整数的表示,整数的表示</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>整数的表示</h1>
+<p><img src="/0101/CSNote/计算机原理/2.信息的表示和处理/assets/2.%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/image-20240312212818845.png" alt="image-20240312212818845"></p>
+<h2>1.无符号数</h2>
+<p>n位二进制表示范围：$0\le X\le2^n-1$​</p>
+<p>n位二进制数LSB是第0位，MSB是第n-1位</p>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000…000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>000…001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>111…111</td>
+<td>$2^{n}-1$</td>
+</tr>
+</tbody>
+</table>
+<h2>2.有符号数</h2>
+<h3>2.1 真值</h3>
+<ul>
+<li>数据的真实二进制表示，带正负号</li>
+</ul>
+<h3>2.2 原码</h3>
+<ul>
+<li>
+<p>最高位表示符号<strong>0正1负</strong>，数值部分与真值数值部分相同，高位补0</p>
+</li>
+<li>
+<p>0的原码表示不唯一：1000 0000或0000 0000</p>
+</li>
+<li>
+<p>表示范围：$-(2^{n-1}-1)\le X\le 2^{n-1}-1$</p>
+</li>
+<li>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000…000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>000…001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>011…111</td>
+<td></td>
+</tr>
+<tr>
+<td>100…000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>100…001</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>111…111</td>
+<td>$-(2^{n-1}-1)$</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3>2.3 反码</h3>
+<ul>
+<li>
+<p>对于负数，需将原码数值按位取反，正数同原码</p>
+</li>
+<li>
+<p>0的反码表示不唯一：1111 1111或0000 0000</p>
+</li>
+<li>
+<p>表示范围：$-(2^{n-1}-1)\le X\le 2^{n-1}-1$</p>
+</li>
+<li>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000…000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>000…001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>011…111</td>
+<td>$2^{n-1}-1$</td>
+</tr>
+<tr>
+<td>100…000</td>
+<td>$-(2^{n-1}-1)$</td>
+</tr>
+<tr>
+<td>100…001</td>
+<td>$-(2^{n-1}-2)$</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>111…111</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3>2.4 补码</h3>
+<ul>
+<li>
+<p>计算机存储数据都是以补码形式存储的</p>
+</li>
+<li>
+<p>负数的反码再加1，正数同原码</p>
+</li>
+<li>
+<p>0的补码表示唯一：0000 0000</p>
+</li>
+<li>
+<p>表示范围：$-(2^{n-1})\le X\le 2^{n-1}-1$​</p>
+</li>
+<li>
+<p>已知一个数的补码，如何求其相反数的补码？</p>
+<p>对该数的补码，按位取反再加1，就能得到该数相反数的补码</p>
+</li>
+<li>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000…000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>000…001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>011…111</td>
+<td>$2^{n-1}-1$</td>
+</tr>
+<tr>
+<td>100…000</td>
+<td>$-(2^{n-1})$（人为规定）</td>
+</tr>
+<tr>
+<td>100…001</td>
+<td>$-(2^{n-1}-1)$</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>111…111</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2>3.整数类型之间的转换</h2>
+<p><strong>机器中的位值（位模式）不变，改变解释这些位的方式</strong></p>
+<h3>3.1 有符号数 $\rightleftharpoons $​​ 无符号数</h3>
+<ul>
+<li>C语言创建无符号常量，可加上后缀字母<code>U</code>或<code>u</code></li>
+<li>C语言中，如逻辑运算中有一个运算数是有符号数而另一个是无符号数， C语言将<strong>隐式地将有符号数强制类型转换为无符号数</strong></li>
+</ul>
+<p><img src="/0101/CSNote/计算机原理/2.信息的表示和处理/assets/2.%E6%95%B4%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/image-20240312235638432.png" alt="image-20240312235638432"></p>
+<ul>
+<li>有符号数$\longrightarrow $无符号数：
+<ul>
+<li>最高位为0表示大小相同</li>
+<li>最高位为1时，它表示一个负数，当转化成无符号数时，最高位就不会看作是符号位而是数据的一部分</li>
+</ul>
+</li>
+<li>无符号数$\longrightarrow $有符号数：存储的二进制位串不发生改变知识改变翻译方式</li>
+</ul>
+<h3>3.2 长数 $\rightleftharpoons $ 短数</h3>
+<ul>
+<li>
+<p>短数$\longrightarrow $长数：</p>
+<ul>
+<li>
+<p>无符号数扩展：高位全补0</p>
+</li>
+<li>
+<p>有符号数扩展：高位全补符号位</p>
+</li>
+<li>
+<p>扩展后的数最大程度保持扩展前数据的值，忠于原创</p>
+</li>
+</ul>
+</li>
+<li>
+<p>长数$\longrightarrow $短数：</p>
+<ul>
+<li>截断：<strong>只需要把高位去掉，保留低位就行</strong></li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

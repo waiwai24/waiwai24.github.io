@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 基本语言元素,基本语言元素</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>基本语言元素</h1>
+<h2>1.注释</h2>
+<ul>
+<li>
+<p>单行注释：使用分号<code>;</code>开头，分号后的都是注释</p>
+</li>
+<li>
+<p>块注释：用COMMENT伪指令和一个用户定义的符号（常见！，&amp;）开始，指导相同的用户定义符号出现为止</p>
+<pre><code class="language-assembly">COMMENT ！
+	this is a comment
+！
+</code></pre>
+</li>
+</ul>
+<h2>2.整数常量及表达式</h2>
+<p>算数运算符优先级：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">（）</td>
+<td style="text-align:center">圆括号</td>
+</tr>
+<tr>
+<td style="text-align:center">+，-</td>
+<td style="text-align:center">一元加减</td>
+</tr>
+<tr>
+<td style="text-align:center">*，/</td>
+<td style="text-align:center">乘除</td>
+</tr>
+<tr>
+<td style="text-align:center">MOD</td>
+<td style="text-align:center">取模</td>
+</tr>
+<tr>
+<td style="text-align:center">+，-</td>
+<td style="text-align:center">加减</td>
+</tr>
+</tbody>
+</table>
+<p>注意：以字母开头的十六进制数必须加个前置0，以防汇编器将其解释为标识符</p>
+<h2>3.实数常量</h2>
+<p>采用IEEE754规则</p>
+<h2>4.字符常量</h2>
+<p>单引号或者双引号包含的一个字符，汇编器在内存中保存的是该字符的二进制ASCII码数值</p>
+<h2>5.字符串常量</h2>
+<p>单引号或者是双引号包含的一个字符串序列（包含空格，也可以嵌套引号）</p>
+<h2>6.保留字</h2>
+<p>保留字有着特殊的意义并且只能在正确的上下文中使用</p>
+<p>默认情况下保留字<strong>没有大小写之分</strong>，下面是一些保留字的基本类型：</p>
+<ul>
+<li>指令助记符：如MOV，ADD</li>
+<li>寄存器名称</li>
+<li>伪指令</li>
+<li>属性：如BYTE，WORD</li>
+<li>运算符</li>
+<li>预定义符号：@为前缀的一些符号</li>
+</ul>
+<h2>7.标识符</h2>
+<p>用于标识变量，常数，子程序，代码标签</p>
+<p>标识符的规则：</p>
+<ul>
+<li>可以包含1-247个字符</li>
+<li>不区分大小写</li>
+<li>不能与汇编器保留字相同</li>
+</ul>
+<h2>8.伪指令</h2>
+<p>伪指令是嵌入汇编器中的命令，由汇编器识别和执行，并且不区分大小写。eg：WORD，DWORD</p>
+<p>伪指令的一个重要功能是定义段（segment）：</p>
+<ul>
+<li>.data定义变量</li>
+<li>.code可执行指令</li>
+<li>.stack定义运行时堆栈及其大小</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

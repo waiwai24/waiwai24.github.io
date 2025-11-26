@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># tmux,tmux</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>tmux</h1>
+<h2>1.功能</h2>
+<ul>
+<li>它允许在单个窗口中，同时访问多个会话。这对于同时运行多个命令行程序很有用。</li>
+<li>它可以让新窗口&quot;接入&quot;已经存在的会话。</li>
+<li>它允许每个会话有多个连接窗口，因此可以多人实时共享会话。</li>
+<li>它还支持窗口任意的垂直和水平拆分。</li>
+</ul>
+<h2>2.基本用法</h2>
+<ul>
+<li><code>tmux</code>：启动tmux</li>
+<li><code>ctrl+d</code>,<code>exit</code>：退出tmux</li>
+<li><code>tmux new -s &lt;session-name&gt;</code>：新建会话</li>
+<li><code>tmux rename-session</code>：重命名会话</li>
+<li><code>tmux detach</code>：分离会话，但会话和里面的进程仍在后台运行</li>
+<li><code>tmux ls</code>：查看所有会话</li>
+<li><code>tmux attach</code>：接入会话
+<ul>
+<li>使用会话编号<code>tmux attach -t 0</code></li>
+<li>使用会话名称<code>tmux attach -t &lt;session-name&gt;</code></li>
+</ul>
+</li>
+<li><code>tmux kill-session -t</code>：杀死会话</li>
+<li><code>tmux switch -t</code>：切换会话</li>
+</ul>
+<h2>3.快捷键</h2>
+<p>都是<code>ctrl+b+快捷键</code></p>
+<ul>
+<li>%：分成左右两个窗口</li>
+<li>”：分成上下两个窗口</li>
+<li>o：光标切换到下一个窗口</li>
+<li>{：左移当前窗口</li>
+<li>}：右移当前窗口</li>
+<li>space：切换窗口布局</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

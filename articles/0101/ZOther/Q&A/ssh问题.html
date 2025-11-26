@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ssh问题</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <ul>
+<li>
+<p>配置服务器</p>
+<pre><code class="language-shell">sudo apt install openssh-server
+sudo service ssh restart
+</code></pre>
+</li>
+<li>
+<p>编译配置文件</p>
+<pre><code class="language-shell">sudo gedit /etc/ssh/sshd_config
+将PermitRootLogin prohibit-password改为PermitRootLogin yes
+</code></pre>
+</li>
+<li>
+<pre><code class="language-shell">/etc/init.d/ssh restart
+</code></pre>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

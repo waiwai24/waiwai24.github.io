@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 自定义数据结构,自定义数据结构</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>自定义数据结构</h1>
+<p>[TOC]</p>
+<h2>1.结构的定义</h2>
+<pre><code class="language-cpp">struct 结构名
+{成员列表};
+</code></pre>
+<ul>
+<li>结构名为一个标识符</li>
+<li>成员列表由若干成员声明组成：
+<ul>
+<li>成员类型 成员名</li>
+</ul>
+</li>
+<li>结构成员不能是本结构类型的实例，但可以是指向本结构类型的指针</li>
+<li>定义的过程不导致内存分配</li>
+</ul>
+<h2>2.结构变量成员的引用</h2>
+<h3>2.1圆点操作符（.）</h3>
+<p>使用方式：</p>
+<pre><code class="language-cpp">结构变量名.成员名
+</code></pre>
+<h3>2.2箭头运算符（-&gt;)</h3>
+<p>使用方式：</p>
+<pre><code class="language-cpp">结构指针名-&gt;成员名
+</code></pre>
+<p>注：上述两种方式可等同 **（结构指针名-&gt;成员名）**等同于 *<em>（<em>结构指针名.成员名）</em></em></p>
+<h2>3.结构的使用</h2>
+<ul>
+<li>结构类型数据作为函数参数</li>
+<li>结构体（指针）作为函数返回值</li>
+</ul>
+<h2>4.结构与数组/指针</h2>
+<ul>
+<li>结构数组：数组元素可以是结构体类型</li>
+<li>结构指针：
+<ul>
+<li>声明：结构名* 结构指针变量名</li>
+<li>访问成员：
+<ul>
+<li>（*结构指针变量名）.成员名</li>
+<li>结构指针变量名-&gt;成员名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>5.联合</h2>
+<ul>
+<li>
+<pre><code class="language-cpp">union 联合名 
+{成员列表};
+</code></pre>
+</li>
+<li>
+<p>与结构的区别：</p>
+<ul>
+<li>所有成员公用一块内存空间</li>
+<li>联合体所占空间大小取决于占空间最大的成员</li>
+<li>利用联合可以提高内存的利用效率</li>
+</ul>
+</li>
+</ul>
+<h2>6.枚举</h2>
+<ul>
+<li>
+<pre><code class="language-cpp">enum 枚举名
+{标识符1，标识符2...标识符n}；
+</code></pre>
+</li>
+<li>
+<p>标识符列表，分别表示一个对应的整数值，默认从0开始（自增），也可以根据需要改变枚举常量对应的整型常数</p>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

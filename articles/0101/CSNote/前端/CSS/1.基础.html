@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># CSS 基础,CSS 基础</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>CSS 基础</h1>
+<h2>1.单位</h2>
+<p>html 中的单位只有一种，那就是像素 px，所以单位是可以省略的，但是在 CSS 中不一样。 CSS 中的单位是必须要写的，因为它没有默认单位。</p>
+<p>1 <code>in</code> = 2.54 <code>cm</code> = 25.4 <code>mm</code> = 72 <code>pt</code> = 6 <code>pc</code></p>
+<h2>2.CSS与html结合</h2>
+<p>注释：</p>
+<pre><code class="language-css">/* 我是 CSS 注释 */
+</code></pre>
+<ul>
+<li>
+<p>行内样式：不推荐</p>
+<pre><code class="language-html">&lt;p style=&quot;color:white;background-color:red&quot;&gt;我不会就这样轻易的狗带&lt;/p&gt;
+</code></pre>
+</li>
+<li>
+<p>内嵌样式表：不推荐</p>
+<pre><code class="language-html">&lt;style type=&quot;text/css&quot;&gt;
+    p {
+        font-weight: bold;
+        font-style: italic;
+        color: red;
+    }
+&lt;/style&gt;
+
+&lt;body&gt;
+    &lt;p&gt;洗白白&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+<li>
+<p>引入外部样式表 css 文件：推荐</p>
+<ul>
+<li>采用<code>&lt;link&gt;</code>标签，例如：<code>&lt;link rel = &quot;stylesheet&quot; type = &quot;text/css&quot; href = &quot;a.css&quot;&gt;&lt;/link&gt;</code></li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

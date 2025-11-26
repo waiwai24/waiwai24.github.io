@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#  流水线处理器,流水线处理器</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>流水线处理器</h1>
+<h2>1.流水线</h2>
+<ul>
+<li>把一个大任务切分为多个串行的小任务，实现并行执行</li>
+<li>提高了吞吐量（单位时间内执行指令的数目）</li>
+<li><strong>流水线周期</strong>为执行时间最长的一个阶段</li>
+</ul>
+<h2>2.流水线处理器</h2>
+<p>每一条指令拆分为 5 个阶段：</p>
+<ul>
+<li><strong>IF</strong>（Instruction Fetch，指令获取）</li>
+<li><strong>ID</strong>（Instruction Decode，指令解码）</li>
+<li><strong>EX</strong>（Execution，指令执行）</li>
+<li><strong>MEM</strong>（Memory Access，内存读写）</li>
+<li><strong>WB</strong>（Write Back to Register，写回寄存器）</li>
+</ul>
+<p><img src="/0101/CSNote/计算机原理/4.中央处理器/assets/2.%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%A4%84%E7%90%86%E5%99%A8/image-20240517093547652.png" alt="image-20240517093547652"></p>
+
+        </main>
+    </div>
+</body>
+</html>

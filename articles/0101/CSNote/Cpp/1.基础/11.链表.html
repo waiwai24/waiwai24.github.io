@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 链表,链表</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>链表</h1>
+<p>[TOC]</p>
+<blockquote>
+<ul>
+<li>
+<p>数组作为一个顺序储存方式的数据结构，可是有大作为的，它的灵活使用为我们的程序设计带来了大量的便利；但是，数组最大的缺点就是我们的插入和删除时需要移动大量的元素，所以呢，大量的消耗时间，以及冗余度难以接受了。</p>
+</li>
+<li>
+<p>链表通过不连续的储存方式，自适应内存大小，以及指针的灵活使用，巧妙的简化了上述的内容。</p>
+</li>
+</ul>
+</blockquote>
+<h2>1.单向链表的定义</h2>
+<p>单向链表的结点结构中只有一个指针域，用于存放下一个节点的首地址。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">DATA</th>
+<th style="text-align:center">NEXT</th>
+</tr>
+</thead>
+</table>
+<p>单向链表的结点的类型的声明：</p>
+<pre><code class="language-cpp">struct node
+{
+	int data;
+	node* next;
+};
+</code></pre>
+<hr>
+<h2>2.建立单向链表</h2>
+<pre><code class="language-cpp">void printList(node* h)
+{
+	cout &lt;&lt; &quot;List:&quot;;
+	while (h)
+	{// h为真，即h指向的结点存在，则输出该结点的数据
+		cout &lt;&lt; &quot; &quot; &lt;&lt; h-&gt;data;  // 输出结点数据
+		h = h-&gt;next;  // 将该结点的指针域赋值给h，h就指向了下一个结点
+	}
+	cout &lt;&lt; endl; // 输出换行符
+}
+void delList(node* h)
+{
+	node* p = h;  // 指针p指向头结点，第一个要删除的结点
+	while (p)  // 这个结点是存在的
+	{
+		h = h-&gt;next;  // 头指针h指向下一个结点（下一个结点的地址存在当前结点的指针域中，即h-&gt;next中
+		delete p;  // 删除p指向的结点
+		p = h;  // p指向当前的头结点，即下一个要删除的结点
+	}
+}
+
+int main()
+{
+	int n;//节点数
+	node* h = NULL;//头指针为空
+	cout &lt;&lt; &quot;输入结点数:&quot;; cin &gt;&gt; n;
+	if (n &gt; 0)
+	{
+		h = createList(n);
+	}
+	printList(h);
+	delList(h);
+	return 0;
+}
+</code></pre>
+<h3>（1）正向建立（尾插入）</h3>
+<pre><code class="language-cpp">node* createList(int n)
+{
+	node* tem = NULL, * tail = NULL, * head = NULL;
+	int num;
+	for (int i = 0; i &lt; n; ++i)
+	{
+		cin &gt;&gt; num;//每次读取一个数据
+		tem = new node;
+		if (tem == NULL)//内存分配不成功
+		{
+			cout &lt;&lt; &quot;没内存了&quot;; return 0;
+		}
+		else
+		{
+			tem-&gt;data = num;
+			tem-&gt;next = NULL;
+			if (head == NULL)//表示这是第一个结点
+			{
+				head = tem;
+				tail = tem;
+			}
+			else
+			{
+				tail-&gt;next = tem;
+				tail = tem;
+			}
+		}
+	}
+	return head;
+}
+</code></pre>
+<h3>（2）反向建立（头插入）</h3>
+<pre><code class="language-cpp">node* createListInvert(int n)
+{
+	node* tem, * head = NULL;
+	int num;
+	for (int i = 0; i &lt; n; ++i)
+	{
+		cin &gt;&gt; num;
+		tem = new node;
+		if (tem == NULL)
+		{
+			cout &lt;&lt; &quot;没内存了&quot;; return 0;
+		}
+		else
+		{
+			tem-&gt;data = num;
+			tem-&gt;next = NULL;
+			if ( head == NULL)//表示这是第一个结点
+			{
+				head = tem;
+			}
+			else
+			{
+				tem-&gt;next = head;
+				head = tem;
+			}
+		}
+	}
+	return head;
+}
+</code></pre>
+<hr>
+<h2>3.遍历链表</h2>
+<ul>
+<li>在前面的打印链表里有具体的代码</li>
+<li>主要思路是从链首开始，依次访问链表中每个结点的信息</li>
+</ul>
+<hr>
+<h2>4.在链表中插入或者删除一个结点</h2>
+<ul>
+<li>在链表中插入或者删除一个结点比在数组中增加或减少一个元素容易得多，因为数组需要通过大量的结构赋值来移动元素以增加或消除元素的空位。</li>
+<li>在链表中插入或者删除一个结点时，都必须要保持链表的连续性</li>
+<li>总之，都需要找到插入或删除点前驱节点和后驱节点</li>
+</ul>
+<pre><code class="language-cpp">node* insertData(int n, node* head)
+{
+	node* cur = head;//指向当前结点
+	node* pre = NULL;//指向前驱节点
+	node* tem = new node;//指向新建节点
+	while ((cur != NULL) and (cur-&gt;data &lt; n))
+	{
+		pre = cur;
+		cur = cur-&gt;next;
+	}
+}
+</code></pre>
+<hr>
+<h2>5.链表的排序</h2>
+<p>采用最简单直接的方式，直接采用冒泡排序或者选择排序，而不是交换结点，只交换数据域</p>
+<hr>
+<h2>6.将两个链表从小到大拼接起来</h2>
+<p>先创建一个数组，把两个链表中所有的数据放进去，然后再对数组进行排序，最后再依次创建结点，连接链表</p>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.安装指南避坑</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <p>可以在外网机子上先下好image，然后save，传入内网机器，再导入image即可</p>
+<p>下载时存在的问题：虽然本地有image，但还是会去远程拉去</p>
+<p>由于我的报错出现在I05_emba_docker_image_dl.sh文件，所以需要修改其安装shell脚本，让其避免因为内网网络问题而导致安装失败，如果网络失败则读取本地镜像文件：</p>
+<pre><code class="language-shell">#!/bin/bash
+
+# EMBA - EMBEDDED LINUX ANALYZER
+#
+# Copyright 2020-2023 Siemens AG
+# Copyright 2020-2025 Siemens Energy AG
+#
+# EMBA comes with ABSOLUTELY NO WARRANTY. This is free software, and you are
+# welcome to redistribute it under the terms of the GNU General Public License.
+# See LICENSE file for usage of this software.
+#
+# EMBA is licensed under GPLv3
+#
+# Author(s): Michael Messner, Pascal Eckmann
+# Contributor(s): Stefan Haboeck, Nikolas Papaioannou
+
+# Description: Download EMBA docker image (only for -d default and full installation)
+
+I05_emba_docker_image_dl() {
+  module_title &quot;${FUNCNAME[0]}&quot;
+
+  if [[ &quot;${LIST_DEP}&quot; -eq 1 ]] || [[ &quot;${IN_DOCKER}&quot; -eq 0 ]] || [[ &quot;${DOCKER_SETUP}&quot; -eq 1 ]] || [[ &quot;${FULL}&quot; -eq 1 ]]; then
+    # print_tool_info &quot;docker.io&quot; 1
+
+    echo -e &quot;\\n&quot;&quot;${ORANGE}&quot;&quot;${BOLD}&quot;&quot;embeddedanalyzer/emba docker image&quot;&quot;${NC}&quot;
+    echo -e &quot;Description: EMBA docker images used for firmware analysis.&quot;
+
+    if command -v docker &gt; /dev/null; then
+      # 添加错误处理，避免因网络问题导致安装失败
+      if ! f=&quot;$(docker manifest inspect &quot;${CONTAINER}&quot; 2&gt;/dev/null | grep &quot;size&quot; | sed -e 's/[^0-9 ]//g')&quot;; then
+        echo -e &quot;${ORANGE}无法获取容器镜像大小信息，将继续安装过程...${NC}&quot;
+        echo &quot;Estimated download-Size: ~5500 MB&quot;
+        f=&quot;0&quot;
+      else
+        echo &quot;Download-Size : &quot;&quot;$((&quot;$(( &quot;${f//
+        </main>
+    </div>
+</body>
+</html>\n'/+}&quot; ))&quot;/1048576))&quot;&quot; MB&quot;
+      fi
+    fi
+
+    if [[ &quot;${LIST_DEP}&quot; -eq 1 ]] || [[ &quot;${IN_DOCKER}&quot; -eq 1 ]] ; then
+      ANSWER=(&quot;n&quot;)
+    else
+      echo -e &quot;\\n&quot;&quot;${MAGENTA}&quot;&quot;${BOLD}&quot;&quot;docker.io and the EMBA docker image (if not already on the system) will be downloaded and installed!&quot;&quot;${NC}&quot;
+      ANSWER=(&quot;y&quot;)
+    fi
+
+    case ${ANSWER:0:1} in
+      y|Y )
+        apt-get install &quot;${INSTALL_APP_LIST[@]}&quot; -y --no-install-recommends
+
+        if ! pgrep dockerd; then
+          echo -e &quot;\\n&quot;&quot;${RED}&quot;&quot;${BOLD}&quot;&quot;Docker daemon not running! Please check it manually and try again&quot;&quot;${NC}&quot;
+          exit 1
+        fi
+        if command -v docker &gt; /dev/null ; then
+          export DOCKER_CLI_EXPERIMENTAL=enabled
+          echo -e &quot;${ORANGE}&quot;&quot;Checking for EMBA docker image...&quot;&quot;${NC}&quot;
+          echo -e &quot;${ORANGE}&quot;&quot;CONTAINER VARIABLE SET TO &quot;&quot;${CONTAINER}&quot;&quot;${NC}&quot;
+          
+          # 首先检查本地是否已有镜像
+          if docker images --format &quot;{{.Repository}}:{{.Tag}}&quot; | grep -q &quot;${CONTAINER}&quot;; then
+            echo -e &quot;${GREEN}&quot;&quot;Found local image ${CONTAINER}, skipping download.&quot;&quot;${NC}&quot;
+          else
+            echo -e &quot;${ORANGE}&quot;&quot;Local image not found, attempting to download.&quot;&quot;${NC}&quot;
+            if ! docker pull &quot;${CONTAINER}&quot;; then
+              echo -e &quot;${RED}&quot;&quot;Failed to download ${CONTAINER}.&quot;&quot;${NC}&quot;
+              echo -e &quot;${ORANGE}&quot;&quot;Checking if we have any usable local images...&quot;&quot;${NC}&quot;
+              
+              # 检查是否有任何 embeddedanalyzer/emba 镜像
+              if ! docker images | grep -q &quot;embeddedanalyzer/emba&quot;; then
+                echo -e &quot;${RED}&quot;&quot;No local EMBA images found. Installation may be incomplete.&quot;&quot;${NC}&quot;
+                read -p &quot;Press any key to continue anyway...&quot; -n1 -s -r
+              else
+                echo -e &quot;${GREEN}&quot;&quot;Found alternative local EMBA image, will use that instead.&quot;&quot;${NC}&quot;
+                # 使用本地最新的 EMBA 镜像
+                LOCAL_IMAGE=$(docker images embeddedanalyzer/emba --format &quot;{{.Repository}}:{{.Tag}}&quot; | head -1)
+                CONTAINER=&quot;${LOCAL_IMAGE}&quot;
+              fi
+            fi
+          fi
+          
+          # 确保镜像有 latest 标签
+          docker tag &quot;${CONTAINER}&quot; &quot;${CONTAINER/:*}:latest&quot;
+          sed -i &quot;/image:/c\    image: ${CONTAINER}&quot; docker-compose.yml
+          export DOCKER_CLI_EXPERIMENTAL=disabled
+          &quot;${DOCKER_COMPOSE[@]}&quot; up --no-start
+        else
+          echo &quot;Estimated download-Size: ~5500 MB&quot;
+          echo -e &quot;${ORANGE}&quot;&quot;WARNING: docker command missing - no docker pull possible.&quot;&quot;${NC}&quot;
+        fi
+      ;;
+    esac
+  fi
+}
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

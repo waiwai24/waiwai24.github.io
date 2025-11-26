@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 符号常量,符号常量</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>符号常量</h1>
+<h2>1.等号伪指令</h2>
+<p>语法：$name\ =\ expresion$</p>
+<p>使用符号会让程序更加容易阅读和维护，可重定义</p>
+<h2>2.当前地址计数器</h2>
+<p>最重要的符号之一就是当前地址计数器，表示为**<code>$</code>**</p>
+<h2>3.计算数组和字符串大小</h2>
+<p>显示声明数组的大小会导致编程错误，尤其时后续对数组元素进行插入和删除，所以声明数组大小更好的方法是让汇编器来计算这个值</p>
+<pre><code class="language-assembly">list BYTE 10，20，30，40
+listsize = ($-list)
+;listsize必须紧跟在list后面，对于字符串也同理
+</code></pre>
+<h2>4.EQU伪指令</h2>
+<p>equate，把一个符号名称于一个<strong>整数</strong>表达式或者<strong>任意文本</strong>（使用<code>&lt;&gt;</code>包含任意文本）连接起来，不可重定义*</p>
+<ul>
+<li>$name\ EQU\ expression$</li>
+<li>$name\ EQU\ symbol$</li>
+<li>$name\ EQU\ <text>$</li>
+</ul>
+<pre><code>PI EQU &lt;3.14&gt; ;可以定义非整数值，用任意文本定义实数常量
+</code></pre>
+<h2>5.TEXTEQU伪指令</h2>
+<p>类似于EQU，创建了文本宏</p>
+<ul>
+<li>$name\ TEXTEQU\ <text>$</li>
+<li>$name\ TEXXTEQU\ textmacro$</li>
+<li>$name\ TEXTEQU\ \ %constExpr$</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

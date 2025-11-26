@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 数字编码,数字编码</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>数字编码</h1>
+<h2>1.整数编码</h2>
+<blockquote>
+<p>从上一节表格可以发现，所有的整数类型能表示的负数都比正数多一个，这其中内在原因涉及原码，反码，补码的知识</p>
+</blockquote>
+<p>==数字是以补码的形式存储在计算机中的==</p>
+<p>计算机内部的硬件电路主要是基于加法运算设计的</p>
+<h3>（1）原码</h3>
+<p>将数字的二进制表示的最高位视为符号位，0表示正数，1表示负数，其余位表示数字的值（局限性，负数的原码不能直接用于计算）</p>
+<h3>（2）反码</h3>
+<p>正数的反码与原码相同，负数的反码是对其原码除符号位外所有位取反</p>
+<h3>（3）补码</h3>
+<p>正数的补码与原码相同，负数的补码是在反码的基础上加1（解决正负0的歧义问题，这样八位的0的补码都是0000 0000，但计算机规定这个特殊的补码1 0000 0000代表-128）</p>
+<h2>2.浮点数编码</h2>
+<blockquote>
+<p>虽然int和float长度相同都是4bytes，但float的取值范围远大于int，这是因为float采用了不同的表示方法</p>
+</blockquote>
+<p>记一个 32-bit 长度的二进制数为：</p>
+<p>b~31~b~30~…b~2~b~1~b~0~</p>
+<p>根据 IEEE 754 标准，32-bit 长度的 <code>float</code> 由以下三个部分构成。</p>
+<ul>
+<li>符号位 S ：占 1 bit ，对应 b~31~</li>
+<li>指数位 E ：占 8 bits ，对应 b~30~b~29~…b~23~</li>
+<li>分数位 N ：占 23 bits ，对应 b~22~b~21~…b~0~</li>
+</ul>
+<p><img src="/0101/CSNote/Algorithm/3.Data_Structure/assets/3.%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/ieee_754_float.png" alt=""></p>
+<p>双精度 <code>double</code> 也采用类似 <code>float</code> 的表示方法</p>
+
+        </main>
+    </div>
+</body>
+</html>

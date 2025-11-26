@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 信号量,信号量</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>信号量</h1>
+<h2>1.定义</h2>
+<ul>
+<li>信号量是一个整数值的对象</li>
+<li>可以替代锁/条件变量</li>
+<li>在并发过程中可以灵活控制资源使用情况</li>
+<li>进程三个状态之间的转换就是靠 PV 操作来控制的。PV 操作主要就是 P 操作、V 操作和信号量</li>
+</ul>
+<pre><code class="language-c">sem_init(&amp;s,0,1)//初始化为 1，0 标识为线程共享
+sem_wait()//P 操作，请求资源，信号量的值减 1，如果结果小于 0，则使调用的线程挂起直到被其他线程调用 sem_post()
+sem_post()//V 操作，释放资源，信号量的值加 1，如果有其他线程等待被唤醒，则唤醒其中一个
+</code></pre>
+<ul>
+<li>一般来说，信号量 S＞0 时，S 表示可用资源的数量。执行一次 P 操作意味着请求分配一个单位资源，因此 S 的值减 1；</li>
+<li>当 S &lt; 0 时，表示已经没有可用资源，其绝对值表示等待使用该资源的进程个数，请求者必须等待别的进程释放该类资源，它才能运行下去。而执行一个 V 操作意味着释放一个单位资源，因此 S 的值加 1</li>
+<li>若 S＝0，表示有某些进程正在等待该资源，因此要唤醒一个等待状态的进程，使之运行下去</li>
+</ul>
+<h2>2.二值信号量（锁）</h2>
+<p>二值：只有持有和没持有</p>
+<p>因为锁只有两个状态（持有和没持有），所以这种用法有时也叫作二值信号量（binary semaphore）</p>
+<pre><code class="language-c">sem t m;
+sem init (&amp;m,0,X);
+sem wait（&amp;m)
+//critical section here
+sem post (&amp;m);
+</code></pre>
+<p>上面 x 的初始值应该为 1</p>
+<p><img src="/0101/CSNote/操作系统/并发/assets/5.%E4%BF%A1%E5%8F%B7%E9%87%8F/image-20241201090550057.png" alt="image-20241201090550057"></p>
+<p><img src="/0101/CSNote/操作系统/并发/assets/5.%E4%BF%A1%E5%8F%B7%E9%87%8F/image-20241201090600063.png" alt="image-20241201090600063"></p>
+<h2>3.信号量作为条件变量</h2>
+<pre><code>sem t s;
+void child(void *arg){
+	printf(&quot;child\n&quot;);
+	sem post (&amp;s)//signal here:child is done
+	return NULL;
+}
+
+int main(int argc,char *argv[]){
+	sem init (&amp;s,0,X);//what should x be?
+	printf (&quot;parent:begin\n&quot;);
+	pthread t c;
+	Pthread create(c,NULL,child,NULL)
+	sem wait (&amp;s);//wait here for child
+	printf (&quot;parent:end\n&quot;);
+	return 0;
+}
+</code></pre>
+<p>上面x的值应该为0</p>
+<p><img src="/0101/CSNote/操作系统/并发/assets/5.%E4%BF%A1%E5%8F%B7%E9%87%8F/image-20241201090506422.png" alt="image-20241201090506422"></p>
+<p><img src="/0101/CSNote/操作系统/并发/assets/5.%E4%BF%A1%E5%8F%B7%E9%87%8F/image-20241201090516372.png" alt="image-20241201090516372"></p>
+<h2>4.生产者/消费者问题</h2>
+<p>2个信号量，分别描述空/满的缓冲块数量，不能同时放或取</p>
+<h2>5.读/写者锁</h2>
+<ul>
+<li>一个线程写的时候，其他线程不能读或写</li>
+<li>一个线程读的时候，其他线程可以读</li>
+</ul>
+<p>例：链表操作</p>
+<ul>
+<li>insert():插入节点(写)</li>
+<li>lookup():查找节点(读)</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

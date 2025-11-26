@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 指令,指令</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>指令</h1>
+<h2>1.指令的组成</h2>
+<p>一条指令有四个部分组成：$[label:]\ mnemonic\ [operands]\ [;comment]$</p>
+<ul>
+<li>标号（可选）</li>
+<li>指令助记符（必须）</li>
+<li>操作数（通常必须）</li>
+<li>注释（可选）</li>
+</ul>
+<h2>2.标号</h2>
+<p>label是一种标识符，是指令和数据的位置标记，位于指令或变量的前端，标识指令或变量的地址</p>
+<p>通常有两种类型的标号：</p>
+<ul>
+<li>
+<p>数据标号：标识变量的位置</p>
+<ul>
+<li>
+<pre><code class="language-assembly">count DWORD 100
+arry DWORD 1024,2048 ;标号后可定义多个数据项
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>代码标号：用作跳转和循环指令的目标（标号必须用冒号结束）</p>
+<ul>
+<li>
+<pre><code class="language-ass">L1：mov ax，bx
+L2： 
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2>3.指令助记符</h2>
+<p>eg：mov，add，sub</p>
+<h2>4.操作数</h2>
+<p>操作数个个数范围是0~3个，并且有固有顺序，通常第一个操作数为目的操作数，第二个操作数为源操作数，目的操作数的内容由指令修改</p>
+<p>操作数类型：</p>
+<ul>
+<li>整数常量</li>
+<li>整数表达式</li>
+<li>寄存器</li>
+<li>内存</li>
+</ul>
+<h2>5.NOP指令</h2>
+<p>最安全也最无用的指令是空操作指令，在程序空间占一个字节，有时被编译器和汇编器用于将代码对齐到有效的地址边界</p>
+<p>因为x86处理器设计为从偶数倍的地址处加载代码和数据，这使得加载速度更快</p>
+
+        </main>
+    </div>
+</body>
+</html>

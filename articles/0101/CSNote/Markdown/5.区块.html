@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 区块,区块</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>区块</h1>
+<h2>1.基本区块使用</h2>
+<p>区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>符号</p>
+<pre><code>&gt; 区块
+&gt; 分块
+</code></pre>
+<p>展示效果：</p>
+<blockquote>
+<p>区块
+分块</p>
+</blockquote>
+<h2>2.区块嵌套</h2>
+<p>区块是可以嵌套的，一个 <strong>&gt;</strong> 符号是最外层，两个 <strong>&gt;</strong> 符号是第一层嵌套，以此类推</p>
+<pre><code>&gt; 外层
+&gt;&gt; 中间层
+&gt;&gt;&gt; 内层
+</code></pre>
+<p>展示效果：</p>
+<blockquote>
+<p>外层</p>
+<blockquote>
+<p>中间层</p>
+<blockquote>
+<p>内层</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2>3.区块中使用列表</h2>
+<pre><code>&gt; 区块中使用列表
+&gt; 1. 第一项
+&gt; 2. 第二项
+&gt; + 第一项
+&gt; + 第二项
+&gt; + 第三项
+</code></pre>
+<p>展示效果：</p>
+<blockquote>
+<p>区块中使用列表</p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+</ol>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+</blockquote>
+<h2>4.列表中使用区块</h2>
+<p>如果要在列表项目内放进区块，那么就需要在 <strong>&gt; 前添加四个空格</strong>的缩进</p>
+<pre><code>* one
+    &gt; first
+    &gt; second
+* two
+    &gt; first
+    &gt; second
+</code></pre>
+<p>展示效果：</p>
+<ul>
+<li>one
+<blockquote>
+<p>first
+second</p>
+</blockquote>
+</li>
+<li>two
+<blockquote>
+<p>first
+second</p>
+</blockquote>
+</li>
+</ul>
+
+        </main>
+    </div>
+</body>
+</html>

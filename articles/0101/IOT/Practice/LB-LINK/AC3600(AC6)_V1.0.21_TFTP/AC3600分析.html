@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># AC3600分析,AC3600分析</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>AC3600分析</h1>
+<h2>1.固件仿真</h2>
+<p>MIPS32 小端</p>
+<p>用firmwalker跑一下，确定服务端是lighttpd</p>
+<p>启动服务：</p>
+<pre><code>~ # /etc/init.d/Blink_Cloud start
+ start Blink_Cloud: /usr/bin/Blink_Cloud
+Failed to connect to ubus
+</code></pre>
+<p>同时/var目录指向/dev/null，存在问题</p>
+<p>编译最新版本的binwalk解决了链接问题</p>
+<p><img src="/0101/IOT/Practice/LB-LINK/AC3600(AC6)_V1.0.21_TFTP/assets/AC3600%E5%88%86%E6%9E%90/image-20250316201645930.png" alt="image-20250316201645930"></p>
+<p>直接运行：</p>
+<pre><code>/ # ./etc/init.d/Blink_Cloud start
+ start Blink_Cloud: /usr/bin/Blink_Cloud
+Failed to connect to ubus
+</code></pre>
+<pre><code>/ # ./sbin/ubusd 
+usock: No such file or directory
+</code></pre>
+<p>tmp目录下创建目录/run，再在后台启动ubus进程，接着运行Blink_Cloud,但是发现还是没用</p>
+<p>再看看/etc目录下的文件，发现/etc/rc.local,直接运行，中途会有一些报错</p>
+<p><img src="/0101/IOT/Practice/LB-LINK/AC3600(AC6)_V1.0.21_TFTP/assets/AC3600%E5%88%86%E6%9E%90/image-20250316202701864.png" alt="image-20250316202701864"></p>
+<p>另外开一个ssh连接进去，可以看到进程是启动了的，端口也是对外开放，前端也是可以正常渲染：</p>
+<p><img src="/0101/IOT/Practice/LB-LINK/AC3600(AC6)_V1.0.21_TFTP/assets/AC3600%E5%88%86%E6%9E%90/image-20250316202953471.png" alt="image-20250316202953471"></p>
+<p><img src="/0101/IOT/Practice/LB-LINK/AC3600(AC6)_V1.0.21_TFTP/assets/AC3600%E5%88%86%E6%9E%90/image-20250316203029940.png" alt="image-20250316203029940"></p>
+<p>但是目前这个路由界面始终登录不上去，分析前面的启动脚本输出信息，一直显示uci相关的问题错误：可能的原因是脚本尝试访问不存在的UCI配置项路径或者文件不存在</p>
+<pre><code class="language-shell">/ # uci: Entry not found
+uci: Entry not found
+Segmentation fault
+uci: Entry not found
+Segmentation fault
+</code></pre>
+<p><code>/etc/init.d/boot</code> 文件中有一系列创建文件夹的操作，执行<code>/etc/init.d/boot boot</code>,再执行<code>/etc/rc.local</code>,uci相关的问题消失，前端可以用密码<code>admin</code>正常登录了</p>
+<p><img src="/0101/IOT/Practice/LB-LINK/AC3600(AC6)_V1.0.21_TFTP/assets/AC3600%E5%88%86%E6%9E%90/image-20250317093611336.png" alt="image-20250317093611336"></p>
+<h2>2.漏洞挖掘</h2>
+<p>漏洞挖掘从功能点触发，并结合bp抓包分析</p>
+<p>blonet师傅提到的一个漏洞点是在高级设置-&gt;系统设置-&gt;修改管理员密码</p>
+<p>lighttpd.cgi只负责登录和后续接口的处理，真正功能的实现都在库函数里，定位到/usr/lib/libblinkapi.so库文件，定位到bs_SetManPwd()函数</p>
+<p>发现system命令执行函数（这里的展示是经过hrtng插件优化过后的函数），但是前面的代码比较丑陋，不太好分析，所以调试一下，传入一个静态gdbserver，并且把gdb插件换成gef，对于异架构的支持更好</p>
+<p><img src="/0101/IOT/Practice/LB-LINK/AC3600(AC6)_V1.0.21_TFTP/assets/AC3600%E5%88%86%E6%9E%90/image-20250323205258559.png" alt="image-20250323205258559"></p>
+<p>拿反弹shell</p>
+<p><img src="/0101/IOT/Practice/LB-LINK/AC3600(AC6)_V1.0.21_TFTP/assets/AC3600%E5%88%86%E6%9E%90/image-20250324100121790.png" alt="image-20250324100121790"></p>
+
+        </main>
+    </div>
+</body>
+</html>

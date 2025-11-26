@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 溢出示例,溢出示例</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>溢出示例</h1>
+<h2>1.溢出</h2>
+<h3>1.1 整数上溢出</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;climits&gt;
+int main()
+{
+	int a = INT_MAX+1;//INT_MAX=2147483647
+	printf(&quot;a=%d&quot;, a);//a=-2147483648
+	if(a&lt;0)
+	{
+		a = -a;
+		printf(&quot;a=%d&quot;, a);
+		//a=-2147483648
+	}
+}
+</code></pre>
+<p>​	int类型4字节，可表示的范围$-(2^{n-1})\le X\le 2^{n-1}-1$，即为$-2147483648\le X\le2147483647$​,加1导致符号位为1，解释为最小的int，由于再对a取相反数，应该表示的值为2147483648，但又由于符号位为1，所以a仍为-2147483648</p>
+<p>​	同理，$INT_MIN–$后导致下溢出会变为$INT_MAX$</p>
+<h2>2.回绕</h2>
+<h3>2.1 无符号数回绕</h3>
+<pre><code class="language-c">unsigned int a = UINT_MAX + 1;
+printf(&quot;a=%u&quot;, a);//a=0
+</code></pre>
+<p>无符号数永远不会溢出，它像钟表一样无限循环</p>
+<h2>3.整型转换</h2>
+<h3>3.1 宽度溢出和整型提升</h3>
+<pre><code class="language-c">int a=0xabcddcba;
+short b = a;
+char c = a;
+printf(&quot;b=%#x\n&quot;, b);
+printf(&quot;c=%#x\n&quot;, c);
+printf(&quot;b + c = %#x&quot;, b + c);
+//b=0xffffdcba,16bits
+//c=0xffffffba,8bits
+//b + c = 0xffffdc74,32bits
+</code></pre>
+
+        </main>
+    </div>
+</body>
+</html>

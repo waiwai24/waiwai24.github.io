@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># 内网环境,内网环境</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>内网环境</h1>
+<h2>1.内网工作环境</h2>
+<p>Windows域是计算机网络的一种形式，其中所有用户帐户 ，计算机，打印机和其他安全主体都在位于称为域控制器的一个或多个中央计算机集群上的中央数据库中注册。身份验证在域控制器上进行。在域中使用计算机的每个人都会收到一个唯一的用户帐户，然后可以为该帐户分配对该域内资源的访问权限</p>
+<p>域控服务器部署：</p>
+<ul>
+<li>以管理员帐号 Administrator 登录服务器</li>
+<li>更改计算机名为DC</li>
+<li>设置静态 IP</li>
+<li>首选 DNS 配置为本机 IP</li>
+<li>添加角色和功能：
+<ul>
+<li>角色选择Active Directory域服务</li>
+<li>安装后将此服务器提升为域控制器</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash">//查看域内用户
+net user /domain
+//查看域管理员
+net group &quot;domain admins&quot; /domain
+</code></pre>
+<h3>1.1 工作组</h3>
+<p><strong>work group</strong>：适用于小范围一群计算机的集合，将计算机按功能列入不同的组，在计算机的网上邻居中即可找到相应的工作组</p>
+<h3>1.2 域</h3>
+<p><strong>domain</strong>：组的升级版，有安全边界计算机集合，所有用户主体都在一个或多个域控制器的中央数据库中注册，当域用户要访问域中资源时，必须通过域控制器集中进行验证</p>
+<p>几种域类型：</p>
+<ul>
+<li>单域</li>
+<li>父域和子域</li>
+<li>域树：域管理员只能管理本域，如果两个域之间要相互访问，就要建立信任关系</li>
+<li>域林</li>
+</ul>
+<h3>1.3 域控制器</h3>
+<p><strong>domain controller （DC）</strong>：也称域控，域环境核心的服务器计算机，包含一个活动目录数据库，存储着整个域的账户密码，计算机等信息。一个域环境可能不止一台DC，保证了域环境的正常运行</p>
+
+        </main>
+    </div>
+</body>
+</html>

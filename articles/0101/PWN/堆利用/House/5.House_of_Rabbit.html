@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title># House of Rabbit,House of Rabbit</title>
+    <link rel="stylesheet" href="/assets/css/notes.min.css">
+</head>
+<body>
+    <div class="main-content-wrapper">
+        <main class="content">
+            <h1>House of Rabbit</h1>
+<h2>1.基本原理</h2>
+<p>有两种攻击手法：</p>
+<ul>
+<li><a href="https://github.com/shift-crops/House_of_Rabbit%EF%BC%8C%E5%8E%9F%E4%BD%9C%E8%80%85%E6%8F%90%E5%87%BA%E7%9A%84%EF%BC%8Cmalloc_consolidate">https://github.com/shift-crops/House_of_Rabbit，原作者提出的，malloc_consolidate</a> 时缺少对 fast bin 中 chunk 的 size 的检查，通过修改 fastbin chunk 的 size 直接构造 overlap chunk，或者修改 fd，让它指向一个 fake chunk，触发 malloc consolidate 之后让这个 fake chunk 成为一个合法的 chunk，从而分配出重叠的堆块</li>
+<li>利用 malloc_consolidate 将 fast bin 放入 unsotrted bin 和从 unsorted bin 进 largebin 以及 large bin 切割 chunk 时对 size 检查不严格从而可以不用严格保证 size 正确的情况下将 fake
+chunk 申请出来，甚至可以任意地址 malloc</li>
+</ul>
+<p>堆块合并前触发的代码：</p>
+<pre><code class="language-c">#define FASTBIN_CONSOLIDATION_THRESHOLD  (65536UL)
+
+...
+    if ((unsigned long)(size) &gt;= FASTBIN_CONSOLIDATION_THRESHOLD) {
+      if (have_fastchunks(av))
+		malloc_consolidate(av);
+</code></pre>
+<p>在 <code>malloc_consolidate()</code>中，会循环处理各 <code>fastbin</code>堆块，当堆块与<code>top</code> 相邻时，与<code>top</code>合并。否则，将堆块放入<code>unsortedbin</code>中，并设置 <code>pre_size</code>和<code>pre_inuse</code>位</p>
+
+        </main>
+    </div>
+</body>
+</html>
