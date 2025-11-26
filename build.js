@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const MarkdownIt = require('markdown-it');
 
-const knowledgeTreePath = path.join(__dirname, '_data', 'notes-tree.json');
+const knowledgeTreePath = path.join(__dirname, 'assets', 'data', 'notes-tree.json');
 const outputDir = path.join(__dirname, 'articles');
 const contentTemplatePath = path.join(__dirname, '_includes', 'article-template.html');
 
