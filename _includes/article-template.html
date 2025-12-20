@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - waiwai's Notes</title>
+    <link rel="stylesheet" href="{{RELATIVE_PATH}}assets/css/style.css">
+    <link rel="stylesheet" href="{{RELATIVE_PATH}}assets/css/header-style.css">
+    <link rel="stylesheet" href="{{RELATIVE_PATH}}assets/css/notes.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Hide chrome when loaded in iframe */
+        body.in-iframe .main-header,
+        body.in-iframe .sidebar,
+        body.in-iframe .footer,
+        body.in-iframe .content-search-wrapper,
+        body.in-iframe .sidebar-toggle {
+            display: none !important;
+        }
+
+        body.in-iframe .container {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        body.in-iframe .main-content-wrapper {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        body.in-iframe #content-display {
+            padding: 30px;
+            max-width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Responsive images in iframe */
+        body.in-iframe img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Prevent horizontal overflow */
+        body.in-iframe #content-display * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        body.in-iframe pre,
+        body.in-iframe code {
+            overflow-x: auto;
+        }
+    </style>
+    <script>
+        // Detect if page is loaded in iframe
+        if (window.self !== window.top) {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.classList.add('in-iframe');
+            });
+        }
+
+        // Redirect to notes.html if accessed directly (not via AJAX from notes.html)
+        (function() {
+            // Check if this is a direct access (not AJAX loaded)
+            // We can detect this by checking if the current page is the top window
+            // and if the referrer is not from notes.html
+            const currentPath = window.location.pathname;
+            const isArticlePage = currentPath.includes('/articles/') && currentPath.endsWith('.html');
+
+            if (isArticlePage && window.self === window.top) {
+                // Check if we're coming from notes.html via browser navigation
+                const fromNotesPage = document.referrer.includes('/notes.html');
+
+                // If not from notes.html, redirect
+                if (!fromNotesPage) {
+                    // Store the article URL in sessionStorage
+                    sessionStorage.setItem('redirectedArticleUrl', window.location.href);
+
+                    // Redirect to notes.html using absolute path
+                    window.location.href = '/notes.html';
+                }
+            }
+        })();
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <a href="{{RELATIVE_PATH}}index.html" class="nav-brand">waiwai</a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
+        <nav class="main-nav">
+            <a href="{{RELATIVE_PATH}}index.html" class="nav-link">Home</a>
+            <a href="{{RELATIVE_PATH}}notes.html" class="nav-link">Notes</a>
+            <a href="{{RELATIVE_PATH}}project.html" class="nav-link">Projects</a>
+            <a href="{{RELATIVE_PATH}}tool.html" class="nav-link">Tools</a>
+        </nav>
+    </header>
+    <div class="container">
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar menu" aria-expanded="false">
+            <span class="hamburger-icon"></span>
+        </button>
+        <div class="main-content-wrapper">
+            <aside class="sidebar" tabindex="-1" role="navigation" aria-label="Knowledge categories">
+                <div class="sidebar-header">
+                    <div class="search-wrapper">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Search</title><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="search-box" placeholder="Search notes..." class="search-box" aria-label="Search notes">
+                    </div>
+                    <button id="expand-all-btn" class="control-btn" aria-label="Expand all folders" title="Expand all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <title>Expand all</title>
+                            <path d="M9 18v-6l-2 2"/>
+                            <path d="m9 12 2 2"/>
+                            <path d="M14 12v6l2 2"/>
+                            <path d="m14 18-2 2"/>
+                            <path d="M12 6V5a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v1"/>
+                            <path d="M18 6V5a1 1 0 0 0-1-1h-5"/>
+                            <rect width="18" height="18" x="3" y="3" rx="2"/>
+                        </svg>
+                    </button>
+                    <button id="collapse-all-btn" class="control-btn" aria-label="Collapse all folders" title="Collapse all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <title>Collapse all</title>
+                            <path d="M9 12v6l-2-2"/>
+                            <path d="m9 18 2-2"/>
+                            <path d="M14 18v-6l2-2"/>
+                            <path d="m14 12-2-2"/>
+                            <path d="M12 6V5a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v1"/>
+                            <path d="M18 6V5a1 1 0 0 0-1-1h-5"/>
+                            <rect width="18" height="18" x="3" y="3" rx="2"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="file-tree">{{SIDEBAR}}</nav>
+            </aside>
+            <main id="content-display" class="content" role="main" aria-label="Article content">
+                <div class="content-search-wrapper">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Search content</title><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="content-search-box" placeholder="Search content..." class="search-box" aria-label="Search content">
+                </div>
+                {{CONTENT}}
+            </main>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 waiwai24. All rights reserved.</p>
+    </footer>
+    <script src="{{RELATIVE_PATH}}assets/js/header.js"></script>
+    <script src="{{RELATIVE_PATH}}assets/js/article-page.js"></script>
+</body>
+</html>

@@ -182,13 +182,23 @@ body {
     white-space: nowrap;
     user-select: none;
     transition: background-color 0.2s ease, color 0.2s ease;
+    overflow: hidden;
 }
 
 .file .icon {
     margin-right: 8px;
     width: 16px;
     height: 16px;
+    flex-shrink: 0;
     color: #777;
+}
+
+.file span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
 }
 
 .file:hover {
@@ -221,7 +231,6 @@ body {
   padding: 1rem;
   border-top: 1px solid #e6e6e6;
   color: #6c757d;
-  font-size: 0.8rem;
   flex-shrink: 0; /* Prevents the footer from shrinking */
   background-color: #f7f7f7;
 }
@@ -796,4 +805,55 @@ body {
 .highlight {
     background-color: #f0e68c;
     color: #000000;
+}
+
+/* Iframe Container for Article Display */
+.iframe-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.article-iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #fff;
+}
+
+/* Ensure content area can contain absolutely positioned iframe */
+.content.has-iframe {
+    position: relative !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+    height: 100% !important;
+    max-height: none !important;
+    flex: none !important;
+}
+
+/* Prevent main-content-wrapper from scrolling when iframe is present */
+.main-content-wrapper.has-iframe {
+    overflow: hidden !important;
+    height: 100% !important;
+    max-height: none !important;
+}
+
+/* Ensure container doesn't scroll when iframe is present */
+.container.has-iframe {
+    overflow: hidden !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+}
+
+/* Body should not scroll when iframe is present */
+body.has-iframe {
+    overflow: hidden !important;
 }
