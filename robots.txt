@@ -1,0 +1,15 @@
+# robots.txt for waiwai24.github.io
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow crawling of non-content directories
+Disallow: /assets/
+Disallow: /_includes/
+
+# Sitemap location
+Sitemap: https://waiwai24.github.io/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+# Crawl-delay: 1
