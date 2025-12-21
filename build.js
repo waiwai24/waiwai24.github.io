@@ -152,6 +152,19 @@ async function generateSitemap() {
     try {
         const currentDate = new Date().toISOString().split('T')[0];
 
+        // Function to escape XML special characters
+        function escapeXml(unsafe) {
+            return unsafe.replace(/[<>&'"]/g, function (c) {
+                switch (c) {
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '&': return '&amp;';
+                    case '\'': return '&apos;';
+                    case '"': return '&quot;';
+                }
+            });
+        }
+
         // Main pages with higher priority
         const mainPages = [
             { url: '/', priority: '1.0', changefreq: 'weekly' },
@@ -167,7 +180,7 @@ async function generateSitemap() {
         // Add main pages
         for (const page of mainPages) {
             sitemapContent += '  <url>\n';
-            sitemapContent += `    <loc>${BASE_URL}${page.url}</loc>\n`;
+            sitemapContent += `    <loc>${escapeXml(BASE_URL + page.url)}</loc>\n`;
             sitemapContent += `    <lastmod>${currentDate}</lastmod>\n`;
             sitemapContent += `    <changefreq>${page.changefreq}</changefreq>\n`;
             sitemapContent += `    <priority>${page.priority}</priority>\n`;
@@ -177,7 +190,7 @@ async function generateSitemap() {
         // Add article pages
         for (const articleUrl of generatedUrls) {
             sitemapContent += '  <url>\n';
-            sitemapContent += `    <loc>${BASE_URL}${articleUrl}</loc>\n`;
+            sitemapContent += `    <loc>${escapeXml(BASE_URL + articleUrl)}</loc>\n`;
             sitemapContent += `    <lastmod>${currentDate}</lastmod>\n`;
             sitemapContent += `    <changefreq>monthly</changefreq>\n`;
             sitemapContent += `    <priority>0.7</priority>\n`;
