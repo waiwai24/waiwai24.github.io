@@ -175,7 +175,7 @@
       const renderMeta = (el, data) => {
         const stars = data.stargazers_count ?? 0;
         const lang = data.language ?? '';
-        const updated = data.updated_at ? new Date(data.updated_at).toLocaleDateString() : '';
+        const lastPush = data.pushed_at ? new Date(data.pushed_at).toLocaleDateString() : '';
         
         // Generate a color from the language name for the dot
         const langColor = lang ? `#${SDBMHash(lang).toString(16).padStart(6, '0').substring(0, 6)}` : 'transparent';
@@ -183,7 +183,7 @@
         el.innerHTML = ''
           + '<span aria-hidden="true" style="display:inline-flex;align-items:center;gap:4px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star" style="color:#f4d35e;fill:#f4d35e;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> ' + stars + '</span>'
           + (lang ? ('<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:50%;background-color:' + langColor + ';"></span><strong>' + lang + '</strong></span>') : '')
-          + (updated ? ('<span style="color:var(--color-text-tertiary);font-size:12px;">更新于 ' + updated + '</span>') : '');
+          + (lastPush ? ('<span style="color:var(--color-text-tertiary);font-size:12px;">代码 ' + lastPush + '</span>') : '');
       };
 
       const renderError = (el, repo) => {
