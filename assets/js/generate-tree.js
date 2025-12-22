@@ -3,7 +3,13 @@ const path = require('path');
 
 const rootPath = path.join(__dirname, '..', '..');
 const dirPath = path.join(rootPath, '0101');
-const outputJsonPath = path.join(rootPath, '_data', 'knowledge-tree.json');
+const outputJsonPath = path.join(rootPath, 'assets', 'data', 'notes-tree.json');
+
+// Ensure the output directory exists
+const outputDir = path.dirname(outputJsonPath);
+if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+}
 
 function directoryTree(dir, root) {
     const baseName = path.basename(dir);
@@ -60,7 +66,7 @@ const tree = directoryTree(dirPath, rootPath);
 
 if (tree) {
     fs.writeFileSync(outputJsonPath, JSON.stringify(tree, null, 2));
-    console.log(`Successfully generated knowledge-tree.json.`);
+    console.log(`Successfully generated notes-tree.json.`);
 } else {
     console.error('Failed to generate directory tree. The root "0101" directory might be inaccessible.');
 }
