@@ -5,3 +5,4 @@ terminal配置：
 * font：FiraCode Nerd Font
 * 美化：starship
 * 文件：trz,tsz
+* theme：https://draculatheme.com/

@@ -17,5 +17,3 @@
 * ```shell
   /etc/init.d/ssh restart
   ```
-
-  
