@@ -2,3019 +2,3019 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://waiwai24.github.io/</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/index.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/notes.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/project.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/tool.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/1.Agent.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/2.通过搜索求解问题.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/3.无信息搜索.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/4.有信息搜索.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/5.局部搜索与复杂环境搜索.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/6.博弈搜索.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/7.约束满足问题.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/8.命题逻辑.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/9.知识图谱.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/10.不确定性的量化.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/11.贝叶斯网络.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/12.机器学习.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/13.深度学习：神经网络基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/14.深度学习：卷积神经网络.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/15.企业中的大模型框架结构和建设.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/16.RAG.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/17.python机器学习.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/18.ollama白嫖.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/19.ClaudeCode指南.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/20.MCP.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/21.提示词工程.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/AI/22.模型隐私攻击.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Android/other/微信网页usb调试.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/1.Windows基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/2.检测机制.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/3.Windows进程.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/4.payload存放.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/5.payload加解密.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/6.payload混淆.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/7.本地有效载荷执行.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/8.进程注入.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/9.载荷暂存.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/C2/常用API.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/1.Overview/导言.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/2.Complexity/1.算法效率.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/2.Complexity/2.迭代和递归.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/2.Complexity/3.时间复杂度.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/2.Complexity/4.空间复杂度.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/3.Data_Structure/1.数据结构分类.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/3.Data_Structure/2.基本数据类型.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/3.Data_Structure/3.数字编码.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/3.Data_Structure/4.字符编码.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/4.Array and LinkedList/1.数组.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/4.Array and LinkedList/2.链表.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/4.Array and LinkedList/3.列表.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/5.Stack and Queue/1.栈.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/5.Stack and Queue/2.队列.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/6.String/1.朴素的模式匹配.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/6.String/2.KMP匹配算法.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/7.Hashing/1.哈希表.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/7.Hashing/2.哈希冲突.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/7.Hashing/3.哈希算法.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/8.Tree/1.二叉树.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/8.Tree/2.二叉树遍历.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Algorithm/9.Sort/1.插入排序.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Bash/0.快捷键.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Bash/1.简介.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Bash/2.基本语法.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Bash/4.模式扩展.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Bash/5.shell流程控制.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Bash/6.函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Bash/7.set.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Bash/bash脚本示例.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/1.程序设计概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/2.C++语言基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/3.表达式.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/4.数学函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/5.控制结构.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/6.函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/7.数组.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/8.指针.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/9.字符串.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/10.自定义数据结构.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/11.链表.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/12.对于常见数字类型的操作.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/13.递归.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/16.sort函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/17.typedef详解.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/18.程序暂停.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/1.基础/19.格式化字符串.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/2.面向对象/1.面向对象的语言的基本概念.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/2.面向对象/2.类和对象.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/2.面向对象/3.继承和多态.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/2.面向对象/4.运算符重载.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/3.名词解释/1.高内聚-低耦合.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Cpp/4.other/main函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/1.可执行文件.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/2.ELF文件概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/3.ELF_Header.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/4.ProgramHeaderTable.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/5.Sections.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/6.SectionHeaderTable.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/7.编译，链接，装载，执行.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/8.共享库.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Executable/9.PE文件.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Lua/1.基本操作.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Lua/2.模块与包.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/1.简介.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/2.标题.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/3.字体.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/4.列表.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/5.区块.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/6.链接.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/7.图片.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/8.表格.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/9.代码.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/10.特殊符号.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/11.流程图(flowchart).html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/12.时序图(SequenceDiagram).html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/13.饼图(Piechart).html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Markdown/README.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Neo4j/1.基础概念.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/PHP/1.php简介.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/PHP/2.php基本语法.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/PHP/3.php控制结构.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/PHP/4.php数组.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/PHP/5.php函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/PHP/6.php魔术常量.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/PHP/7.php命名空间.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Python/Matplotlib/1.基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Python/Numpy/1.Numpy入门.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Python/Numpy/2.Numpy数据存储与函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Python/Numpy/3.图像的手绘.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Python/Pandas/1.Pandas库入门.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Python/基础/IPython.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Python/基础/基本数据类型.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Rust/1.Cargo.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Rust/2.基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Rust/3.错误处理.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Word/写作.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/Word/基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/前端/CSS/1.基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/前端/HTML/1.基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/前端/JavaScript/1.基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/前端/Vue3/1.基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/1.linux-文件&amp;目录.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/2.linux-用户&amp;权限.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/3.linux-进程.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/4.linux-系统.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/5.linux-网络.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/6.linux-软件.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/7.linux-快捷键.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/windows.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/命令行/操作符.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/密码学/1.概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/密码学/2.古典密码学.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/密码学/3.序列密码.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/密码学/4.典型序列密码.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/密码学/5.数学基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/密码学/6.RSA.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/密码学/7.DES.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/密码学/8.群理论与椭圆曲线群公钥.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/并发/1.并发、线程api.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/并发/2.锁.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/并发/3.基于锁的并发数据结构.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/并发/4.条件变量.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/并发/5.信号量.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/并发/6.常见的并发问题.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/持久性/1.设备管理.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/持久性/2.文件系统.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/持久性/3.文件和目录.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/持久性/4.文件系统的实现.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/持久性/5.崩溃一致性.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/虚拟化/1.进程.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/虚拟化/2.受限直接执行.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/虚拟化/3.进程调度.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/虚拟化/4.地址转换.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/虚拟化/5.分段、空闲空间管理.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/虚拟化/6.分页、TLB.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/虚拟化/7.使页表变小.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/操作系统/虚拟化/8.超越物理内存.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/1.x86处理器架构/1.存储器与CPU.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/1.x86处理器架构/2.32位x86处理器.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/1.x86处理器架构/3.64位x86处理器.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/2.汇编语言基础/1.基本语言元素.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/2.汇编语言基础/2.指令.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/2.汇编语言基础/3.定义数据.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/2.汇编语言基础/4.符号常量.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/3.基本汇编指令/1.数据传送指令.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/3.基本汇编指令/2.整数运算.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/3.基本汇编指令/3.与数据相关的运算符和伪指令.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/3.基本汇编指令/4.间接寻址.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/3.基本汇编指令/5.跳转循环.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/3.基本汇编指令/6.布尔与比较.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/3.基本汇编指令/7.条件处理.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/4.过程/1.堆栈.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/4.过程/2.定义并使用过程.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/4.过程/3.堆栈帧.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/4.过程/4.函数调用规范.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/5.其他/1.__x86.get_pc_thunk.ax.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/5.其他/2.CDQ.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/5.其他/3.align.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/5.其他/4.emit.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/汇编语言x86/5.其他/5.LOWORD, HIWORD, LOBYTE, HIBYTE.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/1.概述/1.计算机体系结构.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/1.概述/2.计算机的性能.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/2.信息的表示和处理/1.信息的二进制表示与存储.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/2.信息的表示和处理/2.整数的表示.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/2.信息的表示和处理/3.整数的运算.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/2.信息的表示和处理/4.浮点数的表示.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/2.信息的表示和处理/5.浮点数的运算.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/2.信息的表示和处理/6.数据集合的表示和存储.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/2.信息的表示和处理/7.字符的表示.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/3.RISC-V指令系统/1.前言.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/3.RISC-V指令系统/2.RISC-V指令集基本运算.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/3.RISC-V指令系统/3.RISC-V指令集数据传输.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/3.RISC-V指令系统/4.RISC-V指令集控制类语句.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/3.RISC-V指令系统/5.RISC-V寄存器.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/3.RISC-V指令系统/6.RISC-V阶乘实例.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/3.RISC-V指令系统/7.基本寻址技术.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/4.中央处理器/1.单周期处理器.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/4.中央处理器/2.流水线处理器.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/4.中央处理器/3.冒险.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/5.存储层次结构/1.概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/5.存储层次结构/2.磁盘存储.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/5.存储层次结构/3.高速缓存.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/5.存储层次结构/4.虚拟内存.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/6.输入输出系统/1.输入输出系统概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/6.输入输出系统/2.IO接口.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/6.输入输出系统/3.IO控制方式.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CSNote/计算机原理/6.输入输出系统/4.总线.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Blink/Hardcoded_Credentials_in_BL-AC3600_Routers.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Blink/Information_Exposure_Vulnerabilities_in_Various_Blink_Router_Models.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Blink/Plaintext_Password_Leakage_in_the_Web_Management_Interface_of_BL-AC3600_Routers.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Blink/Privilege_Control_Defect_in_Blink_Router_Web_Interface_Permits_Arbitrary_Sensitive_Operation_Execution.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Blink/Web_Interface_Login_Credential_Disclosure_Risk_in_Various_Blink_Router_Models.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/FLIR/Command_Injection_Vulnerability_in_Developer_Backdoor_Page.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/FLIR/Production_html_Management_Backend_Unauthorized_Access.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/FLIR/Root_User_with_Hardcoded_Weak_Password.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/SIEMENS/1.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Vaelsys/Remote_Code_Execution_in_Vaelsys_V4_Platform.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Vaelsys/Unauthorized_Access_Leads_to_Sensitive_Information_Leakage_in_Vaelsys_V4_Platform.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Vaelsys/Unauthorized_User_Creation_Vulnerability_Exists_in_Vaelsys_V4_Platform.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/CVEs.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/CVEs/Template.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/Base/网络层.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/Base/网络接入层.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/PHP/MD5碰撞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/PHP/PHP8.1.0-dev后门远程命令执行漏洞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/PHP/PHP伪协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/PHP/PHP弱类型安全漏洞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/SQL/SQL注入漏洞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/SSRF/1.SSRF概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Attack/命令执行/Command命令执行漏洞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/AWD/常用命令.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/AWD/日志.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/AWD/竞赛流程.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/eBPF/基础/1.概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Linux/1.Linux概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Linux/2.基本安全配置.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Linux/3.网络编程.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Penetration/内网渗透/0.域内主机存活探测.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Penetration/内网渗透/1.内网环境.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Penetration/内网渗透/2.powershell.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Penetration/内网渗透/2.内网信息收集.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Penetration/内网渗透/3.本地工作组信息收集.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Penetration/1.资产探测.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Penetration/2.注入漏洞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Penetration/3.文件类漏洞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/RootKit/Linux/LD_PRELOAD/1.LD_PRELOAD基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/RootKit/Linux/LKM/1.LKM基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/RootKit/Linux/LKM/2.Syscall.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/RootKit/Linux/Reptile/1.rootkit介绍.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/RootKit/Linux/Reptile/2.Reptile介绍.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/SSH/1.SSH基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/SSH/2.SSH密钥.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Tools/Burpsuite.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/1.概述/1.计算机网络概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/1.概述/2.IEEE802.x.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/1.概述/3.网址到网页.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/2.物理层/1.物理层概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/3.数据链路层/1.数据链路层概述.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/3.数据链路层/2.错误检测和纠正.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/3.数据链路层/3.可靠传输协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/3.数据链路层/4.HDLC协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/3.数据链路层/5.交换.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/4.局域网/1.局域网参考模型.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/4.局域网/2.以太网.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/4.局域网/3.高速以太网.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/4.局域网/4.无线局域网.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/4.局域网/5.局域网组网.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/4.局域网/6.VLAN.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/1.IP协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/2.IP报文.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/3.IP地址与NAT.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/4.子网和超网.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/5.DHCP协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/6.ICMP协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/7.IP报文转发与路由器.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/8.路由模式和协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/9.IP组播.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/10.IPv6.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/11.MAC表，ARP表，路由表.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/5.网络层/12.ARP协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/6.传输层/1.进程通信与端口.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/6.传输层/2.UDP协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/6.传输层/3.TCP协议.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/7.应用层/1.应用层概述与通信方式.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/7.应用层/2.web与HTTP.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/7.应用层/3.电子邮件.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/7.应用层/4.域名及解析.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/8.网络安全防护技术/1.网络安全威胁.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/8.网络安全防护技术/2.网络安全防御技术.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/8.网络安全防护技术/3.无线网络防护.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/Web/9.other/SD-WAN.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/内容安全与认知对抗/1.网络数据获取.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/内容安全与认知对抗/2.安全通信网络.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Cyberspace/区块链/1.入门培训.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/FUZZ/Fuzzing-Module/Fuzzing-Module.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/FUZZ/Fuzzing101/1.Xpdf-CVE-2019-13288.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/FUZZ/AFL.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/FUZZ/AFL++.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/FUZZ/漏洞挖掘.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Hardware/仪器/1.万用表.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Hardware/仪器/2.电烙铁，热风枪.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Hardware/基础/1.物联网硬件组成.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/D-Link/CVE-2024-7436命令注入.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/EMBA/1.安装指南避坑.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/EMBA/2.扫描配置.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/EVE-NG/1.入门使用.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/Firmadyne/1.论文.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/FirmAE/1.论文.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/FirmAE/2.run.sh分析.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/FirmAE/3.extractor.py分析.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/FirmAE/4.network.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/FirmAE/5.docker大规模并行化.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/GL-iNet/CVE-2024-39226命令注入.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/LB-LINK/AC3600(AC6)_V1.0.21_TFTP/AC3600分析.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/RuiJie/CVE-2023-34644代码注入.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/Practice/Tenda/CVE-2024-2813缓冲区溢出.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/1.接口.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/2.固件获取.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/3.固件分析.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/4.固件仿真.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/5.固件自动化分析工具.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/6.固件解密.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/7.MIPS基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/8.ARM基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/9.远程调试.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/固件基础/10.文件系统.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/无线蓝牙/1.BLE基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/路由器类设备/1.常见漏洞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/路由器类设备/2.路由器基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/路由器类设备/3.常见webserver.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/路由器类设备/4.物理网卡与虚拟网卡.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/车联网/1.车联网基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/通信-总线-协议/1.ubus.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/IOT/通信-总线-协议/2.MQTT.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Canary和沙箱/1.canary绕过-逐字节爆破.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/IO_FILE/1.IO_FILE基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Kernel/1.内核基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Kernel/Untitled.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Linux安全机制/ASLR.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Linux安全机制/Canary.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Linux安全机制/checksec.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Linux安全机制/NX.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Linux安全机制/PIE.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Linux安全机制/RELRO.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/C++allocator类.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/C++string类.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/gcc版本切换.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/glibc_compile.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/lambda规范&amp;模板.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/man手册.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/patch.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/pwn-docker.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/suid提权.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/system函数探究.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/system奇技淫巧.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/uid之ruid，euid，suid.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/Other/竞争条件.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/保护绕过/1.VMpwn.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/保护绕过/2.ORW.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/保护绕过/3.ROP防御.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/1.unsortedbin_leak.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/2.unsortedbin_attack.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/3.fastbin_attack.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/4.fastbin_double_free.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/5.largebin_attack.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/6.largebin_attack2.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/7.绕过tcache.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/8.tcache_poisoning.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/9.tcache_dup.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/10.tcache_perthread_corruption.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/11.tcache_extend.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/12.tcache_key绕过.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/13.fastbin_reverse_into_tcache.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BinAttack/14.tcache_stash_unlink.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BugUsed/1.unlink.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BugUsed/2.UAF.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BugUsed/3.off-by-one.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BugUsed/4.heap_overlapping.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BugUsed/5.malloc_init_state_attack.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/BugUsed/6.setcontext.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/1.House_of_Roman.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/2.House_of_Einherjar.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/3.House_of_Force.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/4.House_of_Spirit.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/5.House_of_Rabbit.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/6.House_of_Storm.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/7.House_of_Lore.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/8.House_of_Gods.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/House/9.House_of_Corrosion.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/1.堆基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/2.堆相关数据结构.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/堆利用/3.核心函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/__readfsbyte、__readfsdword、__readfsqword、__readfsword.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/alloca().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/atoi()&amp;atol()&amp;strtol()&amp;strtoll()&amp;strtoul()&amp;strtoull().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/bzero().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/getc()&amp;putc().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/gets()&amp;puts().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/memset().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/open()&amp;fopen().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/read()&amp;fread().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/rename().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/scanf().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/setbuf()&amp;setvbuf().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/sprintf()&amp;__snprintf_chk().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/strcmp().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/strcpy()&amp;strncpy()&amp;memcpy().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/strdup().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/strlen().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/write()&amp;fwrite().html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/常见函数/标准IO&amp;系统IO.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/异架构/1.MIPS_PWN.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/整数溢出/1.整数溢出基本介绍.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/整数溢出/2.溢出示例.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/整数溢出/3.漏洞多发函数.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/1.栈溢出常见漏洞.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/2.ret2text.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/3.ret2syscall.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/4.ret2libc.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/5.ret2shellcode.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/6.stack_pivot.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/7.ret2csu.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/8.ret2dl-resolve.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/9.SROP.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/10.ret2vdso.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/11.BROP.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/12.off-by-null.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/栈溢出/13.ret2mprotect.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/格式化字符串/1.printf详解.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/格式化字符串/2.调用约定.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/格式化字符串/3.格式化字符串漏洞利用.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/PWN/格式化字符串/4.非栈上格式化字符串通用解法.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Re/1.基本汇编指令总结.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Re/2.逆向基本.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Re/3.抗分析性代码.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Re/4.花指令.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Re/5.SMC.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Re/6.OLLVM.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Re/7.VM逆向.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/1.静态分析/IDA.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/1.静态分析/Joern.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/1.静态分析/objdump.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/1.静态分析/readelf.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/1.静态分析/ROPgadget&amp;ropper&amp;one_gadget.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/2.动态调试/gdb.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/2.动态调试/radare2.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/2.动态调试/x64dbg.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/3.约束求解/z3.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/4.模拟执行/angr.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/conda.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/docker.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/gcc与g++.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/github_action.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/ida插件.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/make.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/netmiko.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/pwntools.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/pyinstxtractor.py.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/socks5.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/tmux.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/uv.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/vim.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/vimium.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/Tools/其他/zsh.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/git与github访问问题.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/linux命令行配置代理.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/openlist上传大文件失败.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/ssh问题.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/terminal.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/vmtool&amp;add_root.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/VM网络.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/VM虚拟机端口.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/一键换源.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/修复vm虚拟机启动失败.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/定位网络故障.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/换行.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/磁盘号固定.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/Q&amp;A/虚拟机与主机共享文件夹.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/TC-Notes/Web基础.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/TC-Notes/Web渗透流程浅析.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/TC-Notes/密码破解技术.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/TC-Notes/网络攻击中典型木马运用.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/ZOther/TC-Notes/网络流量分析技术与应用.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://waiwai24.github.io/articles/0101/README.html</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
